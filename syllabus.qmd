@@ -1,0 +1,171 @@
+---
+title: "Syllabus"
+subtitle: "PA 311N · Fall 2026"
+toc: true
+---
+
+## Course information
+
+**Course:** Undergraduate Quantitative Methods  
+**Subtitle:** Data Analysis for Public Policy  
+**Instructor:** Sergio I. García-Ríos  
+**Teaching Assistant:** Sarah Traore  
+**Institution:** LBJ School of Public Affairs, The University of Texas at Austin  
+**Semester:** Fall 2026
+
+| Meeting | Time | Location |
+|---|---:|---|
+| Monday lecture | 2:00–3:00 p.m. | [SRH 3.B10](https://maps.utexas.edu/buildings/UTM/SRH/) |
+| Wednesday guided lab | 2:00–3:00 p.m. | [SRH 3.B10](https://maps.utexas.edu/buildings/UTM/SRH/) |
+| Friday section 1 | 9:00–10:00 a.m. | [SRH 3.216](https://maps.utexas.edu/buildings/UTM/SRH/) |
+| Friday section 2 | 10:00–11:00 a.m. | [SRH 3.216](https://maps.utexas.edu/buildings/UTM/SRH/) |
+
+**Office hours:** To be announced  
+**Course communication and submissions:** Canvas
+
+## Course description
+
+This course introduces students to statistics as a way of understanding and analyzing public-policy data. Throughout the semester, students will learn how to collect and evaluate data, describe patterns, quantify uncertainty, analyze relationships, and draw careful conclusions about real-world phenomena.
+
+The course emphasizes statistical reasoning, interpretation, and communication. Students will use R and RStudio to conduct analyses and Quarto to produce reproducible reports. No prior experience with R is required.
+
+## Course goals
+
+Students who successfully complete the course should be able to:
+
+1. Recognize the importance of data collection and identify how limitations in research design affect the conclusions that can be drawn.
+2. Use statistical software to clean, summarize, visualize, and analyze data.
+3. Understand the role of probability and sampling variability in statistical inference.
+4. Apply estimation and testing methods to individual variables and relationships between variables.
+5. Estimate and interpret simple and multiple regression models.
+6. Interpret statistical results accurately and in context without relying on unnecessary jargon.
+7. Distinguish statistical significance from substantive importance.
+8. Critique quantitative claims and evaluate data-based decisions.
+9. Communicate findings to nontechnical public-policy audiences.
+10. Complete an original and reproducible applied research project.
+
+## Required software
+
+Students must install:
+
+- R
+- RStudio Desktop
+- Quarto
+
+All three are free. Installation and setup instructions will be posted on the course website. Students should bring a laptop capable of running the software to guided labs and Friday sections.
+
+## Course structure
+
+The course is organized around six broad units:
+
+1. Data, measurement, and exploratory analysis
+2. Probability and distributions
+3. Sampling, uncertainty, and foundations for inference
+4. Hypothesis testing and comparisons
+5. Correlation and regression
+6. Interpretation and communication
+
+Within each unit, students will encounter a substantive public-policy question, develop the relevant statistical reasoning, apply the method in R, and interpret the results.
+
+## Assessment
+
+| Component | Weight |
+|---|---:|
+| Attendance and participation | 5% |
+| Problem sets and interpretation exercises | 25% |
+| Guided labs | 25% |
+| Readiness assessments | 5% |
+| Project proposal | 10% |
+| Final applied project | 30% |
+| **Total** | **100%** |
+
+Specific instructions, deadlines, and grading criteria will be posted with each assignment and on the course schedule.
+
+## Attendance and participation
+
+Regular attendance and active participation are essential because much of the statistical reasoning and coding work will be completed collaboratively during class.
+
+Participation includes preparation, engagement in discussion, thoughtful work during labs, and constructive collaboration with classmates. Attendance alone does not constitute full participation.
+
+Students who must miss class should communicate as early as possible and remain responsible for reviewing the material and completing assigned work.
+
+## Problem sets and interpretation exercises
+
+Problem sets and short interpretation exercises will reinforce statistical concepts and help students prepare for labs and the applied project. These assignments may include conceptual questions, calculations, critiques of quantitative claims, and short written interpretations.
+
+Students may discuss concepts with classmates, but submitted work must reflect each student’s own reasoning unless an assignment explicitly permits group submission.
+
+## Labs
+
+Labs provide hands-on experience analyzing real data in R. Most coding will be completed together during Wednesday’s guided lab. Friday sections provide additional review, troubleshooting, and support.
+
+Each student will submit an individual Quarto file and rendered output. The **On Your Own** section must demonstrate the student’s independent coding and interpretation.
+
+## Readiness assessments
+
+Short readiness assessments will check understanding of essential concepts and preparation for new material. They are intended to identify areas that need attention before students move to more advanced applications.
+
+## Applied project
+
+The final project gives students independent experience conducting a public-policy analysis using real data. Students will:
+
+- Formulate an answerable empirical question
+- Identify and document appropriate data
+- Prepare and explore the data in R
+- Select methods appropriate to the question
+- Present and interpret the results
+- Discuss uncertainty and limitations
+- Communicate the findings to a nontechnical audience
+- Submit reproducible work using Quarto
+
+A project proposal will be submitted earlier in the semester. Additional project milestones and final deliverables will be announced on the course website.
+
+## Collaboration and individual responsibility
+
+Collaboration is encouraged when learning concepts and troubleshooting code. However, collaboration must not conceal whether an individual student understands the analysis.
+
+Unless otherwise stated:
+
+- Students may discuss general approaches.
+- Students must write and submit their own code.
+- Students must produce their own interpretations.
+- Students must be able to explain every part of submitted work.
+- Sharing completed answers or submitting another person’s work is not permitted.
+
+## Use of AI tools
+
+AI tools may be useful for brainstorming, explaining error messages, or improving clarity, but they do not replace statistical reasoning or individual responsibility.
+
+Students remain responsible for:
+
+- Understanding and verifying all submitted code
+- Checking results against the underlying data
+- Identifying fabricated functions, citations, or interpretations
+- Explaining their analytical decisions
+- Following assignment-specific AI instructions
+- Disclosing substantive AI assistance when required
+
+AI-generated output that a student cannot explain or verify will not receive credit. Additional guidance will be provided with individual assignments.
+
+## Reproducibility and submission
+
+Unless otherwise specified, quantitative assignments should be completed in Quarto and submitted through Canvas. Students may be asked to submit both:
+
+- The source .qmd file
+- The rendered HTML or PDF output
+
+Files should render without manual correction and should include sufficient documentation for another person to understand the analysis.
+
+## Workload
+
+Students should expect to spend approximately four to six hours per week outside scheduled class meetings. Individual needs will vary depending on prior preparation.
+
+Beginning assignments early is particularly important when coding. Technical problems are much easier to resolve before a deadline.
+
+## Course schedule
+
+The current weekly plan is available on the [Schedule](schedule.qmd) page. The schedule may be adjusted to match the pace and needs of the class. Any changes to assignments or deadlines will be communicated through Canvas and reflected on the course website.
+
+## University policies and student support
+
+University-required syllabus statements, accessibility information, academic integrity guidance, safety resources, and student-support information will be added before the syllabus is finalized for distribution.
