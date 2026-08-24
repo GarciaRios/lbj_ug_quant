@@ -38,6 +38,13 @@ Short readiness assessments check preparation for a new unit and identify concep
 
 ## Project proposal and final applied project
 
-The project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings in a reproducible Quarto report.
+The project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings clearly.
 
-Detailed instructions and milestones will be added as the project develops.
+The final project has two connected products:
+
+1. **Individual reproducible analysis and report (20%):** A Quarto report containing the question, data documentation, analysis, results, interpretation, uncertainty, and limitations.
+2. **Policy poster and presentation (10%):** A concise poster translating the project for a nontechnical policy audience, accompanied by a brief oral explanation during the class poster session.
+
+The poster should emphasize one clear question, one or two effective visualizations, the principal finding, substantive importance, and limitations. The poster does not replace the individual code and report.
+
+There is no traditional midterm or final examination. Cumulative understanding is assessed through problem sets, labs, and the applied project.

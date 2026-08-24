@@ -77,10 +77,15 @@ Within each unit, students will encounter a substantive public-policy question, 
 | Guided labs | 25% |
 | Readiness assessments | 5% |
 | Project proposal | 10% |
-| Final applied project | 30% |
+| Individual reproducible analysis and report | 20% |
+| Policy poster and presentation | 10% |
 | **Total** | **100%** |
 
 Specific instructions, deadlines, and grading criteria will be posted with each assignment and on the course schedule.
+
+### No midterm or final examination
+
+The course does not include a traditional midterm or final examination. Students will demonstrate cumulative understanding through problem sets, individual lab work, and the applied project.
 
 ## Attendance and participation
 
@@ -108,7 +113,7 @@ Short readiness assessments will check understanding of essential concepts and p
 
 ## Applied project
 
-The final project gives students independent experience conducting a public-policy analysis using real data. Students will:
+The final project gives students independent experience conducting a public-policy analysis using real data. Each student will:
 
 - Formulate an answerable empirical question
 - Identify and document appropriate data
@@ -116,10 +121,13 @@ The final project gives students independent experience conducting a public-poli
 - Select methods appropriate to the question
 - Present and interpret the results
 - Discuss uncertainty and limitations
-- Communicate the findings to a nontechnical audience
-- Submit reproducible work using Quarto
+- Submit an individual reproducible analysis and report using Quarto
+- Create a concise, policy-oriented poster
+- Explain the project during the class poster session
 
-A project proposal will be submitted earlier in the semester. Additional project milestones and final deliverables will be announced on the course website.
+The poster should communicate the question, data, method, principal evidence, substantive importance, and limitations to a nontechnical audience. The reproducible report and underlying code remain individual work.
+
+A project proposal will be submitted earlier in the semester. Intermediate milestones will provide opportunities for feedback before the poster session and final report.
 
 ## Collaboration and individual responsibility
 

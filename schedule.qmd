@@ -102,8 +102,8 @@ OpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5
 | **Mon., Nov. 30** | Communicating findings to policy audiences | Project draft |
 | **Wed., Dec. 2** | Case study and project workshop | Bring reproducible analysis |
 | **Fri., Dec. 4** | Final project support | Complete remaining analysis |
-| **Mon., Dec. 7** | Course synthesis and final consultations | Last class day |
+| **Mon., Dec. 7** | Final policy-poster session and course synthesis | Present poster and discuss findings |
 
 ::: {.callout-note appearance="simple"}
-Major project milestones and the final submission date will be added once the university’s final-exam schedule and course submission windows are confirmed.
+The individual reproducible report will be submitted through Canvas during the university’s final submission period. The exact deadline will be posted once the official final-exam schedule is confirmed.
 :::

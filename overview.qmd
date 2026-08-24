@@ -68,6 +68,8 @@ Students begin each lab in class and complete a shorter independent section afte
 
 ## Applied project
 
-Students will complete an original public-policy analysis using real data. The project will require students to formulate a question, select and document appropriate data, conduct an independent analysis in R, interpret the results, and communicate the findings clearly.
+Students will complete an original public-policy analysis using real data. The project requires students to formulate a question, select and document appropriate data, conduct an independent analysis in R, interpret the results, and communicate the findings clearly.
 
-The project is cumulative. Intermediate checkpoints will provide opportunities for feedback before the final submission.
+Each student will submit an individual reproducible Quarto report and create a concise policy poster. The semester concludes with a poster session in which students explain their question, evidence, principal finding, and limitations to classmates and invited guests.
+
+The project is cumulative. Intermediate checkpoints will provide opportunities for feedback before the poster session and final submission.
