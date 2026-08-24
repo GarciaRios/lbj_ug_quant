@@ -1,6 +1,13 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "*.qmd"
+    - "labs/**/*.qmd"
+    - "!templates/**"
+  resources:
+    - templates/**
+    - data/**
 
 website:
   title: "Undergraduate Quantitative Methods"
@@ -17,6 +24,8 @@ website:
         text: Syllabus
       - href: schedule.qmd
         text: Schedule
+      - href: labs.qmd
+        text: Labs
     right:
       - icon: github
         href: https://github.com/GarciaRios/lbj_ug_quant

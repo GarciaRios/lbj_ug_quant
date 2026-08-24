@@ -1,0 +1,20 @@
+---
+title: "Labs"
+subtitle: "Guided practice in data analysis for public policy"
+---
+
+The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the **On Your Own** work.
+
+Each lab has two parts: a detailed online guide and a bare-bones reproducible report for students to complete and render.
+
+## Lab 0: Getting started with R, RStudio, and Quarto
+
+Set up the software workflow, use R as a calculator, create objects, and render a first reproducible report.
+
+[Open the teaching guide](labs/lab00/) · [Download the student report](templates/lab00-template.qmd){download="lab00-template.qmd"}
+
+## Lab 1: Introduction to data analysis in R
+
+Use historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.
+
+[Open the teaching guide](labs/lab01/) · [Download the student report](templates/lab01-template.qmd){download="lab01-template.qmd"}
