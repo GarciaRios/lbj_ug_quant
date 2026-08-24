@@ -28,11 +28,11 @@
     "text": "Course goals\nStudents who successfully complete the course should be able to:\n\nRecognize the importance of data collection and identify how limitations in research design affect the conclusions that can be drawn.\nUse statistical software to clean, summarize, visualize, and analyze data.\nUnderstand the role of probability and sampling variability in statistical inference.\nApply estimation and testing methods to individual variables and relationships between variables.\nEstimate and interpret simple and multiple regression models.\nInterpret statistical results accurately and in context without relying on unnecessary jargon.\nDistinguish statistical significance from substantive importance.\nCritique quantitative claims and evaluate data-based decisions.\nCommunicate findings to nontechnical public-policy audiences.\nComplete an original and reproducible applied research project."
   },
   {
-    "objectID": "syllabus.html#required-software",
-    "href": "syllabus.html#required-software",
+    "objectID": "syllabus.html#required-textbook-and-software",
+    "href": "syllabus.html#required-textbook-and-software",
     "title": "Syllabus",
-    "section": "Required software",
-    "text": "Required software\nStudents must install:\n\nR\nRStudio Desktop\nQuarto\n\nAll three are free. Installation and setup instructions will be posted on the course website. Students should bring a laptop capable of running the software to guided labs and Friday sections."
+    "section": "Required textbook and software",
+    "text": "Required textbook and software\nTextbook: David M. Diez, Christopher D. Barr, and Mine Çetinkaya-Rundel, OpenIntro Statistics, 4th edition (2019).\nThe complete textbook is available free online through OpenIntro. A paperback is optional. Problem-set exercise numbers on the schedule correspond to the 4th edition.\nStudents must also install:\n\nR\nRStudio Desktop\nQuarto\n\nAll three are free. Students should bring a laptop capable of running the software to guided labs and Friday sections."
   },
   {
     "objectID": "syllabus.html#course-structure",
@@ -46,7 +46,14 @@
     "href": "syllabus.html#assessment",
     "title": "Syllabus",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\nComponent\nWeight\n\n\n\n\nAttendance and participation\n5%\n\n\nProblem sets and interpretation exercises\n30%\n\n\nGuided labs\n25%\n\n\nProject proposal\n10%\n\n\nIndividual reproducible analysis and report\n20%\n\n\nPolicy poster and presentation\n10%\n\n\nTotal\n100%\n\n\n\nSpecific instructions, deadlines, and grading criteria will be posted with each assignment and on the course schedule."
+    "text": "Assessment\n\n\n\nComponent\nWeight\n\n\n\n\nAttendance and participation\n5%\n\n\nProblem sets and interpretation exercises\n25%\n\n\nGuided labs\n25%\n\n\nMidterm\n10%\n\n\nProject proposal\n5%\n\n\nIndividual reproducible analysis and report\n20%\n\n\nPolicy poster and presentation\n10%\n\n\nTotal\n100%\n\n\n\nSpecific instructions, deadlines, and grading criteria will be posted with each assignment and on the course schedule."
+  },
+  {
+    "objectID": "syllabus.html#midterm",
+    "href": "syllabus.html#midterm",
+    "title": "Syllabus",
+    "section": "Midterm",
+    "text": "Midterm\nThe in-class midterm will assess statistical reasoning, interpretation, and the core concepts from Units 1–3. It will include conceptual questions and manageable calculations but will not require R coding. Students may use one double-sided reference sheet prepared by them."
   },
   {
     "objectID": "syllabus.html#attendance-and-participation",
@@ -119,179 +126,32 @@
     "text": "University policies and student support\nUniversity-required syllabus statements, accessibility information, academic integrity guidance, safety resources, and student-support information will be added before the syllabus is finalized for distribution."
   },
   {
-    "objectID": "overview.html",
-    "href": "overview.html",
-    "title": "Course Overview",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "Public policy increasingly depends on quantitative evidence. This course introduces students to the statistical reasoning and data-analysis tools needed to evaluate that evidence and produce careful analyses of their own.\nWe begin with substantive questions rather than disconnected formulas. Each method is introduced through a real public-policy problem, developed conceptually, implemented in R, and interpreted in clear language.\nNo prior experience with R is required. Students may enter with different levels of mathematical, statistical, and coding preparation."
+    "text": "Diez, David M., Christopher D. Barr, and Mine Çetinkaya-Rundel. 2019. OpenIntro Statistics. 4th ed.\n\nFree textbook and supporting materials\nPaperback optional\nProblem-set exercise numbers correspond to the 4th edition"
   },
   {
-    "objectID": "overview.html#what-this-course-is-about",
-    "href": "overview.html#what-this-course-is-about",
-    "title": "Course Overview",
+    "objectID": "resources.html#textbook",
+    "href": "resources.html#textbook",
+    "title": "Resources",
     "section": "",
-    "text": "Public policy increasingly depends on quantitative evidence. This course introduces students to the statistical reasoning and data-analysis tools needed to evaluate that evidence and produce careful analyses of their own.\nWe begin with substantive questions rather than disconnected formulas. Each method is introduced through a real public-policy problem, developed conceptually, implemented in R, and interpreted in clear language.\nNo prior experience with R is required. Students may enter with different levels of mathematical, statistical, and coding preparation."
+    "text": "Diez, David M., Christopher D. Barr, and Mine Çetinkaya-Rundel. 2019. OpenIntro Statistics. 4th ed.\n\nFree textbook and supporting materials\nPaperback optional\nProblem-set exercise numbers correspond to the 4th edition"
   },
   {
-    "objectID": "overview.html#learning-objectives",
-    "href": "overview.html#learning-objectives",
-    "title": "Course Overview",
-    "section": "Learning objectives",
-    "text": "Learning objectives\nBy the end of the semester, students should be able to:\n\nFormulate clear and answerable empirical questions.\nIdentify appropriate data for a public-policy question.\nImport, clean, recode, document, and explore data in R.\nSummarize distributions numerically and visually.\nExplain probability, sampling variability, and statistical uncertainty.\nConstruct and interpret confidence intervals.\nConduct and interpret basic hypothesis tests and group comparisons.\nAnalyze correlation and estimate simple and multiple regression models.\nInterpret coefficients, predicted values, and uncertainty in context.\nDistinguish statistical significance from substantive importance.\nCommunicate quantitative findings to nontechnical audiences.\nProduce a reproducible analysis using Quarto.\nEvaluate the ethical and responsible use of data and AI."
+    "objectID": "resources.html#software",
+    "href": "resources.html#software",
+    "title": "Resources",
+    "section": "Software",
+    "text": "Software\n\nR\nRStudio Desktop\nQuarto"
   },
   {
-    "objectID": "overview.html#how-the-course-works",
-    "href": "overview.html#how-the-course-works",
-    "title": "Course Overview",
-    "section": "How the course works",
-    "text": "How the course works\nThe course connects three elements throughout the semester:\n\nStatistical reasoning: What does the method do, and when is it appropriate?\nR programming: How can we implement the analysis and check the output?\nPublic-policy application: What does the result mean for the substantive question?\n\nCoding is an important tool, but coding complexity is secondary to reasoning and interpretation."
-  },
-  {
-    "objectID": "overview.html#weekly-structure",
-    "href": "overview.html#weekly-structure",
-    "title": "Course Overview",
-    "section": "Weekly structure",
-    "text": "Weekly structure\n\nMonday: Lecture\nWe introduce a substantive question and the statistical concepts needed to answer it.\n\n\nWednesday: Guided lab\nWe apply the method together in R using real data. Most coding is completed collaboratively during class.\n\n\nFriday: Lab section\nSarah Traore reviews difficult material, helps students troubleshoot code, and provides support for the lab’s On Your Own section."
-  },
-  {
-    "objectID": "overview.html#labs",
-    "href": "overview.html#labs",
-    "title": "Course Overview",
-    "section": "Labs",
-    "text": "Labs\nLabs are cumulative and designed to build a practical data-analysis workflow. Each lab will have:\n\nA detailed online teaching guide with explanations, examples, and guided code\nA minimal downloadable Quarto template\nSetup code and a few pre-entered examples\nBlank R cells and spaces for written interpretation\nA clearly labeled On Your Own section\n\nStudents begin each lab in class and complete a shorter independent section afterward."
-  },
-  {
-    "objectID": "overview.html#applied-project",
-    "href": "overview.html#applied-project",
-    "title": "Course Overview",
-    "section": "Applied project",
-    "text": "Applied project\nStudents will complete an original public-policy analysis using real data. The project requires students to formulate a question, select and document appropriate data, conduct an independent analysis in R, interpret the results, and communicate the findings clearly.\nEach student will submit an individual reproducible Quarto report and create a concise policy poster. The semester concludes with a poster session in which students explain their question, evidence, principal finding, and limitations to classmates and invited guests.\nThe project is cumulative. Intermediate checkpoints will provide opportunities for feedback before the poster session and final submission."
-  },
-  {
-    "objectID": "labs/lab00/index.html",
-    "href": "labs/lab00/index.html",
-    "title": "Lab 0: Getting Started",
-    "section": "",
-    "text": "Download the student lab template"
-  },
-  {
-    "objectID": "labs/lab00/index.html#goals",
-    "href": "labs/lab00/index.html#goals",
-    "title": "Lab 0: Getting Started",
-    "section": "Goals",
-    "text": "Goals\nBy the end of this lab, you should be able to:\n\nidentify the main parts of RStudio;\nrun R code and save a result as an object;\nopen, edit, save, and render a Quarto (.qmd) file;\nrecognize where code, output, and written interpretation belong; and\nidentify areas in which you may want additional support.\n\nNo previous R experience is expected."
-  },
-  {
-    "objectID": "labs/lab00/index.html#the-course-workflow",
-    "href": "labs/lab00/index.html#the-course-workflow",
-    "title": "Lab 0: Getting Started",
-    "section": "1. The course workflow",
-    "text": "1. The course workflow\nWe will use three connected tools:\n\nR performs the calculations.\nRStudio Desktop gives us an organized place to write code, inspect data, and view results.\nQuarto combines prose, code, tables, and figures into a reproducible report.\n\nOpen RStudio. Its four panes usually contain the source editor, console, environment/history, and files/plots/help. The precise arrangement is less important than knowing where you write a report and where R displays results."
-  },
-  {
-    "objectID": "labs/lab00/index.html#r-as-a-calculator",
-    "href": "labs/lab00/index.html#r-as-a-calculator",
-    "title": "Lab 0: Getting Started",
-    "section": "2. R as a calculator",
-    "text": "2. R as a calculator\nEnter the following in the Console and press Return:\n2 + 2\n10 / 4\nsqrt(81)\nR prints a result but does not save it. To save a result, assign it a name:\npolicy_budget &lt;- 1250000\nprogram_share &lt;- 0.18\nprogram_budget &lt;- policy_budget * program_share\nprogram_budget\nThe assignment arrow, &lt;-, means “store the value on the right under the name on the left.”\n\nTry it\nCreate an object called students containing the number of students in your section. Then calculate the number of four-person groups that could be formed."
-  },
-  {
-    "objectID": "labs/lab00/index.html#your-first-quarto-report",
-    "href": "labs/lab00/index.html#your-first-quarto-report",
-    "title": "Lab 0: Getting Started",
-    "section": "3. Your first Quarto report",
-    "text": "3. Your first Quarto report\n\nIn RStudio, choose File → New File → Quarto Document.\nGive the document a title and select HTML.\nSave the file in a clearly named course folder.\nAdd a sentence below the YAML header.\nAdd an R code chunk and a simple calculation.\nSelect Render.\n\nA reproducible report keeps the code, output, and explanation together. If the source changes, render again to update the complete report.\nweekly_hours &lt;- 3\nweeks &lt;- 15\nweekly_hours * weeks\nAfter the output, write one sentence explaining what the number represents. A number without context is not yet a policy finding."
-  },
-  {
-    "objectID": "labs/lab00/index.html#a-short-ungraded-diagnostic",
-    "href": "labs/lab00/index.html#a-short-ungraded-diagnostic",
-    "title": "Lab 0: Getting Started",
-    "section": "4. A short, ungraded diagnostic",
-    "text": "4. A short, ungraded diagnostic\nThis is only a starting-point check. It will help us calibrate examples and support.\n\nHow comfortable are you working with folders and file paths?\nHave you used a spreadsheet, statistical package, or programming language before?\nIn your own words, what does an average summarize?\nIf two groups have different averages, what else would you want to know before drawing a conclusion?\nWhat part of quantitative analysis are you most interested in learning? What concerns you most?"
-  },
-  {
-    "objectID": "labs/lab00/index.html#on-your-own",
-    "href": "labs/lab00/index.html#on-your-own",
-    "title": "Lab 0: Getting Started",
-    "section": "On Your Own",
-    "text": "On Your Own\nDownload the student report, replace the placeholder author name, complete its short exercises, and render it to HTML. Bring the .qmd file and any error message to Friday section. The goal is a working workflow—not perfect code."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "",
-    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
-  },
-  {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "",
-    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
-  },
-  {
-    "objectID": "index.html#about-the-course",
-    "href": "index.html#about-the-course",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "About the course",
-    "text": "About the course\nThis course introduces students to quantitative reasoning as a way to answer substantive questions about public policy. We will learn how to collect, explore, visualize, and analyze data; evaluate uncertainty; and communicate findings clearly and responsibly.\nThe course connects three elements throughout the semester:\n\nStatistical reasoning\nR programming\nPublic-policy applications\n\nNo prior experience with R is required."
-  },
-  {
-    "objectID": "index.html#weekly-rhythm",
-    "href": "index.html#weekly-rhythm",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "Weekly rhythm",
-    "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
-  },
-  {
-    "objectID": "assignments.html",
-    "href": "assignments.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "The Schedule is the main course hub. It lists readings, OpenIntro exercises, labs, templates, and due dates together."
-  },
-  {
-    "objectID": "assignments.html#problem-sets",
-    "href": "assignments.html#problem-sets",
-    "title": "Assignments",
-    "section": "Problem sets",
-    "text": "Problem sets\nProblem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from OpenIntro Statistics, 4th edition.\nStudents should:\n\nshow the reasoning or calculations used to reach an answer;\nexplain answers in context when interpretation is requested;\nsubmit their own work through Canvas; and\nbegin early enough to use Friday sections for questions.\n\nStudents may discuss approaches with classmates, but each student must prepare and submit their own answers."
-  },
-  {
-    "objectID": "assignments.html#labs",
-    "href": "assignments.html#labs",
-    "title": "Assignments",
-    "section": "Labs",
-    "text": "Labs\nLabs provide guided practice with real data in R. Most coding will be completed together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nFor each lab, students will use:\n\na detailed online teaching guide; and\na downloadable student lab template in Quarto.\n\nUnless otherwise specified, submit both the source .qmd file and the rendered HTML output through Canvas.\nView all labs"
-  },
-  {
-    "objectID": "assignments.html#project-proposal-and-final-applied-project",
-    "href": "assignments.html#project-proposal-and-final-applied-project",
-    "title": "Assignments",
-    "section": "Project proposal and final applied project",
-    "text": "Project proposal and final applied project\nThe project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings clearly.\nThe final project has two connected products:\n\nIndividual reproducible analysis and report (20%): A Quarto report containing the question, data documentation, analysis, results, interpretation, uncertainty, and limitations.\nPolicy poster and presentation (10%): A concise poster translating the project for a nontechnical policy audience, accompanied by a brief oral explanation during the class poster session.\n\nThe poster should emphasize one clear question, one or two effective visualizations, the principal finding, substantive importance, and limitations. The poster does not replace the individual code and report."
-  },
-  {
-    "objectID": "labs.html",
-    "href": "labs.html",
-    "title": "Labs",
-    "section": "",
-    "text": "The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nEach lab has two parts: a detailed online guide and a student lab template for students to complete and render."
-  },
-  {
-    "objectID": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
-    "href": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
-    "title": "Labs",
-    "section": "Lab 0: Getting started with R, RStudio, and Quarto",
-    "text": "Lab 0: Getting started with R, RStudio, and Quarto\nSet up the software workflow, use R as a calculator, create objects, and render a first reproducible report.\nOpen the teaching guide · Download the student report"
-  },
-  {
-    "objectID": "labs.html#lab-1-introduction-to-data-analysis-in-r",
-    "href": "labs.html#lab-1-introduction-to-data-analysis-in-r",
-    "title": "Labs",
-    "section": "Lab 1: Introduction to data analysis in R",
-    "text": "Lab 1: Introduction to data analysis in R\nUse historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.\nOpen the teaching guide · Download the student report"
+    "objectID": "resources.html#r-and-quarto-references",
+    "href": "resources.html#r-and-quarto-references",
+    "title": "Resources",
+    "section": "R and Quarto references",
+    "text": "R and Quarto references\n\nRStudio Education cheat sheets\nQuarto documentation\nR for Data Science, 2nd edition"
   },
   {
     "objectID": "labs/lab01/index.html",
@@ -350,6 +210,188 @@
     "text": "On Your Own: More recent U.S. births\nLoad the second dataset:\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData\"))\nglimpse(present)\nComplete the following in the downloadable report:\n\nIdentify the unit of observation, years covered, and variables.\nCreate total and boy_prop.\nMake a clear line graph of total births over time.\nMake a line graph of boy_prop with a reference line at 0.5.\nDetermine whether boys outnumber girls in every observed year.\nWrite a short interpretation comparing the recent pattern with the Arbuthnot records.\n\nA strong interpretation states the pattern, uses relevant quantities, and acknowledges what these descriptive data cannot explain."
   },
   {
+    "objectID": "labs.html",
+    "href": "labs.html",
+    "title": "Labs",
+    "section": "",
+    "text": "The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nEach lab has two parts: a detailed online guide and a student lab template for students to complete and render."
+  },
+  {
+    "objectID": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
+    "href": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
+    "title": "Labs",
+    "section": "Lab 0: Getting started with R, RStudio, and Quarto",
+    "text": "Lab 0: Getting started with R, RStudio, and Quarto\nSet up the software workflow, use R as a calculator, create objects, and render a first reproducible report.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "labs.html#lab-1-introduction-to-data-analysis-in-r",
+    "href": "labs.html#lab-1-introduction-to-data-analysis-in-r",
+    "title": "Labs",
+    "section": "Lab 1: Introduction to data analysis in R",
+    "text": "Lab 1: Introduction to data analysis in R\nUse historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "assignments.html",
+    "href": "assignments.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Problem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from OpenIntro Statistics, 4th edition.\nStudents should:\n\nshow the reasoning or calculations used to reach an answer;\nexplain answers in context when interpretation is requested;\nsubmit their own work through Canvas; and\nbegin early enough to use Friday sections for questions.\n\nStudents may discuss approaches with classmates, but each student must prepare and submit their own answers."
+  },
+  {
+    "objectID": "assignments.html#problem-sets",
+    "href": "assignments.html#problem-sets",
+    "title": "Assignments",
+    "section": "",
+    "text": "Problem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from OpenIntro Statistics, 4th edition.\nStudents should:\n\nshow the reasoning or calculations used to reach an answer;\nexplain answers in context when interpretation is requested;\nsubmit their own work through Canvas; and\nbegin early enough to use Friday sections for questions.\n\nStudents may discuss approaches with classmates, but each student must prepare and submit their own answers."
+  },
+  {
+    "objectID": "assignments.html#labs",
+    "href": "assignments.html#labs",
+    "title": "Assignments",
+    "section": "Labs",
+    "text": "Labs\nLabs provide guided practice with real data in R. Most coding will be completed together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nFor each lab, students will use:\n\na detailed online teaching guide; and\na downloadable student lab template in Quarto.\n\nUnless otherwise specified, submit both the source .qmd file and the rendered HTML output through Canvas.\nView all labs"
+  },
+  {
+    "objectID": "assignments.html#midterm",
+    "href": "assignments.html#midterm",
+    "title": "Assignments",
+    "section": "Midterm",
+    "text": "Midterm\nThe midterm covers Units 1–3 and emphasizes statistical reasoning, interpretation, and manageable calculations. It does not require R coding. Students may use one double-sided reference sheet prepared by them."
+  },
+  {
+    "objectID": "assignments.html#project-proposal-and-final-applied-project",
+    "href": "assignments.html#project-proposal-and-final-applied-project",
+    "title": "Assignments",
+    "section": "Project proposal and final applied project",
+    "text": "Project proposal and final applied project\nThe project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings clearly.\nThe final project has two connected products:\n\nIndividual reproducible analysis and report (20%): A Quarto report containing the question, data documentation, analysis, results, interpretation, uncertainty, and limitations.\nPolicy poster and presentation (10%): A concise poster translating the project for a nontechnical policy audience, accompanied by a brief oral explanation during the class poster session.\n\nThe poster should emphasize one clear question, one or two effective visualizations, the principal finding, substantive importance, and limitations. The poster does not replace the individual code and report."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
+  },
+  {
+    "objectID": "index.html#about-the-course",
+    "href": "index.html#about-the-course",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "About the course",
+    "text": "About the course\nThis course introduces students to quantitative reasoning as a way to answer substantive questions about public policy. We will learn how to collect, explore, visualize, and analyze data; evaluate uncertainty; and communicate findings clearly and responsibly.\nThe course connects three elements throughout the semester:\n\nStatistical reasoning\nR programming\nPublic-policy applications\n\nNo prior experience with R is required."
+  },
+  {
+    "objectID": "index.html#weekly-rhythm",
+    "href": "index.html#weekly-rhythm",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "Weekly rhythm",
+    "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
+  },
+  {
+    "objectID": "labs/lab00/index.html",
+    "href": "labs/lab00/index.html",
+    "title": "Lab 0: Getting Started",
+    "section": "",
+    "text": "Download the student lab template"
+  },
+  {
+    "objectID": "labs/lab00/index.html#goals",
+    "href": "labs/lab00/index.html#goals",
+    "title": "Lab 0: Getting Started",
+    "section": "Goals",
+    "text": "Goals\nBy the end of this lab, you should be able to:\n\nidentify the main parts of RStudio;\nrun R code and save a result as an object;\nopen, edit, save, and render a Quarto (.qmd) file;\nrecognize where code, output, and written interpretation belong; and\nidentify areas in which you may want additional support.\n\nNo previous R experience is expected."
+  },
+  {
+    "objectID": "labs/lab00/index.html#the-course-workflow",
+    "href": "labs/lab00/index.html#the-course-workflow",
+    "title": "Lab 0: Getting Started",
+    "section": "1. The course workflow",
+    "text": "1. The course workflow\nWe will use three connected tools:\n\nR performs the calculations.\nRStudio Desktop gives us an organized place to write code, inspect data, and view results.\nQuarto combines prose, code, tables, and figures into a reproducible report.\n\nOpen RStudio. Its four panes usually contain the source editor, console, environment/history, and files/plots/help. The precise arrangement is less important than knowing where you write a report and where R displays results."
+  },
+  {
+    "objectID": "labs/lab00/index.html#r-as-a-calculator",
+    "href": "labs/lab00/index.html#r-as-a-calculator",
+    "title": "Lab 0: Getting Started",
+    "section": "2. R as a calculator",
+    "text": "2. R as a calculator\nEnter the following in the Console and press Return:\n2 + 2\n10 / 4\nsqrt(81)\nR prints a result but does not save it. To save a result, assign it a name:\npolicy_budget &lt;- 1250000\nprogram_share &lt;- 0.18\nprogram_budget &lt;- policy_budget * program_share\nprogram_budget\nThe assignment arrow, &lt;-, means “store the value on the right under the name on the left.”\n\nTry it\nCreate an object called students containing the number of students in your section. Then calculate the number of four-person groups that could be formed."
+  },
+  {
+    "objectID": "labs/lab00/index.html#your-first-quarto-report",
+    "href": "labs/lab00/index.html#your-first-quarto-report",
+    "title": "Lab 0: Getting Started",
+    "section": "3. Your first Quarto report",
+    "text": "3. Your first Quarto report\n\nIn RStudio, choose File → New File → Quarto Document.\nGive the document a title and select HTML.\nSave the file in a clearly named course folder.\nAdd a sentence below the YAML header.\nAdd an R code chunk and a simple calculation.\nSelect Render.\n\nA reproducible report keeps the code, output, and explanation together. If the source changes, render again to update the complete report.\nweekly_hours &lt;- 3\nweeks &lt;- 15\nweekly_hours * weeks\nAfter the output, write one sentence explaining what the number represents. A number without context is not yet a policy finding."
+  },
+  {
+    "objectID": "labs/lab00/index.html#a-short-ungraded-diagnostic",
+    "href": "labs/lab00/index.html#a-short-ungraded-diagnostic",
+    "title": "Lab 0: Getting Started",
+    "section": "4. A short, ungraded diagnostic",
+    "text": "4. A short, ungraded diagnostic\nThis is only a starting-point check. It will help us calibrate examples and support.\n\nHow comfortable are you working with folders and file paths?\nHave you used a spreadsheet, statistical package, or programming language before?\nIn your own words, what does an average summarize?\nIf two groups have different averages, what else would you want to know before drawing a conclusion?\nWhat part of quantitative analysis are you most interested in learning? What concerns you most?"
+  },
+  {
+    "objectID": "labs/lab00/index.html#on-your-own",
+    "href": "labs/lab00/index.html#on-your-own",
+    "title": "Lab 0: Getting Started",
+    "section": "On Your Own",
+    "text": "On Your Own\nDownload the student report, replace the placeholder author name, complete its short exercises, and render it to HTML. Bring the .qmd file and any error message to Friday section. The goal is a working workflow—not perfect code."
+  },
+  {
+    "objectID": "overview.html",
+    "href": "overview.html",
+    "title": "Course Overview",
+    "section": "",
+    "text": "Public policy increasingly depends on quantitative evidence. This course introduces students to the statistical reasoning and data-analysis tools needed to evaluate that evidence and produce careful analyses of their own.\nWe begin with substantive questions rather than disconnected formulas. Each method is introduced through a real public-policy problem, developed conceptually, implemented in R, and interpreted in clear language.\nNo prior experience with R is required. Students may enter with different levels of mathematical, statistical, and coding preparation."
+  },
+  {
+    "objectID": "overview.html#what-this-course-is-about",
+    "href": "overview.html#what-this-course-is-about",
+    "title": "Course Overview",
+    "section": "",
+    "text": "Public policy increasingly depends on quantitative evidence. This course introduces students to the statistical reasoning and data-analysis tools needed to evaluate that evidence and produce careful analyses of their own.\nWe begin with substantive questions rather than disconnected formulas. Each method is introduced through a real public-policy problem, developed conceptually, implemented in R, and interpreted in clear language.\nNo prior experience with R is required. Students may enter with different levels of mathematical, statistical, and coding preparation."
+  },
+  {
+    "objectID": "overview.html#learning-objectives",
+    "href": "overview.html#learning-objectives",
+    "title": "Course Overview",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of the semester, students should be able to:\n\nFormulate clear and answerable empirical questions.\nIdentify appropriate data for a public-policy question.\nImport, clean, recode, document, and explore data in R.\nSummarize distributions numerically and visually.\nExplain probability, sampling variability, and statistical uncertainty.\nConstruct and interpret confidence intervals.\nConduct and interpret basic hypothesis tests and group comparisons.\nAnalyze correlation and estimate simple and multiple regression models.\nInterpret coefficients, predicted values, and uncertainty in context.\nDistinguish statistical significance from substantive importance.\nCommunicate quantitative findings to nontechnical audiences.\nProduce a reproducible analysis using Quarto.\nEvaluate the ethical and responsible use of data and AI."
+  },
+  {
+    "objectID": "overview.html#how-the-course-works",
+    "href": "overview.html#how-the-course-works",
+    "title": "Course Overview",
+    "section": "How the course works",
+    "text": "How the course works\nThe course connects three elements throughout the semester:\n\nStatistical reasoning: What does the method do, and when is it appropriate?\nR programming: How can we implement the analysis and check the output?\nPublic-policy application: What does the result mean for the substantive question?\n\nCoding is an important tool, but coding complexity is secondary to reasoning and interpretation."
+  },
+  {
+    "objectID": "overview.html#weekly-structure",
+    "href": "overview.html#weekly-structure",
+    "title": "Course Overview",
+    "section": "Weekly structure",
+    "text": "Weekly structure\n\nMonday: Lecture\nWe introduce a substantive question and the statistical concepts needed to answer it.\n\n\nWednesday: Guided lab\nWe apply the method together in R using real data. Most coding is completed collaboratively during class.\n\n\nFriday: Lab section\nSarah Traore reviews difficult material, helps students troubleshoot code, and provides support for the lab’s On Your Own section."
+  },
+  {
+    "objectID": "overview.html#labs",
+    "href": "overview.html#labs",
+    "title": "Course Overview",
+    "section": "Labs",
+    "text": "Labs\nLabs are cumulative and designed to build a practical data-analysis workflow. Each lab will have:\n\nA detailed online teaching guide with explanations, examples, and guided code\nA minimal downloadable Quarto template\nSetup code and a few pre-entered examples\nBlank R cells and spaces for written interpretation\nA clearly labeled On Your Own section\n\nStudents begin each lab in class and complete a shorter independent section afterward."
+  },
+  {
+    "objectID": "overview.html#applied-project",
+    "href": "overview.html#applied-project",
+    "title": "Course Overview",
+    "section": "Applied project",
+    "text": "Applied project\nStudents will complete an original public-policy analysis using real data. The project requires students to formulate a question, select and document appropriate data, conduct an independent analysis in R, interpret the results, and communicate the findings clearly.\nEach student will submit an individual reproducible Quarto report and create a concise policy poster. The semester concludes with a poster session in which students explain their question, evidence, principal finding, and limitations to classmates and invited guests.\nThe project is cumulative. Intermediate checkpoints will provide opportunities for feedback before the poster session and final submission."
+  },
+  {
     "objectID": "schedule.html",
     "href": "schedule.html",
     "title": "Schedule",
@@ -375,7 +417,7 @@
     "href": "schedule.html#unit-3-sampling-uncertainty-and-foundations-for-inference",
     "title": "Schedule",
     "section": "Unit 3: Sampling, uncertainty, and foundations for inference",
-    "text": "Unit 3: Sampling, uncertainty, and foundations for inference\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 5\nSampling variability and the central limit theorem\nOpenIntro Ch. 4\n\n\nWed., Oct. 7\nLab 4: Sampling and uncertainty\nBegin Problem Set 3\n\n\nFri., Oct. 9\nLab 4 review and simulation practice\nComplete Lab 4 On Your Own\n\n\nMon., Oct. 12\nConfidence intervals\nReview OpenIntro Ch. 4\n\n\nWed., Oct. 14\nConfidence interval practice\nWork on Problem Set 3\n\n\nFri., Oct. 16\nInterpretation and problem-set support\nContinue Problem Set 3"
+    "text": "Unit 3: Sampling, uncertainty, and foundations for inference\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 5\nSampling variability and the central limit theorem\nOpenIntro Ch. 4\n\n\nWed., Oct. 7\nLab 4: Sampling and uncertainty\nBegin Problem Set 3\n\n\nFri., Oct. 9\nLab 4 review and simulation practice\nComplete Lab 4 On Your Own\n\n\nMon., Oct. 12\nConfidence intervals\nReview OpenIntro Ch. 4\n\n\nWed., Oct. 14\nMidterm: Units 1–3\nOne student-prepared double-sided reference sheet permitted\n\n\nFri., Oct. 16\nMidterm review and problem-set support\nContinue Problem Set 3"
   },
   {
     "objectID": "schedule.html#unit-4-hypothesis-testing-and-comparisons",
