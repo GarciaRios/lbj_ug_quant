@@ -1,0 +1,30 @@
+---
+title: "Schedule"
+subtitle: "Fall 2026"
+toc: false
+---
+
+The schedule is tentative and may be adjusted to match the pace and needs of the class.
+
+| Week | Monday: Lecture | Wednesday: Guided lab | Friday: Lab sections |
+|---:|---|---|---|
+| 1 | **Aug. 24** · Introduction: puzzle solving with data | **Aug. 26** · Lab 0: Course and software orientation | **Aug. 28** · Setup help and lab support |
+| 2 | **Aug. 31** · Data collection, observational studies, and experiments | **Sept. 2** · Lab 1: Introduction to R and RStudio | **Sept. 4** · Lab 1 support |
+| 3 | **Sept. 7** · **Labor Day — no class** | **Sept. 9** · Exploratory data analysis | **Sept. 11** · Guided practice |
+| 4 | **Sept. 14** · Describing data and distributions | **Sept. 16** · Lab 2: Introduction to data | **Sept. 18** · Lab 2 support |
+| 5 | **Sept. 21** · Probability and conditional probability | **Sept. 23** · Lab 3: Probability | **Sept. 25** · Lab 3 support |
+| 6 | **Sept. 28** · Normal and binomial distributions | **Sept. 30** · Distribution practice | **Oct. 2** · Guided practice |
+| 7 | **Oct. 5** · Sampling variability and the central limit theorem | **Oct. 7** · Lab 4: Sampling and uncertainty | **Oct. 9** · Lab 4 support |
+| 8 | **Oct. 12** · Confidence intervals | **Oct. 14** · Confidence interval practice | **Oct. 16** · Guided practice |
+| 9 | **Oct. 19** · Hypothesis testing | **Oct. 21** · Lab 5: Inference for numerical data | **Oct. 23** · Lab 5 support |
+| 10 | **Oct. 26** · Comparing groups | **Oct. 28** · Lab 6: More statistical inference | **Oct. 30** · Lab 6 support |
+| 11 | **Nov. 2** · Correlation and simple linear regression | **Nov. 4** · Lab 7: Simple regression | **Nov. 6** · Lab 7 support |
+| 12 | **Nov. 9** · Multiple linear regression | **Nov. 11** · Lab 8: Multiple regression | **Nov. 13** · Lab 8 support |
+| 13 | **Nov. 16** · Model interpretation and predicted values | **Nov. 18** · Predicted values and visualization | **Nov. 20** · Guided practice |
+| 14 | **Nov. 23** · **Fall Break — no class** | **Nov. 25** · **Fall Break — no class** | **Nov. 27** · **Fall Break — no sections** |
+| 15 | **Nov. 30** · Communicating quantitative findings | **Dec. 2** · Case study and project workshop | **Dec. 4** · Final project support |
+| 16 | **Dec. 7** · Course synthesis and final consultations | — | — |
+
+::: {.callout-note appearance="simple"}
+The Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day.
+:::
