@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -113,6 +113,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./labs.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
@@ -134,7 +138,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#unit-1-data-measurement-and-exploratory-analysis" id="toc-unit-1-data-measurement-and-exploratory-analysis" class="nav-link active" data-scroll-target="#unit-1-data-measurement-and-exploratory-analysis">Unit 1: Data, measurement, and exploratory analysis</a></li>
+  <li><a href="#unit-2-probability-and-distributions" id="toc-unit-2-probability-and-distributions" class="nav-link" data-scroll-target="#unit-2-probability-and-distributions">Unit 2: Probability and distributions</a></li>
+  <li><a href="#unit-3-sampling-uncertainty-and-foundations-for-inference" id="toc-unit-3-sampling-uncertainty-and-foundations-for-inference" class="nav-link" data-scroll-target="#unit-3-sampling-uncertainty-and-foundations-for-inference">Unit 3: Sampling, uncertainty, and foundations for inference</a></li>
+  <li><a href="#unit-4-hypothesis-testing-and-comparisons" id="toc-unit-4-hypothesis-testing-and-comparisons" class="nav-link" data-scroll-target="#unit-4-hypothesis-testing-and-comparisons">Unit 4: Hypothesis testing and comparisons</a></li>
+  <li><a href="#unit-5-correlation-and-regression" id="toc-unit-5-correlation-and-regression" class="nav-link" data-scroll-target="#unit-5-correlation-and-regression">Unit 5: Correlation and regression</a></li>
+  <li><a href="#fall-break" id="toc-fall-break" class="nav-link" data-scroll-target="#fall-break">Fall Break</a></li>
+  <li><a href="#unit-6-communicating-quantitative-findings" id="toc-unit-6-communicating-quantitative-findings" class="nav-link" data-scroll-target="#unit-6-communicating-quantitative-findings">Unit 6: Communicating quantitative findings</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -158,118 +176,79 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The schedule is tentative and may be adjusted to match the pace and needs of the class.</p>
+<p>The schedule is the main course hub. Readings refer to <a href="https://www.openintro.org/book/os/"><em>OpenIntro Statistics</em>, 4th edition</a>. Problem-set exercise numbers correspond to that edition.</p>
+<p><strong>Weekly rhythm:</strong> Monday lecture · Wednesday guided lab · Friday review, troubleshooting, and <strong>On Your Own</strong> support.</p>
+<p>The schedule may be adjusted to match the pace and needs of the class.</p>
+<section id="unit-1-data-measurement-and-exploratory-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="unit-1-data-measurement-and-exploratory-analysis">Unit 1: Data, measurement, and exploratory analysis</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 23%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: right;">Week</th>
-<th>Monday: Lecture</th>
-<th>Wednesday: Guided lab</th>
-<th>Friday: Lab sections</th>
+<th>Date</th>
+<th>Class activity</th>
+<th>Preparation and assignments</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1</td>
-<td><strong>Aug.&nbsp;24</strong> · Introduction: data analysis for public policy</td>
-<td><strong>Aug.&nbsp;26</strong> · Lab 0: Course and software orientation</td>
-<td><strong>Aug.&nbsp;28</strong> · Setup help and lab support</td>
+<td><strong>Mon., Aug.&nbsp;24</strong></td>
+<td>Introduction: data analysis for public policy</td>
+<td>Course overview</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2</td>
-<td><strong>Aug.&nbsp;31</strong> · Data collection, observational studies, and experiments</td>
-<td><strong>Sept.&nbsp;2</strong> · Lab 1: Introduction to R and RStudio</td>
-<td><strong>Sept.&nbsp;4</strong> · Lab 1 support</td>
+<td><strong>Wed., Aug.&nbsp;26</strong></td>
+<td>Lab 0: R, RStudio, and Quarto</td>
+<td><a href="labs/lab00/">Lab guide</a> · <a href="templates/lab00-template.qmd" download="lab00-template.qmd">Student lab template</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">3</td>
-<td><strong>Sept.&nbsp;7</strong> · <strong>Labor Day — no class</strong></td>
-<td><strong>Sept.&nbsp;9</strong> · Exploratory data analysis</td>
-<td><strong>Sept.&nbsp;11</strong> · Guided practice</td>
+<td><strong>Fri., Aug.&nbsp;28</strong></td>
+<td>Setup help and Lab 0 support</td>
+<td>Complete Lab 0 <strong>On Your Own</strong></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">4</td>
-<td><strong>Sept.&nbsp;14</strong> · Describing data and distributions</td>
-<td><strong>Sept.&nbsp;16</strong> · Lab 2: Introduction to data</td>
-<td><strong>Sept.&nbsp;18</strong> · Lab 2 support</td>
+<td><strong>Mon., Aug.&nbsp;31</strong></td>
+<td>Data collection, observational studies, and experiments</td>
+<td>OpenIntro Ch. 1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">5</td>
-<td><strong>Sept.&nbsp;21</strong> · Probability and conditional probability</td>
-<td><strong>Sept.&nbsp;23</strong> · Lab 3: Probability</td>
-<td><strong>Sept.&nbsp;25</strong> · Lab 3 support</td>
+<td><strong>Wed., Sept.&nbsp;2</strong></td>
+<td>Lab 1: Introduction to data analysis in R</td>
+<td><a href="labs/lab01/">Lab guide</a> · <a href="templates/lab01-template.qmd" download="lab01-template.qmd">Student lab template</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">6</td>
-<td><strong>Sept.&nbsp;28</strong> · Normal and binomial distributions</td>
-<td><strong>Sept.&nbsp;30</strong> · Distribution practice</td>
-<td><strong>Oct.&nbsp;2</strong> · Guided practice</td>
+<td><strong>Fri., Sept.&nbsp;4</strong></td>
+<td>Lab 1 review and troubleshooting</td>
+<td>Complete Lab 1 <strong>On Your Own</strong></td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">7</td>
-<td><strong>Oct.&nbsp;5</strong> · Sampling variability and the central limit theorem</td>
-<td><strong>Oct.&nbsp;7</strong> · Lab 4: Sampling and uncertainty</td>
-<td><strong>Oct.&nbsp;9</strong> · Lab 4 support</td>
+<td><strong>Mon., Sept.&nbsp;7</strong></td>
+<td><strong>Labor Day — no class</strong></td>
+<td></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">8</td>
-<td><strong>Oct.&nbsp;12</strong> · Confidence intervals</td>
-<td><strong>Oct.&nbsp;14</strong> · Confidence interval practice</td>
-<td><strong>Oct.&nbsp;16</strong> · Guided practice</td>
+<td><strong>Wed., Sept.&nbsp;9</strong></td>
+<td>Exploratory data analysis</td>
+<td>OpenIntro Ch. 2, Sections 2.1–2.3</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">9</td>
-<td><strong>Oct.&nbsp;19</strong> · Hypothesis testing</td>
-<td><strong>Oct.&nbsp;21</strong> · Lab 5: Inference for numerical data</td>
-<td><strong>Oct.&nbsp;23</strong> · Lab 5 support</td>
+<td><strong>Fri., Sept.&nbsp;11</strong></td>
+<td>Guided practice: variables, summaries, and interpretation</td>
+<td>Work on Problem Set 1</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">10</td>
-<td><strong>Oct.&nbsp;26</strong> · Comparing groups</td>
-<td><strong>Oct.&nbsp;28</strong> · Lab 6: More statistical inference</td>
-<td><strong>Oct.&nbsp;30</strong> · Lab 6 support</td>
+<td><strong>Mon., Sept.&nbsp;14</strong></td>
+<td>Describing data and distributions</td>
+<td>Review OpenIntro Ch. 2</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">11</td>
-<td><strong>Nov.&nbsp;2</strong> · Correlation and simple linear regression</td>
-<td><strong>Nov.&nbsp;4</strong> · Lab 7: Simple regression</td>
-<td><strong>Nov.&nbsp;6</strong> · Lab 7 support</td>
+<td><strong>Wed., Sept.&nbsp;16</strong></td>
+<td>Lab 2: Introduction to data</td>
+<td>Lab materials forthcoming</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">12</td>
-<td><strong>Nov.&nbsp;9</strong> · Multiple linear regression</td>
-<td><strong>Nov.&nbsp;11</strong> · Lab 8: Multiple regression</td>
-<td><strong>Nov.&nbsp;13</strong> · Lab 8 support</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">13</td>
-<td><strong>Nov.&nbsp;16</strong> · Model interpretation and predicted values</td>
-<td><strong>Nov.&nbsp;18</strong> · Predicted values and visualization</td>
-<td><strong>Nov.&nbsp;20</strong> · Guided practice</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">14</td>
-<td><strong>Nov.&nbsp;23</strong> · <strong>Fall Break — no class</strong></td>
-<td><strong>Nov.&nbsp;25</strong> · <strong>Fall Break — no class</strong></td>
-<td><strong>Nov.&nbsp;27</strong> · <strong>Fall Break — no sections</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">15</td>
-<td><strong>Nov.&nbsp;30</strong> · Communicating quantitative findings</td>
-<td><strong>Dec.&nbsp;2</strong> · Case study and project workshop</td>
-<td><strong>Dec.&nbsp;4</strong> · Final project support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">16</td>
-<td><strong>Dec.&nbsp;7</strong> · Course synthesis and final consultations</td>
-<td>—</td>
-<td>—</td>
+<td><strong>Fri., Sept.&nbsp;18</strong></td>
+<td>Lab 2 support</td>
+<td><strong>Problem Set 1 due</strong></td>
 </tr>
 </tbody>
 </table>
@@ -279,12 +258,313 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day.</p>
+<p><strong>Problem Set 1 — Data and exploratory analysis</strong><br>
+OpenIntro exercises: Ch. 1: 1.2, 1.6, 1.16, 1.22, 1.30, 1.34; Ch. 2: 2.15, 2.22, 2.24, 2.27.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="unit-2-probability-and-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="unit-2-probability-and-distributions">Unit 2: Probability and distributions</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Class activity</th>
+<th>Preparation and assignments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mon., Sept.&nbsp;21</strong></td>
+<td>Probability and conditional probability</td>
+<td>OpenIntro Ch. 3, Sections 3.1–3.2</td>
+</tr>
+<tr class="even">
+<td><strong>Wed., Sept.&nbsp;23</strong></td>
+<td>Lab 3: Probability</td>
+<td>Begin Problem Set 2</td>
+</tr>
+<tr class="odd">
+<td><strong>Fri., Sept.&nbsp;25</strong></td>
+<td>Lab 3 review and probability practice</td>
+<td>Complete Lab 3 <strong>On Your Own</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Mon., Sept.&nbsp;28</strong></td>
+<td>Normal and binomial distributions</td>
+<td>OpenIntro Ch. 4, Sections 4.1 and 4.4</td>
+</tr>
+<tr class="odd">
+<td><strong>Wed., Sept.&nbsp;30</strong></td>
+<td>Distribution practice and applications</td>
+<td>Work on Problem Set 2</td>
+</tr>
+<tr class="even">
+<td><strong>Fri., Oct.&nbsp;2</strong></td>
+<td>Review and problem-set support</td>
+<td><strong>Problem Set 2 due</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Problem Set 2 — Probability and distributions</strong><br>
+OpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3.12, 3.18, 3.26, 3.30, 3.36.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="unit-3-sampling-uncertainty-and-foundations-for-inference" class="level2">
+<h2 class="anchored" data-anchor-id="unit-3-sampling-uncertainty-and-foundations-for-inference">Unit 3: Sampling, uncertainty, and foundations for inference</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Class activity</th>
+<th>Preparation and assignments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mon., Oct.&nbsp;5</strong></td>
+<td>Sampling variability and the central limit theorem</td>
+<td>OpenIntro Ch. 4</td>
+</tr>
+<tr class="even">
+<td><strong>Wed., Oct.&nbsp;7</strong></td>
+<td>Lab 4: Sampling and uncertainty</td>
+<td>Begin Problem Set 3</td>
+</tr>
+<tr class="odd">
+<td><strong>Fri., Oct.&nbsp;9</strong></td>
+<td>Lab 4 review and simulation practice</td>
+<td>Complete Lab 4 <strong>On Your Own</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Mon., Oct.&nbsp;12</strong></td>
+<td>Confidence intervals</td>
+<td>Review OpenIntro Ch. 4</td>
+</tr>
+<tr class="odd">
+<td><strong>Wed., Oct.&nbsp;14</strong></td>
+<td>Confidence interval practice</td>
+<td>Work on Problem Set 3</td>
+</tr>
+<tr class="even">
+<td><strong>Fri., Oct.&nbsp;16</strong></td>
+<td>Interpretation and problem-set support</td>
+<td>Continue Problem Set 3</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="unit-4-hypothesis-testing-and-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="unit-4-hypothesis-testing-and-comparisons">Unit 4: Hypothesis testing and comparisons</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Class activity</th>
+<th>Preparation and assignments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mon., Oct.&nbsp;19</strong></td>
+<td>Hypothesis testing</td>
+<td>OpenIntro Ch. 5</td>
+</tr>
+<tr class="even">
+<td><strong>Wed., Oct.&nbsp;21</strong></td>
+<td>Lab 5: Inference for numerical data</td>
+<td>Lab 5 work</td>
+</tr>
+<tr class="odd">
+<td><strong>Fri., Oct.&nbsp;23</strong></td>
+<td>Lab 5 review and interpretation</td>
+<td>Complete Lab 5 <strong>On Your Own</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Mon., Oct.&nbsp;26</strong></td>
+<td>Comparing groups</td>
+<td>Review OpenIntro Ch. 5</td>
+</tr>
+<tr class="odd">
+<td><strong>Wed., Oct.&nbsp;28</strong></td>
+<td>Lab 6: More statistical inference</td>
+<td>Lab 6 work</td>
+</tr>
+<tr class="even">
+<td><strong>Fri., Oct.&nbsp;30</strong></td>
+<td>Lab 6 and problem-set support</td>
+<td><strong>Problem Set 3 due</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Problem Set 3 — Statistical inference</strong><br>
+OpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5.5, 5.6, 5.12, 5.20, 5.22.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="unit-5-correlation-and-regression" class="level2">
+<h2 class="anchored" data-anchor-id="unit-5-correlation-and-regression">Unit 5: Correlation and regression</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Class activity</th>
+<th>Preparation and assignments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mon., Nov.&nbsp;2</strong></td>
+<td>Correlation and simple linear regression</td>
+<td>OpenIntro Ch. 7</td>
+</tr>
+<tr class="even">
+<td><strong>Wed., Nov.&nbsp;4</strong></td>
+<td>Lab 7: Simple regression</td>
+<td>Lab 7 work</td>
+</tr>
+<tr class="odd">
+<td><strong>Fri., Nov.&nbsp;6</strong></td>
+<td>Lab 7 review and interpretation</td>
+<td>Complete Lab 7 <strong>On Your Own</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Mon., Nov.&nbsp;9</strong></td>
+<td>Multiple linear regression</td>
+<td>OpenIntro Ch. 8, Sections 8.1–8.3</td>
+</tr>
+<tr class="odd">
+<td><strong>Wed., Nov.&nbsp;11</strong></td>
+<td>Lab 8: Multiple regression</td>
+<td>Lab 8 work</td>
+</tr>
+<tr class="even">
+<td><strong>Fri., Nov.&nbsp;13</strong></td>
+<td>Lab 8 review and model interpretation</td>
+<td>Complete Lab 8 <strong>On Your Own</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Mon., Nov.&nbsp;16</strong></td>
+<td>Predicted values and substantive importance</td>
+<td>Project preparation</td>
+</tr>
+<tr class="even">
+<td><strong>Wed., Nov.&nbsp;18</strong></td>
+<td>Predicted values and visualization</td>
+<td>Project workshop</td>
+</tr>
+<tr class="odd">
+<td><strong>Fri., Nov.&nbsp;20</strong></td>
+<td>Regression and project support</td>
+<td>Project consultations</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fall-break" class="level2">
+<h2 class="anchored" data-anchor-id="fall-break">Fall Break</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Class activity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Nov.&nbsp;23–28</strong></td>
+<td><strong>Fall Break — no classes or sections</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="unit-6-communicating-quantitative-findings" class="level2">
+<h2 class="anchored" data-anchor-id="unit-6-communicating-quantitative-findings">Unit 6: Communicating quantitative findings</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Class activity</th>
+<th>Preparation and assignments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mon., Nov.&nbsp;30</strong></td>
+<td>Communicating findings to policy audiences</td>
+<td>Project draft</td>
+</tr>
+<tr class="even">
+<td><strong>Wed., Dec.&nbsp;2</strong></td>
+<td>Case study and project workshop</td>
+<td>Bring reproducible analysis</td>
+</tr>
+<tr class="odd">
+<td><strong>Fri., Dec.&nbsp;4</strong></td>
+<td>Final project support</td>
+<td>Complete remaining analysis</td>
+</tr>
+<tr class="even">
+<td><strong>Mon., Dec.&nbsp;7</strong></td>
+<td>Course synthesis and final consultations</td>
+<td>Last class day</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Major project milestones and the final submission date will be added once the university’s final-exam schedule and course submission windows are confirmed.</p>
 </div>
 </div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

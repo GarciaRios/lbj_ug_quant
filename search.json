@@ -252,6 +252,41 @@
     "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
   },
   {
+    "objectID": "assignments.html",
+    "href": "assignments.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "The Schedule is the main course hub. It lists readings, OpenIntro exercises, labs, templates, and due dates together."
+  },
+  {
+    "objectID": "assignments.html#problem-sets",
+    "href": "assignments.html#problem-sets",
+    "title": "Assignments",
+    "section": "Problem sets",
+    "text": "Problem sets\nProblem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from OpenIntro Statistics, 4th edition.\nStudents should:\n\nshow the reasoning or calculations used to reach an answer;\nexplain answers in context when interpretation is requested;\nsubmit their own work through Canvas; and\nbegin early enough to use Friday sections for questions.\n\nStudents may discuss approaches with classmates, but each student must prepare and submit their own answers."
+  },
+  {
+    "objectID": "assignments.html#labs",
+    "href": "assignments.html#labs",
+    "title": "Assignments",
+    "section": "Labs",
+    "text": "Labs\nLabs provide guided practice with real data in R. Most coding will be completed together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nFor each lab, students will use:\n\na detailed online teaching guide; and\na downloadable student lab template in Quarto.\n\nUnless otherwise specified, submit both the source .qmd file and the rendered HTML output through Canvas.\nView all labs"
+  },
+  {
+    "objectID": "assignments.html#readiness-assessments",
+    "href": "assignments.html#readiness-assessments",
+    "title": "Assignments",
+    "section": "Readiness assessments",
+    "text": "Readiness assessments\nShort readiness assessments check preparation for a new unit and identify concepts that need additional attention."
+  },
+  {
+    "objectID": "assignments.html#project-proposal-and-final-applied-project",
+    "href": "assignments.html#project-proposal-and-final-applied-project",
+    "title": "Assignments",
+    "section": "Project proposal and final applied project",
+    "text": "Project proposal and final applied project\nThe project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings in a reproducible Quarto report.\nDetailed instructions and milestones will be added as the project develops."
+  },
+  {
     "objectID": "labs.html",
     "href": "labs.html",
     "title": "Labs",
@@ -333,6 +368,55 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "The schedule is tentative and may be adjusted to match the pace and needs of the class.\n\n\n\n\n\n\n\n\n\nWeek\nMonday: Lecture\nWednesday: Guided lab\nFriday: Lab sections\n\n\n\n\n1\nAug. 24 · Introduction: data analysis for public policy\nAug. 26 · Lab 0: Course and software orientation\nAug. 28 · Setup help and lab support\n\n\n2\nAug. 31 · Data collection, observational studies, and experiments\nSept. 2 · Lab 1: Introduction to R and RStudio\nSept. 4 · Lab 1 support\n\n\n3\nSept. 7 · Labor Day — no class\nSept. 9 · Exploratory data analysis\nSept. 11 · Guided practice\n\n\n4\nSept. 14 · Describing data and distributions\nSept. 16 · Lab 2: Introduction to data\nSept. 18 · Lab 2 support\n\n\n5\nSept. 21 · Probability and conditional probability\nSept. 23 · Lab 3: Probability\nSept. 25 · Lab 3 support\n\n\n6\nSept. 28 · Normal and binomial distributions\nSept. 30 · Distribution practice\nOct. 2 · Guided practice\n\n\n7\nOct. 5 · Sampling variability and the central limit theorem\nOct. 7 · Lab 4: Sampling and uncertainty\nOct. 9 · Lab 4 support\n\n\n8\nOct. 12 · Confidence intervals\nOct. 14 · Confidence interval practice\nOct. 16 · Guided practice\n\n\n9\nOct. 19 · Hypothesis testing\nOct. 21 · Lab 5: Inference for numerical data\nOct. 23 · Lab 5 support\n\n\n10\nOct. 26 · Comparing groups\nOct. 28 · Lab 6: More statistical inference\nOct. 30 · Lab 6 support\n\n\n11\nNov. 2 · Correlation and simple linear regression\nNov. 4 · Lab 7: Simple regression\nNov. 6 · Lab 7 support\n\n\n12\nNov. 9 · Multiple linear regression\nNov. 11 · Lab 8: Multiple regression\nNov. 13 · Lab 8 support\n\n\n13\nNov. 16 · Model interpretation and predicted values\nNov. 18 · Predicted values and visualization\nNov. 20 · Guided practice\n\n\n14\nNov. 23 · Fall Break — no class\nNov. 25 · Fall Break — no class\nNov. 27 · Fall Break — no sections\n\n\n15\nNov. 30 · Communicating quantitative findings\nDec. 2 · Case study and project workshop\nDec. 4 · Final project support\n\n\n16\nDec. 7 · Course synthesis and final consultations\n—\n—\n\n\n\n\n\n\n\n\n\nThe Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day."
+    "text": "The schedule is the main course hub. Readings refer to OpenIntro Statistics, 4th edition. Problem-set exercise numbers correspond to that edition.\nWeekly rhythm: Monday lecture · Wednesday guided lab · Friday review, troubleshooting, and On Your Own support.\nThe schedule may be adjusted to match the pace and needs of the class."
+  },
+  {
+    "objectID": "schedule.html#unit-1-data-measurement-and-exploratory-analysis",
+    "href": "schedule.html#unit-1-data-measurement-and-exploratory-analysis",
+    "title": "Schedule",
+    "section": "Unit 1: Data, measurement, and exploratory analysis",
+    "text": "Unit 1: Data, measurement, and exploratory analysis\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Aug. 24\nIntroduction: data analysis for public policy\nCourse overview\n\n\nWed., Aug. 26\nLab 0: R, RStudio, and Quarto\nLab guide · Student lab template\n\n\nFri., Aug. 28\nSetup help and Lab 0 support\nComplete Lab 0 On Your Own\n\n\nMon., Aug. 31\nData collection, observational studies, and experiments\nOpenIntro Ch. 1\n\n\nWed., Sept. 2\nLab 1: Introduction to data analysis in R\nLab guide · Student lab template\n\n\nFri., Sept. 4\nLab 1 review and troubleshooting\nComplete Lab 1 On Your Own\n\n\nMon., Sept. 7\nLabor Day — no class\n\n\n\nWed., Sept. 9\nExploratory data analysis\nOpenIntro Ch. 2, Sections 2.1–2.3\n\n\nFri., Sept. 11\nGuided practice: variables, summaries, and interpretation\nWork on Problem Set 1\n\n\nMon., Sept. 14\nDescribing data and distributions\nReview OpenIntro Ch. 2\n\n\nWed., Sept. 16\nLab 2: Introduction to data\nLab materials forthcoming\n\n\nFri., Sept. 18\nLab 2 support\nProblem Set 1 due\n\n\n\n\n\n\n\n\n\nProblem Set 1 — Data and exploratory analysis\nOpenIntro exercises: Ch. 1: 1.2, 1.6, 1.16, 1.22, 1.30, 1.34; Ch. 2: 2.15, 2.22, 2.24, 2.27."
+  },
+  {
+    "objectID": "schedule.html#unit-2-probability-and-distributions",
+    "href": "schedule.html#unit-2-probability-and-distributions",
+    "title": "Schedule",
+    "section": "Unit 2: Probability and distributions",
+    "text": "Unit 2: Probability and distributions\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Sept. 21\nProbability and conditional probability\nOpenIntro Ch. 3, Sections 3.1–3.2\n\n\nWed., Sept. 23\nLab 3: Probability\nBegin Problem Set 2\n\n\nFri., Sept. 25\nLab 3 review and probability practice\nComplete Lab 3 On Your Own\n\n\nMon., Sept. 28\nNormal and binomial distributions\nOpenIntro Ch. 4, Sections 4.1 and 4.4\n\n\nWed., Sept. 30\nDistribution practice and applications\nWork on Problem Set 2\n\n\nFri., Oct. 2\nReview and problem-set support\nProblem Set 2 due\n\n\n\n\n\n\n\n\n\nProblem Set 2 — Probability and distributions\nOpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3.12, 3.18, 3.26, 3.30, 3.36."
+  },
+  {
+    "objectID": "schedule.html#unit-3-sampling-uncertainty-and-foundations-for-inference",
+    "href": "schedule.html#unit-3-sampling-uncertainty-and-foundations-for-inference",
+    "title": "Schedule",
+    "section": "Unit 3: Sampling, uncertainty, and foundations for inference",
+    "text": "Unit 3: Sampling, uncertainty, and foundations for inference\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 5\nSampling variability and the central limit theorem\nOpenIntro Ch. 4\n\n\nWed., Oct. 7\nLab 4: Sampling and uncertainty\nBegin Problem Set 3\n\n\nFri., Oct. 9\nLab 4 review and simulation practice\nComplete Lab 4 On Your Own\n\n\nMon., Oct. 12\nConfidence intervals\nReview OpenIntro Ch. 4\n\n\nWed., Oct. 14\nConfidence interval practice\nWork on Problem Set 3\n\n\nFri., Oct. 16\nInterpretation and problem-set support\nContinue Problem Set 3"
+  },
+  {
+    "objectID": "schedule.html#unit-4-hypothesis-testing-and-comparisons",
+    "href": "schedule.html#unit-4-hypothesis-testing-and-comparisons",
+    "title": "Schedule",
+    "section": "Unit 4: Hypothesis testing and comparisons",
+    "text": "Unit 4: Hypothesis testing and comparisons\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 19\nHypothesis testing\nOpenIntro Ch. 5\n\n\nWed., Oct. 21\nLab 5: Inference for numerical data\nLab 5 work\n\n\nFri., Oct. 23\nLab 5 review and interpretation\nComplete Lab 5 On Your Own\n\n\nMon., Oct. 26\nComparing groups\nReview OpenIntro Ch. 5\n\n\nWed., Oct. 28\nLab 6: More statistical inference\nLab 6 work\n\n\nFri., Oct. 30\nLab 6 and problem-set support\nProblem Set 3 due\n\n\n\n\n\n\n\n\n\nProblem Set 3 — Statistical inference\nOpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5.5, 5.6, 5.12, 5.20, 5.22."
+  },
+  {
+    "objectID": "schedule.html#unit-5-correlation-and-regression",
+    "href": "schedule.html#unit-5-correlation-and-regression",
+    "title": "Schedule",
+    "section": "Unit 5: Correlation and regression",
+    "text": "Unit 5: Correlation and regression\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Nov. 2\nCorrelation and simple linear regression\nOpenIntro Ch. 7\n\n\nWed., Nov. 4\nLab 7: Simple regression\nLab 7 work\n\n\nFri., Nov. 6\nLab 7 review and interpretation\nComplete Lab 7 On Your Own\n\n\nMon., Nov. 9\nMultiple linear regression\nOpenIntro Ch. 8, Sections 8.1–8.3\n\n\nWed., Nov. 11\nLab 8: Multiple regression\nLab 8 work\n\n\nFri., Nov. 13\nLab 8 review and model interpretation\nComplete Lab 8 On Your Own\n\n\nMon., Nov. 16\nPredicted values and substantive importance\nProject preparation\n\n\nWed., Nov. 18\nPredicted values and visualization\nProject workshop\n\n\nFri., Nov. 20\nRegression and project support\nProject consultations"
+  },
+  {
+    "objectID": "schedule.html#fall-break",
+    "href": "schedule.html#fall-break",
+    "title": "Schedule",
+    "section": "Fall Break",
+    "text": "Fall Break\n\n\n\nDate\nClass activity\n\n\n\n\nNov. 23–28\nFall Break — no classes or sections"
+  },
+  {
+    "objectID": "schedule.html#unit-6-communicating-quantitative-findings",
+    "href": "schedule.html#unit-6-communicating-quantitative-findings",
+    "title": "Schedule",
+    "section": "Unit 6: Communicating quantitative findings",
+    "text": "Unit 6: Communicating quantitative findings\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Nov. 30\nCommunicating findings to policy audiences\nProject draft\n\n\nWed., Dec. 2\nCase study and project workshop\nBring reproducible analysis\n\n\nFri., Dec. 4\nFinal project support\nComplete remaining analysis\n\n\nMon., Dec. 7\nCourse synthesis and final consultations\nLast class day\n\n\n\n\n\n\n\n\n\nMajor project milestones and the final submission date will be added once the university’s final-exam schedule and course submission windows are confirmed."
   }
 ]
