@@ -179,7 +179,7 @@
     "href": "labs/lab00/index.html",
     "title": "Lab 0: Getting Started",
     "section": "",
-    "text": "Download the bare-bones student report"
+    "text": "Download the student lab template"
   },
   {
     "objectID": "labs/lab00/index.html#goals",
@@ -256,7 +256,7 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nEach lab has two parts: a detailed online guide and a bare-bones reproducible Quarto report for students to complete and render."
+    "text": "The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nEach lab has two parts: a detailed online guide and a student lab template for students to complete and render."
   },
   {
     "objectID": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
@@ -277,7 +277,7 @@
     "href": "labs/lab01/index.html",
     "title": "Lab 1: Introduction to Data Analysis in R",
     "section": "",
-    "text": "Download the bare-bones student report"
+    "text": "Download the student lab template"
   },
   {
     "objectID": "labs/lab01/index.html#the-question",
