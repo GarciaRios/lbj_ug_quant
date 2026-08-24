@@ -46,7 +46,7 @@
     "href": "syllabus.html#assessment",
     "title": "Syllabus",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\nComponent\nWeight\n\n\n\n\nAttendance and participation\n5%\n\n\nProblem sets and interpretation exercises\n25%\n\n\nGuided labs\n25%\n\n\nReadiness assessments\n5%\n\n\nProject proposal\n10%\n\n\nIndividual reproducible analysis and report\n20%\n\n\nPolicy poster and presentation\n10%\n\n\nTotal\n100%\n\n\n\nSpecific instructions, deadlines, and grading criteria will be posted with each assignment and on the course schedule.\n\nNo midterm or final examination\nThe course does not include a traditional midterm or final examination. Students will demonstrate cumulative understanding through problem sets, individual lab work, and the applied project."
+    "text": "Assessment\n\n\n\nComponent\nWeight\n\n\n\n\nAttendance and participation\n5%\n\n\nProblem sets and interpretation exercises\n30%\n\n\nGuided labs\n25%\n\n\nProject proposal\n10%\n\n\nIndividual reproducible analysis and report\n20%\n\n\nPolicy poster and presentation\n10%\n\n\nTotal\n100%\n\n\n\nSpecific instructions, deadlines, and grading criteria will be posted with each assignment and on the course schedule."
   },
   {
     "objectID": "syllabus.html#attendance-and-participation",
@@ -68,13 +68,6 @@
     "title": "Syllabus",
     "section": "Labs",
     "text": "Labs\nLabs provide hands-on experience analyzing real data in R. Most coding will be completed together during Wednesday’s guided lab. Friday sections provide additional review, troubleshooting, and support.\nEach student will submit an individual Quarto file and rendered output. The On Your Own section must demonstrate the student’s independent coding and interpretation."
-  },
-  {
-    "objectID": "syllabus.html#readiness-assessments",
-    "href": "syllabus.html#readiness-assessments",
-    "title": "Syllabus",
-    "section": "Readiness assessments",
-    "text": "Readiness assessments\nShort readiness assessments will check understanding of essential concepts and preparation for new material. They are intended to identify areas that need attention before students move to more advanced applications."
   },
   {
     "objectID": "syllabus.html#applied-project",
@@ -273,18 +266,11 @@
     "text": "Labs\nLabs provide guided practice with real data in R. Most coding will be completed together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nFor each lab, students will use:\n\na detailed online teaching guide; and\na downloadable student lab template in Quarto.\n\nUnless otherwise specified, submit both the source .qmd file and the rendered HTML output through Canvas.\nView all labs"
   },
   {
-    "objectID": "assignments.html#readiness-assessments",
-    "href": "assignments.html#readiness-assessments",
-    "title": "Assignments",
-    "section": "Readiness assessments",
-    "text": "Readiness assessments\nShort readiness assessments check preparation for a new unit and identify concepts that need additional attention."
-  },
-  {
     "objectID": "assignments.html#project-proposal-and-final-applied-project",
     "href": "assignments.html#project-proposal-and-final-applied-project",
     "title": "Assignments",
     "section": "Project proposal and final applied project",
-    "text": "Project proposal and final applied project\nThe project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings clearly.\nThe final project has two connected products:\n\nIndividual reproducible analysis and report (20%): A Quarto report containing the question, data documentation, analysis, results, interpretation, uncertainty, and limitations.\nPolicy poster and presentation (10%): A concise poster translating the project for a nontechnical policy audience, accompanied by a brief oral explanation during the class poster session.\n\nThe poster should emphasize one clear question, one or two effective visualizations, the principal finding, substantive importance, and limitations. The poster does not replace the individual code and report.\nThere is no traditional midterm or final examination. Cumulative understanding is assessed through problem sets, labs, and the applied project."
+    "text": "Project proposal and final applied project\nThe project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings clearly.\nThe final project has two connected products:\n\nIndividual reproducible analysis and report (20%): A Quarto report containing the question, data documentation, analysis, results, interpretation, uncertainty, and limitations.\nPolicy poster and presentation (10%): A concise poster translating the project for a nontechnical policy audience, accompanied by a brief oral explanation during the class poster session.\n\nThe poster should emphasize one clear question, one or two effective visualizations, the principal finding, substantive importance, and limitations. The poster does not replace the individual code and report."
   },
   {
     "objectID": "labs.html",
