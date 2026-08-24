@@ -33,5 +33,54 @@
     "title": "Schedule",
     "section": "",
     "text": "The schedule is tentative and may be adjusted to match the pace and needs of the class.\n\n\n\n\n\n\n\n\n\nWeek\nMonday: Lecture\nWednesday: Guided lab\nFriday: Lab sections\n\n\n\n\n1\nAug. 24 · Introduction: data analysis for public policy\nAug. 26 · Lab 0: Course and software orientation\nAug. 28 · Setup help and lab support\n\n\n2\nAug. 31 · Data collection, observational studies, and experiments\nSept. 2 · Lab 1: Introduction to R and RStudio\nSept. 4 · Lab 1 support\n\n\n3\nSept. 7 · Labor Day — no class\nSept. 9 · Exploratory data analysis\nSept. 11 · Guided practice\n\n\n4\nSept. 14 · Describing data and distributions\nSept. 16 · Lab 2: Introduction to data\nSept. 18 · Lab 2 support\n\n\n5\nSept. 21 · Probability and conditional probability\nSept. 23 · Lab 3: Probability\nSept. 25 · Lab 3 support\n\n\n6\nSept. 28 · Normal and binomial distributions\nSept. 30 · Distribution practice\nOct. 2 · Guided practice\n\n\n7\nOct. 5 · Sampling variability and the central limit theorem\nOct. 7 · Lab 4: Sampling and uncertainty\nOct. 9 · Lab 4 support\n\n\n8\nOct. 12 · Confidence intervals\nOct. 14 · Confidence interval practice\nOct. 16 · Guided practice\n\n\n9\nOct. 19 · Hypothesis testing\nOct. 21 · Lab 5: Inference for numerical data\nOct. 23 · Lab 5 support\n\n\n10\nOct. 26 · Comparing groups\nOct. 28 · Lab 6: More statistical inference\nOct. 30 · Lab 6 support\n\n\n11\nNov. 2 · Correlation and simple linear regression\nNov. 4 · Lab 7: Simple regression\nNov. 6 · Lab 7 support\n\n\n12\nNov. 9 · Multiple linear regression\nNov. 11 · Lab 8: Multiple regression\nNov. 13 · Lab 8 support\n\n\n13\nNov. 16 · Model interpretation and predicted values\nNov. 18 · Predicted values and visualization\nNov. 20 · Guided practice\n\n\n14\nNov. 23 · Fall Break — no class\nNov. 25 · Fall Break — no class\nNov. 27 · Fall Break — no sections\n\n\n15\nNov. 30 · Communicating quantitative findings\nDec. 2 · Case study and project workshop\nDec. 4 · Final project support\n\n\n16\nDec. 7 · Course synthesis and final consultations\n—\n—\n\n\n\n\n\n\n\n\n\nThe Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day."
+  },
+  {
+    "objectID": "overview.html",
+    "href": "overview.html",
+    "title": "Course Overview",
+    "section": "",
+    "text": "Public policy increasingly depends on quantitative evidence. This course introduces students to the statistical reasoning and data-analysis tools needed to evaluate that evidence and produce careful analyses of their own.\nWe begin with substantive questions rather than disconnected formulas. Each method is introduced through a real public-policy problem, developed conceptually, implemented in R, and interpreted in clear language.\nNo prior experience with R is required. Students may enter with different levels of mathematical, statistical, and coding preparation."
+  },
+  {
+    "objectID": "overview.html#what-this-course-is-about",
+    "href": "overview.html#what-this-course-is-about",
+    "title": "Course Overview",
+    "section": "",
+    "text": "Public policy increasingly depends on quantitative evidence. This course introduces students to the statistical reasoning and data-analysis tools needed to evaluate that evidence and produce careful analyses of their own.\nWe begin with substantive questions rather than disconnected formulas. Each method is introduced through a real public-policy problem, developed conceptually, implemented in R, and interpreted in clear language.\nNo prior experience with R is required. Students may enter with different levels of mathematical, statistical, and coding preparation."
+  },
+  {
+    "objectID": "overview.html#learning-objectives",
+    "href": "overview.html#learning-objectives",
+    "title": "Course Overview",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of the semester, students should be able to:\n\nFormulate clear and answerable empirical questions.\nIdentify appropriate data for a public-policy question.\nImport, clean, recode, document, and explore data in R.\nSummarize distributions numerically and visually.\nExplain probability, sampling variability, and statistical uncertainty.\nConstruct and interpret confidence intervals.\nConduct and interpret basic hypothesis tests and group comparisons.\nAnalyze correlation and estimate simple and multiple regression models.\nInterpret coefficients, predicted values, and uncertainty in context.\nDistinguish statistical significance from substantive importance.\nCommunicate quantitative findings to nontechnical audiences.\nProduce a reproducible analysis using Quarto.\nEvaluate the ethical and responsible use of data and AI."
+  },
+  {
+    "objectID": "overview.html#how-the-course-works",
+    "href": "overview.html#how-the-course-works",
+    "title": "Course Overview",
+    "section": "How the course works",
+    "text": "How the course works\nThe course connects three elements throughout the semester:\n\nStatistical reasoning: What does the method do, and when is it appropriate?\nR programming: How can we implement the analysis and check the output?\nPublic-policy application: What does the result mean for the substantive question?\n\nCoding is an important tool, but coding complexity is secondary to reasoning and interpretation."
+  },
+  {
+    "objectID": "overview.html#weekly-structure",
+    "href": "overview.html#weekly-structure",
+    "title": "Course Overview",
+    "section": "Weekly structure",
+    "text": "Weekly structure\n\nMonday: Lecture\nWe introduce a substantive question and the statistical concepts needed to answer it.\n\n\nWednesday: Guided lab\nWe apply the method together in R using real data. Most coding is completed collaboratively during class.\n\n\nFriday: Lab section\nSarah Traore reviews difficult material, helps students troubleshoot code, and provides support for the lab’s On Your Own section."
+  },
+  {
+    "objectID": "overview.html#labs",
+    "href": "overview.html#labs",
+    "title": "Course Overview",
+    "section": "Labs",
+    "text": "Labs\nLabs are cumulative and designed to build a practical data-analysis workflow. Each lab will have:\n\nA detailed online teaching guide with explanations, examples, and guided code\nA minimal downloadable Quarto template\nSetup code and a few pre-entered examples\nBlank R cells and spaces for written interpretation\nA clearly labeled On Your Own section\n\nStudents begin each lab in class and complete a shorter independent section afterward."
+  },
+  {
+    "objectID": "overview.html#applied-project",
+    "href": "overview.html#applied-project",
+    "title": "Course Overview",
+    "section": "Applied project",
+    "text": "Applied project\nStudents will complete an original public-policy analysis using real data. The project will require students to formulate a question, select and document appropriate data, conduct an independent analysis in R, interpret the results, and communicate the findings clearly.\nThe project is cumulative. Intermediate checkpoints will provide opportunities for feedback before the final submission."
   }
 ]
