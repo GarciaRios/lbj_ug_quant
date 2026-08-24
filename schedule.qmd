@@ -8,7 +8,7 @@ The schedule is tentative and may be adjusted to match the pace and needs of the
 
 | Week | Monday: Lecture | Wednesday: Guided lab | Friday: Lab sections |
 |---:|---|---|---|
-| 1 | **Aug. 24** · Introduction: puzzle solving with data | **Aug. 26** · Lab 0: Course and software orientation | **Aug. 28** · Setup help and lab support |
+| 1 | **Aug. 24** · Introduction: data analysis for public policy | **Aug. 26** · Lab 0: Course and software orientation | **Aug. 28** · Setup help and lab support |
 | 2 | **Aug. 31** · Data collection, observational studies, and experiments | **Sept. 2** · Lab 1: Introduction to R and RStudio | **Sept. 4** · Lab 1 support |
 | 3 | **Sept. 7** · **Labor Day — no class** | **Sept. 9** · Exploratory data analysis | **Sept. 11** · Guided practice |
 | 4 | **Sept. 14** · Describing data and distributions | **Sept. 16** · Lab 2: Introduction to data | **Sept. 18** · Lab 2 support |
