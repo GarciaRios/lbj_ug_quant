@@ -22,7 +22,7 @@ The purpose is not merely to reproduce calculations. It is to practice a complet
 
 ## Setup
 
-```{r}
+```r
 library(dplyr)
 library(ggplot2)
 
@@ -33,7 +33,7 @@ The `load()` command creates a data frame named `arbuthnot`.
 
 ## 1. Inspect the data
 
-```{r}
+```r
 arbuthnot
 dim(arbuthnot)
 names(arbuthnot)
@@ -51,7 +51,7 @@ Answer before moving on:
 
 Individual variables can be accessed with `$`:
 
-```{r}
+```r
 arbuthnot$boys
 arbuthnot$girls
 ```
@@ -60,7 +60,7 @@ arbuthnot$girls
 
 A line graph is appropriate because year has a meaningful order.
 
-```{r}
+```r
 ggplot(arbuthnot, aes(x = year, y = girls)) +
   geom_line(color = "#BF5700", linewidth = 0.8) +
   labs(
@@ -79,13 +79,13 @@ Now construct the corresponding graph for boys.
 
 The total number of girls in the records is:
 
-```{r}
+```r
 sum(arbuthnot$girls)
 ```
 
 To compare births within each year, create total births and the proportion recorded as boys:
 
-```{r}
+```r
 arbuthnot <- arbuthnot %>%
   mutate(
     total = boys + girls,
@@ -95,7 +95,7 @@ arbuthnot <- arbuthnot %>%
 
 Inspect the new variables:
 
-```{r}
+```r
 select(arbuthnot, year, total, boy_prop)
 ```
 
@@ -105,7 +105,7 @@ Why is a proportion often easier to compare across years than a raw difference?
 
 Arbuthnot argued that more boys than girls were born in every year of his records. We can translate that statement into a logical comparison.
 
-```{r}
+```r
 arbuthnot <- arbuthnot %>%
   mutate(more_boys = boys > girls)
 
@@ -116,7 +116,7 @@ A logical variable is either `TRUE` or `FALSE`. The code checks the claim year b
 
 Visualize the proportion of boys:
 
-```{r}
+```r
 ggplot(arbuthnot, aes(x = year, y = boy_prop)) +
   geom_hline(yintercept = 0.5, color = "gray60", linetype = "dashed") +
   geom_line(color = "#172A46", linewidth = 0.8) +
@@ -134,7 +134,7 @@ Explain the dashed line and summarize the substantive pattern in two or three se
 
 Load the second dataset:
 
-```{r}
+```r
 load(url("https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData"))
 glimpse(present)
 ```
