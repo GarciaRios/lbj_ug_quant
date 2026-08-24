@@ -1,30 +1,109 @@
 ---
 title: "Schedule"
 subtitle: "Fall 2026"
-toc: false
+toc: true
 ---
 
-The schedule is tentative and may be adjusted to match the pace and needs of the class.
+The schedule is the main course hub. Readings refer to [*OpenIntro Statistics*, 4th edition](https://www.openintro.org/book/os/). Problem-set exercise numbers correspond to that edition.
 
-| Week | Monday: Lecture | Wednesday: Guided lab | Friday: Lab sections |
-|---:|---|---|---|
-| 1 | **Aug. 24** · Introduction: data analysis for public policy | **Aug. 26** · Lab 0: Course and software orientation | **Aug. 28** · Setup help and lab support |
-| 2 | **Aug. 31** · Data collection, observational studies, and experiments | **Sept. 2** · Lab 1: Introduction to R and RStudio | **Sept. 4** · Lab 1 support |
-| 3 | **Sept. 7** · **Labor Day — no class** | **Sept. 9** · Exploratory data analysis | **Sept. 11** · Guided practice |
-| 4 | **Sept. 14** · Describing data and distributions | **Sept. 16** · Lab 2: Introduction to data | **Sept. 18** · Lab 2 support |
-| 5 | **Sept. 21** · Probability and conditional probability | **Sept. 23** · Lab 3: Probability | **Sept. 25** · Lab 3 support |
-| 6 | **Sept. 28** · Normal and binomial distributions | **Sept. 30** · Distribution practice | **Oct. 2** · Guided practice |
-| 7 | **Oct. 5** · Sampling variability and the central limit theorem | **Oct. 7** · Lab 4: Sampling and uncertainty | **Oct. 9** · Lab 4 support |
-| 8 | **Oct. 12** · Confidence intervals | **Oct. 14** · Confidence interval practice | **Oct. 16** · Guided practice |
-| 9 | **Oct. 19** · Hypothesis testing | **Oct. 21** · Lab 5: Inference for numerical data | **Oct. 23** · Lab 5 support |
-| 10 | **Oct. 26** · Comparing groups | **Oct. 28** · Lab 6: More statistical inference | **Oct. 30** · Lab 6 support |
-| 11 | **Nov. 2** · Correlation and simple linear regression | **Nov. 4** · Lab 7: Simple regression | **Nov. 6** · Lab 7 support |
-| 12 | **Nov. 9** · Multiple linear regression | **Nov. 11** · Lab 8: Multiple regression | **Nov. 13** · Lab 8 support |
-| 13 | **Nov. 16** · Model interpretation and predicted values | **Nov. 18** · Predicted values and visualization | **Nov. 20** · Guided practice |
-| 14 | **Nov. 23** · **Fall Break — no class** | **Nov. 25** · **Fall Break — no class** | **Nov. 27** · **Fall Break — no sections** |
-| 15 | **Nov. 30** · Communicating quantitative findings | **Dec. 2** · Case study and project workshop | **Dec. 4** · Final project support |
-| 16 | **Dec. 7** · Course synthesis and final consultations | — | — |
+**Weekly rhythm:** Monday lecture · Wednesday guided lab · Friday review, troubleshooting, and **On Your Own** support.
+
+The schedule may be adjusted to match the pace and needs of the class.
+
+## Unit 1: Data, measurement, and exploratory analysis
+
+| Date | Class activity | Preparation and assignments |
+|---|---|---|
+| **Mon., Aug. 24** | Introduction: data analysis for public policy | Course overview |
+| **Wed., Aug. 26** | Lab 0: R, RStudio, and Quarto | [Lab guide](labs/lab00/) · [Student lab template](templates/lab00-template.qmd){download="lab00-template.qmd"} |
+| **Fri., Aug. 28** | Setup help and Lab 0 support | Complete Lab 0 **On Your Own** |
+| **Mon., Aug. 31** | Data collection, observational studies, and experiments | OpenIntro Ch. 1 |
+| **Wed., Sept. 2** | Lab 1: Introduction to data analysis in R | [Lab guide](labs/lab01/) · [Student lab template](templates/lab01-template.qmd){download="lab01-template.qmd"} |
+| **Fri., Sept. 4** | Lab 1 review and troubleshooting | Complete Lab 1 **On Your Own** |
+| **Mon., Sept. 7** | **Labor Day — no class** | |
+| **Wed., Sept. 9** | Exploratory data analysis | OpenIntro Ch. 2, Sections 2.1–2.3 |
+| **Fri., Sept. 11** | Guided practice: variables, summaries, and interpretation | Work on Problem Set 1 |
+| **Mon., Sept. 14** | Describing data and distributions | Review OpenIntro Ch. 2 |
+| **Wed., Sept. 16** | Lab 2: Introduction to data | Lab materials forthcoming |
+| **Fri., Sept. 18** | Lab 2 support | **Problem Set 1 due** |
 
 ::: {.callout-note appearance="simple"}
-The Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day.
+**Problem Set 1 — Data and exploratory analysis**  
+OpenIntro exercises: Ch. 1: 1.2, 1.6, 1.16, 1.22, 1.30, 1.34; Ch. 2: 2.15, 2.22, 2.24, 2.27.
+:::
+
+## Unit 2: Probability and distributions
+
+| Date | Class activity | Preparation and assignments |
+|---|---|---|
+| **Mon., Sept. 21** | Probability and conditional probability | OpenIntro Ch. 3, Sections 3.1–3.2 |
+| **Wed., Sept. 23** | Lab 3: Probability | Begin Problem Set 2 |
+| **Fri., Sept. 25** | Lab 3 review and probability practice | Complete Lab 3 **On Your Own** |
+| **Mon., Sept. 28** | Normal and binomial distributions | OpenIntro Ch. 4, Sections 4.1 and 4.4 |
+| **Wed., Sept. 30** | Distribution practice and applications | Work on Problem Set 2 |
+| **Fri., Oct. 2** | Review and problem-set support | **Problem Set 2 due** |
+
+::: {.callout-note appearance="simple"}
+**Problem Set 2 — Probability and distributions**  
+OpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3.12, 3.18, 3.26, 3.30, 3.36.
+:::
+
+## Unit 3: Sampling, uncertainty, and foundations for inference
+
+| Date | Class activity | Preparation and assignments |
+|---|---|---|
+| **Mon., Oct. 5** | Sampling variability and the central limit theorem | OpenIntro Ch. 4 |
+| **Wed., Oct. 7** | Lab 4: Sampling and uncertainty | Begin Problem Set 3 |
+| **Fri., Oct. 9** | Lab 4 review and simulation practice | Complete Lab 4 **On Your Own** |
+| **Mon., Oct. 12** | Confidence intervals | Review OpenIntro Ch. 4 |
+| **Wed., Oct. 14** | Confidence interval practice | Work on Problem Set 3 |
+| **Fri., Oct. 16** | Interpretation and problem-set support | Continue Problem Set 3 |
+
+## Unit 4: Hypothesis testing and comparisons
+
+| Date | Class activity | Preparation and assignments |
+|---|---|---|
+| **Mon., Oct. 19** | Hypothesis testing | OpenIntro Ch. 5 |
+| **Wed., Oct. 21** | Lab 5: Inference for numerical data | Lab 5 work |
+| **Fri., Oct. 23** | Lab 5 review and interpretation | Complete Lab 5 **On Your Own** |
+| **Mon., Oct. 26** | Comparing groups | Review OpenIntro Ch. 5 |
+| **Wed., Oct. 28** | Lab 6: More statistical inference | Lab 6 work |
+| **Fri., Oct. 30** | Lab 6 and problem-set support | **Problem Set 3 due** |
+
+::: {.callout-note appearance="simple"}
+**Problem Set 3 — Statistical inference**  
+OpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5.5, 5.6, 5.12, 5.20, 5.22.
+:::
+
+## Unit 5: Correlation and regression
+
+| Date | Class activity | Preparation and assignments |
+|---|---|---|
+| **Mon., Nov. 2** | Correlation and simple linear regression | OpenIntro Ch. 7 |
+| **Wed., Nov. 4** | Lab 7: Simple regression | Lab 7 work |
+| **Fri., Nov. 6** | Lab 7 review and interpretation | Complete Lab 7 **On Your Own** |
+| **Mon., Nov. 9** | Multiple linear regression | OpenIntro Ch. 8, Sections 8.1–8.3 |
+| **Wed., Nov. 11** | Lab 8: Multiple regression | Lab 8 work |
+| **Fri., Nov. 13** | Lab 8 review and model interpretation | Complete Lab 8 **On Your Own** |
+| **Mon., Nov. 16** | Predicted values and substantive importance | Project preparation |
+| **Wed., Nov. 18** | Predicted values and visualization | Project workshop |
+| **Fri., Nov. 20** | Regression and project support | Project consultations |
+
+## Fall Break
+
+| Date | Class activity |
+|---|---|
+| **Nov. 23–28** | **Fall Break — no classes or sections** |
+
+## Unit 6: Communicating quantitative findings
+
+| Date | Class activity | Preparation and assignments |
+|---|---|---|
+| **Mon., Nov. 30** | Communicating findings to policy audiences | Project draft |
+| **Wed., Dec. 2** | Case study and project workshop | Bring reproducible analysis |
+| **Fri., Dec. 4** | Final project support | Complete remaining analysis |
+| **Mon., Dec. 7** | Course synthesis and final consultations | Last class day |
+
+::: {.callout-note appearance="simple"}
+Major project milestones and the final submission date will be added once the university’s final-exam schedule and course submission windows are confirmed.
 :::

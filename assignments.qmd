@@ -1,0 +1,43 @@
+---
+title: "Assignments"
+subtitle: "Coursework and submission expectations"
+toc: true
+---
+
+The [Schedule](schedule.qmd) is the main course hub. It lists readings, OpenIntro exercises, labs, templates, and due dates together.
+
+## Problem sets
+
+Problem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from [*OpenIntro Statistics*, 4th edition](https://www.openintro.org/book/os/).
+
+Students should:
+
+- show the reasoning or calculations used to reach an answer;
+- explain answers in context when interpretation is requested;
+- submit their own work through Canvas; and
+- begin early enough to use Friday sections for questions.
+
+Students may discuss approaches with classmates, but each student must prepare and submit their own answers.
+
+## Labs
+
+Labs provide guided practice with real data in R. Most coding will be completed together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the **On Your Own** work.
+
+For each lab, students will use:
+
+- a detailed online teaching guide; and
+- a downloadable student lab template in Quarto.
+
+Unless otherwise specified, submit both the source `.qmd` file and the rendered HTML output through Canvas.
+
+[View all labs](labs.qmd)
+
+## Readiness assessments
+
+Short readiness assessments check preparation for a new unit and identify concepts that need additional attention.
+
+## Project proposal and final applied project
+
+The project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings in a reproducible Quarto report.
+
+Detailed instructions and milestones will be added as the project develops.
