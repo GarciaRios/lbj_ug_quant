@@ -45,15 +45,19 @@ Students who successfully complete the course should be able to:
 9. Communicate findings to nontechnical public-policy audiences.
 10. Complete an original and reproducible applied research project.
 
-## Required software
+## Required textbook and software
 
-Students must install:
+**Textbook:** David M. Diez, Christopher D. Barr, and Mine Çetinkaya-Rundel, *OpenIntro Statistics*, 4th edition (2019).
 
-- R
-- RStudio Desktop
-- Quarto
+The complete textbook is available free online through [OpenIntro](https://www.openintro.org/book/os/). A paperback is optional. Problem-set exercise numbers on the schedule correspond to the 4th edition.
 
-All three are free. Installation and setup instructions will be posted on the course website. Students should bring a laptop capable of running the software to guided labs and Friday sections.
+Students must also install:
+
+- [R](https://cran.r-project.org/)
+- [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
+- [Quarto](https://quarto.org/docs/get-started/)
+
+All three are free. Students should bring a laptop capable of running the software to guided labs and Friday sections.
 
 ## Course structure
 
@@ -73,14 +77,19 @@ Within each unit, students will encounter a substantive public-policy question, 
 | Component | Weight |
 |---|---:|
 | Attendance and participation | 5% |
-| Problem sets and interpretation exercises | 30% |
+| Problem sets and interpretation exercises | 25% |
 | Guided labs | 25% |
-| Project proposal | 10% |
+| Midterm | 10% |
+| Project proposal | 5% |
 | Individual reproducible analysis and report | 20% |
 | Policy poster and presentation | 10% |
 | **Total** | **100%** |
 
 Specific instructions, deadlines, and grading criteria will be posted with each assignment and on the course schedule.
+
+## Midterm
+
+The in-class midterm will assess statistical reasoning, interpretation, and the core concepts from Units 1–3. It will include conceptual questions and manageable calculations but will not require R coding. Students may use one double-sided reference sheet prepared by them.
 
 ## Attendance and participation
 

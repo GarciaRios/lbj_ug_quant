@@ -1,0 +1,24 @@
+---
+title: "Resources"
+toc: true
+---
+
+## Textbook
+
+**Diez, David M., Christopher D. Barr, and Mine Çetinkaya-Rundel. 2019. *OpenIntro Statistics*. 4th ed.**
+
+- [Free textbook and supporting materials](https://www.openintro.org/book/os/)
+- Paperback optional
+- Problem-set exercise numbers correspond to the 4th edition
+
+## Software
+
+- [R](https://cran.r-project.org/)
+- [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
+- [Quarto](https://quarto.org/docs/get-started/)
+
+## R and Quarto references
+
+- [RStudio Education cheat sheets](https://posit.co/resources/cheatsheets/)
+- [Quarto documentation](https://quarto.org/docs/guide/)
+- [R for Data Science, 2nd edition](https://r4ds.hadley.nz/)

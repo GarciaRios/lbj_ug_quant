@@ -56,8 +56,8 @@ OpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3
 | **Wed., Oct. 7** | Lab 4: Sampling and uncertainty | Begin Problem Set 3 |
 | **Fri., Oct. 9** | Lab 4 review and simulation practice | Complete Lab 4 **On Your Own** |
 | **Mon., Oct. 12** | Confidence intervals | Review OpenIntro Ch. 4 |
-| **Wed., Oct. 14** | Confidence interval practice | Work on Problem Set 3 |
-| **Fri., Oct. 16** | Interpretation and problem-set support | Continue Problem Set 3 |
+| **Wed., Oct. 14** | **Midterm: Units 1–3** | One student-prepared double-sided reference sheet permitted |
+| **Fri., Oct. 16** | Midterm review and problem-set support | Continue Problem Set 3 |
 
 ## Unit 4: Hypothesis testing and comparisons
 

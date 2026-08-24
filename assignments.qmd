@@ -4,8 +4,6 @@ subtitle: "Coursework and submission expectations"
 toc: true
 ---
 
-The [Schedule](schedule.qmd) is the main course hub. It lists readings, OpenIntro exercises, labs, templates, and due dates together.
-
 ## Problem sets
 
 Problem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from [*OpenIntro Statistics*, 4th edition](https://www.openintro.org/book/os/).
@@ -31,6 +29,10 @@ For each lab, students will use:
 Unless otherwise specified, submit both the source `.qmd` file and the rendered HTML output through Canvas.
 
 [View all labs](labs.qmd)
+
+## Midterm
+
+The midterm covers Units 1–3 and emphasizes statistical reasoning, interpretation, and manageable calculations. It does not require R coding. Students may use one double-sided reference sheet prepared by them.
 
 ## Project proposal and final applied project
 
