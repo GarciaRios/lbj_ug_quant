@@ -2,18 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://garciarios.github.io/lbj_ug_quant/syllabus.html</loc>
-    <lastmod>2026-08-24T11:34:42.316Z</lastmod>
+    <lastmod>2026-08-24T17:29:39.246Z</lastmod>
   </url>
   <url>
     <loc>https://garciarios.github.io/lbj_ug_quant/overview.html</loc>
-    <lastmod>2026-08-24T11:34:42.316Z</lastmod>
+    <lastmod>2026-08-24T17:29:39.246Z</lastmod>
   </url>
   <url>
-    <loc>https://garciarios.github.io/lbj_ug_quant/schedule.html</loc>
-    <lastmod>2026-08-24T11:34:42.316Z</lastmod>
+    <loc>https://garciarios.github.io/lbj_ug_quant/labs/lab00/index.html</loc>
+    <lastmod>2026-08-24T17:29:39.246Z</lastmod>
   </url>
   <url>
     <loc>https://garciarios.github.io/lbj_ug_quant/index.html</loc>
-    <lastmod>2026-08-24T11:34:42.316Z</lastmod>
+    <lastmod>2026-08-24T17:29:39.246Z</lastmod>
+  </url>
+  <url>
+    <loc>https://garciarios.github.io/lbj_ug_quant/labs.html</loc>
+    <lastmod>2026-08-24T17:29:39.246Z</lastmod>
+  </url>
+  <url>
+    <loc>https://garciarios.github.io/lbj_ug_quant/labs/lab01/index.html</loc>
+    <lastmod>2026-08-24T17:29:39.246Z</lastmod>
+  </url>
+  <url>
+    <loc>https://garciarios.github.io/lbj_ug_quant/schedule.html</loc>
+    <lastmod>2026-08-24T17:29:39.246Z</lastmod>
   </url>
 </urlset>

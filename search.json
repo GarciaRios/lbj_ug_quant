@@ -175,11 +175,53 @@
     "text": "Applied project\nStudents will complete an original public-policy analysis using real data. The project will require students to formulate a question, select and document appropriate data, conduct an independent analysis in R, interpret the results, and communicate the findings clearly.\nThe project is cumulative. Intermediate checkpoints will provide opportunities for feedback before the final submission."
   },
   {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "Schedule",
+    "objectID": "labs/lab00/index.html",
+    "href": "labs/lab00/index.html",
+    "title": "Lab 0: Getting Started",
     "section": "",
-    "text": "The schedule is tentative and may be adjusted to match the pace and needs of the class.\n\n\n\n\n\n\n\n\n\nWeek\nMonday: Lecture\nWednesday: Guided lab\nFriday: Lab sections\n\n\n\n\n1\nAug. 24 · Introduction: data analysis for public policy\nAug. 26 · Lab 0: Course and software orientation\nAug. 28 · Setup help and lab support\n\n\n2\nAug. 31 · Data collection, observational studies, and experiments\nSept. 2 · Lab 1: Introduction to R and RStudio\nSept. 4 · Lab 1 support\n\n\n3\nSept. 7 · Labor Day — no class\nSept. 9 · Exploratory data analysis\nSept. 11 · Guided practice\n\n\n4\nSept. 14 · Describing data and distributions\nSept. 16 · Lab 2: Introduction to data\nSept. 18 · Lab 2 support\n\n\n5\nSept. 21 · Probability and conditional probability\nSept. 23 · Lab 3: Probability\nSept. 25 · Lab 3 support\n\n\n6\nSept. 28 · Normal and binomial distributions\nSept. 30 · Distribution practice\nOct. 2 · Guided practice\n\n\n7\nOct. 5 · Sampling variability and the central limit theorem\nOct. 7 · Lab 4: Sampling and uncertainty\nOct. 9 · Lab 4 support\n\n\n8\nOct. 12 · Confidence intervals\nOct. 14 · Confidence interval practice\nOct. 16 · Guided practice\n\n\n9\nOct. 19 · Hypothesis testing\nOct. 21 · Lab 5: Inference for numerical data\nOct. 23 · Lab 5 support\n\n\n10\nOct. 26 · Comparing groups\nOct. 28 · Lab 6: More statistical inference\nOct. 30 · Lab 6 support\n\n\n11\nNov. 2 · Correlation and simple linear regression\nNov. 4 · Lab 7: Simple regression\nNov. 6 · Lab 7 support\n\n\n12\nNov. 9 · Multiple linear regression\nNov. 11 · Lab 8: Multiple regression\nNov. 13 · Lab 8 support\n\n\n13\nNov. 16 · Model interpretation and predicted values\nNov. 18 · Predicted values and visualization\nNov. 20 · Guided practice\n\n\n14\nNov. 23 · Fall Break — no class\nNov. 25 · Fall Break — no class\nNov. 27 · Fall Break — no sections\n\n\n15\nNov. 30 · Communicating quantitative findings\nDec. 2 · Case study and project workshop\nDec. 4 · Final project support\n\n\n16\nDec. 7 · Course synthesis and final consultations\n—\n—\n\n\n\n\n\n\n\n\n\nThe Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day."
+    "text": "Download the bare-bones student report"
+  },
+  {
+    "objectID": "labs/lab00/index.html#goals",
+    "href": "labs/lab00/index.html#goals",
+    "title": "Lab 0: Getting Started",
+    "section": "Goals",
+    "text": "Goals\nBy the end of this lab, you should be able to:\n\nidentify the main parts of RStudio;\nrun R code and save a result as an object;\nopen, edit, save, and render a Quarto (.qmd) file;\nrecognize where code, output, and written interpretation belong; and\nidentify areas in which you may want additional support.\n\nNo previous R experience is expected."
+  },
+  {
+    "objectID": "labs/lab00/index.html#the-course-workflow",
+    "href": "labs/lab00/index.html#the-course-workflow",
+    "title": "Lab 0: Getting Started",
+    "section": "1. The course workflow",
+    "text": "1. The course workflow\nWe will use three connected tools:\n\nR performs the calculations.\nRStudio Desktop gives us an organized place to write code, inspect data, and view results.\nQuarto combines prose, code, tables, and figures into a reproducible report.\n\nOpen RStudio. Its four panes usually contain the source editor, console, environment/history, and files/plots/help. The precise arrangement is less important than knowing where you write a report and where R displays results."
+  },
+  {
+    "objectID": "labs/lab00/index.html#r-as-a-calculator",
+    "href": "labs/lab00/index.html#r-as-a-calculator",
+    "title": "Lab 0: Getting Started",
+    "section": "2. R as a calculator",
+    "text": "2. R as a calculator\nEnter the following in the Console and press Return:\n2 + 2\n10 / 4\nsqrt(81)\nR prints a result but does not save it. To save a result, assign it a name:\npolicy_budget &lt;- 1250000\nprogram_share &lt;- 0.18\nprogram_budget &lt;- policy_budget * program_share\nprogram_budget\nThe assignment arrow, &lt;-, means “store the value on the right under the name on the left.”\n\nTry it\nCreate an object called students containing the number of students in your section. Then calculate the number of four-person groups that could be formed."
+  },
+  {
+    "objectID": "labs/lab00/index.html#your-first-quarto-report",
+    "href": "labs/lab00/index.html#your-first-quarto-report",
+    "title": "Lab 0: Getting Started",
+    "section": "3. Your first Quarto report",
+    "text": "3. Your first Quarto report\n\nIn RStudio, choose File → New File → Quarto Document.\nGive the document a title and select HTML.\nSave the file in a clearly named course folder.\nAdd a sentence below the YAML header.\nAdd an R code chunk and a simple calculation.\nSelect Render.\n\nA reproducible report keeps the code, output, and explanation together. If the source changes, render again to update the complete report.\nweekly_hours &lt;- 3\nweeks &lt;- 15\nweekly_hours * weeks\nAfter the output, write one sentence explaining what the number represents. A number without context is not yet a policy finding."
+  },
+  {
+    "objectID": "labs/lab00/index.html#a-short-ungraded-diagnostic",
+    "href": "labs/lab00/index.html#a-short-ungraded-diagnostic",
+    "title": "Lab 0: Getting Started",
+    "section": "4. A short, ungraded diagnostic",
+    "text": "4. A short, ungraded diagnostic\nThis is only a starting-point check. It will help us calibrate examples and support.\n\nHow comfortable are you working with folders and file paths?\nHave you used a spreadsheet, statistical package, or programming language before?\nIn your own words, what does an average summarize?\nIf two groups have different averages, what else would you want to know before drawing a conclusion?\nWhat part of quantitative analysis are you most interested in learning? What concerns you most?"
+  },
+  {
+    "objectID": "labs/lab00/index.html#on-your-own",
+    "href": "labs/lab00/index.html#on-your-own",
+    "title": "Lab 0: Getting Started",
+    "section": "On Your Own",
+    "text": "On Your Own\nDownload the student report, replace the placeholder author name, complete its short exercises, and render it to HTML. Bring the .qmd file and any error message to Friday section. The goal is a working workflow—not perfect code."
   },
   {
     "objectID": "index.html",
@@ -208,5 +250,89 @@
     "title": "Undergraduate Quantitative Methods",
     "section": "Weekly rhythm",
     "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
+  },
+  {
+    "objectID": "labs.html",
+    "href": "labs.html",
+    "title": "Labs",
+    "section": "",
+    "text": "The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nEach lab has two parts: a detailed online guide and a bare-bones reproducible Quarto report for students to complete and render."
+  },
+  {
+    "objectID": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
+    "href": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
+    "title": "Labs",
+    "section": "Lab 0: Getting started with R, RStudio, and Quarto",
+    "text": "Lab 0: Getting started with R, RStudio, and Quarto\nSet up the software workflow, use R as a calculator, create objects, and render a first reproducible report.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "labs.html#lab-1-introduction-to-data-analysis-in-r",
+    "href": "labs.html#lab-1-introduction-to-data-analysis-in-r",
+    "title": "Labs",
+    "section": "Lab 1: Introduction to data analysis in R",
+    "text": "Lab 1: Introduction to data analysis in R\nUse historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "labs/lab01/index.html",
+    "href": "labs/lab01/index.html",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "",
+    "text": "Download the bare-bones student report"
+  },
+  {
+    "objectID": "labs/lab01/index.html#the-question",
+    "href": "labs/lab01/index.html#the-question",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "The question",
+    "text": "The question\nDo birth records show a stable difference between the numbers of boys and girls born each year? We will use a historical dataset compiled by John Arbuthnot and then examine more recent U.S. records.\nThe purpose is not merely to reproduce calculations. It is to practice a complete analysis cycle:\n\nask a clear question;\ninspect the data;\ntransform variables when necessary;\nvisualize the relevant pattern;\ncalculate a useful summary; and\nexplain what the evidence does—and does not—show."
+  },
+  {
+    "objectID": "labs/lab01/index.html#setup",
+    "href": "labs/lab01/index.html#setup",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "Setup",
+    "text": "Setup\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/arbuthnot.RData\"))\nThe load() command creates a data frame named arbuthnot."
+  },
+  {
+    "objectID": "labs/lab01/index.html#inspect-the-data",
+    "href": "labs/lab01/index.html#inspect-the-data",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "1. Inspect the data",
+    "text": "1. Inspect the data\narbuthnot\ndim(arbuthnot)\nnames(arbuthnot)\nglimpse(arbuthnot)\nEach row is a year. The columns contain the year and the recorded numbers of boys and girls baptized in London.\nAnswer before moving on:\n\nWhat is the unit of observation?\nHow many observations and variables are present?\nWhat years are covered?\nWhat limitations might baptism records have as a measure of births?\n\nIndividual variables can be accessed with $:\narbuthnot$boys\narbuthnot$girls"
+  },
+  {
+    "objectID": "labs/lab01/index.html#visualize-change-over-time",
+    "href": "labs/lab01/index.html#visualize-change-over-time",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "2. Visualize change over time",
+    "text": "2. Visualize change over time\nA line graph is appropriate because year has a meaningful order.\nggplot(arbuthnot, aes(x = year, y = girls)) +\n  geom_line(color = \"#BF5700\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Recorded baptisms\",\n    title = \"Girls recorded in London baptism data\"\n  ) +\n  theme_minimal()\nDescribe the overall pattern. Look for direction, unusual years, and changes in variability. Avoid explaining causes that the data cannot establish.\nNow construct the corresponding graph for boys."
+  },
+  {
+    "objectID": "labs/lab01/index.html#calculate-totals-and-create-variables",
+    "href": "labs/lab01/index.html#calculate-totals-and-create-variables",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "3. Calculate totals and create variables",
+    "text": "3. Calculate totals and create variables\nThe total number of girls in the records is:\nsum(arbuthnot$girls)\nTo compare births within each year, create total births and the proportion recorded as boys:\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(\n    total = boys + girls,\n    boy_prop = boys / total\n  )\nInspect the new variables:\nselect(arbuthnot, year, total, boy_prop)\nWhy is a proportion often easier to compare across years than a raw difference?"
+  },
+  {
+    "objectID": "labs/lab01/index.html#evaluate-a-claim",
+    "href": "labs/lab01/index.html#evaluate-a-claim",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "4. Evaluate a claim",
+    "text": "4. Evaluate a claim\nArbuthnot argued that more boys than girls were born in every year of his records. We can translate that statement into a logical comparison.\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(more_boys = boys &gt; girls)\n\ncount(arbuthnot, more_boys)\nA logical variable is either TRUE or FALSE. The code checks the claim year by year; it does not establish why the pattern occurs.\nVisualize the proportion of boys:\nggplot(arbuthnot, aes(x = year, y = boy_prop)) +\n  geom_hline(yintercept = 0.5, color = \"gray60\", linetype = \"dashed\") +\n  geom_line(color = \"#172A46\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Proportion recorded as boys\",\n    title = \"Share of recorded births classified as boys\"\n  ) +\n  theme_minimal()\nExplain the dashed line and summarize the substantive pattern in two or three sentences."
+  },
+  {
+    "objectID": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
+    "href": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "On Your Own: More recent U.S. births",
+    "text": "On Your Own: More recent U.S. births\nLoad the second dataset:\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData\"))\nglimpse(present)\nComplete the following in the downloadable report:\n\nIdentify the unit of observation, years covered, and variables.\nCreate total and boy_prop.\nMake a clear line graph of total births over time.\nMake a line graph of boy_prop with a reference line at 0.5.\nDetermine whether boys outnumber girls in every observed year.\nWrite a short interpretation comparing the recent pattern with the Arbuthnot records.\n\nA strong interpretation states the pattern, uses relevant quantities, and acknowledges what these descriptive data cannot explain."
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "The schedule is tentative and may be adjusted to match the pace and needs of the class.\n\n\n\n\n\n\n\n\n\nWeek\nMonday: Lecture\nWednesday: Guided lab\nFriday: Lab sections\n\n\n\n\n1\nAug. 24 · Introduction: data analysis for public policy\nAug. 26 · Lab 0: Course and software orientation\nAug. 28 · Setup help and lab support\n\n\n2\nAug. 31 · Data collection, observational studies, and experiments\nSept. 2 · Lab 1: Introduction to R and RStudio\nSept. 4 · Lab 1 support\n\n\n3\nSept. 7 · Labor Day — no class\nSept. 9 · Exploratory data analysis\nSept. 11 · Guided practice\n\n\n4\nSept. 14 · Describing data and distributions\nSept. 16 · Lab 2: Introduction to data\nSept. 18 · Lab 2 support\n\n\n5\nSept. 21 · Probability and conditional probability\nSept. 23 · Lab 3: Probability\nSept. 25 · Lab 3 support\n\n\n6\nSept. 28 · Normal and binomial distributions\nSept. 30 · Distribution practice\nOct. 2 · Guided practice\n\n\n7\nOct. 5 · Sampling variability and the central limit theorem\nOct. 7 · Lab 4: Sampling and uncertainty\nOct. 9 · Lab 4 support\n\n\n8\nOct. 12 · Confidence intervals\nOct. 14 · Confidence interval practice\nOct. 16 · Guided practice\n\n\n9\nOct. 19 · Hypothesis testing\nOct. 21 · Lab 5: Inference for numerical data\nOct. 23 · Lab 5 support\n\n\n10\nOct. 26 · Comparing groups\nOct. 28 · Lab 6: More statistical inference\nOct. 30 · Lab 6 support\n\n\n11\nNov. 2 · Correlation and simple linear regression\nNov. 4 · Lab 7: Simple regression\nNov. 6 · Lab 7 support\n\n\n12\nNov. 9 · Multiple linear regression\nNov. 11 · Lab 8: Multiple regression\nNov. 13 · Lab 8 support\n\n\n13\nNov. 16 · Model interpretation and predicted values\nNov. 18 · Predicted values and visualization\nNov. 20 · Guided practice\n\n\n14\nNov. 23 · Fall Break — no class\nNov. 25 · Fall Break — no class\nNov. 27 · Fall Break — no sections\n\n\n15\nNov. 30 · Communicating quantitative findings\nDec. 2 · Case study and project workshop\nDec. 4 · Final project support\n\n\n16\nDec. 7 · Course synthesis and final consultations\n—\n—\n\n\n\n\n\n\n\n\n\nThe Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day."
   }
 ]

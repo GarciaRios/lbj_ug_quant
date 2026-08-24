@@ -1,0 +1,92 @@
+---
+title: "Lab 1: Introduction to Data Analysis in R"
+author: "Your name"
+format: html
+editor: visual
+---
+
+## Setup
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/arbuthnot.RData"))
+```
+
+## Exercise 1: Inspect the data
+
+```{r}
+glimpse(arbuthnot)
+
+# Add code to report the dimensions and variable names.
+
+```
+
+What is the unit of observation?
+
+> 
+
+## Exercise 2: Visualize a variable
+
+```{r}
+ggplot(arbuthnot, aes(x = year, y = girls)) +
+  geom_line()
+```
+
+Create a comparable graph for boys.
+
+```{r}
+
+```
+
+Describe the principal pattern:
+
+> 
+
+## Exercise 3: Transform and compare
+
+```{r}
+arbuthnot <- arbuthnot %>%
+  mutate(
+    total = boys + girls,
+    boy_prop = boys / total
+  )
+
+# Check whether boys outnumber girls in each year.
+
+```
+
+What does the comparison show? What does it not show?
+
+> 
+
+## On Your Own: More recent U.S. births
+
+```{r}
+load(url("https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData"))
+
+# Inspect the data and create total and boy_prop.
+
+```
+
+### Total births over time
+
+```{r}
+
+```
+
+Interpret the graph:
+
+> 
+
+### Proportion recorded as boys
+
+```{r}
+# Include a horizontal reference line at 0.5.
+
+```
+
+Compare the recent records with the Arbuthnot records in a short paragraph:
+
+> 

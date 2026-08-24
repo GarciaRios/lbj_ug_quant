@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Schedule – Undergraduate Quantitative Methods</title>
+<title>Lab 1: Introduction to Data Analysis in R – Undergraduate Quantitative Methods</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,26 +26,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c416ebc74a34cc03c78d44bb95ac8643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c416ebc74a34cc03c78d44bb95ac8643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,17 +111,17 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Undergraduate Quantitative Methods</span>
     </a>
   </div>
@@ -97,23 +132,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./overview.html"> 
+    <a class="nav-link" href="../../overview.html"> 
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html"> 
+    <a class="nav-link" href="../../syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./schedule.html" aria-current="page"> 
+    <a class="nav-link" href="../../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./labs.html"> 
+    <a class="nav-link" href="../../labs.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
 </ul>
@@ -134,14 +169,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-question" id="toc-the-question" class="nav-link active" data-scroll-target="#the-question">The question</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#inspect-the-data" id="toc-inspect-the-data" class="nav-link" data-scroll-target="#inspect-the-data">1. Inspect the data</a></li>
+  <li><a href="#visualize-change-over-time" id="toc-visualize-change-over-time" class="nav-link" data-scroll-target="#visualize-change-over-time">2. Visualize change over time</a></li>
+  <li><a href="#calculate-totals-and-create-variables" id="toc-calculate-totals-and-create-variables" class="nav-link" data-scroll-target="#calculate-totals-and-create-variables">3. Calculate totals and create variables</a></li>
+  <li><a href="#evaluate-a-claim" id="toc-evaluate-a-claim" class="nav-link" data-scroll-target="#evaluate-a-claim">4. Evaluate a claim</a></li>
+  <li><a href="#on-your-own-more-recent-u.s.-births" id="toc-on-your-own-more-recent-u.s.-births" class="nav-link" data-scroll-target="#on-your-own-more-recent-u.s.-births">On Your Own: More recent U.S. births</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Schedule</h1>
-<p class="subtitle lead">Fall 2026</p>
+<h1 class="title">Lab 1: Introduction to Data Analysis in R</h1>
+<p class="subtitle lead">Historical birth records, data transformation, and visualization</p>
 </div>
 
 
@@ -158,133 +207,112 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The schedule is tentative and may be adjusted to match the pace and needs of the class.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 23%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Week</th>
-<th>Monday: Lecture</th>
-<th>Wednesday: Guided lab</th>
-<th>Friday: Lab sections</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td><strong>Aug.&nbsp;24</strong> · Introduction: data analysis for public policy</td>
-<td><strong>Aug.&nbsp;26</strong> · Lab 0: Course and software orientation</td>
-<td><strong>Aug.&nbsp;28</strong> · Setup help and lab support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td><strong>Aug.&nbsp;31</strong> · Data collection, observational studies, and experiments</td>
-<td><strong>Sept.&nbsp;2</strong> · Lab 1: Introduction to R and RStudio</td>
-<td><strong>Sept.&nbsp;4</strong> · Lab 1 support</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td><strong>Sept.&nbsp;7</strong> · <strong>Labor Day — no class</strong></td>
-<td><strong>Sept.&nbsp;9</strong> · Exploratory data analysis</td>
-<td><strong>Sept.&nbsp;11</strong> · Guided practice</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">4</td>
-<td><strong>Sept.&nbsp;14</strong> · Describing data and distributions</td>
-<td><strong>Sept.&nbsp;16</strong> · Lab 2: Introduction to data</td>
-<td><strong>Sept.&nbsp;18</strong> · Lab 2 support</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">5</td>
-<td><strong>Sept.&nbsp;21</strong> · Probability and conditional probability</td>
-<td><strong>Sept.&nbsp;23</strong> · Lab 3: Probability</td>
-<td><strong>Sept.&nbsp;25</strong> · Lab 3 support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">6</td>
-<td><strong>Sept.&nbsp;28</strong> · Normal and binomial distributions</td>
-<td><strong>Sept.&nbsp;30</strong> · Distribution practice</td>
-<td><strong>Oct.&nbsp;2</strong> · Guided practice</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">7</td>
-<td><strong>Oct.&nbsp;5</strong> · Sampling variability and the central limit theorem</td>
-<td><strong>Oct.&nbsp;7</strong> · Lab 4: Sampling and uncertainty</td>
-<td><strong>Oct.&nbsp;9</strong> · Lab 4 support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">8</td>
-<td><strong>Oct.&nbsp;12</strong> · Confidence intervals</td>
-<td><strong>Oct.&nbsp;14</strong> · Confidence interval practice</td>
-<td><strong>Oct.&nbsp;16</strong> · Guided practice</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">9</td>
-<td><strong>Oct.&nbsp;19</strong> · Hypothesis testing</td>
-<td><strong>Oct.&nbsp;21</strong> · Lab 5: Inference for numerical data</td>
-<td><strong>Oct.&nbsp;23</strong> · Lab 5 support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">10</td>
-<td><strong>Oct.&nbsp;26</strong> · Comparing groups</td>
-<td><strong>Oct.&nbsp;28</strong> · Lab 6: More statistical inference</td>
-<td><strong>Oct.&nbsp;30</strong> · Lab 6 support</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">11</td>
-<td><strong>Nov.&nbsp;2</strong> · Correlation and simple linear regression</td>
-<td><strong>Nov.&nbsp;4</strong> · Lab 7: Simple regression</td>
-<td><strong>Nov.&nbsp;6</strong> · Lab 7 support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">12</td>
-<td><strong>Nov.&nbsp;9</strong> · Multiple linear regression</td>
-<td><strong>Nov.&nbsp;11</strong> · Lab 8: Multiple regression</td>
-<td><strong>Nov.&nbsp;13</strong> · Lab 8 support</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">13</td>
-<td><strong>Nov.&nbsp;16</strong> · Model interpretation and predicted values</td>
-<td><strong>Nov.&nbsp;18</strong> · Predicted values and visualization</td>
-<td><strong>Nov.&nbsp;20</strong> · Guided practice</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">14</td>
-<td><strong>Nov.&nbsp;23</strong> · <strong>Fall Break — no class</strong></td>
-<td><strong>Nov.&nbsp;25</strong> · <strong>Fall Break — no class</strong></td>
-<td><strong>Nov.&nbsp;27</strong> · <strong>Fall Break — no sections</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">15</td>
-<td><strong>Nov.&nbsp;30</strong> · Communicating quantitative findings</td>
-<td><strong>Dec.&nbsp;2</strong> · Case study and project workshop</td>
-<td><strong>Dec.&nbsp;4</strong> · Final project support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">16</td>
-<td><strong>Dec.&nbsp;7</strong> · Course synthesis and final consultations</td>
-<td>—</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>The Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day.</p>
-</div>
-</div>
-</div>
+<p><a href="../../templates/lab01-template.qmd" class="btn btn-primary" download="lab01-template.qmd">Download the bare-bones student report</a></p>
+<section id="the-question" class="level2">
+<h2 class="anchored" data-anchor-id="the-question">The question</h2>
+<p>Do birth records show a stable difference between the numbers of boys and girls born each year? We will use a historical dataset compiled by John Arbuthnot and then examine more recent U.S. records.</p>
+<p>The purpose is not merely to reproduce calculations. It is to practice a complete analysis cycle:</p>
+<ol type="1">
+<li>ask a clear question;</li>
+<li>inspect the data;</li>
+<li>transform variables when necessary;</li>
+<li>visualize the relevant pattern;</li>
+<li>calculate a useful summary; and</li>
+<li>explain what the evidence does—and does not—show.</li>
+</ol>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/arbuthnot.RData"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>load()</code> command creates a data frame named <code>arbuthnot</code>.</p>
+</section>
+<section id="inspect-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="inspect-the-data">1. Inspect the data</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>arbuthnot</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(arbuthnot)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(arbuthnot)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(arbuthnot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Each row is a year. The columns contain the year and the recorded numbers of boys and girls baptized in London.</p>
+<p>Answer before moving on:</p>
+<ul>
+<li>What is the unit of observation?</li>
+<li>How many observations and variables are present?</li>
+<li>What years are covered?</li>
+<li>What limitations might baptism records have as a measure of births?</li>
+</ul>
+<p>Individual variables can be accessed with <code>$</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>arbuthnot<span class="sc">$</span>boys</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>arbuthnot<span class="sc">$</span>girls</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="visualize-change-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-change-over-time">2. Visualize change over time</h2>
+<p>A line graph is appropriate because year has a meaningful order.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(arbuthnot, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> girls)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#BF5700"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Recorded baptisms"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Girls recorded in London baptism data"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Describe the overall pattern. Look for direction, unusual years, and changes in variability. Avoid explaining causes that the data cannot establish.</p>
+<p>Now construct the corresponding graph for boys.</p>
+</section>
+<section id="calculate-totals-and-create-variables" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-totals-and-create-variables">3. Calculate totals and create variables</h2>
+<p>The total number of girls in the records is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(arbuthnot<span class="sc">$</span>girls)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To compare births within each year, create total births and the proportion recorded as boys:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>arbuthnot <span class="ot">&lt;-</span> arbuthnot <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> boys <span class="sc">+</span> girls,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">boy_prop =</span> boys <span class="sc">/</span> total</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Inspect the new variables:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(arbuthnot, year, total, boy_prop)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Why is a proportion often easier to compare across years than a raw difference?</p>
+</section>
+<section id="evaluate-a-claim" class="level2">
+<h2 class="anchored" data-anchor-id="evaluate-a-claim">4. Evaluate a claim</h2>
+<p>Arbuthnot argued that more boys than girls were born in every year of his records. We can translate that statement into a logical comparison.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>arbuthnot <span class="ot">&lt;-</span> arbuthnot <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">more_boys =</span> boys <span class="sc">&gt;</span> girls)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(arbuthnot, more_boys)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A logical variable is either <code>TRUE</code> or <code>FALSE</code>. The code checks the claim year by year; it does not establish why the pattern occurs.</p>
+<p>Visualize the proportion of boys:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(arbuthnot, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> boy_prop)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"gray60"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#172A46"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion recorded as boys"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Share of recorded births classified as boys"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Explain the dashed line and summarize the substantive pattern in two or three sentences.</p>
+</section>
+<section id="on-your-own-more-recent-u.s.-births" class="level2">
+<h2 class="anchored" data-anchor-id="on-your-own-more-recent-u.s.-births">On Your Own: More recent U.S. births</h2>
+<p>Load the second dataset:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData"</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(present)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Complete the following in the downloadable report:</p>
+<ol type="1">
+<li>Identify the unit of observation, years covered, and variables.</li>
+<li>Create <code>total</code> and <code>boy_prop</code>.</li>
+<li>Make a clear line graph of total births over time.</li>
+<li>Make a line graph of <code>boy_prop</code> with a reference line at 0.5.</li>
+<li>Determine whether boys outnumber girls in every observed year.</li>
+<li>Write a short interpretation comparing the recent pattern with the Arbuthnot records.</li>
+</ol>
+<p>A strong interpretation states the pattern, uses relevant quantities, and acknowledges what these descriptive data cannot explain.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -710,5 +738,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

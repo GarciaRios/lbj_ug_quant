@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Schedule – Undergraduate Quantitative Methods</title>
+<title>Lab 0: Getting Started – Undergraduate Quantitative Methods</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,26 +26,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c416ebc74a34cc03c78d44bb95ac8643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c416ebc74a34cc03c78d44bb95ac8643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,17 +111,17 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Undergraduate Quantitative Methods</span>
     </a>
   </div>
@@ -97,23 +132,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./overview.html"> 
+    <a class="nav-link" href="../../overview.html"> 
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html"> 
+    <a class="nav-link" href="../../syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./schedule.html" aria-current="page"> 
+    <a class="nav-link" href="../../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./labs.html"> 
+    <a class="nav-link" href="../../labs.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
 </ul>
@@ -134,14 +169,30 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
+  <li><a href="#the-course-workflow" id="toc-the-course-workflow" class="nav-link" data-scroll-target="#the-course-workflow">1. The course workflow</a></li>
+  <li><a href="#r-as-a-calculator" id="toc-r-as-a-calculator" class="nav-link" data-scroll-target="#r-as-a-calculator">2. R as a calculator</a>
+  <ul class="collapse">
+  <li><a href="#try-it" id="toc-try-it" class="nav-link" data-scroll-target="#try-it">Try it</a></li>
+  </ul></li>
+  <li><a href="#your-first-quarto-report" id="toc-your-first-quarto-report" class="nav-link" data-scroll-target="#your-first-quarto-report">3. Your first Quarto report</a></li>
+  <li><a href="#a-short-ungraded-diagnostic" id="toc-a-short-ungraded-diagnostic" class="nav-link" data-scroll-target="#a-short-ungraded-diagnostic">4. A short, ungraded diagnostic</a></li>
+  <li><a href="#on-your-own" id="toc-on-your-own" class="nav-link" data-scroll-target="#on-your-own">On Your Own</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Schedule</h1>
-<p class="subtitle lead">Fall 2026</p>
+<h1 class="title">Lab 0: Getting Started</h1>
+<p class="subtitle lead">R, RStudio, and reproducible reports</p>
 </div>
 
 
@@ -158,133 +209,79 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The schedule is tentative and may be adjusted to match the pace and needs of the class.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 23%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Week</th>
-<th>Monday: Lecture</th>
-<th>Wednesday: Guided lab</th>
-<th>Friday: Lab sections</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td><strong>Aug.&nbsp;24</strong> · Introduction: data analysis for public policy</td>
-<td><strong>Aug.&nbsp;26</strong> · Lab 0: Course and software orientation</td>
-<td><strong>Aug.&nbsp;28</strong> · Setup help and lab support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td><strong>Aug.&nbsp;31</strong> · Data collection, observational studies, and experiments</td>
-<td><strong>Sept.&nbsp;2</strong> · Lab 1: Introduction to R and RStudio</td>
-<td><strong>Sept.&nbsp;4</strong> · Lab 1 support</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td><strong>Sept.&nbsp;7</strong> · <strong>Labor Day — no class</strong></td>
-<td><strong>Sept.&nbsp;9</strong> · Exploratory data analysis</td>
-<td><strong>Sept.&nbsp;11</strong> · Guided practice</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">4</td>
-<td><strong>Sept.&nbsp;14</strong> · Describing data and distributions</td>
-<td><strong>Sept.&nbsp;16</strong> · Lab 2: Introduction to data</td>
-<td><strong>Sept.&nbsp;18</strong> · Lab 2 support</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">5</td>
-<td><strong>Sept.&nbsp;21</strong> · Probability and conditional probability</td>
-<td><strong>Sept.&nbsp;23</strong> · Lab 3: Probability</td>
-<td><strong>Sept.&nbsp;25</strong> · Lab 3 support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">6</td>
-<td><strong>Sept.&nbsp;28</strong> · Normal and binomial distributions</td>
-<td><strong>Sept.&nbsp;30</strong> · Distribution practice</td>
-<td><strong>Oct.&nbsp;2</strong> · Guided practice</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">7</td>
-<td><strong>Oct.&nbsp;5</strong> · Sampling variability and the central limit theorem</td>
-<td><strong>Oct.&nbsp;7</strong> · Lab 4: Sampling and uncertainty</td>
-<td><strong>Oct.&nbsp;9</strong> · Lab 4 support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">8</td>
-<td><strong>Oct.&nbsp;12</strong> · Confidence intervals</td>
-<td><strong>Oct.&nbsp;14</strong> · Confidence interval practice</td>
-<td><strong>Oct.&nbsp;16</strong> · Guided practice</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">9</td>
-<td><strong>Oct.&nbsp;19</strong> · Hypothesis testing</td>
-<td><strong>Oct.&nbsp;21</strong> · Lab 5: Inference for numerical data</td>
-<td><strong>Oct.&nbsp;23</strong> · Lab 5 support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">10</td>
-<td><strong>Oct.&nbsp;26</strong> · Comparing groups</td>
-<td><strong>Oct.&nbsp;28</strong> · Lab 6: More statistical inference</td>
-<td><strong>Oct.&nbsp;30</strong> · Lab 6 support</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">11</td>
-<td><strong>Nov.&nbsp;2</strong> · Correlation and simple linear regression</td>
-<td><strong>Nov.&nbsp;4</strong> · Lab 7: Simple regression</td>
-<td><strong>Nov.&nbsp;6</strong> · Lab 7 support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">12</td>
-<td><strong>Nov.&nbsp;9</strong> · Multiple linear regression</td>
-<td><strong>Nov.&nbsp;11</strong> · Lab 8: Multiple regression</td>
-<td><strong>Nov.&nbsp;13</strong> · Lab 8 support</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">13</td>
-<td><strong>Nov.&nbsp;16</strong> · Model interpretation and predicted values</td>
-<td><strong>Nov.&nbsp;18</strong> · Predicted values and visualization</td>
-<td><strong>Nov.&nbsp;20</strong> · Guided practice</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">14</td>
-<td><strong>Nov.&nbsp;23</strong> · <strong>Fall Break — no class</strong></td>
-<td><strong>Nov.&nbsp;25</strong> · <strong>Fall Break — no class</strong></td>
-<td><strong>Nov.&nbsp;27</strong> · <strong>Fall Break — no sections</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">15</td>
-<td><strong>Nov.&nbsp;30</strong> · Communicating quantitative findings</td>
-<td><strong>Dec.&nbsp;2</strong> · Case study and project workshop</td>
-<td><strong>Dec.&nbsp;4</strong> · Final project support</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">16</td>
-<td><strong>Dec.&nbsp;7</strong> · Course synthesis and final consultations</td>
-<td>—</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>The Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day.</p>
-</div>
-</div>
-</div>
+<p><a href="../../templates/lab00-template.qmd" class="btn btn-primary" download="lab00-template.qmd">Download the bare-bones student report</a></p>
+<section id="goals" class="level2">
+<h2 class="anchored" data-anchor-id="goals">Goals</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul>
+<li>identify the main parts of RStudio;</li>
+<li>run R code and save a result as an object;</li>
+<li>open, edit, save, and render a Quarto (<code>.qmd</code>) file;</li>
+<li>recognize where code, output, and written interpretation belong; and</li>
+<li>identify areas in which you may want additional support.</li>
+</ul>
+<p>No previous R experience is expected.</p>
+</section>
+<section id="the-course-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-course-workflow">1. The course workflow</h2>
+<p>We will use three connected tools:</p>
+<ul>
+<li><strong>R</strong> performs the calculations.</li>
+<li><strong>RStudio Desktop</strong> gives us an organized place to write code, inspect data, and view results.</li>
+<li><strong>Quarto</strong> combines prose, code, tables, and figures into a reproducible report.</li>
+</ul>
+<p>Open RStudio. Its four panes usually contain the source editor, console, environment/history, and files/plots/help. The precise arrangement is less important than knowing where you write a report and where R displays results.</p>
+</section>
+<section id="r-as-a-calculator" class="level2">
+<h2 class="anchored" data-anchor-id="r-as-a-calculator">2. R as a calculator</h2>
+<p>Enter the following in the Console and press Return:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">4</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">81</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>R prints a result but does not save it. To save a result, assign it a name:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>policy_budget <span class="ot">&lt;-</span> <span class="dv">1250000</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>program_share <span class="ot">&lt;-</span> <span class="fl">0.18</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>program_budget <span class="ot">&lt;-</span> policy_budget <span class="sc">*</span> program_share</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>program_budget</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The assignment arrow, <code>&lt;-</code>, means “store the value on the right under the name on the left.”</p>
+<section id="try-it" class="level3">
+<h3 class="anchored" data-anchor-id="try-it">Try it</h3>
+<p>Create an object called <code>students</code> containing the number of students in your section. Then calculate the number of four-person groups that could be formed.</p>
+</section>
+</section>
+<section id="your-first-quarto-report" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-quarto-report">3. Your first Quarto report</h2>
+<ol type="1">
+<li>In RStudio, choose <strong>File → New File → Quarto Document</strong>.</li>
+<li>Give the document a title and select HTML.</li>
+<li>Save the file in a clearly named course folder.</li>
+<li>Add a sentence below the YAML header.</li>
+<li>Add an R code chunk and a simple calculation.</li>
+<li>Select <strong>Render</strong>.</li>
+</ol>
+<p>A reproducible report keeps the code, output, and explanation together. If the source changes, render again to update the complete report.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>weekly_hours <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>weeks <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>weekly_hours <span class="sc">*</span> weeks</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After the output, write one sentence explaining what the number represents. A number without context is not yet a policy finding.</p>
+</section>
+<section id="a-short-ungraded-diagnostic" class="level2">
+<h2 class="anchored" data-anchor-id="a-short-ungraded-diagnostic">4. A short, ungraded diagnostic</h2>
+<p>This is only a starting-point check. It will help us calibrate examples and support.</p>
+<ol type="1">
+<li>How comfortable are you working with folders and file paths?</li>
+<li>Have you used a spreadsheet, statistical package, or programming language before?</li>
+<li>In your own words, what does an average summarize?</li>
+<li>If two groups have different averages, what else would you want to know before drawing a conclusion?</li>
+<li>What part of quantitative analysis are you most interested in learning? What concerns you most?</li>
+</ol>
+</section>
+<section id="on-your-own" class="level2">
+<h2 class="anchored" data-anchor-id="on-your-own">On Your Own</h2>
+<p>Download the student report, replace the placeholder author name, complete its short exercises, and render it to HTML. Bring the <code>.qmd</code> file and any error message to Friday section. The goal is a working workflow—not perfect code.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -710,5 +707,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
