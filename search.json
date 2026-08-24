@@ -53,7 +53,7 @@
     "href": "syllabus.html#midterm",
     "title": "Syllabus",
     "section": "Midterm",
-    "text": "Midterm\nThe in-class midterm will assess statistical reasoning, interpretation, and the core concepts from Units 1–3. It will include conceptual questions and manageable calculations but will not require R coding. Students may use one double-sided reference sheet prepared by them."
+    "text": "Midterm\nThe in-class midterm will assess statistical reasoning, interpretation, and the core concepts from Units 1–4. It will include conceptual questions and manageable calculations but will not require R coding. Students may use one double-sided reference sheet prepared by them."
   },
   {
     "objectID": "syllabus.html#attendance-and-participation",
@@ -256,7 +256,7 @@
     "href": "assignments.html#midterm",
     "title": "Assignments",
     "section": "Midterm",
-    "text": "Midterm\nThe midterm covers Units 1–3 and emphasizes statistical reasoning, interpretation, and manageable calculations. It does not require R coding. Students may use one double-sided reference sheet prepared by them."
+    "text": "Midterm\nThe midterm covers Units 1–4 and emphasizes statistical reasoning, interpretation, and manageable calculations. It does not require R coding. Students may use one double-sided reference sheet prepared by them."
   },
   {
     "objectID": "assignments.html#project-proposal-and-final-applied-project",
@@ -417,7 +417,7 @@
     "href": "schedule.html#unit-3-sampling-uncertainty-and-foundations-for-inference",
     "title": "Schedule",
     "section": "Unit 3: Sampling, uncertainty, and foundations for inference",
-    "text": "Unit 3: Sampling, uncertainty, and foundations for inference\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 5\nSampling variability and the central limit theorem\nOpenIntro Ch. 4\n\n\nWed., Oct. 7\nLab 4: Sampling and uncertainty\nBegin Problem Set 3\n\n\nFri., Oct. 9\nLab 4 review and simulation practice\nComplete Lab 4 On Your Own\n\n\nMon., Oct. 12\nConfidence intervals\nReview OpenIntro Ch. 4\n\n\nWed., Oct. 14\nMidterm: Units 1–3\nOne student-prepared double-sided reference sheet permitted\n\n\nFri., Oct. 16\nMidterm review and problem-set support\nContinue Problem Set 3"
+    "text": "Unit 3: Sampling, uncertainty, and foundations for inference\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 5\nSampling variability and the central limit theorem\nOpenIntro Ch. 4\n\n\nWed., Oct. 7\nLab 4: Sampling and uncertainty\nBegin Problem Set 3\n\n\nFri., Oct. 9\nLab 4 review and simulation practice\nComplete Lab 4 On Your Own\n\n\nMon., Oct. 12\nConfidence intervals\nReview OpenIntro Ch. 4\n\n\nWed., Oct. 14\nConfidence interval practice\nWork on Problem Set 3\n\n\nFri., Oct. 16\nInterpretation and problem-set support\nContinue Problem Set 3"
   },
   {
     "objectID": "schedule.html#unit-4-hypothesis-testing-and-comparisons",
@@ -431,7 +431,7 @@
     "href": "schedule.html#unit-5-correlation-and-regression",
     "title": "Schedule",
     "section": "Unit 5: Correlation and regression",
-    "text": "Unit 5: Correlation and regression\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Nov. 2\nCorrelation and simple linear regression\nOpenIntro Ch. 7\n\n\nWed., Nov. 4\nLab 7: Simple regression\nLab 7 work\n\n\nFri., Nov. 6\nLab 7 review and interpretation\nComplete Lab 7 On Your Own\n\n\nMon., Nov. 9\nMultiple linear regression\nOpenIntro Ch. 8, Sections 8.1–8.3\n\n\nWed., Nov. 11\nLab 8: Multiple regression\nLab 8 work\n\n\nFri., Nov. 13\nLab 8 review and model interpretation\nComplete Lab 8 On Your Own\n\n\nMon., Nov. 16\nPredicted values and substantive importance\nProject preparation\n\n\nWed., Nov. 18\nPredicted values and visualization\nProject workshop\n\n\nFri., Nov. 20\nRegression and project support\nProject consultations"
+    "text": "Unit 5: Correlation and regression\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Nov. 2\nMidterm: Units 1–4\nOne student-prepared double-sided reference sheet permitted\n\n\nWed., Nov. 4\nR review and project preparation\nBring project ideas and coding questions\n\n\nFri., Nov. 6\nProject and R support\nProject preparation\n\n\nMon., Nov. 9\nCorrelation and simple linear regression\nOpenIntro Ch. 7\n\n\nWed., Nov. 11\nLab 7: Simple regression\nLab 7 work\n\n\nFri., Nov. 13\nLab 7 review and interpretation\nComplete Lab 7 On Your Own\n\n\nMon., Nov. 16\nMultiple linear regression\nOpenIntro Ch. 8, Sections 8.1–8.3\n\n\nWed., Nov. 18\nLab 8: Multiple regression and predicted values\nLab 8 work\n\n\nFri., Nov. 20\nLab 8, predicted values, and project support\nComplete Lab 8 On Your Own"
   },
   {
     "objectID": "schedule.html#fall-break",
