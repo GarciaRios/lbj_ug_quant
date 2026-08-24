@@ -56,8 +56,8 @@ OpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3
 | **Wed., Oct. 7** | Lab 4: Sampling and uncertainty | Begin Problem Set 3 |
 | **Fri., Oct. 9** | Lab 4 review and simulation practice | Complete Lab 4 **On Your Own** |
 | **Mon., Oct. 12** | Confidence intervals | Review OpenIntro Ch. 4 |
-| **Wed., Oct. 14** | **Midterm: Units 1–3** | One student-prepared double-sided reference sheet permitted |
-| **Fri., Oct. 16** | Midterm review and problem-set support | Continue Problem Set 3 |
+| **Wed., Oct. 14** | Confidence interval practice | Work on Problem Set 3 |
+| **Fri., Oct. 16** | Interpretation and problem-set support | Continue Problem Set 3 |
 
 ## Unit 4: Hypothesis testing and comparisons
 
@@ -79,15 +79,15 @@ OpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5
 
 | Date | Class activity | Preparation and assignments |
 |---|---|---|
-| **Mon., Nov. 2** | Correlation and simple linear regression | OpenIntro Ch. 7 |
-| **Wed., Nov. 4** | Lab 7: Simple regression | Lab 7 work |
-| **Fri., Nov. 6** | Lab 7 review and interpretation | Complete Lab 7 **On Your Own** |
-| **Mon., Nov. 9** | Multiple linear regression | OpenIntro Ch. 8, Sections 8.1–8.3 |
-| **Wed., Nov. 11** | Lab 8: Multiple regression | Lab 8 work |
-| **Fri., Nov. 13** | Lab 8 review and model interpretation | Complete Lab 8 **On Your Own** |
-| **Mon., Nov. 16** | Predicted values and substantive importance | Project preparation |
-| **Wed., Nov. 18** | Predicted values and visualization | Project workshop |
-| **Fri., Nov. 20** | Regression and project support | Project consultations |
+| **Mon., Nov. 2** | **Midterm: Units 1–4** | One student-prepared double-sided reference sheet permitted |
+| **Wed., Nov. 4** | R review and project preparation | Bring project ideas and coding questions |
+| **Fri., Nov. 6** | Project and R support | Project preparation |
+| **Mon., Nov. 9** | Correlation and simple linear regression | OpenIntro Ch. 7 |
+| **Wed., Nov. 11** | Lab 7: Simple regression | Lab 7 work |
+| **Fri., Nov. 13** | Lab 7 review and interpretation | Complete Lab 7 **On Your Own** |
+| **Mon., Nov. 16** | Multiple linear regression | OpenIntro Ch. 8, Sections 8.1–8.3 |
+| **Wed., Nov. 18** | Lab 8: Multiple regression and predicted values | Lab 8 work |
+| **Fri., Nov. 20** | Lab 8, predicted values, and project support | Complete Lab 8 **On Your Own** |
 
 ## Fall Break
 

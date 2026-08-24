@@ -89,7 +89,7 @@ Specific instructions, deadlines, and grading criteria will be posted with each 
 
 ## Midterm
 
-The in-class midterm will assess statistical reasoning, interpretation, and the core concepts from Units 1–3. It will include conceptual questions and manageable calculations but will not require R coding. Students may use one double-sided reference sheet prepared by them.
+The in-class midterm will assess statistical reasoning, interpretation, and the core concepts from Units 1–4. It will include conceptual questions and manageable calculations but will not require R coding. Students may use one double-sided reference sheet prepared by them.
 
 ## Attendance and participation
 
