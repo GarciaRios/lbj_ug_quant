@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216"
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216"
+  },
+  {
+    "objectID": "index.html#about-the-course",
+    "href": "index.html#about-the-course",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "About the course",
+    "text": "About the course\nThis course introduces students to quantitative reasoning as a way to answer substantive questions about public policy. We will learn how to collect, explore, visualize, and analyze data; evaluate uncertainty; and communicate findings clearly and responsibly.\nThe course connects three elements throughout the semester:\n\nStatistical reasoning\nR programming\nPublic-policy applications\n\nNo prior experience with R is required."
+  },
+  {
+    "objectID": "index.html#weekly-rhythm",
+    "href": "index.html#weekly-rhythm",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "Weekly rhythm",
+    "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "The schedule is tentative and may be adjusted to match the pace and needs of the class.\n\n\n\n\n\n\n\n\n\nWeek\nMonday: Lecture\nWednesday: Guided lab\nFriday: Lab sections\n\n\n\n\n1\nAug. 24 · Introduction: data analysis for public policy\nAug. 26 · Lab 0: Course and software orientation\nAug. 28 · Setup help and lab support\n\n\n2\nAug. 31 · Data collection, observational studies, and experiments\nSept. 2 · Lab 1: Introduction to R and RStudio\nSept. 4 · Lab 1 support\n\n\n3\nSept. 7 · Labor Day — no class\nSept. 9 · Exploratory data analysis\nSept. 11 · Guided practice\n\n\n4\nSept. 14 · Describing data and distributions\nSept. 16 · Lab 2: Introduction to data\nSept. 18 · Lab 2 support\n\n\n5\nSept. 21 · Probability and conditional probability\nSept. 23 · Lab 3: Probability\nSept. 25 · Lab 3 support\n\n\n6\nSept. 28 · Normal and binomial distributions\nSept. 30 · Distribution practice\nOct. 2 · Guided practice\n\n\n7\nOct. 5 · Sampling variability and the central limit theorem\nOct. 7 · Lab 4: Sampling and uncertainty\nOct. 9 · Lab 4 support\n\n\n8\nOct. 12 · Confidence intervals\nOct. 14 · Confidence interval practice\nOct. 16 · Guided practice\n\n\n9\nOct. 19 · Hypothesis testing\nOct. 21 · Lab 5: Inference for numerical data\nOct. 23 · Lab 5 support\n\n\n10\nOct. 26 · Comparing groups\nOct. 28 · Lab 6: More statistical inference\nOct. 30 · Lab 6 support\n\n\n11\nNov. 2 · Correlation and simple linear regression\nNov. 4 · Lab 7: Simple regression\nNov. 6 · Lab 7 support\n\n\n12\nNov. 9 · Multiple linear regression\nNov. 11 · Lab 8: Multiple regression\nNov. 13 · Lab 8 support\n\n\n13\nNov. 16 · Model interpretation and predicted values\nNov. 18 · Predicted values and visualization\nNov. 20 · Guided practice\n\n\n14\nNov. 23 · Fall Break — no class\nNov. 25 · Fall Break — no class\nNov. 27 · Fall Break — no sections\n\n\n15\nNov. 30 · Communicating quantitative findings\nDec. 2 · Case study and project workshop\nDec. 4 · Final project support\n\n\n16\nDec. 7 · Course synthesis and final consultations\n—\n—\n\n\n\n\n\n\n\n\n\nThe Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day."
+  }
+]
