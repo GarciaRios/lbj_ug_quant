@@ -1,0 +1,73 @@
+---
+title: "Course Overview"
+subtitle: "Data Analysis for Public Policy"
+toc: true
+---
+
+## What this course is about
+
+Public policy increasingly depends on quantitative evidence. This course introduces students to the statistical reasoning and data-analysis tools needed to evaluate that evidence and produce careful analyses of their own.
+
+We begin with substantive questions rather than disconnected formulas. Each method is introduced through a real public-policy problem, developed conceptually, implemented in R, and interpreted in clear language.
+
+No prior experience with R is required. Students may enter with different levels of mathematical, statistical, and coding preparation.
+
+## Learning objectives
+
+By the end of the semester, students should be able to:
+
+1. Formulate clear and answerable empirical questions.
+2. Identify appropriate data for a public-policy question.
+3. Import, clean, recode, document, and explore data in R.
+4. Summarize distributions numerically and visually.
+5. Explain probability, sampling variability, and statistical uncertainty.
+6. Construct and interpret confidence intervals.
+7. Conduct and interpret basic hypothesis tests and group comparisons.
+8. Analyze correlation and estimate simple and multiple regression models.
+9. Interpret coefficients, predicted values, and uncertainty in context.
+10. Distinguish statistical significance from substantive importance.
+11. Communicate quantitative findings to nontechnical audiences.
+12. Produce a reproducible analysis using Quarto.
+13. Evaluate the ethical and responsible use of data and AI.
+
+## How the course works
+
+The course connects three elements throughout the semester:
+
+- **Statistical reasoning:** What does the method do, and when is it appropriate?
+- **R programming:** How can we implement the analysis and check the output?
+- **Public-policy application:** What does the result mean for the substantive question?
+
+Coding is an important tool, but coding complexity is secondary to reasoning and interpretation.
+
+## Weekly structure
+
+### Monday: Lecture
+
+We introduce a substantive question and the statistical concepts needed to answer it.
+
+### Wednesday: Guided lab
+
+We apply the method together in R using real data. Most coding is completed collaboratively during class.
+
+### Friday: Lab section
+
+Sarah Traore reviews difficult material, helps students troubleshoot code, and provides support for the lab’s **On Your Own** section.
+
+## Labs
+
+Labs are cumulative and designed to build a practical data-analysis workflow. Each lab will have:
+
+- A detailed online teaching guide with explanations, examples, and guided code
+- A minimal downloadable Quarto template
+- Setup code and a few pre-entered examples
+- Blank R cells and spaces for written interpretation
+- A clearly labeled **On Your Own** section
+
+Students begin each lab in class and complete a shorter independent section afterward.
+
+## Applied project
+
+Students will complete an original public-policy analysis using real data. The project will require students to formulate a question, select and document appropriate data, conduct an independent analysis in R, interpret the results, and communicate the findings clearly.
+
+The project is cumulative. Intermediate checkpoints will provide opportunities for feedback before the final submission.
