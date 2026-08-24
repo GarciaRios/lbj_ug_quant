@@ -5,7 +5,7 @@ subtitle: "Guided practice in data analysis for public policy"
 
 The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the **On Your Own** work.
 
-Each lab has two parts: a detailed online guide and a bare-bones reproducible report for students to complete and render.
+Each lab has two parts: a detailed online guide and a bare-bones reproducible Quarto report for students to complete and render.
 
 ## Lab 0: Getting started with R, RStudio, and Quarto
 
