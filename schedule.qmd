@@ -14,7 +14,7 @@ The schedule may be adjusted to match the pace and needs of the class.
 
 | Date | Class activity | Preparation and assignments |
 |---|---|---|
-| **Mon., Aug. 24** | Introduction: data analysis for public policy | Course overview |
+| **Mon., Aug. 24** | Introduction: data analysis for public policy | [Day 1 slides](materials/slides/PA311N-Day1-Introduction.pptx){download="PA311N-Day1-Introduction.pptx"} |
 | **Wed., Aug. 26** | Lab 0: R, RStudio, and Quarto | [Lab guide](labs/lab00/) · [Student lab template](templates/lab00-template.qmd){download="lab00-template.qmd"} |
 | **Fri., Aug. 28** | Setup help and Lab 0 support | Complete Lab 0 **On Your Own** |
 | **Mon., Aug. 31** | Data collection, observational studies, and experiments | OpenIntro Ch. 1 |

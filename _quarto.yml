@@ -8,6 +8,7 @@ project:
   resources:
     - templates/**
     - data/**
+    - materials/**
 
 website:
   title: "Undergraduate Quantitative Methods"
