@@ -73,19 +73,14 @@ Within each unit, students will encounter a substantive public-policy question, 
 | Component | Weight |
 |---|---:|
 | Attendance and participation | 5% |
-| Problem sets and interpretation exercises | 25% |
+| Problem sets and interpretation exercises | 30% |
 | Guided labs | 25% |
-| Readiness assessments | 5% |
 | Project proposal | 10% |
 | Individual reproducible analysis and report | 20% |
 | Policy poster and presentation | 10% |
 | **Total** | **100%** |
 
 Specific instructions, deadlines, and grading criteria will be posted with each assignment and on the course schedule.
-
-### No midterm or final examination
-
-The course does not include a traditional midterm or final examination. Students will demonstrate cumulative understanding through problem sets, individual lab work, and the applied project.
 
 ## Attendance and participation
 
@@ -106,10 +101,6 @@ Students may discuss concepts with classmates, but submitted work must reflect e
 Labs provide hands-on experience analyzing real data in R. Most coding will be completed together during Wednesday’s guided lab. Friday sections provide additional review, troubleshooting, and support.
 
 Each student will submit an individual Quarto file and rendered output. The **On Your Own** section must demonstrate the student’s independent coding and interpretation.
-
-## Readiness assessments
-
-Short readiness assessments will check understanding of essential concepts and preparation for new material. They are intended to identify areas that need attention before students move to more advanced applications.
 
 ## Applied project
 

@@ -32,10 +32,6 @@ Unless otherwise specified, submit both the source `.qmd` file and the rendered 
 
 [View all labs](labs.qmd)
 
-## Readiness assessments
-
-Short readiness assessments check preparation for a new unit and identify concepts that need additional attention.
-
 ## Project proposal and final applied project
 
 The project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings clearly.
@@ -47,4 +43,3 @@ The final project has two connected products:
 
 The poster should emphasize one clear question, one or two effective visualizations, the principal finding, substantive importance, and limitations. The poster does not replace the individual code and report.
 
-There is no traditional midterm or final examination. Cumulative understanding is assessed through problem sets, labs, and the applied project.
