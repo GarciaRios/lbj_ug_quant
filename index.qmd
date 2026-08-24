@@ -1,6 +1,6 @@
 ---
 title: "Undergraduate Quantitative Methods"
-subtitle: "Puzzle Solving with Data"
+subtitle: "Data Analysis for Public Policy"
 toc: false
 ---
 
