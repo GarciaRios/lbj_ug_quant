@@ -5,7 +5,7 @@ execute:
   eval: false
 ---
 
-[Download the bare-bones student report](../../templates/lab00-template.qmd){.btn .btn-primary download="lab00-template.qmd"}
+[Download the student lab template](../../templates/lab00-template.qmd){.btn .btn-primary download="lab00-template.qmd"}
 
 ## Goals
 
