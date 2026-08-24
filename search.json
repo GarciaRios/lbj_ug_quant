@@ -1,38 +1,129 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Undergraduate Quantitative Methods",
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
     "section": "",
-    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216"
+    "text": "Course: Undergraduate Quantitative Methods\nSubtitle: Data Analysis for Public Policy\nInstructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\nOffice hours: To be announced\nCourse communication and submissions: Canvas"
   },
   {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "Undergraduate Quantitative Methods",
+    "objectID": "syllabus.html#course-information",
+    "href": "syllabus.html#course-information",
+    "title": "Syllabus",
     "section": "",
-    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216"
+    "text": "Course: Undergraduate Quantitative Methods\nSubtitle: Data Analysis for Public Policy\nInstructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\nOffice hours: To be announced\nCourse communication and submissions: Canvas"
   },
   {
-    "objectID": "index.html#about-the-course",
-    "href": "index.html#about-the-course",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "About the course",
-    "text": "About the course\nThis course introduces students to quantitative reasoning as a way to answer substantive questions about public policy. We will learn how to collect, explore, visualize, and analyze data; evaluate uncertainty; and communicate findings clearly and responsibly.\nThe course connects three elements throughout the semester:\n\nStatistical reasoning\nR programming\nPublic-policy applications\n\nNo prior experience with R is required."
+    "objectID": "syllabus.html#course-description",
+    "href": "syllabus.html#course-description",
+    "title": "Syllabus",
+    "section": "Course description",
+    "text": "Course description\nThis course introduces students to statistics as a way of understanding and analyzing public-policy data. Throughout the semester, students will learn how to collect and evaluate data, describe patterns, quantify uncertainty, analyze relationships, and draw careful conclusions about real-world phenomena.\nThe course emphasizes statistical reasoning, interpretation, and communication. Students will use R and RStudio to conduct analyses and Quarto to produce reproducible reports. No prior experience with R is required."
   },
   {
-    "objectID": "index.html#weekly-rhythm",
-    "href": "index.html#weekly-rhythm",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "Weekly rhythm",
-    "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
+    "objectID": "syllabus.html#course-goals",
+    "href": "syllabus.html#course-goals",
+    "title": "Syllabus",
+    "section": "Course goals",
+    "text": "Course goals\nStudents who successfully complete the course should be able to:\n\nRecognize the importance of data collection and identify how limitations in research design affect the conclusions that can be drawn.\nUse statistical software to clean, summarize, visualize, and analyze data.\nUnderstand the role of probability and sampling variability in statistical inference.\nApply estimation and testing methods to individual variables and relationships between variables.\nEstimate and interpret simple and multiple regression models.\nInterpret statistical results accurately and in context without relying on unnecessary jargon.\nDistinguish statistical significance from substantive importance.\nCritique quantitative claims and evaluate data-based decisions.\nCommunicate findings to nontechnical public-policy audiences.\nComplete an original and reproducible applied research project."
   },
   {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "Schedule",
-    "section": "",
-    "text": "The schedule is tentative and may be adjusted to match the pace and needs of the class.\n\n\n\n\n\n\n\n\n\nWeek\nMonday: Lecture\nWednesday: Guided lab\nFriday: Lab sections\n\n\n\n\n1\nAug. 24 · Introduction: data analysis for public policy\nAug. 26 · Lab 0: Course and software orientation\nAug. 28 · Setup help and lab support\n\n\n2\nAug. 31 · Data collection, observational studies, and experiments\nSept. 2 · Lab 1: Introduction to R and RStudio\nSept. 4 · Lab 1 support\n\n\n3\nSept. 7 · Labor Day — no class\nSept. 9 · Exploratory data analysis\nSept. 11 · Guided practice\n\n\n4\nSept. 14 · Describing data and distributions\nSept. 16 · Lab 2: Introduction to data\nSept. 18 · Lab 2 support\n\n\n5\nSept. 21 · Probability and conditional probability\nSept. 23 · Lab 3: Probability\nSept. 25 · Lab 3 support\n\n\n6\nSept. 28 · Normal and binomial distributions\nSept. 30 · Distribution practice\nOct. 2 · Guided practice\n\n\n7\nOct. 5 · Sampling variability and the central limit theorem\nOct. 7 · Lab 4: Sampling and uncertainty\nOct. 9 · Lab 4 support\n\n\n8\nOct. 12 · Confidence intervals\nOct. 14 · Confidence interval practice\nOct. 16 · Guided practice\n\n\n9\nOct. 19 · Hypothesis testing\nOct. 21 · Lab 5: Inference for numerical data\nOct. 23 · Lab 5 support\n\n\n10\nOct. 26 · Comparing groups\nOct. 28 · Lab 6: More statistical inference\nOct. 30 · Lab 6 support\n\n\n11\nNov. 2 · Correlation and simple linear regression\nNov. 4 · Lab 7: Simple regression\nNov. 6 · Lab 7 support\n\n\n12\nNov. 9 · Multiple linear regression\nNov. 11 · Lab 8: Multiple regression\nNov. 13 · Lab 8 support\n\n\n13\nNov. 16 · Model interpretation and predicted values\nNov. 18 · Predicted values and visualization\nNov. 20 · Guided practice\n\n\n14\nNov. 23 · Fall Break — no class\nNov. 25 · Fall Break — no class\nNov. 27 · Fall Break — no sections\n\n\n15\nNov. 30 · Communicating quantitative findings\nDec. 2 · Case study and project workshop\nDec. 4 · Final project support\n\n\n16\nDec. 7 · Course synthesis and final consultations\n—\n—\n\n\n\n\n\n\n\n\n\nThe Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day."
+    "objectID": "syllabus.html#required-software",
+    "href": "syllabus.html#required-software",
+    "title": "Syllabus",
+    "section": "Required software",
+    "text": "Required software\nStudents must install:\n\nR\nRStudio Desktop\nQuarto\n\nAll three are free. Installation and setup instructions will be posted on the course website. Students should bring a laptop capable of running the software to guided labs and Friday sections."
+  },
+  {
+    "objectID": "syllabus.html#course-structure",
+    "href": "syllabus.html#course-structure",
+    "title": "Syllabus",
+    "section": "Course structure",
+    "text": "Course structure\nThe course is organized around six broad units:\n\nData, measurement, and exploratory analysis\nProbability and distributions\nSampling, uncertainty, and foundations for inference\nHypothesis testing and comparisons\nCorrelation and regression\nInterpretation and communication\n\nWithin each unit, students will encounter a substantive public-policy question, develop the relevant statistical reasoning, apply the method in R, and interpret the results."
+  },
+  {
+    "objectID": "syllabus.html#assessment",
+    "href": "syllabus.html#assessment",
+    "title": "Syllabus",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\nComponent\nWeight\n\n\n\n\nAttendance and participation\n5%\n\n\nProblem sets and interpretation exercises\n25%\n\n\nGuided labs\n25%\n\n\nReadiness assessments\n5%\n\n\nProject proposal\n10%\n\n\nFinal applied project\n30%\n\n\nTotal\n100%\n\n\n\nSpecific instructions, deadlines, and grading criteria will be posted with each assignment and on the course schedule."
+  },
+  {
+    "objectID": "syllabus.html#attendance-and-participation",
+    "href": "syllabus.html#attendance-and-participation",
+    "title": "Syllabus",
+    "section": "Attendance and participation",
+    "text": "Attendance and participation\nRegular attendance and active participation are essential because much of the statistical reasoning and coding work will be completed collaboratively during class.\nParticipation includes preparation, engagement in discussion, thoughtful work during labs, and constructive collaboration with classmates. Attendance alone does not constitute full participation.\nStudents who must miss class should communicate as early as possible and remain responsible for reviewing the material and completing assigned work."
+  },
+  {
+    "objectID": "syllabus.html#problem-sets-and-interpretation-exercises",
+    "href": "syllabus.html#problem-sets-and-interpretation-exercises",
+    "title": "Syllabus",
+    "section": "Problem sets and interpretation exercises",
+    "text": "Problem sets and interpretation exercises\nProblem sets and short interpretation exercises will reinforce statistical concepts and help students prepare for labs and the applied project. These assignments may include conceptual questions, calculations, critiques of quantitative claims, and short written interpretations.\nStudents may discuss concepts with classmates, but submitted work must reflect each student’s own reasoning unless an assignment explicitly permits group submission."
+  },
+  {
+    "objectID": "syllabus.html#labs",
+    "href": "syllabus.html#labs",
+    "title": "Syllabus",
+    "section": "Labs",
+    "text": "Labs\nLabs provide hands-on experience analyzing real data in R. Most coding will be completed together during Wednesday’s guided lab. Friday sections provide additional review, troubleshooting, and support.\nEach student will submit an individual Quarto file and rendered output. The On Your Own section must demonstrate the student’s independent coding and interpretation."
+  },
+  {
+    "objectID": "syllabus.html#readiness-assessments",
+    "href": "syllabus.html#readiness-assessments",
+    "title": "Syllabus",
+    "section": "Readiness assessments",
+    "text": "Readiness assessments\nShort readiness assessments will check understanding of essential concepts and preparation for new material. They are intended to identify areas that need attention before students move to more advanced applications."
+  },
+  {
+    "objectID": "syllabus.html#applied-project",
+    "href": "syllabus.html#applied-project",
+    "title": "Syllabus",
+    "section": "Applied project",
+    "text": "Applied project\nThe final project gives students independent experience conducting a public-policy analysis using real data. Students will:\n\nFormulate an answerable empirical question\nIdentify and document appropriate data\nPrepare and explore the data in R\nSelect methods appropriate to the question\nPresent and interpret the results\nDiscuss uncertainty and limitations\nCommunicate the findings to a nontechnical audience\nSubmit reproducible work using Quarto\n\nA project proposal will be submitted earlier in the semester. Additional project milestones and final deliverables will be announced on the course website."
+  },
+  {
+    "objectID": "syllabus.html#collaboration-and-individual-responsibility",
+    "href": "syllabus.html#collaboration-and-individual-responsibility",
+    "title": "Syllabus",
+    "section": "Collaboration and individual responsibility",
+    "text": "Collaboration and individual responsibility\nCollaboration is encouraged when learning concepts and troubleshooting code. However, collaboration must not conceal whether an individual student understands the analysis.\nUnless otherwise stated:\n\nStudents may discuss general approaches.\nStudents must write and submit their own code.\nStudents must produce their own interpretations.\nStudents must be able to explain every part of submitted work.\nSharing completed answers or submitting another person’s work is not permitted."
+  },
+  {
+    "objectID": "syllabus.html#use-of-ai-tools",
+    "href": "syllabus.html#use-of-ai-tools",
+    "title": "Syllabus",
+    "section": "Use of AI tools",
+    "text": "Use of AI tools\nAI tools may be useful for brainstorming, explaining error messages, or improving clarity, but they do not replace statistical reasoning or individual responsibility.\nStudents remain responsible for:\n\nUnderstanding and verifying all submitted code\nChecking results against the underlying data\nIdentifying fabricated functions, citations, or interpretations\nExplaining their analytical decisions\nFollowing assignment-specific AI instructions\nDisclosing substantive AI assistance when required\n\nAI-generated output that a student cannot explain or verify will not receive credit. Additional guidance will be provided with individual assignments."
+  },
+  {
+    "objectID": "syllabus.html#reproducibility-and-submission",
+    "href": "syllabus.html#reproducibility-and-submission",
+    "title": "Syllabus",
+    "section": "Reproducibility and submission",
+    "text": "Reproducibility and submission\nUnless otherwise specified, quantitative assignments should be completed in Quarto and submitted through Canvas. Students may be asked to submit both:\n\nThe source .qmd file\nThe rendered HTML or PDF output\n\nFiles should render without manual correction and should include sufficient documentation for another person to understand the analysis."
+  },
+  {
+    "objectID": "syllabus.html#workload",
+    "href": "syllabus.html#workload",
+    "title": "Syllabus",
+    "section": "Workload",
+    "text": "Workload\nStudents should expect to spend approximately four to six hours per week outside scheduled class meetings. Individual needs will vary depending on prior preparation.\nBeginning assignments early is particularly important when coding. Technical problems are much easier to resolve before a deadline."
+  },
+  {
+    "objectID": "syllabus.html#course-schedule",
+    "href": "syllabus.html#course-schedule",
+    "title": "Syllabus",
+    "section": "Course schedule",
+    "text": "Course schedule\nThe current weekly plan is available on the Schedule page. The schedule may be adjusted to match the pace and needs of the class. Any changes to assignments or deadlines will be communicated through Canvas and reflected on the course website."
+  },
+  {
+    "objectID": "syllabus.html#university-policies-and-student-support",
+    "href": "syllabus.html#university-policies-and-student-support",
+    "title": "Syllabus",
+    "section": "University policies and student support",
+    "text": "University policies and student support\nUniversity-required syllabus statements, accessibility information, academic integrity guidance, safety resources, and student-support information will be added before the syllabus is finalized for distribution."
   },
   {
     "objectID": "overview.html",
@@ -82,5 +173,40 @@
     "title": "Course Overview",
     "section": "Applied project",
     "text": "Applied project\nStudents will complete an original public-policy analysis using real data. The project will require students to formulate a question, select and document appropriate data, conduct an independent analysis in R, interpret the results, and communicate the findings clearly.\nThe project is cumulative. Intermediate checkpoints will provide opportunities for feedback before the final submission."
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "The schedule is tentative and may be adjusted to match the pace and needs of the class.\n\n\n\n\n\n\n\n\n\nWeek\nMonday: Lecture\nWednesday: Guided lab\nFriday: Lab sections\n\n\n\n\n1\nAug. 24 · Introduction: data analysis for public policy\nAug. 26 · Lab 0: Course and software orientation\nAug. 28 · Setup help and lab support\n\n\n2\nAug. 31 · Data collection, observational studies, and experiments\nSept. 2 · Lab 1: Introduction to R and RStudio\nSept. 4 · Lab 1 support\n\n\n3\nSept. 7 · Labor Day — no class\nSept. 9 · Exploratory data analysis\nSept. 11 · Guided practice\n\n\n4\nSept. 14 · Describing data and distributions\nSept. 16 · Lab 2: Introduction to data\nSept. 18 · Lab 2 support\n\n\n5\nSept. 21 · Probability and conditional probability\nSept. 23 · Lab 3: Probability\nSept. 25 · Lab 3 support\n\n\n6\nSept. 28 · Normal and binomial distributions\nSept. 30 · Distribution practice\nOct. 2 · Guided practice\n\n\n7\nOct. 5 · Sampling variability and the central limit theorem\nOct. 7 · Lab 4: Sampling and uncertainty\nOct. 9 · Lab 4 support\n\n\n8\nOct. 12 · Confidence intervals\nOct. 14 · Confidence interval practice\nOct. 16 · Guided practice\n\n\n9\nOct. 19 · Hypothesis testing\nOct. 21 · Lab 5: Inference for numerical data\nOct. 23 · Lab 5 support\n\n\n10\nOct. 26 · Comparing groups\nOct. 28 · Lab 6: More statistical inference\nOct. 30 · Lab 6 support\n\n\n11\nNov. 2 · Correlation and simple linear regression\nNov. 4 · Lab 7: Simple regression\nNov. 6 · Lab 7 support\n\n\n12\nNov. 9 · Multiple linear regression\nNov. 11 · Lab 8: Multiple regression\nNov. 13 · Lab 8 support\n\n\n13\nNov. 16 · Model interpretation and predicted values\nNov. 18 · Predicted values and visualization\nNov. 20 · Guided practice\n\n\n14\nNov. 23 · Fall Break — no class\nNov. 25 · Fall Break — no class\nNov. 27 · Fall Break — no sections\n\n\n15\nNov. 30 · Communicating quantitative findings\nDec. 2 · Case study and project workshop\nDec. 4 · Final project support\n\n\n16\nDec. 7 · Course synthesis and final consultations\n—\n—\n\n\n\n\n\n\n\n\n\nThe Fall 2026 term begins August 24. Labor Day is September 7, Fall Break is November 23–28, and December 7 is the last class day."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216"
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216"
+  },
+  {
+    "objectID": "index.html#about-the-course",
+    "href": "index.html#about-the-course",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "About the course",
+    "text": "About the course\nThis course introduces students to quantitative reasoning as a way to answer substantive questions about public policy. We will learn how to collect, explore, visualize, and analyze data; evaluate uncertainty; and communicate findings clearly and responsibly.\nThe course connects three elements throughout the semester:\n\nStatistical reasoning\nR programming\nPublic-policy applications\n\nNo prior experience with R is required."
+  },
+  {
+    "objectID": "index.html#weekly-rhythm",
+    "href": "index.html#weekly-rhythm",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "Weekly rhythm",
+    "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
   }
 ]
