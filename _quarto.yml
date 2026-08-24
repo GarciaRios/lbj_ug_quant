@@ -1,0 +1,33 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Undergraduate Quantitative Methods"
+  site-url: "https://garciarios.github.io/lbj_ug_quant/"
+  navbar:
+    background: "#172A46"
+    foreground: "#FFFFFF"
+    left:
+      - href: index.qmd
+        text: Home
+      - href: schedule.qmd
+        text: Schedule
+    right:
+      - icon: github
+        href: https://github.com/GarciaRios/lbj_ug_quant
+        aria-label: GitHub repository
+  page-footer:
+    left: "Undergraduate Quantitative Methods · Fall 2026"
+    right: "LBJ School of Public Affairs · The University of Texas at Austin"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    smooth-scroll: true
+    link-external-newwindow: true
+
+execute:
+  freeze: auto
