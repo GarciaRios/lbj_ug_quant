@@ -33,7 +33,7 @@ Open RStudio. Its four panes usually contain the source editor, console, environ
 
 Enter the following in the Console and press Return:
 
-```{r}
+```r
 2 + 2
 10 / 4
 sqrt(81)
@@ -41,7 +41,7 @@ sqrt(81)
 
 R prints a result but does not save it. To save a result, assign it a name:
 
-```{r}
+```r
 policy_budget <- 1250000
 program_share <- 0.18
 program_budget <- policy_budget * program_share
@@ -65,7 +65,7 @@ Create an object called `students` containing the number of students in your sec
 
 A reproducible report keeps the code, output, and explanation together. If the source changes, render again to update the complete report.
 
-```{r}
+```r
 weekly_hours <- 3
 weeks <- 15
 weekly_hours * weeks
