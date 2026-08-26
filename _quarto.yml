@@ -1,4 +1,4 @@
-project:
+# Published at https://garciarios.github.io/lbj_ug_quant/\nproject:
   type: website
   output-dir: _site
   render:
