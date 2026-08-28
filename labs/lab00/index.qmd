@@ -45,7 +45,7 @@ sqrt(81)
 R prints a result but does not save it. To save a result, assign it a name:
 
 
-### Exercise 2: Create an object
+### Exercise 2. Create an object
 
 ``` r
 policy_budget <- 1250000
@@ -62,7 +62,7 @@ Note that only the information inside a `code chunk` can be executed as R code
 
 
 
-## A short, ungraded diagnostic
+### Exercise 3. A short, ungraded diagnostic
 
 This is only a starting-point check. It will help us calibrate examples and support.
 
