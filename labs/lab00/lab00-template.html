@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Your name">
 
 <title>Lab 0: Getting Started – Undergraduate Quantitative Methods</title>
 <style>
@@ -182,21 +183,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
-  <li><a href="#the-course-workflow" id="toc-the-course-workflow" class="nav-link" data-scroll-target="#the-course-workflow">The course workflow</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1.-r-as-a-calculator" id="toc-exercise-1.-r-as-a-calculator" class="nav-link" data-scroll-target="#exercise-1.-r-as-a-calculator">Exercise 1. R as a calculator</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#exercise-1-r-as-a-calculator" id="toc-exercise-1-r-as-a-calculator" class="nav-link" data-scroll-target="#exercise-1-r-as-a-calculator">Exercise 1: R as a calculator</a></li>
   <li><a href="#exercise-2-create-an-object" id="toc-exercise-2-create-an-object" class="nav-link" data-scroll-target="#exercise-2-create-an-object">Exercise 2: Create an object</a></li>
-  </ul></li>
-  <li><a href="#a-short-ungraded-diagnostic" id="toc-a-short-ungraded-diagnostic" class="nav-link" data-scroll-target="#a-short-ungraded-diagnostic">A short, ungraded diagnostic</a>
-  <ul class="collapse">
-  <li><a href="#try-it" id="toc-try-it" class="nav-link" data-scroll-target="#try-it">Try it</a></li>
-  </ul></li>
-  <li><a href="#on-your-own" id="toc-on-your-own" class="nav-link" data-scroll-target="#on-your-own">On Your Own</a>
-  <ul class="collapse">
-  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus">Bonus</a></li>
-  </ul></li>
+  <li><a href="#exercise-3-your-starting-point" id="toc-exercise-3-your-starting-point" class="nav-link" data-scroll-target="#exercise-3-your-starting-point">Exercise 3: Your starting point</a></li>
+  <li><a href="#on-your-own" id="toc-on-your-own" class="nav-link" data-scroll-target="#on-your-own">On Your Own</a></li>
   </ul>
 </nav>
     </div>
@@ -206,13 +197,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Lab 0: Getting Started</h1>
-<p class="subtitle lead">R, RStudio, and reproducible reports</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your name </p>
+          </div>
+  </div>
     
   
     
@@ -223,70 +219,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><a href="../../templates/lab00-template.qmd" class="btn btn-primary" download="lab00-template.qmd">Download the student lab template</a></p>
-<section id="goals" class="level2">
-<h2 class="anchored" data-anchor-id="goals">Goals</h2>
-<p>By the end of this lab, you should be able to:</p>
-<ul>
-<li>identify the main parts of RStudio;</li>
-<li>run R code and save a result as an object;</li>
-<li>open, edit, save, and render a Quarto (<code>.qmd</code>) file;</li>
-<li>recognize where code, output, and written interpretation belong; and</li>
-<li>identify areas in which you may want additional support.</li>
-</ul>
-<p>No previous R experience is expected.</p>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>Save this file in your course folder. Render it once before beginning.</p>
 </section>
-<section id="the-course-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="the-course-workflow">The course workflow</h2>
-<p>We will use three connected tools:</p>
-<ul>
-<li><strong>R</strong> performs the calculations.</li>
-<li><strong>RStudio Desktop</strong> gives us an organized place to write code, inspect data, and view results.</li>
-<li><strong>Quarto</strong> combines prose, code, tables, and figures into a reproducible report.</li>
-</ul>
-<p>Open RStudio. Its four panes usually contain the source editor, console, environment/history, and files/plots/help. The precise arrangement is less important than knowing where you write a report and where R displays results.</p>
+<section id="exercise-1-r-as-a-calculator" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-r-as-a-calculator">Exercise 1: R as a calculator</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try two calculations below.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">+</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">45</span><span class="sc">*</span><span class="dv">9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 405</code></pre>
+</div>
+</div>
 </section>
-<section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<section id="exercise-1.-r-as-a-calculator" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1.-r-as-a-calculator">Exercise 1. R as a calculator</h3>
-<p>Enter the following in the Console and press Return:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">4</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">81</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>R prints a result but does not save it. To save a result, assign it a name:</p>
+<section id="exercise-2-create-an-object" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-create-an-object">Exercise 2: Create an object</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>policy_budget <span class="ot">&lt;-</span> <span class="dv">1250002</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create program_share and calculate the program budget.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>program_share <span class="ot">&lt;-</span> <span class="fl">0.18</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>program_budget <span class="ot">&lt;-</span> policy_budget <span class="sc">*</span> program_share</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>program_budget</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 225000.4</code></pre>
+</div>
+</div>
+<p>Write one sentence interpreting your result:</p>
+<blockquote class="blockquote">
+
+</blockquote>
 </section>
-<section id="exercise-2-create-an-object" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2-create-an-object">Exercise 2: Create an object</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>policy_budget <span class="ot">&lt;-</span> <span class="dv">1250000</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>program_share <span class="ot">&lt;-</span> <span class="fl">0.18</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>program_budget <span class="ot">&lt;-</span> policy_budget <span class="sc">*</span> program_share</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>program_budget</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The assignment arrow, <code>&lt;-</code>, means “store the value on the right under the name on the left.”</p>
-<p>Note that only the information inside a <code>code chunk</code> can be executed as R code</p>
-</section>
-</section>
-<section id="a-short-ungraded-diagnostic" class="level2">
-<h2 class="anchored" data-anchor-id="a-short-ungraded-diagnostic">A short, ungraded diagnostic</h2>
-<p>This is only a starting-point check. It will help us calibrate examples and support.</p>
-<ol type="1">
-<li><p>What experience, if any, do you have with spreadsheets, statistics, or coding?</p></li>
-<li><p>What would you most like to learn in this course?</p></li>
-</ol>
-<section id="try-it" class="level3">
-<h3 class="anchored" data-anchor-id="try-it">Try it</h3>
-<p>At this point let’s<code>Render</code> our Quarto document</p>
-</section>
+<section id="exercise-3-your-starting-point" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-your-starting-point">Exercise 3: Your starting point</h2>
+<p>What experience, if any, do you have with spreadsheets, statistics, or coding?</p>
+<blockquote class="blockquote">
+
+</blockquote>
+<p>What would you most like to learn in this course?</p>
+<blockquote class="blockquote">
+
+</blockquote>
 </section>
 <section id="on-your-own" class="level2">
 <h2 class="anchored" data-anchor-id="on-your-own">On Your Own</h2>
-<p>Create an object called weekly_hours, use it to estimate the total scheduled class hours in a 15-week semester, and explain what your result means.</p>
-<section id="bonus" class="level3">
-<h3 class="anchored" data-anchor-id="bonus">Bonus</h3>
-<p>Add a new chunk under the On Your own section and create an object called students containing the number of students in your section. Then calculate the number of four-person groups that could be formed.</p>
+<p>Create an object called <code>weekly_hours</code>, use it to estimate the total scheduled class hours in a 15-week semester, and explain what your result means.</p>
+<blockquote class="blockquote">
+
+</blockquote>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
