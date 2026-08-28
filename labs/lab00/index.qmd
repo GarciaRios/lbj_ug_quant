@@ -19,7 +19,7 @@ By the end of this lab, you should be able to:
 
 No previous R experience is expected.
 
-## 1. The course workflow
+##  The course workflow
 
 We will use three connected tools:
 
@@ -29,11 +29,14 @@ We will use three connected tools:
 
 Open RStudio. Its four panes usually contain the source editor, console, environment/history, and files/plots/help. The precise arrangement is less important than knowing where you write a report and where R displays results.
 
-## 2. R as a calculator
+
+## Exercises
+
+### Exercise 1. R as a calculator
 
 Enter the following in the Console and press Return:
 
-```r
+``` r
 2 + 2
 10 / 4
 sqrt(81)
@@ -41,7 +44,10 @@ sqrt(81)
 
 R prints a result but does not save it. To save a result, assign it a name:
 
-```r
+
+### Exercise 2: Create an object
+
+``` r
 policy_budget <- 1250000
 program_share <- 0.18
 program_budget <- policy_budget * program_share
@@ -50,39 +56,39 @@ program_budget
 
 The assignment arrow, `<-`, means “store the value on the right under the name on the left.”
 
-### Try it
+Note that only the information inside a `code chunk` can be executed as R code
 
-Create an object called `students` containing the number of students in your section. Then calculate the number of four-person groups that could be formed.
 
-## 3. Your first Quarto report
 
-1. In RStudio, choose **File → New File → Quarto Document**.
-2. Give the document a title and select HTML.
-3. Save the file in a clearly named course folder.
-4. Add a sentence below the YAML header.
-5. Add an R code chunk and a simple calculation.
-6. Select **Render**.
 
-A reproducible report keeps the code, output, and explanation together. If the source changes, render again to update the complete report.
 
-```r
-weekly_hours <- 3
-weeks <- 15
-weekly_hours * weeks
-```
-
-After the output, write one sentence explaining what the number represents. A number without context is not yet a policy finding.
-
-## 4. A short, ungraded diagnostic
+## A short, ungraded diagnostic
 
 This is only a starting-point check. It will help us calibrate examples and support.
 
-1. How comfortable are you working with folders and file paths?
-2. Have you used a spreadsheet, statistical package, or programming language before?
-3. In your own words, what does an average summarize?
-4. If two groups have different averages, what else would you want to know before drawing a conclusion?
-5. What part of quantitative analysis are you most interested in learning? What concerns you most?
+1.  What experience, if any, do you have with spreadsheets, statistics, or coding?
+
+2. What would you most like to learn in this course?
+
+
+### Try it
+
+At this point let's`Render` our Quarto document
+
+
+
+
+
+
+
+
+
 
 ## On Your Own
 
-Download the student report, replace the placeholder author name, complete its short exercises, and render it to HTML. Bring the `.qmd` file and any error message to Friday section. The goal is a working workflow—not perfect code.
+Create an object called weekly_hours, use it to estimate the total scheduled class hours in a 15-week semester, and explain what your result means.
+
+
+### Bonus 
+
+Add a new chunk under the On Your own section and create an object called students containing the number of students in your section. Then calculate the number of four-person groups that could be formed. 

@@ -1,0 +1,15 @@
+{
+  "hash": "2549cd3cb77a6f8d4ccb4d16a0145317",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Lab 0: Getting Started\"\nauthor: \"Your name\"\nformat: html\neditor: visual\n---\n\n## Setup\n\nSave this file in your course folder. Render it once before beginning.\n\n## Exercise 1: R as a calculator\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Try two calculations below.\n3+ 3\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 6\n```\n\n\n:::\n\n```{.r .cell-code}\n45*9\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 405\n```\n\n\n:::\n:::\n\n\n## Exercise 2: Create an object\n\n\n::: {.cell}\n\n```{.r .cell-code}\npolicy_budget <- 1250002\n\n# Create program_share and calculate the program budget.\nprogram_share <- 0.18\n\nprogram_budget <- policy_budget * program_share\n\nprogram_budget\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 225000.4\n```\n\n\n:::\n:::\n\n\nWrite one sentence interpreting your result:\n\n> \n\n## Exercise 3: Your starting point\n\nWhat experience, if any, do you have with spreadsheets, statistics, or coding?\n\n> \n\nWhat would you most like to learn in this course?\n\n> \n\n## On Your Own\n\nCreate an object called `weekly_hours`, use it to estimate the total scheduled class hours in a 15-week semester, and explain what your result means.\n\n\n::: {.cell}\n\n:::\n\n\n> \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,59 @@
+---
+title: "Lab 0: Getting Started"
+author: "Your name"
+format: html
+editor: visual
+---
+
+## Setup
+
+Save this file in your course folder. Render it once before beginning.
+
+## Exercise 1: R as a calculator
+
+```{r}
+# Try two calculations below.
+3+ 3
+
+45*9
+
+
+```
+
+## Exercise 2: Create an object
+
+```{r}
+policy_budget <- 1250002
+
+# Create program_share and calculate the program budget.
+program_share <- 0.18
+
+program_budget <- policy_budget * program_share
+
+program_budget
+
+```
+
+Write one sentence interpreting your result:
+
+> 
+
+## Exercise 3: Your starting point
+
+What experience, if any, do you have with spreadsheets, statistics, or coding?
+
+> 
+
+What would you most like to learn in this course?
+
+> 
+
+## On Your Own
+
+Create an object called `weekly_hours`, use it to estimate the total scheduled class hours in a 15-week semester, and explain what your result means.
+
+```{r}
+
+```
+
+> 
