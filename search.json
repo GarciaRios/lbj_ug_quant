@@ -235,14 +235,7 @@
     "href": "labs/lab00/index.html#exercises",
     "title": "Lab 0: Getting Started",
     "section": "Exercises",
-    "text": "Exercises\n\nExercise 1. R as a calculator\nEnter the following in the Console and press Return:\n2 + 2\n10 / 4\nsqrt(81)\nR prints a result but does not save it. To save a result, assign it a name:\n\n\nExercise 2: Create an object\npolicy_budget &lt;- 1250000\nprogram_share &lt;- 0.18\nprogram_budget &lt;- policy_budget * program_share\nprogram_budget\nThe assignment arrow, &lt;-, means “store the value on the right under the name on the left.”\nNote that only the information inside a code chunk can be executed as R code"
-  },
-  {
-    "objectID": "labs/lab00/index.html#a-short-ungraded-diagnostic",
-    "href": "labs/lab00/index.html#a-short-ungraded-diagnostic",
-    "title": "Lab 0: Getting Started",
-    "section": "A short, ungraded diagnostic",
-    "text": "A short, ungraded diagnostic\nThis is only a starting-point check. It will help us calibrate examples and support.\n\nWhat experience, if any, do you have with spreadsheets, statistics, or coding?\nWhat would you most like to learn in this course?\n\n\nTry it\nAt this point let’sRender our Quarto document"
+    "text": "Exercises\n\nExercise 1. R as a calculator\nEnter the following in the Console and press Return:\n2 + 2\n10 / 4\nsqrt(81)\nR prints a result but does not save it. To save a result, assign it a name:\n\n\nExercise 2. Create an object\npolicy_budget &lt;- 1250000\nprogram_share &lt;- 0.18\nprogram_budget &lt;- policy_budget * program_share\nprogram_budget\nThe assignment arrow, &lt;-, means “store the value on the right under the name on the left.”\nNote that only the information inside a code chunk can be executed as R code\n\n\nExercise 3. A short, ungraded diagnostic\nThis is only a starting-point check. It will help us calibrate examples and support.\n\nWhat experience, if any, do you have with spreadsheets, statistics, or coding?\nWhat would you most like to learn in this course?\n\n\n\nTry it\nAt this point let’sRender our Quarto document"
   },
   {
     "objectID": "labs/lab00/index.html#on-your-own",
