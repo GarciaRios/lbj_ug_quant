@@ -13,9 +13,7 @@ Save this file in your course folder. Render it once before beginning.
 
 ```{r}
 # Try two calculations below.
-3+ 3
 
-45*9
 
 
 ```
