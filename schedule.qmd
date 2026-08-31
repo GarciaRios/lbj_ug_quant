@@ -17,7 +17,7 @@ The schedule may be adjusted to match the pace and needs of the class.
 | **Mon., Aug. 24** | Introduction: data analysis for public policy | [Day 1 slides](materials/slides/day01/PA311N-Day1-Introduction.pdf){download="PA311N-Day1-Introduction.pdf"} |
 | **Wed., Aug. 26** | Lab 0: R, RStudio, and Quarto | [Lab guide](labs/lab00/) · [Student lab template](templates/lab00-template.qmd){download="lab00-template.qmd"} |
 | **Fri., Aug. 28** | Setup help and Lab 0 support | Complete Lab 0 **On Your Own** |
-| **Mon., Aug. 31** | Data collection, observational studies, and experiments | OpenIntro Ch. 1 |
+| **Mon., Aug. 31** | From questions to data: measurement and exploratory analysis | OpenIntro Ch. 1 · [Day 2 slides](materials/slides/day02/PA311N-Day2-Questions-to-Data.pdf){download="PA311N-Day2-Questions-to-Data.pdf"} |
 | **Wed., Sept. 2** | Lab 1: Introduction to data analysis in R | [Lab guide](labs/lab01/) · [Student lab template](templates/lab01-template.qmd){download="lab01-template.qmd"} |
 | **Fri., Sept. 4** | Lab 1 review and troubleshooting | Complete Lab 1 **On Your Own** |
 | **Mon., Sept. 7** | **Labor Day — no class** | |
