@@ -21,7 +21,7 @@ The schedule may be adjusted to match the pace and needs of the class.
 | **Wed., Sept. 2** | Lab 1: Introduction to data analysis in R | [Lab guide](labs/lab01/) · [Student lab template](templates/lab01-template.qmd){download="lab01-template.qmd"} |
 | **Fri., Sept. 4** | Lab 1 review and troubleshooting | Complete Lab 1 **On Your Own** |
 | **Mon., Sept. 7** | **Labor Day — no class** | |
-| **Wed., Sept. 9** | Exploratory data analysis | OpenIntro Ch. 2, Sections 2.1–2.3 |
+| **Wed., Sept. 9** | Exploratory data analysis | OpenIntro Ch. 2, Sections 2.1–2.3 · [Day 3 slides](materials/slides/day03/PA311N-Day3-Exploratory-Data-Analysis.pdf){download="PA311N-Day3-Exploratory-Data-Analysis.pdf"} |
 | **Fri., Sept. 11** | Guided practice: variables, summaries, and interpretation | Work on Problem Set 1 |
 | **Mon., Sept. 14** | Describing data and distributions | Review OpenIntro Ch. 2 |
 | **Wed., Sept. 16** | Lab 2: Introduction to data | Lab materials forthcoming |
