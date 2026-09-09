@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'materials/slides/day03/PA311N-Day3-Exploratory-Data-Analysis.tex'
+      - '.github/workflows/compile-day3-slides.yml'
 
 permissions:
   contents: write
