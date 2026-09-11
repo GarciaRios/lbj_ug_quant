@@ -22,7 +22,7 @@ The schedule may be adjusted to match the pace and needs of the class.
 | **Fri., Sept. 4** | Lab 1 review and troubleshooting | Complete Lab 1 **On Your Own** |
 | **Mon., Sept. 7** | **Labor Day — no class** | |
 | **Wed., Sept. 9** | Exploratory data analysis | OpenIntro Ch. 2, Sections 2.1–2.3 |
-| **Fri., Sept. 11** | Guided practice: variables, summaries, and interpretation | Work on Problem Set 1 |
+| **Fri., Sept. 11** | **No lab sections** | Work on Problem Set 1 |
 | **Mon., Sept. 14** | Describing data and distributions | Review OpenIntro Ch. 2 |
 | **Wed., Sept. 16** | Lab 2: Introduction to data | Lab materials forthcoming |
 | **Fri., Sept. 18** | Lab 2 support | **Problem Set 1 due** |
