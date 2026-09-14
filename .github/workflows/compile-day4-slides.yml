@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'materials/slides/day04/PA311N-Day4-Describing-Data-Distributions.tex'
+      - '.github/workflows/compile-day4-slides.yml'
 
 permissions:
   contents: write
