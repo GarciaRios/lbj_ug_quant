@@ -24,8 +24,8 @@ The schedule may be adjusted to match the pace and needs of the class.
 | **Wed., Sept. 9** | Exploratory data analysis | OpenIntro Ch. 2, Sections 2.1–2.3 · [Day 3 slides](materials/slides/day03/PA311N-Day3-Exploratory-Data-Analysis.pdf){download="PA311N-Day3-Exploratory-Data-Analysis.pdf"} |
 | **Fri., Sept. 11** | **No lab sections** | Work on Problem Set 1 |
 | **Mon., Sept. 14** | Describing data and distributions | Review OpenIntro Ch. 2 · [Day 4 slides](materials/slides/day04/PA311N-Day4-Describing-Data-Distributions.pdf){download="PA311N-Day4-Describing-Data-Distributions.pdf"} |
-| **Wed., Sept. 16** | Lab 2: Introduction to data | Lab materials forthcoming |
-| **Fri., Sept. 18** | Lab 2 support | **Problem Set 1 due** |
+| **Wed., Sept. 16** | Lab 2: Describing and comparing data in R | [Lab guide](labs/lab02/) · [Student lab template](templates/lab02-template.qmd){download="lab02-template.qmd"} |
+| **Fri., Sept. 18** | Lab 2 support | Complete Lab 2 **On Your Own** · **Problem Set 1 due** |
 
 ::: {.callout-note appearance="simple"}
 **Problem Set 1 — Data and exploratory analysis**  
