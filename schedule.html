@@ -18,6 +18,18 @@
     '<td>Review OpenIntro Ch. 2</td>',
     '<td>Review OpenIntro Ch. 2 · <a href="https://github.com/GarciaRios/lbj_ug_quant/raw/refs/heads/main/materials/slides/day04/PA311N-Day4-Describing-Data-Distributions.pdf">Day 4 slides</a></td>'
   );
+  html = html.replace(
+    '<td>Lab 2: Introduction to data</td>',
+    '<td>Lab 2: Describing and comparing data in R</td>'
+  );
+  html = html.replace(
+    '<td>Lab materials forthcoming</td>',
+    '<td><a href="./labs/lab02/">Lab guide</a> · <a href="./templates/lab02-template.qmd" download="lab02-template.qmd">Student lab template</a></td>'
+  );
+  html = html.replace(
+    '<td><strong>Problem Set 1 due</strong></td>',
+    '<td>Complete Lab 2 <strong>On Your Own</strong> · <strong>Problem Set 1 due</strong></td>'
+  );
   document.open();
   document.write(html);
   document.close();
