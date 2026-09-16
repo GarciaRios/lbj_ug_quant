@@ -298,8 +298,18 @@ Sometimes the quantity we want to analyze is not directly stored in the dataset.
 Body Mass Index (BMI) can be calculated from weight and height as:
 
 \[
-BMI = \frac{weight\;(lb)}{height\;(in)^2} \times 703
+\operatorname{BMI}_i = 703\left(\frac{W_i}{H_i^2}\right),
 \]
+
+where
+
+\[
+W_i = \text{weight of respondent } i \text{ in pounds},
+\qquad
+H_i = \text{height of respondent } i \text{ in inches}.
+\]
+
+The resulting BMI is expressed in the conventional units of kilograms per square meter, \(\text{kg}/\text{m}^2\).
 
 Use `mutate()` to calculate BMI for every respondent:
 
