@@ -1,0 +1,225 @@
+---
+title: "Lab 2: Describing and Comparing Data in R"
+author: "Your name"
+format: html
+editor: visual
+---
+
+## Setup
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab2/Data/cdc.RData"))
+```
+
+## Exercise 1: Meet the data
+
+```{r}
+glimpse(cdc)
+dim(cdc)
+names(cdc)
+```
+
+What is the unit of observation?
+
+> 
+
+Classify the variables as categorical or quantitative. Where useful, be more specific: ordinal or nominal; discrete or continuous.
+
+> 
+
+## Exercise 2: See the distribution
+
+```{r}
+ggplot(cdc, aes(x = age)) +
+  geom_histogram(binwidth = 5) +
+  theme_minimal()
+```
+
+Now create the same histogram with bin widths of 10 and 1.
+
+```{r}
+
+```
+
+What features of the distribution stay the same? What changes as the bin width changes?
+
+> 
+
+Describe the shape, center, spread, and any unusual features of the age distribution.
+
+> 
+
+## Exercise 3: Describe a quantitative variable
+
+```{r}
+cdc %>%
+  summarise(
+    mean_weight = mean(weight),
+    median_weight = median(weight),
+    sd_weight = sd(weight),
+    variance_weight = var(weight),
+    IQR_weight = IQR(weight),
+    min_weight = min(weight),
+    max_weight = max(weight)
+  )
+```
+
+Create a histogram of `weight` with a reasonable bin width.
+
+```{r}
+
+```
+
+Using both the graph and the numerical summaries, answer:
+
+1. Is the distribution roughly symmetric or skewed?
+2. Are the mean and median similar? Why or why not?
+3. Which pair would you emphasize for this distribution: mean and SD, or median and IQR?
+4. What does the standard deviation tell you in substantive terms?
+
+> 
+
+## Exercise 4: Compare groups
+
+```{r}
+cdc %>%
+  group_by(exerany) %>%
+  summarise(
+    n = n(),
+    mean_weight = mean(weight),
+    median_weight = median(weight),
+    sd_weight = sd(weight),
+    IQR_weight = IQR(weight)
+  )
+```
+
+Create a boxplot comparing weight for respondents who did and did not exercise in the previous month.
+
+```{r}
+
+```
+
+Describe the comparison using both the graph and the numerical summaries. Does this establish that exercise causes differences in weight? Explain.
+
+> 
+
+## Exercise 5: Categorical variables and denominators
+
+```{r}
+cdc %>%
+  count(genhlth) %>%
+  mutate(prop = n / sum(n))
+```
+
+What is the most common self-rated health category? What proportion reports excellent health? Is `genhlth` nominal or ordinal?
+
+> 
+
+Now compare smoking history by gender.
+
+```{r}
+cdc %>%
+  count(gender, smoke100) %>%
+  group_by(gender) %>%
+  mutate(prop_within_gender = n / sum(n))
+```
+
+What proportion of respondents in each gender category report having smoked at least 100 cigarettes?
+
+> 
+
+Why is the denominator the number of respondents within each gender category rather than the entire sample?
+
+> 
+
+## Exercise 6: Match the graph to the variables
+
+### Two quantitative variables
+
+```{r}
+ggplot(cdc, aes(x = weight, y = height)) +
+  geom_point(alpha = 0.2) +
+  theme_minimal()
+```
+
+Describe the direction, form, strength, and unusual observations.
+
+> 
+
+### Two categorical variables
+
+```{r}
+ggplot(cdc, aes(x = gender, fill = smoke100)) +
+  geom_bar(position = "fill") +
+  theme_minimal()
+```
+
+Why is `position = "fill"` useful here?
+
+> 
+
+### One categorical and one quantitative variable
+
+```{r}
+ggplot(cdc, aes(x = gender, y = height)) +
+  geom_boxplot() +
+  theme_minimal()
+```
+
+Describe how the distributions differ in center, spread, and overlap.
+
+> 
+
+## Exercise 7: Create BMI
+
+```{r}
+cdc <- cdc %>%
+  mutate(bmi = (weight / height^2) * 703)
+
+summary(cdc$bmi)
+```
+
+Create a boxplot comparing BMI across self-rated health categories.
+
+```{r}
+
+```
+
+Describe the pattern without making a causal claim.
+
+> 
+
+## On Your Own: Build a descriptive comparison
+
+Use the CDC data to investigate one comparison of your choice.
+
+### 1. State your question
+
+> 
+
+### 2. Identify your variables and their types
+
+> 
+
+### 3. Create an appropriate graph
+
+```{r}
+
+```
+
+### 4. Calculate at least two appropriate summary statistics or proportions
+
+```{r}
+
+```
+
+### 5. Interpret what you find in 3–4 sentences
+
+> 
+
+### 6. State one thing these descriptive data cannot establish
+
+> 
