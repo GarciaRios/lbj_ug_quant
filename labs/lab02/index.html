@@ -110,6 +110,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -474,10 +503,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="create-a-new-variable">7. Create a new variable</h2>
 <p>Sometimes the quantity we want to analyze is not directly stored in the dataset.</p>
 <p>Body Mass Index (BMI) can be calculated from weight and height as:</p>
-<p>[ _i = 703(), ]</p>
-<p>where</p>
-<p>[ W_i = i , H_i = i . ]</p>
-<p>The resulting BMI is expressed in the conventional units of kilograms per square meter, (/^2).</p>
+<p><span class="math display">\[
+\operatorname{BMI}_i = 703\left(\frac{W_i}{H_i^2}\right),
+\]</span></p>
+<p>where <span class="math inline">\(W_i\)</span> is the weight of respondent <span class="math inline">\(i\)</span> in pounds and <span class="math inline">\(H_i\)</span> is the height of respondent <span class="math inline">\(i\)</span> in inches.</p>
+<p>The resulting BMI is expressed in the conventional units of kilograms per square meter, <span class="math inline">\(\mathrm{kg}/\mathrm{m}^2\)</span>.</p>
 <p>Use <code>mutate()</code> to calculate BMI for every respondent:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>cdc <span class="ot">&lt;-</span> cdc <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bmi =</span> (weight <span class="sc">/</span> height<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="dv">703</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
