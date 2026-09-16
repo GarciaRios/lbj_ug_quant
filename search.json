@@ -154,60 +154,81 @@
     "text": "R and Quarto references\n\nRStudio Education cheat sheets\nQuarto documentation\nR for Data Science, 2nd edition"
   },
   {
-    "objectID": "labs/lab01/index.html",
-    "href": "labs/lab01/index.html",
-    "title": "Lab 1: Introduction to Data Analysis in R",
+    "objectID": "labs/lab02/index.html",
+    "href": "labs/lab02/index.html",
+    "title": "Lab 2: Describing and Comparing Data in R",
     "section": "",
     "text": "Download the student lab template"
   },
   {
-    "objectID": "labs/lab01/index.html#the-question",
-    "href": "labs/lab01/index.html#the-question",
-    "title": "Lab 1: Introduction to Data Analysis in R",
+    "objectID": "labs/lab02/index.html#the-question",
+    "href": "labs/lab02/index.html#the-question",
+    "title": "Lab 2: Describing and Comparing Data in R",
     "section": "The question",
-    "text": "The question\nDo birth records show a stable difference between the numbers of boys and girls born each year? We will use a historical dataset compiled by John Arbuthnot and then examine more recent U.S. records.\nThe purpose is not merely to reproduce calculations. It is to practice a complete analysis cycle:\n\nask a clear question;\ninspect the data;\ntransform variables when necessary;\nvisualize the relevant pattern;\ncalculate a useful summary; and\nexplain what the evidence does—and does not—show."
+    "text": "The question\nHow can we use graphs and numerical summaries together to describe a dataset and compare groups?\nToday we will work with a sample of 20,000 respondents from the Centers for Disease Control and Prevention’s Behavioral Risk Factor Surveillance System (BRFSS). The goal is to connect the statistical ideas from lecture to the R workflow you are learning in lab.\nA good descriptive analysis should move through a simple sequence:\n\nunderstand the cases and variables;\nvisualize the distribution;\ncalculate appropriate summaries;\ncompare groups when relevant; and\nexplain what the evidence does and does not show."
   },
   {
-    "objectID": "labs/lab01/index.html#setup",
-    "href": "labs/lab01/index.html#setup",
-    "title": "Lab 1: Introduction to Data Analysis in R",
+    "objectID": "labs/lab02/index.html#setup",
+    "href": "labs/lab02/index.html#setup",
+    "title": "Lab 2: Describing and Comparing Data in R",
     "section": "Setup",
-    "text": "Setup\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/arbuthnot.RData\"))\nThe load() command creates a data frame named arbuthnot."
+    "text": "Setup\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab2/Data/cdc.RData\"))\nThe load() command creates a data frame named cdc."
   },
   {
-    "objectID": "labs/lab01/index.html#inspect-the-data",
-    "href": "labs/lab01/index.html#inspect-the-data",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "1. Inspect the data",
-    "text": "1. Inspect the data\narbuthnot\ndim(arbuthnot)\nnames(arbuthnot)\nglimpse(arbuthnot)\nEach row is a year. The columns contain the year and the recorded numbers of boys and girls baptized in London.\nAnswer before moving on:\n\nWhat is the unit of observation?\nHow many observations and variables are present?\nWhat years are covered?\nWhat limitations might baptism records have as a measure of births?\n\nIndividual variables can be accessed with $:\narbuthnot$boys\narbuthnot$girls"
+    "objectID": "labs/lab02/index.html#meet-the-data",
+    "href": "labs/lab02/index.html#meet-the-data",
+    "title": "Lab 2: Describing and Comparing Data in R",
+    "section": "1. Meet the data",
+    "text": "1. Meet the data\nThe BRFSS is a large survey of U.S. adults designed to measure health behaviors, health conditions, and access to care. We will use a sample of 20,000 respondents from the 2000 survey.\nStart by inspecting the data:\nglimpse(cdc)\ndim(cdc)\nnames(cdc)\nEach row represents one survey respondent. The variables we will use are:\n\ngenhlth: self-rated general health, from excellent to poor\nexerany: whether the respondent exercised in the past month\nhlthplan: whether the respondent had health coverage\nsmoke100: whether the respondent had smoked at least 100 cigarettes in their lifetime\nheight: height in inches\nweight: weight in pounds\nwtdesire: desired weight in pounds\nage: age in years\ngender: recorded gender category\n\n\nYour turn\nFor each variable, decide whether it is categorical or quantitative. Where useful, be more specific: ordinal or nominal; discrete or continuous.\nDo not rely only on what R calls the variable. Think about what the variable actually measures."
   },
   {
-    "objectID": "labs/lab01/index.html#visualize-change-over-time",
-    "href": "labs/lab01/index.html#visualize-change-over-time",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "2. Visualize change over time",
-    "text": "2. Visualize change over time\nA line graph is appropriate because year has a meaningful order.\nggplot(arbuthnot, aes(x = year, y = girls)) +\n  geom_line(color = \"#BF5700\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Recorded baptisms\",\n    title = \"Girls recorded in London baptism data\"\n  ) +\n  theme_minimal()\nDescribe the overall pattern. Look for direction, unusual years, and changes in variability. Avoid explaining causes that the data cannot establish.\nNow construct the corresponding graph for boys."
+    "objectID": "labs/lab02/index.html#start-with-the-distribution",
+    "href": "labs/lab02/index.html#start-with-the-distribution",
+    "title": "Lab 2: Describing and Comparing Data in R",
+    "section": "2. Start with the distribution",
+    "text": "2. Start with the distribution\nA histogram lets us see the shape of a quantitative variable before reducing it to a few numbers.\nggplot(cdc, aes(x = age)) +\n  geom_histogram(binwidth = 5) +\n  labs(\n    x = \"Age\",\n    y = \"Count\",\n    title = \"Age distribution in the CDC sample\"\n  ) +\n  theme_minimal()\nNow change the bin width:\nggplot(cdc, aes(x = age)) +\n  geom_histogram(binwidth = 10) +\n  theme_minimal()\nggplot(cdc, aes(x = age)) +\n  geom_histogram(binwidth = 1) +\n  theme_minimal()\n\nYour turn\nCompare the three histograms.\n\nWhat features of the distribution stay the same?\nWhat changes as the bin width changes?\nHow would you describe the shape, center, spread, and any unusual features?\n\nThe exact appearance of a histogram depends on how we group observations into bins, but the underlying data have not changed."
   },
   {
-    "objectID": "labs/lab01/index.html#calculate-totals-and-create-variables",
-    "href": "labs/lab01/index.html#calculate-totals-and-create-variables",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "3. Calculate totals and create variables",
-    "text": "3. Calculate totals and create variables\nThe total number of girls in the records is:\nsum(arbuthnot$girls)\nTo compare births within each year, create total births and the proportion recorded as boys:\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(\n    total = boys + girls,\n    boy_prop = boys / total\n  )\nInspect the new variables:\nselect(arbuthnot, year, total, boy_prop)\nWhy is a proportion often easier to compare across years than a raw difference?"
+    "objectID": "labs/lab02/index.html#describe-a-quantitative-variable-with-numbers",
+    "href": "labs/lab02/index.html#describe-a-quantitative-variable-with-numbers",
+    "title": "Lab 2: Describing and Comparing Data in R",
+    "section": "3. Describe a quantitative variable with numbers",
+    "text": "3. Describe a quantitative variable with numbers\nNow examine weight.\nA quick overview is:\nsummary(cdc$weight)\nWe can also calculate the statistics we discussed in lecture directly:\ncdc %&gt;%\n  summarise(\n    mean_weight = mean(weight),\n    median_weight = median(weight),\n    sd_weight = sd(weight),\n    variance_weight = var(weight),\n    IQR_weight = IQR(weight),\n    min_weight = min(weight),\n    max_weight = max(weight)\n  )\nRemember what these quantities describe:\n\nmean and median describe center;\nstandard deviation and IQR describe spread;\nminimum and maximum help identify the overall range;\nvariance is the squared version of the standard deviation calculation.\n\nNow visualize the same variable:\nggplot(cdc, aes(x = weight)) +\n  geom_histogram(binwidth = 10) +\n  labs(\n    x = \"Weight (pounds)\",\n    y = \"Count\",\n    title = \"Distribution of respondent weight\"\n  ) +\n  theme_minimal()\n\nYour turn\nUse the graph and the numerical summaries together.\n\nIs the distribution roughly symmetric or skewed?\nAre the mean and median similar? Why or why not?\nWhich pair would you emphasize for this distribution: mean and SD, or median and IQR?\nWhat does the standard deviation tell you in substantive terms?\n\nThe point is not to choose statistics mechanically. See the distribution first, then decide how to summarize it."
   },
   {
-    "objectID": "labs/lab01/index.html#evaluate-a-claim",
-    "href": "labs/lab01/index.html#evaluate-a-claim",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "4. Evaluate a claim",
-    "text": "4. Evaluate a claim\nArbuthnot argued that more boys than girls were born in every year of his records. We can translate that statement into a logical comparison.\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(more_boys = boys &gt; girls)\n\ncount(arbuthnot, more_boys)\nA logical variable is either TRUE or FALSE. The code checks the claim year by year; it does not establish why the pattern occurs.\nVisualize the proportion of boys:\nggplot(arbuthnot, aes(x = year, y = boy_prop)) +\n  geom_hline(yintercept = 0.5, color = \"gray60\", linetype = \"dashed\") +\n  geom_line(color = \"#172A46\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Proportion recorded as boys\",\n    title = \"Share of recorded births classified as boys\"\n  ) +\n  theme_minimal()\nExplain the dashed line and summarize the substantive pattern in two or three sentences."
+    "objectID": "labs/lab02/index.html#compare-groups",
+    "href": "labs/lab02/index.html#compare-groups",
+    "title": "Lab 2: Describing and Comparing Data in R",
+    "section": "4. Compare groups",
+    "text": "4. Compare groups\nWe can calculate the same statistics separately for different groups by combining group_by() and summarise().\nFor example, compare weight among respondents who did and did not report exercising in the previous month:\ncdc %&gt;%\n  group_by(exerany) %&gt;%\n  summarise(\n    n = n(),\n    mean_weight = mean(weight),\n    median_weight = median(weight),\n    sd_weight = sd(weight),\n    IQR_weight = IQR(weight)\n  )\nA boxplot lets us compare the distributions visually:\nggplot(cdc, aes(x = exerany, y = weight)) +\n  geom_boxplot() +\n  labs(\n    x = \"Exercised in previous month\",\n    y = \"Weight (pounds)\",\n    title = \"Weight by reported exercise\"\n  ) +\n  theme_minimal()\n\nYour turn\nDescribe the comparison using both the graph and the numerical summaries.\n\nWhich group has the higher center?\nHow does the spread differ?\nAre there unusual observations?\nDoes this comparison establish that exercise causes differences in weight? Why not?"
   },
   {
-    "objectID": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
-    "href": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "On Your Own: More recent U.S. births",
-    "text": "On Your Own: More recent U.S. births\nLoad the second dataset:\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData\"))\nglimpse(present)\nComplete the following in the downloadable report:\n\nIdentify the unit of observation, years covered, and variables.\nCreate total and boy_prop.\nMake a clear line graph of total births over time.\nMake a line graph of boy_prop with a reference line at 0.5.\nDetermine whether boys outnumber girls in every observed year.\nWrite a short interpretation comparing the recent pattern with the Arbuthnot records.\n\nA strong interpretation states the pattern, uses relevant quantities, and acknowledges what these descriptive data cannot explain."
+    "objectID": "labs/lab02/index.html#categorical-variables-and-denominators",
+    "href": "labs/lab02/index.html#categorical-variables-and-denominators",
+    "title": "Lab 2: Describing and Comparing Data in R",
+    "section": "5. Categorical variables and denominators",
+    "text": "5. Categorical variables and denominators\nFor a categorical variable, counts and proportions are usually more informative than means or standard deviations.\ncdc %&gt;%\n  count(genhlth) %&gt;%\n  mutate(prop = n / sum(n))\n\nYour turn\nUsing the output above:\n\nWhat is the most common self-rated health category?\nWhat proportion of respondents report excellent health?\nIs genhlth nominal or ordinal? Explain.\n\nNow consider two categorical variables: gender and smoking history.\ncdc %&gt;%\n  count(gender, smoke100)\nRaw counts are useful, but they do not necessarily answer the comparison we care about. To ask whether smoking history differs by gender, calculate proportions within each gender category:\ncdc %&gt;%\n  count(gender, smoke100) %&gt;%\n  group_by(gender) %&gt;%\n  mutate(prop_within_gender = n / sum(n))\n\n\nYour turn: watch the denominator\nAnswer the following carefully:\n\nWhat proportion of respondents in each gender category report having smoked at least 100 cigarettes?\nWhy is the denominator for this question the number of respondents within each gender category, rather than the entire sample?\nHow would the interpretation change if we instead divided each cell by all 20,000 respondents?\n\nThis is the same denominator problem we discussed in lecture: the correct percentage depends on the question you are asking."
+  },
+  {
+    "objectID": "labs/lab02/index.html#match-the-variables-to-the-graph",
+    "href": "labs/lab02/index.html#match-the-variables-to-the-graph",
+    "title": "Lab 2: Describing and Comparing Data in R",
+    "section": "6. Match the variables to the graph",
+    "text": "6. Match the variables to the graph\nDifferent combinations of variable types call for different displays.\n\nTwo quantitative variables: scatterplot\nggplot(cdc, aes(x = weight, y = height)) +\n  geom_point(alpha = 0.2) +\n  labs(\n    x = \"Weight (pounds)\",\n    y = \"Height (inches)\",\n    title = \"Height and weight\"\n  ) +\n  theme_minimal()\nDescribe the direction, form, strength, and unusual observations.\n\n\nTwo categorical variables: bar plot\nggplot(cdc, aes(x = gender, fill = smoke100)) +\n  geom_bar(position = \"fill\") +\n  labs(\n    x = \"Gender\",\n    y = \"Proportion\",\n    fill = \"Smoked 100 cigarettes\",\n    title = \"Smoking history within gender categories\"\n  ) +\n  theme_minimal()\nWhy is position = \"fill\" especially useful when the goal is to compare proportions?\n\n\nOne categorical and one quantitative variable: boxplot\nggplot(cdc, aes(x = gender, y = height)) +\n  geom_boxplot() +\n  labs(\n    x = \"Gender\",\n    y = \"Height (inches)\",\n    title = \"Height distributions by gender category\"\n  ) +\n  theme_minimal()\nDescribe how the two distributions differ in center, spread, and overlap."
+  },
+  {
+    "objectID": "labs/lab02/index.html#create-a-new-variable",
+    "href": "labs/lab02/index.html#create-a-new-variable",
+    "title": "Lab 2: Describing and Comparing Data in R",
+    "section": "7. Create a new variable",
+    "text": "7. Create a new variable\nSometimes the quantity we want to analyze is not directly stored in the dataset.\nBody Mass Index (BMI) can be calculated from weight and height as:\n[ _i = 703(), ]\nwhere\n[ W_i = i , H_i = i . ]\nThe resulting BMI is expressed in the conventional units of kilograms per square meter, (/^2).\nUse mutate() to calculate BMI for every respondent:\ncdc &lt;- cdc %&gt;%\n  mutate(bmi = (weight / height^2) * 703)\nInspect the new variable:\nsummary(cdc$bmi)\nThen compare BMI across self-rated health categories:\nggplot(cdc, aes(x = genhlth, y = bmi)) +\n  geom_boxplot() +\n  labs(\n    x = \"Self-rated health\",\n    y = \"BMI\",\n    title = \"BMI across self-rated health categories\"\n  ) +\n  theme_minimal()\n\nYour turn\nWhat pattern do you see? Describe it without making a causal claim."
+  },
+  {
+    "objectID": "labs/lab02/index.html#on-your-own-build-a-descriptive-comparison",
+    "href": "labs/lab02/index.html#on-your-own-build-a-descriptive-comparison",
+    "title": "Lab 2: Describing and Comparing Data in R",
+    "section": "On Your Own: Build a descriptive comparison",
+    "text": "On Your Own: Build a descriptive comparison\nUse the CDC data to investigate one comparison of your choice.\nYour analysis must include:\n\nA question. State clearly what you want to learn from the data.\nVariables. Identify the variables you will use and their types.\nA graph. Choose an appropriate visualization for those variable types.\nNumerical summaries. Calculate at least two appropriate summary statistics or proportions.\nAn interpretation. Write 3–4 sentences describing the pattern using evidence from your graph and summaries.\nA limitation. State one thing these descriptive data cannot establish.\n\nGood choices might compare BMI, age, weight, exercise, smoking history, health coverage, or self-rated health. The important part is not which question you choose. It is whether the graph, statistics, and interpretation all answer the same question.\n\n\n\n\n\n\nA strong analysis follows the same sequence we have used throughout the course: see it, calculate it, interpret it."
   },
   {
     "objectID": "labs/lab00/index.html",
@@ -329,46 +350,67 @@
     "text": "Lab 1: Introduction to data analysis in R\nUse historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.\nOpen the teaching guide · Download the student report"
   },
   {
-    "objectID": "labs/lab00/lab00-template.html",
-    "href": "labs/lab00/lab00-template.html",
-    "title": "Lab 0: Getting Started",
+    "objectID": "labs.html#lab-2-describing-and-comparing-data-in-r",
+    "href": "labs.html#lab-2-describing-and-comparing-data-in-r",
+    "title": "Labs",
+    "section": "Lab 2: Describing and comparing data in R",
+    "text": "Lab 2: Describing and comparing data in R\nUse CDC survey data to connect distributions, summary statistics, group comparisons, and appropriate visualizations.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "labs/lab01/index.html",
+    "href": "labs/lab01/index.html",
+    "title": "Lab 1: Introduction to Data Analysis in R",
     "section": "",
-    "text": "Save this file in your course folder. Render it once before beginning."
+    "text": "Download the student lab template"
   },
   {
-    "objectID": "labs/lab00/lab00-template.html#setup",
-    "href": "labs/lab00/lab00-template.html#setup",
-    "title": "Lab 0: Getting Started",
-    "section": "",
-    "text": "Save this file in your course folder. Render it once before beginning."
+    "objectID": "labs/lab01/index.html#the-question",
+    "href": "labs/lab01/index.html#the-question",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "The question",
+    "text": "The question\nDo birth records show a stable difference between the numbers of boys and girls born each year? We will use a historical dataset compiled by John Arbuthnot and then examine more recent U.S. records.\nThe purpose is not merely to reproduce calculations. It is to practice a complete analysis cycle:\n\nask a clear question;\ninspect the data;\ntransform variables when necessary;\nvisualize the relevant pattern;\ncalculate a useful summary; and\nexplain what the evidence does—and does not—show."
   },
   {
-    "objectID": "labs/lab00/lab00-template.html#exercise-1-r-as-a-calculator",
-    "href": "labs/lab00/lab00-template.html#exercise-1-r-as-a-calculator",
-    "title": "Lab 0: Getting Started",
-    "section": "Exercise 1: R as a calculator",
-    "text": "Exercise 1: R as a calculator\n\n# Try two calculations below.\n3+ 3\n\n[1] 6\n\n45*9\n\n[1] 405"
+    "objectID": "labs/lab01/index.html#setup",
+    "href": "labs/lab01/index.html#setup",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "Setup",
+    "text": "Setup\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/arbuthnot.RData\"))\nThe load() command creates a data frame named arbuthnot."
   },
   {
-    "objectID": "labs/lab00/lab00-template.html#exercise-2-create-an-object",
-    "href": "labs/lab00/lab00-template.html#exercise-2-create-an-object",
-    "title": "Lab 0: Getting Started",
-    "section": "Exercise 2: Create an object",
-    "text": "Exercise 2: Create an object\n\npolicy_budget &lt;- 1250002\n\n# Create program_share and calculate the program budget.\nprogram_share &lt;- 0.18\n\nprogram_budget &lt;- policy_budget * program_share\n\nprogram_budget\n\n[1] 225000.4\n\n\nWrite one sentence interpreting your result:"
+    "objectID": "labs/lab01/index.html#inspect-the-data",
+    "href": "labs/lab01/index.html#inspect-the-data",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "1. Inspect the data",
+    "text": "1. Inspect the data\narbuthnot\ndim(arbuthnot)\nnames(arbuthnot)\nglimpse(arbuthnot)\nEach row is a year. The columns contain the year and the recorded numbers of boys and girls baptized in London.\nAnswer before moving on:\n\nWhat is the unit of observation?\nHow many observations and variables are present?\nWhat years are covered?\nWhat limitations might baptism records have as a measure of births?\n\nIndividual variables can be accessed with $:\narbuthnot$boys\narbuthnot$girls"
   },
   {
-    "objectID": "labs/lab00/lab00-template.html#exercise-3-your-starting-point",
-    "href": "labs/lab00/lab00-template.html#exercise-3-your-starting-point",
-    "title": "Lab 0: Getting Started",
-    "section": "Exercise 3: Your starting point",
-    "text": "Exercise 3: Your starting point\nWhat experience, if any, do you have with spreadsheets, statistics, or coding?\n\n\n\nWhat would you most like to learn in this course?"
+    "objectID": "labs/lab01/index.html#visualize-change-over-time",
+    "href": "labs/lab01/index.html#visualize-change-over-time",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "2. Visualize change over time",
+    "text": "2. Visualize change over time\nA line graph is appropriate because year has a meaningful order.\nggplot(arbuthnot, aes(x = year, y = girls)) +\n  geom_line(color = \"#BF5700\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Recorded baptisms\",\n    title = \"Girls recorded in London baptism data\"\n  ) +\n  theme_minimal()\nDescribe the overall pattern. Look for direction, unusual years, and changes in variability. Avoid explaining causes that the data cannot establish.\nNow construct the corresponding graph for boys."
   },
   {
-    "objectID": "labs/lab00/lab00-template.html#on-your-own",
-    "href": "labs/lab00/lab00-template.html#on-your-own",
-    "title": "Lab 0: Getting Started",
-    "section": "On Your Own",
-    "text": "On Your Own\nCreate an object called weekly_hours, use it to estimate the total scheduled class hours in a 15-week semester, and explain what your result means."
+    "objectID": "labs/lab01/index.html#calculate-totals-and-create-variables",
+    "href": "labs/lab01/index.html#calculate-totals-and-create-variables",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "3. Calculate totals and create variables",
+    "text": "3. Calculate totals and create variables\nThe total number of girls in the records is:\nsum(arbuthnot$girls)\nTo compare births within each year, create total births and the proportion recorded as boys:\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(\n    total = boys + girls,\n    boy_prop = boys / total\n  )\nInspect the new variables:\nselect(arbuthnot, year, total, boy_prop)\nWhy is a proportion often easier to compare across years than a raw difference?"
+  },
+  {
+    "objectID": "labs/lab01/index.html#evaluate-a-claim",
+    "href": "labs/lab01/index.html#evaluate-a-claim",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "4. Evaluate a claim",
+    "text": "4. Evaluate a claim\nArbuthnot argued that more boys than girls were born in every year of his records. We can translate that statement into a logical comparison.\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(more_boys = boys &gt; girls)\n\ncount(arbuthnot, more_boys)\nA logical variable is either TRUE or FALSE. The code checks the claim year by year; it does not establish why the pattern occurs.\nVisualize the proportion of boys:\nggplot(arbuthnot, aes(x = year, y = boy_prop)) +\n  geom_hline(yintercept = 0.5, color = \"gray60\", linetype = \"dashed\") +\n  geom_line(color = \"#172A46\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Proportion recorded as boys\",\n    title = \"Share of recorded births classified as boys\"\n  ) +\n  theme_minimal()\nExplain the dashed line and summarize the substantive pattern in two or three sentences."
+  },
+  {
+    "objectID": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
+    "href": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "On Your Own: More recent U.S. births",
+    "text": "On Your Own: More recent U.S. births\nLoad the second dataset:\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData\"))\nglimpse(present)\nComplete the following in the downloadable report:\n\nIdentify the unit of observation, years covered, and variables.\nCreate total and boy_prop.\nMake a clear line graph of total births over time.\nMake a line graph of boy_prop with a reference line at 0.5.\nDetermine whether boys outnumber girls in every observed year.\nWrite a short interpretation comparing the recent pattern with the Arbuthnot records.\n\nA strong interpretation states the pattern, uses relevant quantities, and acknowledges what these descriptive data cannot explain."
   },
   {
     "objectID": "overview.html",
@@ -431,7 +473,7 @@
     "href": "schedule.html#unit-1-data-measurement-and-exploratory-analysis",
     "title": "Schedule",
     "section": "Unit 1: Data, measurement, and exploratory analysis",
-    "text": "Unit 1: Data, measurement, and exploratory analysis\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Aug. 24\nIntroduction: data analysis for public policy\nDay 1 slides\n\n\nWed., Aug. 26\nLab 0: R, RStudio, and Quarto\nLab guide · Student lab template\n\n\nFri., Aug. 28\nSetup help and Lab 0 support\nComplete Lab 0 On Your Own\n\n\nMon., Aug. 31\nFrom questions to data: measurement and exploratory analysis\nOpenIntro Ch. 1 · Day 2 slides\n\n\nWed., Sept. 2\nLab 1: Introduction to data analysis in R\nLab guide · Student lab template\n\n\nFri., Sept. 4\nLab 1 review and troubleshooting\nComplete Lab 1 On Your Own\n\n\nMon., Sept. 7\nLabor Day — no class\n\n\n\nWed., Sept. 9\nExploratory data analysis\nOpenIntro Ch. 2, Sections 2.1–2.3\n\n\nFri., Sept. 11\nGuided practice: variables, summaries, and interpretation\nWork on Problem Set 1\n\n\nMon., Sept. 14\nDescribing data and distributions\nReview OpenIntro Ch. 2\n\n\nWed., Sept. 16\nLab 2: Introduction to data\nLab materials forthcoming\n\n\nFri., Sept. 18\nLab 2 support\nProblem Set 1 due\n\n\n\n\n\n\n\n\n\nProblem Set 1 — Data and exploratory analysis\nOpenIntro exercises: Ch. 1: 1.2, 1.6, 1.16, 1.22, 1.30, 1.34; Ch. 2: 2.15, 2.22, 2.24, 2.27."
+    "text": "Unit 1: Data, measurement, and exploratory analysis\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Aug. 24\nIntroduction: data analysis for public policy\nDay 1 slides\n\n\nWed., Aug. 26\nLab 0: R, RStudio, and Quarto\nLab guide · Student lab template\n\n\nFri., Aug. 28\nSetup help and Lab 0 support\nComplete Lab 0 On Your Own\n\n\nMon., Aug. 31\nFrom questions to data: measurement and exploratory analysis\nOpenIntro Ch. 1 · Day 2 slides\n\n\nWed., Sept. 2\nLab 1: Introduction to data analysis in R\nLab guide · Student lab template\n\n\nFri., Sept. 4\nLab 1 review and troubleshooting\nComplete Lab 1 On Your Own\n\n\nMon., Sept. 7\nLabor Day — no class\n\n\n\nWed., Sept. 9\nExploratory data analysis\nOpenIntro Ch. 2, Sections 2.1–2.3 · Day 3 slides\n\n\nFri., Sept. 11\nNo lab sections\nWork on Problem Set 1\n\n\nMon., Sept. 14\nDescribing data and distributions\nReview OpenIntro Ch. 2 · Day 4 slides\n\n\nWed., Sept. 16\nLab 2: Describing and comparing data in R\nLab guide · Student lab template\n\n\nFri., Sept. 18\nLab 2 support\nComplete Lab 2 On Your Own · Problem Set 1 due\n\n\n\n\n\n\n\n\n\nProblem Set 1 — Data and exploratory analysis\nOpenIntro exercises: Ch. 1: 1.2, 1.6, 1.16, 1.22, 1.30, 1.34; Ch. 2: 2.15, 2.22, 2.24, 2.27."
   },
   {
     "objectID": "schedule.html#unit-2-probability-and-distributions",
