@@ -18,3 +18,9 @@ Set up the software workflow, use R as a calculator, create objects, and render 
 Use historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.
 
 [Open the teaching guide](labs/lab01/) · [Download the student report](templates/lab01-template.qmd){download="lab01-template.qmd"}
+
+## Lab 2: Describing and comparing data in R
+
+Use CDC survey data to connect distributions, summary statistics, group comparisons, and appropriate visualizations.
+
+[Open the teaching guide](labs/lab02/) · [Download the student report](templates/lab02-template.qmd){download="lab02-template.qmd"}
