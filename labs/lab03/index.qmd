@@ -94,7 +94,7 @@ $$
 P(H^c)=1-P(H).
 $$
 
-Here, (H^c) is simply a miss.
+Here, $H^c$ is simply a miss.
 
 ## 2. Conditional probability: does the previous shot matter?
 
@@ -112,7 +112,7 @@ $$
 P(H_t \mid M_{t-1}),
 $$
 
-where (H_t) means the current shot is a hit, (H_{t-1}) means the previous shot was a hit, and (M_{t-1}) means the previous shot was a miss.
+where $H_t$ means the current shot is a hit, $H_{t-1}$ means the previous shot was a hit, and $M_{t-1}$ means the previous shot was a miss.
 
 First create a variable containing the previous shot.
 
