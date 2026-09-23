@@ -139,8 +139,8 @@ kobe_transitions %>%
 
 Use the output to identify:
 
-1. (P(H_t \mid H_{t-1})): the probability of a hit given that the previous shot was a hit.
-2. (P(H_t \mid M_{t-1})): the probability of a hit given that the previous shot was a miss.
+1. $P(H_t \\mid H_{t-1})$: the probability of a hit given that the previous shot was a hit.
+2. $P(H_t \\mid M_{t-1})$: the probability of a hit given that the previous shot was a miss.
 
 Then answer:
 
@@ -211,7 +211,7 @@ sim_transitions %>%
 
 ### Your turn
 
-1. Compare (P(H_t \mid H_{t-1})) and (P(H_t \mid M_{t-1})) in the simulation.
+1. Compare $P(H_t \\mid H_{t-1})$ and $P(H_t \\mid M_{t-1})$ in the simulation.
 2. Are they exactly equal?
 3. We know the simulated shots are independent. Why can the sample conditional probabilities still differ?
 
@@ -366,7 +366,7 @@ Choose a new seed and simulate another independent shooter with:
 Then:
 
 1. calculate the simulated shooting percentage;
-2. calculate (P(H_t \mid H_{t-1})) and (P(H_t \mid M_{t-1}));
+2. calculate $P(H_t \\mid H_{t-1})$ and $P(H_t \\mid M_{t-1})$;
 3. calculate the maximum streak length;
 4. compare your second simulation to the first simulation and to the observed Kobe data in 3–4 sentences.
 
