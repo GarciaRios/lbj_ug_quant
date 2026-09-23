@@ -62,11 +62,11 @@ kobe_transitions %>%
   mutate(prob = n / sum(n))
 ```
 
-What is the observed value of (P(H_t \mid H_{t-1}))?
+What is the observed value of $P(H_t \\mid H_{t-1})$?
 
 > 
 
-What is the observed value of (P(H_t \mid M_{t-1}))?
+What is the observed value of $P(H_t \\mid M_{t-1})$?
 
 > 
 
@@ -119,7 +119,7 @@ sim_transitions %>%
   mutate(prob = n / sum(n))
 ```
 
-Are (P(H_t \mid H_{t-1})) and (P(H_t \mid M_{t-1})) exactly equal in your simulation?
+Are $P(H_t \\mid H_{t-1})$ and $P(H_t \\mid M_{t-1})$ exactly equal in your simulation?
 
 > 
 
@@ -220,7 +220,7 @@ Explain the result in words.
 
 > 
 
-Why is (P(C \mid +)) not the same as (P(+ \mid C))?
+Why is $P(C \\mid +)$ not the same as $P(+ \\mid C)$?
 
 > 
 
@@ -250,7 +250,7 @@ Calculate the simulated shooting percentage.
 
 ```
 
-Calculate (P(H_t \mid H_{t-1})) and (P(H_t \mid M_{t-1})).
+Calculate $P(H_t \\mid H_{t-1})$ and $P(H_t \\mid M_{t-1})$.
 
 ```{r}
 
@@ -274,7 +274,7 @@ Suppose a city compliance model:
 - falsely flags 15% of compliant permits;
 - and 10% of all permits are truly noncompliant.
 
-Use R to calculate (P(\text{noncompliant} \mid \text{flagged})).
+Use R to calculate $P(\\text{noncompliant} \\mid \\text{flagged})$.
 
 ```{r}
 
