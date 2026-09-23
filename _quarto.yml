@@ -4,7 +4,7 @@ project:
   output-dir: _site
   render:
     - "*.qmd"
-    - "labs/**/*.qmd"
+    - "labs/*/index.qmd"
     - "!templates/**"
   resources:
     - templates/**
