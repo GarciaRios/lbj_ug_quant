@@ -81,7 +81,7 @@ p_hit
 2. What is the observed probability of a miss?
 3. Check that the two probabilities sum to 1.
 
-In probability notation, if (H) means a made shot,
+In probability notation, if $H$ means a made shot,
 
 $$
 P(H) = \frac{\text{number of hits}}{\text{number of shot attempts}}.
