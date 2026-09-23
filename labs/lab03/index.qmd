@@ -1,0 +1,397 @@
+---
+title: "Lab 3: Probability, Independence, and Simulation"
+subtitle: "Conditional probability, hot-hand reasoning, and Bayes in R"
+execute:
+  eval: false
+---
+
+[Download the student lab template](../../templates/lab03-template.qmd){.btn .btn-primary download="lab03-template.qmd"}
+
+## The question
+
+How can we use observed data and simulation to reason about probability, independence, and conditional probability?
+
+Today we will use historical shot-by-shot data from Kobe Bryant's 2009 NBA Finals to practice a classic probability question: **does making one shot change the probability of making the next?**
+
+We are not trying to settle the broader hot-hand debate from one player or one series. The point is to use a familiar sequence of hits and misses to connect the probability ideas from lecture to R.
+
+The lab has five parts:
+
+1. estimate simple probabilities from observed data;
+2. calculate conditional probabilities;
+3. simulate an independent shooter;
+4. compare shooting streaks; and
+5. use Bayes' rule to reverse a conditional probability.
+
+::: {.callout-tip appearance="simple"}
+For probability problems, keep using the same workflow from lecture:
+
+**Name the event. Find the denominator. Calculate. Interpret.**
+:::
+
+## Setup
+
+Load the packages and historical data:
+
+```r
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab3/resources/hot_hand.RData"))
+```
+
+The file creates two objects:
+
+- `kobe_basket`: one row for each shot attempt;
+- `calc_streak`: a function that calculates the length of consecutive made-shot streaks.
+
+Take a quick look:
+
+```r
+glimpse(kobe_basket)
+count(kobe_basket, shot)
+```
+
+In the `shot` variable:
+
+- `H` means hit;
+- `M` means miss.
+
+## 1. Estimate probability from observed frequency
+
+A probability model describes what could happen in repeated trials. In observed data, we can estimate a probability using the proportion of times an event occurred.
+
+Start with Kobe's observed shooting percentage:
+
+```r
+kobe_basket %>%
+  count(shot) %>%
+  mutate(prop = n / sum(n))
+```
+
+You can also calculate the proportion of hits directly:
+
+```r
+p_hit <- mean(kobe_basket$shot == "H")
+p_hit
+```
+
+### Your turn
+
+1. What is the observed probability of a hit?
+2. What is the observed probability of a miss?
+3. Check that the two probabilities sum to 1.
+
+In probability notation, if (H) means a made shot,
+
+$$
+P(H) = \frac{\text{number of hits}}{\text{number of shot attempts}}.
+$$
+
+The complement is
+
+$$
+P(H^c)=1-P(H).
+$$
+
+Here, (H^c) is simply a miss.
+
+## 2. Conditional probability: does the previous shot matter?
+
+The hot-hand question is naturally a conditional-probability question.
+
+We want to compare:
+
+$$
+P(H_t \mid H_{t-1})
+$$
+
+with
+
+$$
+P(H_t \mid M_{t-1}),
+$$
+
+where (H_t) means the current shot is a hit, (H_{t-1}) means the previous shot was a hit, and (M_{t-1}) means the previous shot was a miss.
+
+First create a variable containing the previous shot.
+
+```r
+kobe_transitions <- kobe_basket %>%
+  group_by(game) %>%
+  mutate(previous_shot = lag(shot)) %>%
+  ungroup() %>%
+  filter(!is.na(previous_shot))
+```
+
+We group by game so that the first shot of a new game is not treated as if it immediately followed the final shot of the previous game.
+
+Now build a two-way table and calculate proportions **within the previous-shot category**:
+
+```r
+kobe_transitions %>%
+  count(previous_shot, shot) %>%
+  group_by(previous_shot) %>%
+  mutate(prob = n / sum(n))
+```
+
+### Your turn: watch the denominator
+
+Use the output to identify:
+
+1. (P(H_t \mid H_{t-1})): the probability of a hit given that the previous shot was a hit.
+2. (P(H_t \mid M_{t-1})): the probability of a hit given that the previous shot was a miss.
+
+Then answer:
+
+- Are the two conditional probabilities exactly the same?
+- If shots were independent, what relationship would we expect between them?
+- Does a difference in this one sample automatically prove dependence? Why not?
+
+Recall the definition of independence:
+
+$$
+P(H_t \mid H_{t-1}) = P(H_t)
+$$
+
+if the current shot is independent of the previous shot.
+
+Observed sample proportions will almost never be exactly equal, even when the underlying process is independent. That is one reason simulation is useful.
+
+## 3. Simulate an independent shooter
+
+A simulation lets us create data from a process whose rules we control.
+
+For an independent shooter, every shot has the same probability of being made, regardless of what happened on the previous shot.
+
+We will use Kobe's observed shooting percentage as the fixed probability of a hit.
+
+First, set a seed so that your simulation is reproducible:
+
+```r
+set.seed(311)
+```
+
+Now simulate the same number of shots:
+
+```r
+shot_outcomes <- c("H", "M")
+
+sim_basket <- sample(
+  shot_outcomes,
+  size = nrow(kobe_basket),
+  replace = TRUE,
+  prob = c(p_hit, 1 - p_hit)
+)
+```
+
+Check the simulated shooting percentage:
+
+```r
+mean(sim_basket == "H")
+table(sim_basket)
+```
+
+### Why this simulation is independent
+
+Every simulated shot uses the same fixed probability `p_hit`. The computer does not increase or decrease the probability after a hit or miss.
+
+Now calculate conditional probabilities in the simulated sequence:
+
+```r
+sim_transitions <- tibble(shot = sim_basket) %>%
+  mutate(previous_shot = lag(shot)) %>%
+  filter(!is.na(previous_shot))
+
+sim_transitions %>%
+  count(previous_shot, shot) %>%
+  group_by(previous_shot) %>%
+  mutate(prob = n / sum(n))
+```
+
+### Your turn
+
+1. Compare (P(H_t \mid H_{t-1})) and (P(H_t \mid M_{t-1})) in the simulation.
+2. Are they exactly equal?
+3. We know the simulated shots are independent. Why can the sample conditional probabilities still differ?
+
+This is an important idea that will return later in the course:
+
+> **Random samples vary, even when the underlying probability model stays fixed.**
+
+## 4. Streaks: what does independence look like?
+
+People often interpret a long run of hits as evidence that the probability of success has changed.
+
+But an independent random process can also produce streaks.
+
+Calculate Kobe's streak lengths:
+
+```r
+kobe_streak <- calc_streak(kobe_basket$shot)
+
+ggplot(kobe_streak, aes(x = length)) +
+  geom_histogram(binwidth = 1, boundary = -0.5) +
+  labs(
+    x = "Streak length",
+    y = "Count",
+    title = "Observed shooting streaks"
+  ) +
+  theme_minimal()
+```
+
+Summarize the streaks:
+
+```r
+kobe_streak %>%
+  summarise(
+    mean_streak = mean(length),
+    median_streak = median(length),
+    max_streak = max(length)
+  )
+```
+
+Now do the same for the independent shooter:
+
+```r
+sim_streak <- calc_streak(sim_basket)
+
+ggplot(sim_streak, aes(x = length)) +
+  geom_histogram(binwidth = 1, boundary = -0.5) +
+  labs(
+    x = "Streak length",
+    y = "Count",
+    title = "Streaks from an independent-shooter simulation"
+  ) +
+  theme_minimal()
+```
+
+```r
+sim_streak %>%
+  summarise(
+    mean_streak = mean(length),
+    median_streak = median(length),
+    max_streak = max(length)
+  )
+```
+
+### Your turn
+
+Compare the observed and simulated distributions.
+
+- Are long streaks possible under independence?
+- How do the typical and maximum streak lengths compare?
+- Why would one simulated sequence not be enough to make a strong conclusion about the hot-hand question?
+
+The key point is not that the two distributions must look identical. They will not. The simulation gives us a **comparison process** in which we know shots are independent.
+
+## 5. Bayes in R: reversing the condition
+
+Now return to the screening example from lecture.
+
+Suppose:
+
+- 2% of cases truly have a condition;
+- the screening rule flags 90% of true cases;
+- it also falsely flags 8% of cases without the condition.
+
+Define the probabilities:
+
+```r
+p_condition <- 0.02
+p_positive_given_condition <- 0.90
+p_positive_given_no_condition <- 0.08
+```
+
+First calculate the overall probability of a positive flag:
+
+```r
+p_positive <-
+  p_positive_given_condition * p_condition +
+  p_positive_given_no_condition * (1 - p_condition)
+
+p_positive
+```
+
+Then reverse the condition:
+
+```r
+p_condition_given_positive <-
+  (p_positive_given_condition * p_condition) / p_positive
+
+p_condition_given_positive
+```
+
+This is Bayes' rule:
+
+$$
+P(C \mid +)
+=
+\frac{P(+ \mid C)P(C)}{P(+)}.
+$$
+
+### Your turn
+
+Explain the result in words.
+
+Why is
+
+$$
+P(C \mid +)
+$$
+
+not the same as
+
+$$
+P(+ \mid C)?
+$$
+
+What role does the 2% base rate play?
+
+::: {.callout-note appearance="simple"}
+Bayes' theorem does not create new information. It reorganizes the same probabilities so that we can answer a reversed conditional question.
+:::
+
+## On Your Own
+
+Complete both parts in your student template.
+
+### Part A: A second independent-shooter simulation
+
+Choose a new seed and simulate another independent shooter with:
+
+- the same number of shots as Kobe;
+- the same overall hit probability, `p_hit`.
+
+Then:
+
+1. calculate the simulated shooting percentage;
+2. calculate (P(H_t \mid H_{t-1})) and (P(H_t \mid M_{t-1}));
+3. calculate the maximum streak length;
+4. compare your second simulation to the first simulation and to the observed Kobe data in 3–4 sentences.
+
+Your interpretation should explain why differences between simulations do **not** imply that the probability model changed.
+
+### Part B: A policy-screening Bayes problem
+
+Suppose a city compliance model:
+
+- flags 80% of truly noncompliant permits;
+- falsely flags 15% of compliant permits;
+- and 10% of all permits are truly noncompliant.
+
+Use R to calculate:
+
+$$
+P(\text{noncompliant} \mid \text{flagged}).
+$$
+
+Then write 2–3 sentences explaining:
+
+1. what your answer means;
+2. why it is not equal to 80%; and
+3. which probability is the base rate.
+
+::: {.callout-tip appearance="simple"}
+A strong probability analysis does more than produce a decimal. It identifies the event, makes the denominator clear, and interprets the result in the context of the question.
+:::
