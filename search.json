@@ -154,6 +154,251 @@
     "text": "R and Quarto references\n\nRStudio Education cheat sheets\nQuarto documentation\nR for Data Science, 2nd edition"
   },
   {
+    "objectID": "labs/lab03/index.html",
+    "href": "labs/lab03/index.html",
+    "title": "Lab 3: Probability, Independence, and Simulation",
+    "section": "",
+    "text": "Download the student lab template"
+  },
+  {
+    "objectID": "labs/lab03/index.html#the-question",
+    "href": "labs/lab03/index.html#the-question",
+    "title": "Lab 3: Probability, Independence, and Simulation",
+    "section": "The question",
+    "text": "The question\nHow can we use observed data and simulation to reason about probability, independence, and conditional probability?\nToday we will use historical shot-by-shot data from Kobe Bryant’s 2009 NBA Finals to practice a classic probability question: does making one shot change the probability of making the next?\nWe are not trying to settle the broader hot-hand debate from one player or one series. The point is to use a familiar sequence of hits and misses to connect the probability ideas from lecture to R.\nThe lab has four parts:\n\nestimate simple probabilities from observed data;\ncalculate conditional probabilities;\nsimulate an independent shooter; and\ncompare shooting streaks.\n\n\n\n\n\n\n\nFor probability problems, keep using the same workflow from lecture:\nName the event. Find the denominator. Calculate. Interpret."
+  },
+  {
+    "objectID": "labs/lab03/index.html#setup",
+    "href": "labs/lab03/index.html#setup",
+    "title": "Lab 3: Probability, Independence, and Simulation",
+    "section": "Setup",
+    "text": "Setup\nLoad the packages and historical data:\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab3/resources/hot_hand.RData\"))\nThe file creates two objects:\n\nkobe_basket: one row for each shot attempt;\ncalc_streak: a function that calculates the length of consecutive made-shot streaks.\n\nTake a quick look:\nglimpse(kobe_basket)\ncount(kobe_basket, shot)\nIn the shot variable:\n\nH means hit;\nM means miss."
+  },
+  {
+    "objectID": "labs/lab03/index.html#estimate-probability-from-observed-frequency",
+    "href": "labs/lab03/index.html#estimate-probability-from-observed-frequency",
+    "title": "Lab 3: Probability, Independence, and Simulation",
+    "section": "1. Estimate probability from observed frequency",
+    "text": "1. Estimate probability from observed frequency\nA probability model describes what could happen in repeated trials. In observed data, we can estimate a probability using the proportion of times an event occurred.\nStart with Kobe’s observed shooting percentage:\nkobe_basket %&gt;%\n  count(shot) %&gt;%\n  mutate(prop = n / sum(n))\nYou can also calculate the proportion of hits directly:\np_hit &lt;- mean(kobe_basket$shot == \"H\")\np_hit\n\nYour turn\n\nWhat is the observed probability of a hit?\nWhat is the observed probability of a miss?\nCheck that the two probabilities sum to 1.\n\nIn probability notation, if \\(H\\) means a made shot,\n\\[\nP(H) = \\frac{\\text{number of hits}}{\\text{number of shot attempts}}.\n\\]\nThe complement is\n\\[\nP(H^c)=1-P(H).\n\\]\nHere, \\(H^c\\) is simply a miss."
+  },
+  {
+    "objectID": "labs/lab03/index.html#conditional-probability-does-the-previous-shot-matter",
+    "href": "labs/lab03/index.html#conditional-probability-does-the-previous-shot-matter",
+    "title": "Lab 3: Probability, Independence, and Simulation",
+    "section": "2. Conditional probability: does the previous shot matter?",
+    "text": "2. Conditional probability: does the previous shot matter?\nThe hot-hand question is naturally a conditional-probability question.\nWe want to compare:\n\\[\nP(H_t \\mid H_{t-1})\n\\]\nwith\n\\[\nP(H_t \\mid M_{t-1}),\n\\]\nwhere \\(H_t\\) means the current shot is a hit, \\(H_{t-1}\\) means the previous shot was a hit, and \\(M_{t-1}\\) means the previous shot was a miss.\nFirst create a variable containing the previous shot.\nkobe_transitions &lt;- kobe_basket %&gt;%\n  group_by(game) %&gt;%\n  mutate(previous_shot = lag(shot)) %&gt;%\n  ungroup() %&gt;%\n  filter(!is.na(previous_shot))\nWe group by game so that the first shot of a new game is not treated as if it immediately followed the final shot of the previous game.\nNow build a two-way table and calculate proportions within the previous-shot category:\nkobe_transitions %&gt;%\n  count(previous_shot, shot) %&gt;%\n  group_by(previous_shot) %&gt;%\n  mutate(prob = n / sum(n))\nNow visualize the same conditional comparison using a proportional bar chart:\nggplot(kobe_transitions, aes(x = previous_shot, fill = shot)) +\n  geom_bar(position = \"fill\") +\n  labs(\n    x = \"Previous shot\",\n    y = \"Proportion of next shots\",\n    fill = \"Current shot\",\n    title = \"What happens after a hit or miss?\"\n  ) +\n  theme_minimal()\nBecause position = \"fill\" makes each bar total 1, the plot compares the conditional distribution of the current shot within each previous-shot category.\n\nYour turn: watch the denominator\nAnswer the following:\n\nWhat is the observed value of \\(P(H_t \\mid H_{t-1})\\)?\nWhat is the observed value of \\(P(H_t \\mid M_{t-1})\\)?\nAre the two conditional probabilities exactly the same?\nIf shots were independent, what relationship would we expect between them and the overall probability of a hit?\nWhat does the proportional bar chart show about the chance of a hit after a previous hit versus after a previous miss?\nDoes a difference in this one sample automatically prove dependence? Why not?\n\nRecall the definition of independence:\n\\[\nP(H_t \\mid H_{t-1}) = P(H_t)\n\\]\nif the current shot is independent of the previous shot.\nObserved sample proportions will almost never be exactly equal, even when the underlying process is independent. That is one reason simulation is useful."
+  },
+  {
+    "objectID": "labs/lab03/index.html#simulate-an-independent-shooter",
+    "href": "labs/lab03/index.html#simulate-an-independent-shooter",
+    "title": "Lab 3: Probability, Independence, and Simulation",
+    "section": "3. Simulate an independent shooter",
+    "text": "3. Simulate an independent shooter\nA simulation lets us create data from a process whose rules we control.\nFor an independent shooter, every shot has the same probability of being made, regardless of what happened on the previous shot.\nWe will use Kobe’s observed shooting percentage as the fixed probability of a hit.\nFirst, set a seed so that your simulation is reproducible:\nset.seed(311)\nNow simulate the same number of shots:\nshot_outcomes &lt;- c(\"H\", \"M\")\n\nsim_basket &lt;- sample(\n  shot_outcomes,\n  size = nrow(kobe_basket),\n  replace = TRUE,\n  prob = c(p_hit, 1 - p_hit)\n)\nCheck the simulated shooting percentage:\nmean(sim_basket == \"H\")\ntable(sim_basket)\n\nWhy this simulation is independent\nEvery simulated shot uses the same fixed probability p_hit. The computer does not increase or decrease the probability after a hit or miss.\nNow calculate conditional probabilities in the simulated sequence:\nsim_transitions &lt;- tibble(shot = sim_basket) %&gt;%\n  mutate(previous_shot = lag(shot)) %&gt;%\n  filter(!is.na(previous_shot))\n\nsim_transitions %&gt;%\n  count(previous_shot, shot) %&gt;%\n  group_by(previous_shot) %&gt;%\n  mutate(prob = n / sum(n))\n\n\nYour turn\n\nCompare \\(P(H_t \\mid H_{t-1})\\) and \\(P(H_t \\mid M_{t-1})\\) in the simulation.\nAre they exactly equal?\nWe know the simulated shots are independent. Why can the sample conditional probabilities still differ?\n\nThis is an important idea that will return later in the course:\n\nRandom samples vary, even when the underlying probability model stays fixed."
+  },
+  {
+    "objectID": "labs/lab03/index.html#streaks-what-does-independence-look-like",
+    "href": "labs/lab03/index.html#streaks-what-does-independence-look-like",
+    "title": "Lab 3: Probability, Independence, and Simulation",
+    "section": "4. Streaks: what does independence look like?",
+    "text": "4. Streaks: what does independence look like?\nPeople often interpret a long run of hits as evidence that the probability of success has changed.\nBut an independent random process can also produce streaks.\nCalculate Kobe’s streak lengths:\nkobe_streak &lt;- calc_streak(kobe_basket$shot)\n\nggplot(kobe_streak, aes(x = length)) +\n  geom_histogram(binwidth = 1, boundary = -0.5) +\n  labs(\n    x = \"Streak length\",\n    y = \"Count\",\n    title = \"Observed shooting streaks\"\n  ) +\n  theme_minimal()\nSummarize the streaks:\nkobe_streak %&gt;%\n  summarise(\n    mean_streak = mean(length),\n    median_streak = median(length),\n    max_streak = max(length)\n  )\nNow do the same for the independent shooter:\nsim_streak &lt;- calc_streak(sim_basket)\n\nggplot(sim_streak, aes(x = length)) +\n  geom_histogram(binwidth = 1, boundary = -0.5) +\n  labs(\n    x = \"Streak length\",\n    y = \"Count\",\n    title = \"Streaks from an independent-shooter simulation\"\n  ) +\n  theme_minimal()\nsim_streak %&gt;%\n  summarise(\n    mean_streak = mean(length),\n    median_streak = median(length),\n    max_streak = max(length)\n  )\n\nYour turn\nCompare the observed and simulated distributions.\n\nAre long streaks possible under independence?\nHow do the typical and maximum streak lengths compare?\nWhy would one simulated sequence not be enough to make a strong conclusion about the hot-hand question?\n\nThe key point is not that the two distributions must look identical. They will not. The simulation gives us a comparison process in which we know shots are independent."
+  },
+  {
+    "objectID": "labs/lab03/index.html#on-your-own",
+    "href": "labs/lab03/index.html#on-your-own",
+    "title": "Lab 3: Probability, Independence, and Simulation",
+    "section": "On Your Own",
+    "text": "On Your Own\nComplete the following in your student template.\n\nA second independent-shooter simulation\nChoose a new seed and simulate another independent shooter with:\n\nthe same number of shots as Kobe;\nthe same overall hit probability, p_hit.\n\nThen:\n\ncalculate the simulated shooting percentage;\ncalculate \\(P(H_t \\mid H_{t-1})\\) and \\(P(H_t \\mid M_{t-1})\\);\ncalculate the maximum streak length;\ncompare your second simulation to the first simulation and to the observed Kobe data in 3–4 sentences.\n\nYour interpretation should explain why differences between simulations do not imply that the probability model changed."
+  },
+  {
+    "objectID": "labs/lab01/index.html",
+    "href": "labs/lab01/index.html",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "",
+    "text": "Download the student lab template"
+  },
+  {
+    "objectID": "labs/lab01/index.html#the-question",
+    "href": "labs/lab01/index.html#the-question",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "The question",
+    "text": "The question\nDo birth records show a stable difference between the numbers of boys and girls born each year? We will use a historical dataset compiled by John Arbuthnot and then examine more recent U.S. records.\nThe purpose is not merely to reproduce calculations. It is to practice a complete analysis cycle:\n\nask a clear question;\ninspect the data;\ntransform variables when necessary;\nvisualize the relevant pattern;\ncalculate a useful summary; and\nexplain what the evidence does—and does not—show."
+  },
+  {
+    "objectID": "labs/lab01/index.html#setup",
+    "href": "labs/lab01/index.html#setup",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "Setup",
+    "text": "Setup\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/arbuthnot.RData\"))\nThe load() command creates a data frame named arbuthnot."
+  },
+  {
+    "objectID": "labs/lab01/index.html#inspect-the-data",
+    "href": "labs/lab01/index.html#inspect-the-data",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "1. Inspect the data",
+    "text": "1. Inspect the data\narbuthnot\ndim(arbuthnot)\nnames(arbuthnot)\nglimpse(arbuthnot)\nEach row is a year. The columns contain the year and the recorded numbers of boys and girls baptized in London.\nAnswer before moving on:\n\nWhat is the unit of observation?\nHow many observations and variables are present?\nWhat years are covered?\nWhat limitations might baptism records have as a measure of births?\n\nIndividual variables can be accessed with $:\narbuthnot$boys\narbuthnot$girls"
+  },
+  {
+    "objectID": "labs/lab01/index.html#visualize-change-over-time",
+    "href": "labs/lab01/index.html#visualize-change-over-time",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "2. Visualize change over time",
+    "text": "2. Visualize change over time\nA line graph is appropriate because year has a meaningful order.\nggplot(arbuthnot, aes(x = year, y = girls)) +\n  geom_line(color = \"#BF5700\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Recorded baptisms\",\n    title = \"Girls recorded in London baptism data\"\n  ) +\n  theme_minimal()\nDescribe the overall pattern. Look for direction, unusual years, and changes in variability. Avoid explaining causes that the data cannot establish.\nNow construct the corresponding graph for boys."
+  },
+  {
+    "objectID": "labs/lab01/index.html#calculate-totals-and-create-variables",
+    "href": "labs/lab01/index.html#calculate-totals-and-create-variables",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "3. Calculate totals and create variables",
+    "text": "3. Calculate totals and create variables\nThe total number of girls in the records is:\nsum(arbuthnot$girls)\nTo compare births within each year, create total births and the proportion recorded as boys:\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(\n    total = boys + girls,\n    boy_prop = boys / total\n  )\nInspect the new variables:\nselect(arbuthnot, year, total, boy_prop)\nWhy is a proportion often easier to compare across years than a raw difference?"
+  },
+  {
+    "objectID": "labs/lab01/index.html#evaluate-a-claim",
+    "href": "labs/lab01/index.html#evaluate-a-claim",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "4. Evaluate a claim",
+    "text": "4. Evaluate a claim\nArbuthnot argued that more boys than girls were born in every year of his records. We can translate that statement into a logical comparison.\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(more_boys = boys &gt; girls)\n\ncount(arbuthnot, more_boys)\nA logical variable is either TRUE or FALSE. The code checks the claim year by year; it does not establish why the pattern occurs.\nVisualize the proportion of boys:\nggplot(arbuthnot, aes(x = year, y = boy_prop)) +\n  geom_hline(yintercept = 0.5, color = \"gray60\", linetype = \"dashed\") +\n  geom_line(color = \"#172A46\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Proportion recorded as boys\",\n    title = \"Share of recorded births classified as boys\"\n  ) +\n  theme_minimal()\nExplain the dashed line and summarize the substantive pattern in two or three sentences."
+  },
+  {
+    "objectID": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
+    "href": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
+    "title": "Lab 1: Introduction to Data Analysis in R",
+    "section": "On Your Own: More recent U.S. births",
+    "text": "On Your Own: More recent U.S. births\nLoad the second dataset:\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData\"))\nglimpse(present)\nComplete the following in the downloadable report:\n\nIdentify the unit of observation, years covered, and variables.\nCreate total and boy_prop.\nMake a clear line graph of total births over time.\nMake a line graph of boy_prop with a reference line at 0.5.\nDetermine whether boys outnumber girls in every observed year.\nWrite a short interpretation comparing the recent pattern with the Arbuthnot records.\n\nA strong interpretation states the pattern, uses relevant quantities, and acknowledges what these descriptive data cannot explain."
+  },
+  {
+    "objectID": "labs.html",
+    "href": "labs.html",
+    "title": "Labs",
+    "section": "",
+    "text": "The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nEach lab has two parts: a detailed online guide and a student lab template for students to complete and render."
+  },
+  {
+    "objectID": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
+    "href": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
+    "title": "Labs",
+    "section": "Lab 0: Getting started with R, RStudio, and Quarto",
+    "text": "Lab 0: Getting started with R, RStudio, and Quarto\nSet up the software workflow, use R as a calculator, create objects, and render a first reproducible report.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "labs.html#lab-1-introduction-to-data-analysis-in-r",
+    "href": "labs.html#lab-1-introduction-to-data-analysis-in-r",
+    "title": "Labs",
+    "section": "Lab 1: Introduction to data analysis in R",
+    "text": "Lab 1: Introduction to data analysis in R\nUse historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "labs.html#lab-2-describing-and-comparing-data-in-r",
+    "href": "labs.html#lab-2-describing-and-comparing-data-in-r",
+    "title": "Labs",
+    "section": "Lab 2: Describing and comparing data in R",
+    "text": "Lab 2: Describing and comparing data in R\nUse CDC survey data to connect distributions, summary statistics, group comparisons, and appropriate visualizations.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "labs.html#lab-3-probability-independence-and-simulation",
+    "href": "labs.html#lab-3-probability-independence-and-simulation",
+    "title": "Labs",
+    "section": "Lab 3: Probability, independence, and simulation",
+    "text": "Lab 3: Probability, independence, and simulation\nUse shot-by-shot basketball data to practice conditional probability, independence, simulation, and streaks.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "assignments.html",
+    "href": "assignments.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Problem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from OpenIntro Statistics, 4th edition.\nStudents should:\n\nshow the reasoning or calculations used to reach an answer;\nexplain answers in context when interpretation is requested;\nsubmit their own work through Canvas; and\nbegin early enough to use Friday sections for questions.\n\nStudents may discuss approaches with classmates, but each student must prepare and submit their own answers."
+  },
+  {
+    "objectID": "assignments.html#problem-sets",
+    "href": "assignments.html#problem-sets",
+    "title": "Assignments",
+    "section": "",
+    "text": "Problem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from OpenIntro Statistics, 4th edition.\nStudents should:\n\nshow the reasoning or calculations used to reach an answer;\nexplain answers in context when interpretation is requested;\nsubmit their own work through Canvas; and\nbegin early enough to use Friday sections for questions.\n\nStudents may discuss approaches with classmates, but each student must prepare and submit their own answers."
+  },
+  {
+    "objectID": "assignments.html#labs",
+    "href": "assignments.html#labs",
+    "title": "Assignments",
+    "section": "Labs",
+    "text": "Labs\nLabs provide guided practice with real data in R. Most coding will be completed together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nFor each lab, students will use:\n\na detailed online teaching guide; and\na downloadable student lab template in Quarto.\n\nUnless otherwise specified, submit both the source .qmd file and the rendered HTML output through Canvas.\nView all labs"
+  },
+  {
+    "objectID": "assignments.html#midterm",
+    "href": "assignments.html#midterm",
+    "title": "Assignments",
+    "section": "Midterm",
+    "text": "Midterm\nThe midterm covers Units 1–4 and emphasizes statistical reasoning, interpretation, and manageable calculations. It does not require R coding. Students may use one double-sided reference sheet prepared by them."
+  },
+  {
+    "objectID": "assignments.html#project-proposal-and-final-applied-project",
+    "href": "assignments.html#project-proposal-and-final-applied-project",
+    "title": "Assignments",
+    "section": "Project proposal and final applied project",
+    "text": "Project proposal and final applied project\nThe project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings clearly.\nThe final project has two connected products:\n\nIndividual reproducible analysis and report (20%): A Quarto report containing the question, data documentation, analysis, results, interpretation, uncertainty, and limitations.\nPolicy poster and presentation (10%): A concise poster translating the project for a nontechnical policy audience, accompanied by a brief oral explanation during the class poster session.\n\nThe poster should emphasize one clear question, one or two effective visualizations, the principal finding, substantive importance, and limitations. The poster does not replace the individual code and report."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
+  },
+  {
+    "objectID": "index.html#about-the-course",
+    "href": "index.html#about-the-course",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "About the course",
+    "text": "About the course\nThis course introduces students to quantitative reasoning as a way to answer substantive questions about public policy. We will learn how to collect, explore, visualize, and analyze data; evaluate uncertainty; and communicate findings clearly and responsibly.\nThe course connects three elements throughout the semester:\n\nStatistical reasoning\nR programming\nPublic-policy applications\n\nNo prior experience with R is required."
+  },
+  {
+    "objectID": "index.html#weekly-rhythm",
+    "href": "index.html#weekly-rhythm",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "Weekly rhythm",
+    "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
+  },
+  {
+    "objectID": "labs/lab00/index.html",
+    "href": "labs/lab00/index.html",
+    "title": "Lab 0: Getting Started",
+    "section": "",
+    "text": "Download the student lab template"
+  },
+  {
+    "objectID": "labs/lab00/index.html#goals",
+    "href": "labs/lab00/index.html#goals",
+    "title": "Lab 0: Getting Started",
+    "section": "Goals",
+    "text": "Goals\nBy the end of this lab, you should be able to:\n\nidentify the main parts of RStudio;\nrun R code and save a result as an object;\nopen, edit, save, and render a Quarto (.qmd) file;\nrecognize where code, output, and written interpretation belong; and\nidentify areas in which you may want additional support.\n\nNo previous R experience is expected."
+  },
+  {
+    "objectID": "labs/lab00/index.html#the-course-workflow",
+    "href": "labs/lab00/index.html#the-course-workflow",
+    "title": "Lab 0: Getting Started",
+    "section": "The course workflow",
+    "text": "The course workflow\nWe will use three connected tools:\n\nR performs the calculations.\nRStudio Desktop gives us an organized place to write code, inspect data, and view results.\nQuarto combines prose, code, tables, and figures into a reproducible report.\n\nOpen RStudio. Its four panes usually contain the source editor, console, environment/history, and files/plots/help. The precise arrangement is less important than knowing where you write a report and where R displays results."
+  },
+  {
+    "objectID": "labs/lab00/index.html#exercises",
+    "href": "labs/lab00/index.html#exercises",
+    "title": "Lab 0: Getting Started",
+    "section": "Exercises",
+    "text": "Exercises\n\nExercise 1. R as a calculator\nEnter the following in the Console and press Return:\n2 + 2\n10 / 4\nsqrt(81)\nR prints a result but does not save it. To save a result, assign it a name:\n\n\nExercise 2. Create an object\npolicy_budget &lt;- 1250000\nprogram_share &lt;- 0.18\nprogram_budget &lt;- policy_budget * program_share\nprogram_budget\nThe assignment arrow, &lt;-, means “store the value on the right under the name on the left.”\nNote that only the information inside a code chunk can be executed as R code\n\n\nExercise 3. A short, ungraded diagnostic\nThis is only a starting-point check. It will help us calibrate examples and support.\n\nWhat experience, if any, do you have with spreadsheets, statistics, or coding?\nWhat would you most like to learn in this course?\n\n\n\nTry it\nAt this point let’sRender our Quarto document"
+  },
+  {
+    "objectID": "labs/lab00/index.html#on-your-own",
+    "href": "labs/lab00/index.html#on-your-own",
+    "title": "Lab 0: Getting Started",
+    "section": "On Your Own",
+    "text": "On Your Own\nCreate an object called weekly_hours, use it to estimate the total scheduled class hours in a 15-week semester, and explain what your result means.\n\nBonus\nAdd a new chunk under the On Your own section and create an object called students containing the number of students in your section. Then calculate the number of four-person groups that could be formed."
+  },
+  {
     "objectID": "labs/lab02/index.html",
     "href": "labs/lab02/index.html",
     "title": "Lab 2: Describing and Comparing Data in R",
@@ -231,188 +476,6 @@
     "text": "On Your Own: Build a descriptive comparison\nUse the CDC data to investigate one comparison of your choice.\nYour analysis must include:\n\nA question. State clearly what you want to learn from the data.\nVariables. Identify the variables you will use and their types.\nA graph. Choose an appropriate visualization for those variable types.\nNumerical summaries. Calculate at least two appropriate summary statistics or proportions.\nAn interpretation. Write 3–4 sentences describing the pattern using evidence from your graph and summaries.\nA limitation. State one thing these descriptive data cannot establish.\n\nGood choices might compare BMI, age, weight, exercise, smoking history, health coverage, or self-rated health. The important part is not which question you choose. It is whether the graph, statistics, and interpretation all answer the same question.\n\n\n\n\n\n\nA strong analysis follows the same sequence we have used throughout the course: see it, calculate it, interpret it."
   },
   {
-    "objectID": "labs/lab00/index.html",
-    "href": "labs/lab00/index.html",
-    "title": "Lab 0: Getting Started",
-    "section": "",
-    "text": "Download the student lab template"
-  },
-  {
-    "objectID": "labs/lab00/index.html#goals",
-    "href": "labs/lab00/index.html#goals",
-    "title": "Lab 0: Getting Started",
-    "section": "Goals",
-    "text": "Goals\nBy the end of this lab, you should be able to:\n\nidentify the main parts of RStudio;\nrun R code and save a result as an object;\nopen, edit, save, and render a Quarto (.qmd) file;\nrecognize where code, output, and written interpretation belong; and\nidentify areas in which you may want additional support.\n\nNo previous R experience is expected."
-  },
-  {
-    "objectID": "labs/lab00/index.html#the-course-workflow",
-    "href": "labs/lab00/index.html#the-course-workflow",
-    "title": "Lab 0: Getting Started",
-    "section": "The course workflow",
-    "text": "The course workflow\nWe will use three connected tools:\n\nR performs the calculations.\nRStudio Desktop gives us an organized place to write code, inspect data, and view results.\nQuarto combines prose, code, tables, and figures into a reproducible report.\n\nOpen RStudio. Its four panes usually contain the source editor, console, environment/history, and files/plots/help. The precise arrangement is less important than knowing where you write a report and where R displays results."
-  },
-  {
-    "objectID": "labs/lab00/index.html#exercises",
-    "href": "labs/lab00/index.html#exercises",
-    "title": "Lab 0: Getting Started",
-    "section": "Exercises",
-    "text": "Exercises\n\nExercise 1. R as a calculator\nEnter the following in the Console and press Return:\n2 + 2\n10 / 4\nsqrt(81)\nR prints a result but does not save it. To save a result, assign it a name:\n\n\nExercise 2. Create an object\npolicy_budget &lt;- 1250000\nprogram_share &lt;- 0.18\nprogram_budget &lt;- policy_budget * program_share\nprogram_budget\nThe assignment arrow, &lt;-, means “store the value on the right under the name on the left.”\nNote that only the information inside a code chunk can be executed as R code\n\n\nExercise 3. A short, ungraded diagnostic\nThis is only a starting-point check. It will help us calibrate examples and support.\n\nWhat experience, if any, do you have with spreadsheets, statistics, or coding?\nWhat would you most like to learn in this course?\n\n\n\nTry it\nAt this point let’sRender our Quarto document"
-  },
-  {
-    "objectID": "labs/lab00/index.html#on-your-own",
-    "href": "labs/lab00/index.html#on-your-own",
-    "title": "Lab 0: Getting Started",
-    "section": "On Your Own",
-    "text": "On Your Own\nCreate an object called weekly_hours, use it to estimate the total scheduled class hours in a 15-week semester, and explain what your result means.\n\nBonus\nAdd a new chunk under the On Your own section and create an object called students containing the number of students in your section. Then calculate the number of four-person groups that could be formed."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "",
-    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
-  },
-  {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "",
-    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
-  },
-  {
-    "objectID": "index.html#about-the-course",
-    "href": "index.html#about-the-course",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "About the course",
-    "text": "About the course\nThis course introduces students to quantitative reasoning as a way to answer substantive questions about public policy. We will learn how to collect, explore, visualize, and analyze data; evaluate uncertainty; and communicate findings clearly and responsibly.\nThe course connects three elements throughout the semester:\n\nStatistical reasoning\nR programming\nPublic-policy applications\n\nNo prior experience with R is required."
-  },
-  {
-    "objectID": "index.html#weekly-rhythm",
-    "href": "index.html#weekly-rhythm",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "Weekly rhythm",
-    "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
-  },
-  {
-    "objectID": "assignments.html",
-    "href": "assignments.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "Problem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from OpenIntro Statistics, 4th edition.\nStudents should:\n\nshow the reasoning or calculations used to reach an answer;\nexplain answers in context when interpretation is requested;\nsubmit their own work through Canvas; and\nbegin early enough to use Friday sections for questions.\n\nStudents may discuss approaches with classmates, but each student must prepare and submit their own answers."
-  },
-  {
-    "objectID": "assignments.html#problem-sets",
-    "href": "assignments.html#problem-sets",
-    "title": "Assignments",
-    "section": "",
-    "text": "Problem sets reinforce the statistical reasoning behind the methods used in class and labs. They consist primarily of selected exercises from OpenIntro Statistics, 4th edition.\nStudents should:\n\nshow the reasoning or calculations used to reach an answer;\nexplain answers in context when interpretation is requested;\nsubmit their own work through Canvas; and\nbegin early enough to use Friday sections for questions.\n\nStudents may discuss approaches with classmates, but each student must prepare and submit their own answers."
-  },
-  {
-    "objectID": "assignments.html#labs",
-    "href": "assignments.html#labs",
-    "title": "Assignments",
-    "section": "Labs",
-    "text": "Labs\nLabs provide guided practice with real data in R. Most coding will be completed together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nFor each lab, students will use:\n\na detailed online teaching guide; and\na downloadable student lab template in Quarto.\n\nUnless otherwise specified, submit both the source .qmd file and the rendered HTML output through Canvas.\nView all labs"
-  },
-  {
-    "objectID": "assignments.html#midterm",
-    "href": "assignments.html#midterm",
-    "title": "Assignments",
-    "section": "Midterm",
-    "text": "Midterm\nThe midterm covers Units 1–4 and emphasizes statistical reasoning, interpretation, and manageable calculations. It does not require R coding. Students may use one double-sided reference sheet prepared by them."
-  },
-  {
-    "objectID": "assignments.html#project-proposal-and-final-applied-project",
-    "href": "assignments.html#project-proposal-and-final-applied-project",
-    "title": "Assignments",
-    "section": "Project proposal and final applied project",
-    "text": "Project proposal and final applied project\nThe project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings clearly.\nThe final project has two connected products:\n\nIndividual reproducible analysis and report (20%): A Quarto report containing the question, data documentation, analysis, results, interpretation, uncertainty, and limitations.\nPolicy poster and presentation (10%): A concise poster translating the project for a nontechnical policy audience, accompanied by a brief oral explanation during the class poster session.\n\nThe poster should emphasize one clear question, one or two effective visualizations, the principal finding, substantive importance, and limitations. The poster does not replace the individual code and report."
-  },
-  {
-    "objectID": "labs.html",
-    "href": "labs.html",
-    "title": "Labs",
-    "section": "",
-    "text": "The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nEach lab has two parts: a detailed online guide and a student lab template for students to complete and render."
-  },
-  {
-    "objectID": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
-    "href": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
-    "title": "Labs",
-    "section": "Lab 0: Getting started with R, RStudio, and Quarto",
-    "text": "Lab 0: Getting started with R, RStudio, and Quarto\nSet up the software workflow, use R as a calculator, create objects, and render a first reproducible report.\nOpen the teaching guide · Download the student report"
-  },
-  {
-    "objectID": "labs.html#lab-1-introduction-to-data-analysis-in-r",
-    "href": "labs.html#lab-1-introduction-to-data-analysis-in-r",
-    "title": "Labs",
-    "section": "Lab 1: Introduction to data analysis in R",
-    "text": "Lab 1: Introduction to data analysis in R\nUse historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.\nOpen the teaching guide · Download the student report"
-  },
-  {
-    "objectID": "labs.html#lab-2-describing-and-comparing-data-in-r",
-    "href": "labs.html#lab-2-describing-and-comparing-data-in-r",
-    "title": "Labs",
-    "section": "Lab 2: Describing and comparing data in R",
-    "text": "Lab 2: Describing and comparing data in R\nUse CDC survey data to connect distributions, summary statistics, group comparisons, and appropriate visualizations.\nOpen the teaching guide · Download the student report"
-  },
-  {
-    "objectID": "labs/lab01/index.html",
-    "href": "labs/lab01/index.html",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "",
-    "text": "Download the student lab template"
-  },
-  {
-    "objectID": "labs/lab01/index.html#the-question",
-    "href": "labs/lab01/index.html#the-question",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "The question",
-    "text": "The question\nDo birth records show a stable difference between the numbers of boys and girls born each year? We will use a historical dataset compiled by John Arbuthnot and then examine more recent U.S. records.\nThe purpose is not merely to reproduce calculations. It is to practice a complete analysis cycle:\n\nask a clear question;\ninspect the data;\ntransform variables when necessary;\nvisualize the relevant pattern;\ncalculate a useful summary; and\nexplain what the evidence does—and does not—show."
-  },
-  {
-    "objectID": "labs/lab01/index.html#setup",
-    "href": "labs/lab01/index.html#setup",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "Setup",
-    "text": "Setup\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/arbuthnot.RData\"))\nThe load() command creates a data frame named arbuthnot."
-  },
-  {
-    "objectID": "labs/lab01/index.html#inspect-the-data",
-    "href": "labs/lab01/index.html#inspect-the-data",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "1. Inspect the data",
-    "text": "1. Inspect the data\narbuthnot\ndim(arbuthnot)\nnames(arbuthnot)\nglimpse(arbuthnot)\nEach row is a year. The columns contain the year and the recorded numbers of boys and girls baptized in London.\nAnswer before moving on:\n\nWhat is the unit of observation?\nHow many observations and variables are present?\nWhat years are covered?\nWhat limitations might baptism records have as a measure of births?\n\nIndividual variables can be accessed with $:\narbuthnot$boys\narbuthnot$girls"
-  },
-  {
-    "objectID": "labs/lab01/index.html#visualize-change-over-time",
-    "href": "labs/lab01/index.html#visualize-change-over-time",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "2. Visualize change over time",
-    "text": "2. Visualize change over time\nA line graph is appropriate because year has a meaningful order.\nggplot(arbuthnot, aes(x = year, y = girls)) +\n  geom_line(color = \"#BF5700\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Recorded baptisms\",\n    title = \"Girls recorded in London baptism data\"\n  ) +\n  theme_minimal()\nDescribe the overall pattern. Look for direction, unusual years, and changes in variability. Avoid explaining causes that the data cannot establish.\nNow construct the corresponding graph for boys."
-  },
-  {
-    "objectID": "labs/lab01/index.html#calculate-totals-and-create-variables",
-    "href": "labs/lab01/index.html#calculate-totals-and-create-variables",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "3. Calculate totals and create variables",
-    "text": "3. Calculate totals and create variables\nThe total number of girls in the records is:\nsum(arbuthnot$girls)\nTo compare births within each year, create total births and the proportion recorded as boys:\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(\n    total = boys + girls,\n    boy_prop = boys / total\n  )\nInspect the new variables:\nselect(arbuthnot, year, total, boy_prop)\nWhy is a proportion often easier to compare across years than a raw difference?"
-  },
-  {
-    "objectID": "labs/lab01/index.html#evaluate-a-claim",
-    "href": "labs/lab01/index.html#evaluate-a-claim",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "4. Evaluate a claim",
-    "text": "4. Evaluate a claim\nArbuthnot argued that more boys than girls were born in every year of his records. We can translate that statement into a logical comparison.\narbuthnot &lt;- arbuthnot %&gt;%\n  mutate(more_boys = boys &gt; girls)\n\ncount(arbuthnot, more_boys)\nA logical variable is either TRUE or FALSE. The code checks the claim year by year; it does not establish why the pattern occurs.\nVisualize the proportion of boys:\nggplot(arbuthnot, aes(x = year, y = boy_prop)) +\n  geom_hline(yintercept = 0.5, color = \"gray60\", linetype = \"dashed\") +\n  geom_line(color = \"#172A46\", linewidth = 0.8) +\n  labs(\n    x = NULL,\n    y = \"Proportion recorded as boys\",\n    title = \"Share of recorded births classified as boys\"\n  ) +\n  theme_minimal()\nExplain the dashed line and summarize the substantive pattern in two or three sentences."
-  },
-  {
-    "objectID": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
-    "href": "labs/lab01/index.html#on-your-own-more-recent-u.s.-births",
-    "title": "Lab 1: Introduction to Data Analysis in R",
-    "section": "On Your Own: More recent U.S. births",
-    "text": "On Your Own: More recent U.S. births\nLoad the second dataset:\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData\"))\nglimpse(present)\nComplete the following in the downloadable report:\n\nIdentify the unit of observation, years covered, and variables.\nCreate total and boy_prop.\nMake a clear line graph of total births over time.\nMake a line graph of boy_prop with a reference line at 0.5.\nDetermine whether boys outnumber girls in every observed year.\nWrite a short interpretation comparing the recent pattern with the Arbuthnot records.\n\nA strong interpretation states the pattern, uses relevant quantities, and acknowledges what these descriptive data cannot explain."
-  },
-  {
     "objectID": "overview.html",
     "href": "overview.html",
     "title": "Course Overview",
@@ -480,7 +543,7 @@
     "href": "schedule.html#unit-2-probability-and-distributions",
     "title": "Schedule",
     "section": "Unit 2: Probability and distributions",
-    "text": "Unit 2: Probability and distributions\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Sept. 21\nProbability and conditional probability\nOpenIntro Ch. 3, Sections 3.1–3.2\n\n\nWed., Sept. 23\nLab 3: Probability\nBegin Problem Set 2\n\n\nFri., Sept. 25\nLab 3 review and probability practice\nComplete Lab 3 On Your Own\n\n\nMon., Sept. 28\nNormal and binomial distributions\nOpenIntro Ch. 4, Sections 4.1 and 4.4\n\n\nWed., Sept. 30\nDistribution practice and applications\nWork on Problem Set 2\n\n\nFri., Oct. 2\nReview and problem-set support\nProblem Set 2 due\n\n\n\n\n\n\n\n\n\nProblem Set 2 — Probability and distributions\nOpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3.12, 3.18, 3.26, 3.30, 3.36."
+    "text": "Unit 2: Probability and distributions\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Sept. 21\nProbability and conditional probability\nOpenIntro Ch. 3, Sections 3.1–3.2\n\n\nWed., Sept. 23\nLab 3: Probability\nLab guide · Student lab template · Begin Problem Set 2\n\n\nFri., Sept. 25\nLab 3 review and probability practice\nComplete Lab 3 On Your Own\n\n\nMon., Sept. 28\nNormal and binomial distributions\nOpenIntro Ch. 4, Sections 4.1 and 4.4\n\n\nWed., Sept. 30\nDistribution practice and applications\nWork on Problem Set 2\n\n\nFri., Oct. 2\nReview and problem-set support\nProblem Set 2 due\n\n\n\n\n\n\n\n\n\nProblem Set 2 — Probability and distributions\nOpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3.12, 3.18, 3.26, 3.30, 3.36."
   },
   {
     "objectID": "schedule.html#unit-3-sampling-uncertainty-and-foundations-for-inference",
