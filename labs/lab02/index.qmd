@@ -1,0 +1,355 @@
+---
+title: "Lab 2: Describing and Comparing Data in R"
+subtitle: "Distributions, summary statistics, and relationships in CDC data"
+execute:
+  eval: false
+---
+
+[Download the student lab template](../../templates/lab02-template.qmd){.btn .btn-primary download="lab02-template.qmd"}
+
+## The question
+
+How can we use graphs and numerical summaries together to describe a dataset and compare groups?
+
+Today we will work with a sample of 20,000 respondents from the Centers for Disease Control and Prevention's Behavioral Risk Factor Surveillance System (BRFSS). The goal is to connect the statistical ideas from lecture to the R workflow you are learning in lab.
+
+A good descriptive analysis should move through a simple sequence:
+
+1. understand the cases and variables;
+2. visualize the distribution;
+3. calculate appropriate summaries;
+4. compare groups when relevant; and
+5. explain what the evidence does and does not show.
+
+## Setup
+
+```r
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab2/Data/cdc.RData"))
+```
+
+The `load()` command creates a data frame named `cdc`.
+
+## 1. Meet the data
+
+The BRFSS is a large survey of U.S. adults designed to measure health behaviors, health conditions, and access to care. We will use a sample of 20,000 respondents from the 2000 survey.
+
+Start by inspecting the data:
+
+```r
+glimpse(cdc)
+dim(cdc)
+names(cdc)
+```
+
+Each row represents one survey respondent. The variables we will use are:
+
+- `genhlth`: self-rated general health, from excellent to poor
+- `exerany`: whether the respondent exercised in the past month
+- `hlthplan`: whether the respondent had health coverage
+- `smoke100`: whether the respondent had smoked at least 100 cigarettes in their lifetime
+- `height`: height in inches
+- `weight`: weight in pounds
+- `wtdesire`: desired weight in pounds
+- `age`: age in years
+- `gender`: recorded gender category
+
+### Your turn
+
+For each variable, decide whether it is **categorical** or **quantitative**. Where useful, be more specific: ordinal or nominal; discrete or continuous.
+
+Do not rely only on what R calls the variable. Think about what the variable actually measures.
+
+## 2. Start with the distribution
+
+A histogram lets us see the shape of a quantitative variable before reducing it to a few numbers.
+
+```r
+ggplot(cdc, aes(x = age)) +
+  geom_histogram(binwidth = 5) +
+  labs(
+    x = "Age",
+    y = "Count",
+    title = "Age distribution in the CDC sample"
+  ) +
+  theme_minimal()
+```
+
+Now change the bin width:
+
+```r
+ggplot(cdc, aes(x = age)) +
+  geom_histogram(binwidth = 10) +
+  theme_minimal()
+```
+
+```r
+ggplot(cdc, aes(x = age)) +
+  geom_histogram(binwidth = 1) +
+  theme_minimal()
+```
+
+### Your turn
+
+Compare the three histograms.
+
+- What features of the distribution stay the same?
+- What changes as the bin width changes?
+- How would you describe the shape, center, spread, and any unusual features?
+
+The exact appearance of a histogram depends on how we group observations into bins, but the underlying data have not changed.
+
+## 3. Describe a quantitative variable with numbers
+
+Now examine `weight`.
+
+A quick overview is:
+
+```r
+summary(cdc$weight)
+```
+
+We can also calculate the statistics we discussed in lecture directly:
+
+```r
+cdc %>%
+  summarise(
+    mean_weight = mean(weight),
+    median_weight = median(weight),
+    sd_weight = sd(weight),
+    variance_weight = var(weight),
+    IQR_weight = IQR(weight),
+    min_weight = min(weight),
+    max_weight = max(weight)
+  )
+```
+
+Remember what these quantities describe:
+
+- **mean** and **median** describe center;
+- **standard deviation** and **IQR** describe spread;
+- **minimum** and **maximum** help identify the overall range;
+- **variance** is the squared version of the standard deviation calculation.
+
+Now visualize the same variable:
+
+```r
+ggplot(cdc, aes(x = weight)) +
+  geom_histogram(binwidth = 10) +
+  labs(
+    x = "Weight (pounds)",
+    y = "Count",
+    title = "Distribution of respondent weight"
+  ) +
+  theme_minimal()
+```
+
+### Your turn
+
+Use the graph and the numerical summaries together.
+
+1. Is the distribution roughly symmetric or skewed?
+2. Are the mean and median similar? Why or why not?
+3. Which pair would you emphasize for this distribution: mean and SD, or median and IQR?
+4. What does the standard deviation tell you in substantive terms?
+
+The point is not to choose statistics mechanically. **See the distribution first, then decide how to summarize it.**
+
+## 4. Compare groups
+
+We can calculate the same statistics separately for different groups by combining `group_by()` and `summarise()`.
+
+For example, compare weight among respondents who did and did not report exercising in the previous month:
+
+```r
+cdc %>%
+  group_by(exerany) %>%
+  summarise(
+    n = n(),
+    mean_weight = mean(weight),
+    median_weight = median(weight),
+    sd_weight = sd(weight),
+    IQR_weight = IQR(weight)
+  )
+```
+
+A boxplot lets us compare the distributions visually:
+
+```r
+ggplot(cdc, aes(x = exerany, y = weight)) +
+  geom_boxplot() +
+  labs(
+    x = "Exercised in previous month",
+    y = "Weight (pounds)",
+    title = "Weight by reported exercise"
+  ) +
+  theme_minimal()
+```
+
+### Your turn
+
+Describe the comparison using both the graph and the numerical summaries.
+
+- Which group has the higher center?
+- How does the spread differ?
+- Are there unusual observations?
+- Does this comparison establish that exercise **causes** differences in weight? Why not?
+
+## 5. Categorical variables and denominators
+
+For a categorical variable, counts and proportions are usually more informative than means or standard deviations.
+
+```r
+cdc %>%
+  count(genhlth) %>%
+  mutate(prop = n / sum(n))
+```
+
+### Your turn
+
+Using the output above:
+
+1. What is the most common self-rated health category?
+2. What proportion of respondents report excellent health?
+3. Is `genhlth` nominal or ordinal? Explain.
+
+Now consider **two categorical variables**: gender and smoking history.
+
+```r
+cdc %>%
+  count(gender, smoke100)
+```
+
+Raw counts are useful, but they do not necessarily answer the comparison we care about. To ask whether smoking history differs by gender, calculate proportions **within each gender category**:
+
+```r
+cdc %>%
+  count(gender, smoke100) %>%
+  group_by(gender) %>%
+  mutate(prop_within_gender = n / sum(n))
+```
+
+### Your turn: watch the denominator
+
+Answer the following carefully:
+
+1. What proportion of respondents in each gender category report having smoked at least 100 cigarettes?
+2. Why is the denominator for this question the number of respondents **within each gender category**, rather than the entire sample?
+3. How would the interpretation change if we instead divided each cell by all 20,000 respondents?
+
+This is the same denominator problem we discussed in lecture: the correct percentage depends on the question you are asking.
+
+## 6. Match the variables to the graph
+
+Different combinations of variable types call for different displays.
+
+### Two quantitative variables: scatterplot
+
+```r
+ggplot(cdc, aes(x = weight, y = height)) +
+  geom_point(alpha = 0.2) +
+  labs(
+    x = "Weight (pounds)",
+    y = "Height (inches)",
+    title = "Height and weight"
+  ) +
+  theme_minimal()
+```
+
+Describe the **direction, form, strength, and unusual observations**.
+
+### Two categorical variables: bar plot
+
+```r
+ggplot(cdc, aes(x = gender, fill = smoke100)) +
+  geom_bar(position = "fill") +
+  labs(
+    x = "Gender",
+    y = "Proportion",
+    fill = "Smoked 100 cigarettes",
+    title = "Smoking history within gender categories"
+  ) +
+  theme_minimal()
+```
+
+Why is `position = "fill"` especially useful when the goal is to compare proportions?
+
+### One categorical and one quantitative variable: boxplot
+
+```r
+ggplot(cdc, aes(x = gender, y = height)) +
+  geom_boxplot() +
+  labs(
+    x = "Gender",
+    y = "Height (inches)",
+    title = "Height distributions by gender category"
+  ) +
+  theme_minimal()
+```
+
+Describe how the two distributions differ in center, spread, and overlap.
+
+## 7. Create a new variable
+
+Sometimes the quantity we want to analyze is not directly stored in the dataset.
+
+Body Mass Index (BMI) can be calculated from weight and height as:
+
+$$
+\operatorname{BMI}_i = 703\left(\frac{W_i}{H_i^2}\right),
+$$
+
+where $W_i$ is the weight of respondent $i$ in pounds and $H_i$ is the height of respondent $i$ in inches.
+
+The resulting BMI is expressed in the conventional units of kilograms per square meter, $\mathrm{kg}/\mathrm{m}^2$.
+
+Use `mutate()` to calculate BMI for every respondent:
+
+```r
+cdc <- cdc %>%
+  mutate(bmi = (weight / height^2) * 703)
+```
+
+Inspect the new variable:
+
+```r
+summary(cdc$bmi)
+```
+
+Then compare BMI across self-rated health categories:
+
+```r
+ggplot(cdc, aes(x = genhlth, y = bmi)) +
+  geom_boxplot() +
+  labs(
+    x = "Self-rated health",
+    y = "BMI",
+    title = "BMI across self-rated health categories"
+  ) +
+  theme_minimal()
+```
+
+### Your turn
+
+What pattern do you see? Describe it without making a causal claim.
+
+## On Your Own: Build a descriptive comparison
+
+Use the CDC data to investigate **one comparison of your choice**.
+
+Your analysis must include:
+
+1. **A question.** State clearly what you want to learn from the data.
+2. **Variables.** Identify the variables you will use and their types.
+3. **A graph.** Choose an appropriate visualization for those variable types.
+4. **Numerical summaries.** Calculate at least two appropriate summary statistics or proportions.
+5. **An interpretation.** Write 3–4 sentences describing the pattern using evidence from your graph and summaries.
+6. **A limitation.** State one thing these descriptive data cannot establish.
+
+Good choices might compare BMI, age, weight, exercise, smoking history, health coverage, or self-rated health. The important part is not which question you choose. It is whether the graph, statistics, and interpretation all answer the same question.
+
+::: {.callout-tip appearance="simple"}
+A strong analysis follows the same sequence we have used throughout the course: **see it, calculate it, interpret it.**
+:::
