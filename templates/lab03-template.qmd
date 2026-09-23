@@ -62,6 +62,21 @@ kobe_transitions %>%
   mutate(prob = n / sum(n))
 ```
 
+
+Visualize the same comparison with a proportional bar chart.
+
+```{r}
+ggplot(kobe_transitions, aes(x = previous_shot, fill = shot)) +
+  geom_bar(position = "fill") +
+  labs(
+    x = "Previous shot",
+    y = "Proportion of next shots",
+    fill = "Current shot",
+    title = "What happens after a hit or miss?"
+  ) +
+  theme_minimal()
+```
+
 What is the observed value of $P(H_t \mid H_{t-1})$?
 
 > 
@@ -75,6 +90,10 @@ Are the two conditional probabilities exactly the same?
 > 
 
 If shots were independent, what relationship would we expect between them and the overall probability of a hit?
+
+> 
+
+What does the proportional bar chart show about the chance of a hit after a previous hit versus after a previous miss?
 
 > 
 
