@@ -1,6 +1,6 @@
 ---
 title: "Lab 3: Probability, Independence, and Simulation"
-subtitle: "Conditional probability, hot-hand reasoning, and Bayes in R"
+subtitle: "Conditional probability, independence, and simulation in R"
 execute:
   eval: false
 ---
@@ -15,13 +15,12 @@ Today we will use historical shot-by-shot data from Kobe Bryant's 2009 NBA Final
 
 We are not trying to settle the broader hot-hand debate from one player or one series. The point is to use a familiar sequence of hits and misses to connect the probability ideas from lecture to R.
 
-The lab has five parts:
+The lab has four parts:
 
 1. estimate simple probabilities from observed data;
 2. calculate conditional probabilities;
-3. simulate an independent shooter;
-4. compare shooting streaks; and
-5. use Bayes' rule to reverse a conditional probability.
+3. simulate an independent shooter; and
+4. compare shooting streaks.
 
 ::: {.callout-tip appearance="simple"}
 For probability problems, keep using the same workflow from lecture:
@@ -285,78 +284,11 @@ Compare the observed and simulated distributions.
 
 The key point is not that the two distributions must look identical. They will not. The simulation gives us a **comparison process** in which we know shots are independent.
 
-## 5. Bayes in R: reversing the condition
-
-Now return to the screening example from lecture.
-
-Suppose:
-
-- 2% of cases truly have a condition;
-- the screening rule flags 90% of true cases;
-- it also falsely flags 8% of cases without the condition.
-
-Define the probabilities:
-
-```r
-p_condition <- 0.02
-p_positive_given_condition <- 0.90
-p_positive_given_no_condition <- 0.08
-```
-
-First calculate the overall probability of a positive flag:
-
-```r
-p_positive <-
-  p_positive_given_condition * p_condition +
-  p_positive_given_no_condition * (1 - p_condition)
-
-p_positive
-```
-
-Then reverse the condition:
-
-```r
-p_condition_given_positive <-
-  (p_positive_given_condition * p_condition) / p_positive
-
-p_condition_given_positive
-```
-
-This is Bayes' rule:
-
-$$
-P(C \mid +)
-=
-\frac{P(+ \mid C)P(C)}{P(+)}.
-$$
-
-### Your turn
-
-Explain the result in words.
-
-Why is
-
-$$
-P(C \mid +)
-$$
-
-not the same as
-
-$$
-P(+ \mid C)?
-$$
-
-What role does the 2% base rate play?
-
-::: {.callout-note appearance="simple"}
-Bayes' theorem does not create new information. It reorganizes the same probabilities so that we can answer a reversed conditional question.
-:::
-
 ## On Your Own
 
-Complete both parts in your student template.
+Complete the following in your student template.
 
-### Part A: A second independent-shooter simulation
+### A second independent-shooter simulation
 
 Choose a new seed and simulate another independent shooter with:
 
@@ -371,27 +303,3 @@ Then:
 4. compare your second simulation to the first simulation and to the observed Kobe data in 3–4 sentences.
 
 Your interpretation should explain why differences between simulations do **not** imply that the probability model changed.
-
-### Part B: A policy-screening Bayes problem
-
-Suppose a city compliance model:
-
-- flags 80% of truly noncompliant permits;
-- falsely flags 15% of compliant permits;
-- and 10% of all permits are truly noncompliant.
-
-Use R to calculate:
-
-$$
-P(\text{noncompliant} \mid \text{flagged}).
-$$
-
-Then write 2–3 sentences explaining:
-
-1. what your answer means;
-2. why it is not equal to 80%; and
-3. which probability is the base rate.
-
-::: {.callout-tip appearance="simple"}
-A strong probability analysis does more than produce a decimal. It identifies the event, makes the denominator clear, and interprets the result in the context of the question.
-:::
