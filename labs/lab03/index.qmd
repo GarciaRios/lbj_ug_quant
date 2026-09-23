@@ -134,6 +134,23 @@ kobe_transitions %>%
   mutate(prob = n / sum(n))
 ```
 
+
+Now visualize the same conditional comparison using a proportional bar chart:
+
+```r
+ggplot(kobe_transitions, aes(x = previous_shot, fill = shot)) +
+  geom_bar(position = "fill") +
+  labs(
+    x = "Previous shot",
+    y = "Proportion of next shots",
+    fill = "Current shot",
+    title = "What happens after a hit or miss?"
+  ) +
+  theme_minimal()
+```
+
+Because `position = "fill"` makes each bar total 1, the plot compares the **conditional distribution of the current shot within each previous-shot category**.
+
 ### Your turn: watch the denominator
 
 Answer the following:
@@ -142,7 +159,8 @@ Answer the following:
 2. What is the observed value of $P(H_t \mid M_{t-1})$?
 3. Are the two conditional probabilities exactly the same?
 4. If shots were independent, what relationship would we expect between them and the overall probability of a hit?
-5. Does a difference in this one sample automatically prove dependence? Why not?
+5. What does the proportional bar chart show about the chance of a hit after a previous hit versus after a previous miss?
+6. Does a difference in this one sample automatically prove dependence? Why not?
 
 Recall the definition of independence:
 
