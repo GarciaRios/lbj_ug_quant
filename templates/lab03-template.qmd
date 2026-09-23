@@ -187,50 +187,9 @@ Why would one simulated sequence not be enough to make a strong conclusion about
 
 > 
 
-## Exercise 5: Bayes in R
-
-Define the probabilities.
-
-```{r}
-p_condition <- 0.02
-p_positive_given_condition <- 0.90
-p_positive_given_no_condition <- 0.08
-```
-
-Calculate the overall probability of a positive flag.
-
-```{r}
-p_positive <-
-  p_positive_given_condition * p_condition +
-  p_positive_given_no_condition * (1 - p_condition)
-
-p_positive
-```
-
-Calculate the probability that a case truly has the condition given a positive flag.
-
-```{r}
-p_condition_given_positive <-
-  (p_positive_given_condition * p_condition) / p_positive
-
-p_condition_given_positive
-```
-
-Explain the result in words.
-
-> 
-
-Why is $P(C \mid +)$ not the same as $P(+ \mid C)$?
-
-> 
-
-What role does the 2% base rate play?
-
-> 
-
 ## On Your Own
 
-### Part A: A second independent-shooter simulation
+### A second independent-shooter simulation
 
 Choose a new seed.
 
@@ -264,30 +223,4 @@ Calculate the maximum streak length.
 
 Compare your second simulation to the first simulation and to the observed Kobe data in 3–4 sentences. Explain why differences between simulations do not imply that the probability model changed.
 
-> 
-
-### Part B: A policy-screening Bayes problem
-
-Suppose a city compliance model:
-
-- flags 80% of truly noncompliant permits;
-- falsely flags 15% of compliant permits;
-- and 10% of all permits are truly noncompliant.
-
-Use R to calculate $P(\text{noncompliant} \mid \text{flagged})$.
-
-```{r}
-
-```
-
-What does your answer mean?
-
-> 
-
-Why is your answer not equal to 80%?
-
-> 
-
-Which probability is the base rate?
-
-> 
+>
