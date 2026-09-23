@@ -1,0 +1,320 @@
+---
+title: "Lab 3: Probability, Independence, and Simulation"
+subtitle: "Conditional probability, independence, and simulation in R"
+execute:
+  eval: false
+---
+
+[Download the student lab template](../../templates/lab03-template.qmd){.btn .btn-primary download="lab03-template.qmd"}
+
+## The question
+
+How can we use observed data and simulation to reason about probability, independence, and conditional probability?
+
+Today we will use historical shot-by-shot data from Kobe Bryant's 2009 NBA Finals to practice a classic probability question: **does making one shot change the probability of making the next?**
+
+We are not trying to settle the broader hot-hand debate from one player or one series. The point is to use a familiar sequence of hits and misses to connect the probability ideas from lecture to R.
+
+The lab has four parts:
+
+1. estimate simple probabilities from observed data;
+2. calculate conditional probabilities;
+3. simulate an independent shooter; and
+4. compare shooting streaks.
+
+::: {.callout-tip appearance="simple"}
+For probability problems, keep using the same workflow from lecture:
+
+**Name the event. Find the denominator. Calculate. Interpret.**
+:::
+
+## Setup
+
+Load the packages and historical data:
+
+```r
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab3/resources/hot_hand.RData"))
+```
+
+The file creates two objects:
+
+- `kobe_basket`: one row for each shot attempt;
+- `calc_streak`: a function that calculates the length of consecutive made-shot streaks.
+
+Take a quick look:
+
+```r
+glimpse(kobe_basket)
+count(kobe_basket, shot)
+```
+
+In the `shot` variable:
+
+- `H` means hit;
+- `M` means miss.
+
+## 1. Estimate probability from observed frequency
+
+A probability model describes what could happen in repeated trials. In observed data, we can estimate a probability using the proportion of times an event occurred.
+
+Start with Kobe's observed shooting percentage:
+
+```r
+kobe_basket %>%
+  count(shot) %>%
+  mutate(prop = n / sum(n))
+```
+
+You can also calculate the proportion of hits directly:
+
+```r
+p_hit <- mean(kobe_basket$shot == "H")
+p_hit
+```
+
+### Your turn
+
+1. What is the observed probability of a hit?
+2. What is the observed probability of a miss?
+3. Check that the two probabilities sum to 1.
+
+In probability notation, if $H$ means a made shot,
+
+$$
+P(H) = \frac{\text{number of hits}}{\text{number of shot attempts}}.
+$$
+
+The complement is
+
+$$
+P(H^c)=1-P(H).
+$$
+
+Here, $H^c$ is simply a miss.
+
+## 2. Conditional probability: does the previous shot matter?
+
+The hot-hand question is naturally a conditional-probability question.
+
+We want to compare:
+
+$$
+P(H_t \mid H_{t-1})
+$$
+
+with
+
+$$
+P(H_t \mid M_{t-1}),
+$$
+
+where $H_t$ means the current shot is a hit, $H_{t-1}$ means the previous shot was a hit, and $M_{t-1}$ means the previous shot was a miss.
+
+First create a variable containing the previous shot.
+
+```r
+kobe_transitions <- kobe_basket %>%
+  group_by(game) %>%
+  mutate(previous_shot = lag(shot)) %>%
+  ungroup() %>%
+  filter(!is.na(previous_shot))
+```
+
+We group by game so that the first shot of a new game is not treated as if it immediately followed the final shot of the previous game.
+
+Now build a two-way table and calculate proportions **within the previous-shot category**:
+
+```r
+kobe_transitions %>%
+  count(previous_shot, shot) %>%
+  group_by(previous_shot) %>%
+  mutate(prob = n / sum(n))
+```
+
+
+Now visualize the same conditional comparison using a proportional bar chart:
+
+```r
+ggplot(kobe_transitions, aes(x = previous_shot, fill = shot)) +
+  geom_bar(position = "fill") +
+  labs(
+    x = "Previous shot",
+    y = "Proportion of next shots",
+    fill = "Current shot",
+    title = "What happens after a hit or miss?"
+  ) +
+  theme_minimal()
+```
+
+Because `position = "fill"` makes each bar total 1, the plot compares the **conditional distribution of the current shot within each previous-shot category**.
+
+### Your turn: watch the denominator
+
+Answer the following:
+
+1. What is the observed value of $P(H_t \mid H_{t-1})$?
+2. What is the observed value of $P(H_t \mid M_{t-1})$?
+3. Are the two conditional probabilities exactly the same?
+4. If shots were independent, what relationship would we expect between them and the overall probability of a hit?
+5. What does the proportional bar chart show about the chance of a hit after a previous hit versus after a previous miss?
+6. Does a difference in this one sample automatically prove dependence? Why not?
+
+Recall the definition of independence:
+
+$$
+P(H_t \mid H_{t-1}) = P(H_t)
+$$
+
+if the current shot is independent of the previous shot.
+
+Observed sample proportions will almost never be exactly equal, even when the underlying process is independent. That is one reason simulation is useful.
+
+## 3. Simulate an independent shooter
+
+A simulation lets us create data from a process whose rules we control.
+
+For an independent shooter, every shot has the same probability of being made, regardless of what happened on the previous shot.
+
+We will use Kobe's observed shooting percentage as the fixed probability of a hit.
+
+First, set a seed so that your simulation is reproducible:
+
+```r
+set.seed(311)
+```
+
+Now simulate the same number of shots:
+
+```r
+shot_outcomes <- c("H", "M")
+
+sim_basket <- sample(
+  shot_outcomes,
+  size = nrow(kobe_basket),
+  replace = TRUE,
+  prob = c(p_hit, 1 - p_hit)
+)
+```
+
+Check the simulated shooting percentage:
+
+```r
+mean(sim_basket == "H")
+table(sim_basket)
+```
+
+### Why this simulation is independent
+
+Every simulated shot uses the same fixed probability `p_hit`. The computer does not increase or decrease the probability after a hit or miss.
+
+Now calculate conditional probabilities in the simulated sequence:
+
+```r
+sim_transitions <- tibble(shot = sim_basket) %>%
+  mutate(previous_shot = lag(shot)) %>%
+  filter(!is.na(previous_shot))
+
+sim_transitions %>%
+  count(previous_shot, shot) %>%
+  group_by(previous_shot) %>%
+  mutate(prob = n / sum(n))
+```
+
+### Your turn
+
+1. Compare $P(H_t \mid H_{t-1})$ and $P(H_t \mid M_{t-1})$ in the simulation.
+2. Are they exactly equal?
+3. We know the simulated shots are independent. Why can the sample conditional probabilities still differ?
+
+This is an important idea that will return later in the course:
+
+> **Random samples vary, even when the underlying probability model stays fixed.**
+
+## 4. Streaks: what does independence look like?
+
+People often interpret a long run of hits as evidence that the probability of success has changed.
+
+But an independent random process can also produce streaks.
+
+Calculate Kobe's streak lengths:
+
+```r
+kobe_streak <- calc_streak(kobe_basket$shot)
+
+ggplot(kobe_streak, aes(x = length)) +
+  geom_histogram(binwidth = 1, boundary = -0.5) +
+  labs(
+    x = "Streak length",
+    y = "Count",
+    title = "Observed shooting streaks"
+  ) +
+  theme_minimal()
+```
+
+Summarize the streaks:
+
+```r
+kobe_streak %>%
+  summarise(
+    mean_streak = mean(length),
+    median_streak = median(length),
+    max_streak = max(length)
+  )
+```
+
+Now do the same for the independent shooter:
+
+```r
+sim_streak <- calc_streak(sim_basket)
+
+ggplot(sim_streak, aes(x = length)) +
+  geom_histogram(binwidth = 1, boundary = -0.5) +
+  labs(
+    x = "Streak length",
+    y = "Count",
+    title = "Streaks from an independent-shooter simulation"
+  ) +
+  theme_minimal()
+```
+
+```r
+sim_streak %>%
+  summarise(
+    mean_streak = mean(length),
+    median_streak = median(length),
+    max_streak = max(length)
+  )
+```
+
+### Your turn
+
+Compare the observed and simulated distributions.
+
+- Are long streaks possible under independence?
+- How do the typical and maximum streak lengths compare?
+- Why would one simulated sequence not be enough to make a strong conclusion about the hot-hand question?
+
+The key point is not that the two distributions must look identical. They will not. The simulation gives us a **comparison process** in which we know shots are independent.
+
+## On Your Own
+
+Complete the following in your student template.
+
+### A second independent-shooter simulation
+
+Choose a new seed and simulate another independent shooter with:
+
+- the same number of shots as Kobe;
+- the same overall hit probability, `p_hit`.
+
+Then:
+
+1. calculate the simulated shooting percentage;
+2. calculate $P(H_t \mid H_{t-1})$ and $P(H_t \mid M_{t-1})$;
+3. calculate the maximum streak length;
+4. compare your second simulation to the first simulation and to the observed Kobe data in 3–4 sentences.
+
+Your interpretation should explain why differences between simulations do **not** imply that the probability model changed.
