@@ -1,6 +1,6 @@
 ---
 title: "Distribution Practice: Ames Housing"
-subtitle: "From observed data to normal and binomial probability models"
+subtitle: "From observed data to probability models and policy planning"
 execute:
   eval: false
 ---
@@ -12,6 +12,19 @@ execute:
 How can a probability model help us say something meaningful about real housing data?
 
 Today we will use residential home sales from Ames, Iowa. Rather than treating the normal and binomial distributions as isolated formulas, we will use them to answer substantive questions about the Ames housing market.
+
+## Policy scenario
+
+Suppose the **Ames Sustainability Office** is planning a hypothetical residential energy-audit program. Homes with at least **2,000 square feet** of living area require a longer inspection slot. A field team can comfortably handle at most **3 extended audits in a day** before the office needs additional staff time or overtime.
+
+Before implementing the program, analysts want to know:
+
+- How common are homes that would require an extended audit?
+- If the office used a normal model instead of the complete housing data, how accurate would its estimate be?
+- If 10 homes are scheduled in a day, how likely is it that **4 or more** require extended audits?
+- How should those probabilities inform staffing and scheduling?
+
+This is a simplified policy scenario, but it gives the quantities we calculate a concrete decision context.
 
 Our workflow is:
 
@@ -171,6 +184,12 @@ p_large_normal
 10. Are the two probabilities identical? Which is larger?
 11. Look back at the histogram. What feature of the actual distribution might help explain the difference?
 
+### Policy interpretation
+
+Suppose the Sustainability Office estimated the share of extended-audit homes using the normal model rather than the observed Ames data.
+
+**Would the normal model lead the office to plan for too many or too few extended audits? How could that affect staffing or scheduling?**
+
 This is an important distinction:
 
 > **The empirical probability describes what we observed. The model probability describes what the fitted probability model predicts.**
@@ -302,6 +321,12 @@ Now calculate the probability that **at least 4 of 10** are large:
 21. Why is $P(Y\geq4)$ larger than $P(Y=4)$?
 22. Explain why the value of $p$ here is more meaningful than simply being handed an arbitrary number such as $p=0.30$.
 
+### Policy interpretation
+
+Recall that the field team can handle at most **3 extended audits per day** without additional staffing.
+
+**What does $P(Y\geq4)$ tell the program manager about the risk that a 10-home day exceeds planned capacity?**
+
 ---
 
 ## 7. See the entire binomial distribution
@@ -361,13 +386,20 @@ sd_large
 
 ---
 
-# On Your Own: Change the definition
+# On Your Own: Evaluate an alternative policy rule
 
-Repeat the analysis using a **different threshold** for what counts as a large home. Choose either **1,800 square feet** or **2,500 square feet**.
+The Sustainability Office is considering changing the threshold for an extended audit.
 
-### A. Define and describe
+Choose one proposed rule:
 
-27. State the threshold you selected.
+- **Broader rule:** extended audit for homes at or above **1,800 square feet**
+- **Narrower rule:** extended audit for homes at or above **2,500 square feet**
+
+Treat your choice as a policy alternative and evaluate what it would imply for program operations.
+
+### A. Define the policy
+
+27. State the threshold you selected and briefly explain whether it represents the broader or narrower rule.
 
 28. Calculate the empirical proportion of Ames homes meeting your definition.
 
@@ -415,7 +447,15 @@ For a group of **12 home sales**, let $W$ be the number meeting your new definit
 
 ```
 
-36. In 2--3 sentences, explain what your binomial results mean in the context of Ames home sales.
+36. In 2--3 sentences, explain what your binomial results mean for staffing a day with 12 scheduled homes.
+
+### D. Policy memo sentence
+
+37. Write **one sentence to the program manager** answering this question:
+
+> Under your proposed threshold, should the office view 4 or more extended audits in a 12-home day as a routine planning scenario or a relatively uncommon one?
+
+Support your answer with the probability you calculated.
 
 ::: {.callout-tip appearance="simple"}
 The strongest answers today connect the number back to the data:
