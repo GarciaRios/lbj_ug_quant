@@ -434,6 +434,13 @@
     "text": "Lab 3: Probability, independence, and simulation\nUse shot-by-shot basketball data to practice conditional probability, independence, simulation, and streaks.\nOpen the teaching guide · Download the student report"
   },
   {
+    "objectID": "labs.html#distribution-practice-ames-housing",
+    "href": "labs.html#distribution-practice-ames-housing",
+    "title": "Labs",
+    "section": "Distribution Practice: Ames Housing",
+    "text": "Distribution Practice: Ames Housing\nUse Ames housing data to compare empirical probabilities with a fitted normal model, then build and interpret a binomial model from the observed data.\nOpen the practice guide · Download the student report"
+  },
+  {
     "objectID": "labs/lab00/index.html",
     "href": "labs/lab00/index.html",
     "title": "Lab 0: Getting Started",
@@ -613,7 +620,7 @@
     "href": "schedule.html#unit-2-probability-and-distributions",
     "title": "Schedule",
     "section": "Unit 2: Probability and distributions",
-    "text": "Unit 2: Probability and distributions\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Sept. 21\nProbability and conditional probability\nOpenIntro Ch. 3, Sections 3.1–3.2\n\n\nWed., Sept. 23\nLab 3: Probability\nLab guide · Student lab template · Begin Problem Set 2\n\n\nFri., Sept. 25\nLab 3 review and probability practice\nComplete Lab 3 On Your Own\n\n\nMon., Sept. 28\nNormal and binomial distributions\nOpenIntro Ch. 4, Sections 4.1 and 4.4\n\n\nWed., Sept. 30\nDistribution practice and applications\nWork on Problem Set 2\n\n\nFri., Oct. 2\nReview and problem-set support\nProblem Set 2 due\n\n\n\n\n\n\n\n\n\nProblem Set 2 — Probability and distributions\nOpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3.12, 3.18, 3.26, 3.30, 3.36."
+    "text": "Unit 2: Probability and distributions\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Sept. 21\nProbability and conditional probability\nOpenIntro Ch. 3, Sections 3.1–3.2\n\n\nWed., Sept. 23\nLab 3: Probability\nLab guide · Student lab template · Begin Problem Set 2\n\n\nFri., Sept. 25\nLab 3 review and probability practice\nComplete Lab 3 On Your Own\n\n\nMon., Sept. 28\nNormal and binomial distributions\nOpenIntro Ch. 4, Sections 4.1 and 4.4\n\n\nWed., Sept. 30\nDistribution practice and applications\nPractice guide · Student template · Work on Problem Set 2\n\n\nFri., Oct. 2\nReview and problem-set support\nProblem Set 2 due\n\n\n\n\n\n\n\n\n\nProblem Set 2 — Probability and distributions\nOpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3.12, 3.18, 3.26, 3.30, 3.36."
   },
   {
     "objectID": "schedule.html#unit-3-sampling-uncertainty-and-foundations-for-inference",
