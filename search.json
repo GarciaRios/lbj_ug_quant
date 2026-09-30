@@ -179,7 +179,7 @@
     "href": "labs/lab04/index.html#setup",
     "title": "Lab 4: Normal and Binomial Models with Ames Housing",
     "section": "Setup",
-    "text": "Setup\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab4/data/ames.RData\"))\nThe data contain residential home sales in Ames, Iowa, from 2006 through 2010. Each row is one home sale.\nToday we will focus on area, the above-ground living area of the home in square feet.\nglimpse(ames)\nnrow(ames)"
+    "text": "Setup\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab4/data/ames.RData\"))\n\names &lt;- ames |&gt;\n  rename(area = Gr.Liv.Area)\nThe data contain residential home sales in Ames, Iowa, from 2006 through 2010. Each row is one home sale.\nThe original dataset stores above-ground living area as Gr.Liv.Area. For readability, we rename it area and use that shorter name throughout the lab.\nglimpse(ames)\nnrow(ames)"
   },
   {
     "objectID": "labs/lab04/index.html#start-with-the-actual-distribution",
