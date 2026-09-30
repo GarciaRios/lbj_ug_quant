@@ -40,7 +40,7 @@ OpenIntro exercises: Ch. 1: 1.2, 1.6, 1.16, 1.22, 1.30, 1.34; Ch. 2: 2.15, 2.22,
 | **Wed., Sept. 23** | Lab 3: Probability | [Lab guide](labs/lab03/) · [Student lab template](templates/lab03-template.qmd){download="lab03-template.qmd"} · Begin Problem Set 2 |
 | **Fri., Sept. 25** | Lab 3 review and probability practice | Complete Lab 3 **On Your Own** |
 | **Mon., Sept. 28** | Normal and binomial distributions | OpenIntro Ch. 4, Sections 4.1 and 4.4 |
-| **Wed., Sept. 30** | Distribution practice and applications | [Practice guide](labs/distributions/) · [Student template](templates/distributions-template.qmd){download="distributions-template.qmd"} · Work on Problem Set 2 |
+| **Wed., Sept. 30** | Lab 4: Normal and binomial models with Ames housing | [Lab guide](labs/lab04/) · [Student lab template](templates/lab04-template.qmd){download="lab04-template.qmd"} · Work on Problem Set 2 |
 | **Fri., Oct. 2** | Review and problem-set support | **Problem Set 2 due** |
 
 ::: {.callout-note appearance="simple"}
@@ -53,8 +53,8 @@ OpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3
 | Date | Class activity | Preparation and assignments |
 |---|---|---|
 | **Mon., Oct. 5** | Sampling variability and the central limit theorem | OpenIntro Ch. 4 |
-| **Wed., Oct. 7** | Lab 4: Sampling and uncertainty | Begin Problem Set 3 |
-| **Fri., Oct. 9** | Lab 4 review and simulation practice | Complete Lab 4 **On Your Own** |
+| **Wed., Oct. 7** | Lab 5: Sampling and uncertainty | Begin Problem Set 3 |
+| **Fri., Oct. 9** | Lab 5 review and simulation practice | Complete Lab 5 **On Your Own** |
 | **Mon., Oct. 12** | Confidence intervals | Review OpenIntro Ch. 4 |
 | **Wed., Oct. 14** | Confidence interval practice | Work on Problem Set 3 |
 | **Fri., Oct. 16** | Interpretation and problem-set support | Continue Problem Set 3 |
@@ -64,11 +64,11 @@ OpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3
 | Date | Class activity | Preparation and assignments |
 |---|---|---|
 | **Mon., Oct. 19** | Hypothesis testing | OpenIntro Ch. 5 |
-| **Wed., Oct. 21** | Lab 5: Inference for numerical data | Lab 5 work |
-| **Fri., Oct. 23** | Lab 5 review and interpretation | Complete Lab 5 **On Your Own** |
+| **Wed., Oct. 21** | Lab 6: Inference for numerical data | Lab 6 work |
+| **Fri., Oct. 23** | Lab 6 review and interpretation | Complete Lab 6 **On Your Own** |
 | **Mon., Oct. 26** | Comparing groups | Review OpenIntro Ch. 5 |
-| **Wed., Oct. 28** | Lab 6: More statistical inference | Lab 6 work |
-| **Fri., Oct. 30** | Lab 6 and problem-set support | **Problem Set 3 due** |
+| **Wed., Oct. 28** | Lab 7: More statistical inference | Lab 7 work |
+| **Fri., Oct. 30** | Lab 7 and problem-set support | **Problem Set 3 due** |
 
 ::: {.callout-note appearance="simple"}
 **Problem Set 3 — Statistical inference**  
@@ -83,11 +83,11 @@ OpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5
 | **Wed., Nov. 4** | R review and project preparation | Bring project ideas and coding questions |
 | **Fri., Nov. 6** | Project and R support | Project preparation |
 | **Mon., Nov. 9** | Correlation and simple linear regression | OpenIntro Ch. 7 |
-| **Wed., Nov. 11** | Lab 7: Simple regression | Lab 7 work |
-| **Fri., Nov. 13** | Lab 7 review and interpretation | Complete Lab 7 **On Your Own** |
+| **Wed., Nov. 11** | Lab 8: Simple regression | Lab 8 work |
+| **Fri., Nov. 13** | Lab 8 review and interpretation | Complete Lab 8 **On Your Own** |
 | **Mon., Nov. 16** | Multiple linear regression | OpenIntro Ch. 8, Sections 8.1–8.3 |
-| **Wed., Nov. 18** | Lab 8: Multiple regression and predicted values | Lab 8 work |
-| **Fri., Nov. 20** | Lab 8, predicted values, and project support | Complete Lab 8 **On Your Own** |
+| **Wed., Nov. 18** | Lab 9: Multiple regression and predicted values | Lab 9 work |
+| **Fri., Nov. 20** | Lab 9, predicted values, and project support | Complete Lab 9 **On Your Own** |
 
 ## Fall Break
 
