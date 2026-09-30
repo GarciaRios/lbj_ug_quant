@@ -31,8 +31,8 @@ Use shot-by-shot basketball data to practice conditional probability, independen
 
 [Open the teaching guide](labs/lab03/) · [Download the student report](templates/lab03-template.qmd){download="lab03-template.qmd"}
 
-## Distribution Practice: Ames Housing
+## Lab 4: Normal and binomial models with Ames housing
 
 Use Ames housing data to compare empirical probabilities with a fitted normal model, then build and interpret a binomial model from the observed data.
 
-[Open the practice guide](labs/distributions/) · [Download the student report](templates/distributions-template.qmd){download="distributions-template.qmd"}
+[Open the teaching guide](labs/lab04/) · [Download the student report](templates/lab04-template.qmd){download="lab04-template.qmd"}
