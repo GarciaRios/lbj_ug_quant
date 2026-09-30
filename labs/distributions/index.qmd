@@ -1,0 +1,424 @@
+---
+title: "Distribution Practice: Ames Housing"
+subtitle: "From observed data to normal and binomial probability models"
+execute:
+  eval: false
+---
+
+[Download the student practice template](../../templates/distributions-template.qmd){.btn .btn-primary download="distributions-template.qmd"}
+
+## The question
+
+How can a probability model help us say something meaningful about real housing data?
+
+Today we will use residential home sales from Ames, Iowa. Rather than treating the normal and binomial distributions as isolated formulas, we will use them to answer substantive questions about the Ames housing market.
+
+Our workflow is:
+
+1. **See the actual data.**
+2. **Calculate a useful quantity.**
+3. **Build a probability model.**
+4. **Compare the model with reality.**
+5. **Interpret what the number means.**
+
+::: {.callout-tip appearance="simple"}
+The goal is not just to get a probability.
+
+**See it. Model it. Calculate it. Interpret it.**
+:::
+
+## Setup
+
+```r
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab4/data/ames.RData"))
+```
+
+The data contain residential home sales in Ames, Iowa, from 2006 through 2010. Each row is one home sale.
+
+Today we will focus on `area`, the above-ground living area of the home in square feet.
+
+```r
+glimpse(ames)
+nrow(ames)
+```
+
+## 1. Start with the actual distribution
+
+Before using a probability model, look at the data.
+
+```r
+ggplot(ames, aes(x = area)) +
+  geom_histogram(binwidth = 250) +
+  labs(
+    x = "Living area (square feet)",
+    y = "Number of home sales",
+    title = "Living area of homes sold in Ames"
+  ) +
+  theme_minimal()
+```
+
+Now calculate several summaries:
+
+```r
+area_stats <- ames |>
+  summarise(
+    mean_area = mean(area),
+    median_area = median(area),
+    sd_area = sd(area),
+    q1 = quantile(area, 0.25),
+    q3 = quantile(area, 0.75),
+    min_area = min(area),
+    max_area = max(area)
+  )
+
+area_stats
+```
+
+### Your turn
+
+1. Describe the shape of the distribution of living area.
+2. What would you call a "typical" Ames home based on this distribution? Explain which measure of center you chose.
+3. Is the mean larger than the median? What does that tell you about the shape?
+4. Based on the histogram, does a normal model look perfect, reasonable, or poor? Explain.
+
+A model does not have to reproduce every feature of the data to be useful. But we should understand where it fits well and where it does not.
+
+---
+
+## 2. Give a z-score substantive meaning
+
+Suppose we want to know how unusual a **2,000-square-foot** home is relative to homes sold in Ames.
+
+Store the mean and standard deviation:
+
+```r
+mu_area <- mean(ames$area)
+sigma_area <- sd(ames$area)
+```
+
+Now calculate the z-score:
+
+```r
+z_2000 <- (2000 - mu_area) / sigma_area
+z_2000
+```
+
+Recall:
+
+$$
+z = \frac{x-\mu}{\sigma}.
+$$
+
+### Your turn
+
+5. How many standard deviations above or below the Ames mean is a 2,000-square-foot home?
+6. Write one sentence interpreting the z-score in the context of Ames housing.
+7. Based only on the z-score, would you describe 2,000 square feet as extremely unusual? Why or why not?
+
+The z-score changes the units from **square feet** to **standard deviations from the mean**.
+
+---
+
+## 3. Ask the same question two ways
+
+Now ask:
+
+> **What proportion of Ames homes have at least 2,000 square feet of living area?**
+
+Because we have the full Ames dataset, we can answer this directly from the observed data.
+
+### Empirical probability
+
+```r
+p_large_empirical <- ames |>
+  summarise(
+    p_large = mean(area >= 2000)
+  ) |>
+  pull(p_large)
+
+p_large_empirical
+```
+
+This is the **observed proportion** of Ames home sales meeting our definition of a large home.
+
+### Normal-model probability
+
+Now suppose we model living area with a normal distribution having the same mean and standard deviation as the Ames data:
+
+$$
+X \sim N(\mu_{area},\sigma_{area}).
+$$
+
+The model-based probability of at least 2,000 square feet is:
+
+```r
+p_large_normal <- 1 - pnorm(
+  2000,
+  mean = mu_area,
+  sd = sigma_area
+)
+
+p_large_normal
+```
+
+### Your turn
+
+8. What proportion of Ames homes are actually at least 2,000 square feet?
+9. What proportion does the fitted normal model predict?
+10. Are the two probabilities identical? Which is larger?
+11. Look back at the histogram. What feature of the actual distribution might help explain the difference?
+
+This is an important distinction:
+
+> **The empirical probability describes what we observed. The model probability describes what the fitted probability model predicts.**
+
+---
+
+## 4. Visualize the model against reality
+
+Put the observed distribution and the fitted normal curve on the same graph.
+
+```r
+ggplot(ames, aes(x = area)) +
+  geom_histogram(
+    aes(y = after_stat(density)),
+    binwidth = 250
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = mu_area, sd = sigma_area),
+    linewidth = 1
+  ) +
+  geom_vline(
+    xintercept = 2000,
+    linetype = "dashed"
+  ) +
+  labs(
+    x = "Living area (square feet)",
+    y = "Density",
+    title = "Ames living area and a fitted normal model"
+  ) +
+  theme_minimal()
+```
+
+### Your turn
+
+12. Where does the normal model fit the observed distribution reasonably well?
+13. Where does it fit less well?
+14. Why is it useful to look at the graph before trusting a probability calculated from a model?
+
+---
+
+## 5. Turn an observed proportion into a binomial model
+
+Now define a success as:
+
+$$
+\text{Success} = \text{a home has at least 2,000 square feet of living area}.
+$$
+
+We already estimated the probability of success from the Ames population:
+
+```r
+p_large_empirical
+```
+
+Suppose we consider a group of **10 home sales** and define
+
+$$
+Y = \text{number of the 10 homes with area at least 2,000 square feet}.
+$$
+
+If the BINS conditions are reasonable, then
+
+$$
+Y \sim \operatorname{Binom}(10,p),
+$$
+
+where $p$ is the observed Ames proportion.
+
+### Check BINS
+
+- **B**inary: each home is either at least 2,000 square feet or it is not.
+- **I**ndependent: knowing the size category of one selected home should not determine another.
+- **N**umber fixed: we consider 10 home sales.
+- **S**ame probability: we use the same Ames probability for each trial.
+
+### Your turn
+
+15. What is $n$ in this model?
+16. What is $p$? Report the value calculated from the data.
+17. What exactly counts as a success?
+18. Which BINS condition would you worry about most if these 10 homes all came from the same neighborhood or development? Explain.
+
+---
+
+## 6. Make the binomial probabilities mean something
+
+What is the probability that **exactly 4 of 10** selected Ames homes are at least 2,000 square feet?
+
+First calculate it using the binomial formula:
+
+$$
+P(Y=4)
+=
+{10\choose4}
+p^4(1-p)^6.
+$$
+
+```r
+choose(10, 4) *
+  p_large_empirical^4 *
+  (1 - p_large_empirical)^6
+```
+
+Now verify with R:
+
+```r
+dbinom(
+  4,
+  size = 10,
+  prob = p_large_empirical
+)
+```
+
+Now calculate the probability that **at least 4 of 10** are large:
+
+```r
+1 - pbinom(
+  3,
+  size = 10,
+  prob = p_large_empirical
+)
+```
+
+### Your turn
+
+19. What is $P(Y=4)$? Interpret it in words.
+20. What is $P(Y\geq4)$? Interpret it in words.
+21. Why is $P(Y\geq4)$ larger than $P(Y=4)$?
+22. Explain why the value of $p$ here is more meaningful than simply being handed an arbitrary number such as $p=0.30$.
+
+---
+
+## 7. See the entire binomial distribution
+
+Calculate the probability for every possible number of large homes in a group of 10.
+
+```r
+binom_ames <- tibble(
+  large_homes = 0:10
+) |>
+  mutate(
+    probability = dbinom(
+      large_homes,
+      size = 10,
+      prob = p_large_empirical
+    )
+  )
+
+binom_ames
+```
+
+Visualize it:
+
+```r
+ggplot(
+  binom_ames,
+  aes(x = large_homes, y = probability)
+) +
+  geom_col() +
+  labs(
+    x = "Large homes among 10 sales",
+    y = "Probability",
+    title = "Number of Ames homes at least 2,000 square feet"
+  ) +
+  theme_minimal()
+```
+
+Calculate the expected value and standard deviation:
+
+```r
+n <- 10
+p <- p_large_empirical
+
+expected_large <- n * p
+sd_large <- sqrt(n * p * (1 - p))
+
+expected_large
+sd_large
+```
+
+### Your turn
+
+23. Which number of large homes is most probable according to the graph?
+24. What is the expected number of large homes among 10 sales?
+25. Explain what the expected value means. Does it mean every group of 10 will contain exactly that many large homes?
+26. What does the standard deviation tell us about how much the count tends to vary across repeated groups of 10?
+
+---
+
+# On Your Own: Change the definition
+
+Repeat the analysis using a **different threshold** for what counts as a large home. Choose either **1,800 square feet** or **2,500 square feet**.
+
+### A. Define and describe
+
+27. State the threshold you selected.
+
+28. Calculate the empirical proportion of Ames homes meeting your definition.
+
+```r
+
+```
+
+### B. Compare reality with the normal model
+
+29. Calculate the z-score for your threshold.
+
+```r
+
+```
+
+30. Use the fitted normal model to calculate the probability that a home is at least as large as your threshold.
+
+```r
+
+```
+
+31. Compare the empirical probability with the normal-model probability in 2--3 sentences. Does the normal model overestimate or underestimate the observed upper-tail probability?
+
+### C. Build a binomial model
+
+For a group of **12 home sales**, let $W$ be the number meeting your new definition of a large home.
+
+32. State the binomial model using your estimated value of $p$.
+
+33. Calculate $P(W=4)$.
+
+```r
+
+```
+
+34. Calculate $P(W\geq4)$.
+
+```r
+
+```
+
+35. Calculate the expected value and standard deviation of $W$.
+
+```r
+
+```
+
+36. In 2--3 sentences, explain what your binomial results mean in the context of Ames home sales.
+
+::: {.callout-tip appearance="simple"}
+The strongest answers today connect the number back to the data:
+
+**What does this probability tell us about actual homes?**
+:::
