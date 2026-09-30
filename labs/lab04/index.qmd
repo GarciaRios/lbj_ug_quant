@@ -47,11 +47,14 @@ library(dplyr)
 library(ggplot2)
 
 load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab4/data/ames.RData"))
+
+ames <- ames |>
+  rename(area = Gr.Liv.Area)
 ```
 
 The data contain residential home sales in Ames, Iowa, from 2006 through 2010. Each row is one home sale.
 
-Today we will focus on `area`, the above-ground living area of the home in square feet.
+The original dataset stores above-ground living area as `Gr.Liv.Area`. For readability, we rename it `area` and use that shorter name throughout the lab.
 
 ```r
 glimpse(ames)
