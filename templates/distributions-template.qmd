@@ -7,6 +7,12 @@ editor_options:
   chunk_output_type: console
 ---
 
+## Policy scenario
+
+Suppose the **Ames Sustainability Office** is planning a hypothetical residential energy-audit program. Homes with at least **2,000 square feet** of living area require a longer inspection slot. A field team can comfortably handle at most **3 extended audits in a day** before the office needs additional staff time or overtime.
+
+The analysis will help answer how common extended-audit homes are, whether a normal model describes that share well, and how often a day's workload could exceed planned capacity.
+
 ## Setup
 
 ```{r}
@@ -124,6 +130,14 @@ p_large_normal
 
 > 
 
+### Policy interpretation
+
+Suppose the Sustainability Office estimated the share of extended-audit homes using the normal model rather than the observed Ames data.
+
+Would the normal model lead the office to plan for too many or too few extended audits? How could that affect staffing or scheduling?
+
+> 
+
 ## Exercise 4: Visualize the model against reality
 
 ```{r}
@@ -233,6 +247,14 @@ Calculate $P(Y \geq 4)$.
 
 > 
 
+### Policy interpretation
+
+Recall that the field team can handle at most **3 extended audits per day** without additional staffing.
+
+What does $P(Y\geq4)$ tell the program manager about the risk that a 10-home day exceeds planned capacity?
+
+> 
+
 ## Exercise 7: See the entire binomial distribution
 
 ```{r}
@@ -291,13 +313,20 @@ sd_large
 
 > 
 
-# On Your Own: Change the definition
+# On Your Own: Evaluate an alternative policy rule
 
-Repeat the analysis using a different threshold for what counts as a large home. Choose either **1,800 square feet** or **2,500 square feet**.
+The Sustainability Office is considering changing the threshold for an extended audit.
 
-## A. Define and describe
+Choose one proposed rule:
 
-27. State the threshold you selected.
+- **Broader rule:** extended audit for homes at or above **1,800 square feet**
+- **Narrower rule:** extended audit for homes at or above **2,500 square feet**
+
+Treat your choice as a policy alternative and evaluate what it would imply for program operations.
+
+## A. Define the policy
+
+27. State the threshold you selected and briefly explain whether it represents the broader or narrower rule.
 
 > 
 
@@ -351,6 +380,16 @@ For a group of **12 home sales**, let $W$ be the number meeting your new definit
 
 ```
 
-36. In 2--3 sentences, explain what your binomial results mean in the context of Ames home sales.
+36. In 2--3 sentences, explain what your binomial results mean for staffing a day with 12 scheduled homes.
+
+> 
+
+## D. Policy memo sentence
+
+37. Write **one sentence to the program manager** answering this question:
+
+Under your proposed threshold, should the office view 4 or more extended audits in a 12-home day as a routine planning scenario or a relatively uncommon one?
+
+Support your answer with the probability you calculated.
 
 > 
