@@ -212,6 +212,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#the-question" id="toc-the-question" class="nav-link active" data-scroll-target="#the-question">The question</a></li>
+  <li><a href="#policy-scenario" id="toc-policy-scenario" class="nav-link" data-scroll-target="#policy-scenario">Policy scenario</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#start-with-the-actual-distribution" id="toc-start-with-the-actual-distribution" class="nav-link" data-scroll-target="#start-with-the-actual-distribution">1. Start with the actual distribution</a>
   <ul class="collapse">
@@ -226,6 +227,7 @@ window.Quarto = {
   <li><a href="#empirical-probability" id="toc-empirical-probability" class="nav-link" data-scroll-target="#empirical-probability">Empirical probability</a></li>
   <li><a href="#normal-model-probability" id="toc-normal-model-probability" class="nav-link" data-scroll-target="#normal-model-probability">Normal-model probability</a></li>
   <li><a href="#your-turn-2" id="toc-your-turn-2" class="nav-link" data-scroll-target="#your-turn-2">Your turn</a></li>
+  <li><a href="#policy-interpretation" id="toc-policy-interpretation" class="nav-link" data-scroll-target="#policy-interpretation">Policy interpretation</a></li>
   </ul></li>
   <li><a href="#visualize-the-model-against-reality" id="toc-visualize-the-model-against-reality" class="nav-link" data-scroll-target="#visualize-the-model-against-reality">4. Visualize the model against reality</a>
   <ul class="collapse">
@@ -239,16 +241,18 @@ window.Quarto = {
   <li><a href="#make-the-binomial-probabilities-mean-something" id="toc-make-the-binomial-probabilities-mean-something" class="nav-link" data-scroll-target="#make-the-binomial-probabilities-mean-something">6. Make the binomial probabilities mean something</a>
   <ul class="collapse">
   <li><a href="#your-turn-5" id="toc-your-turn-5" class="nav-link" data-scroll-target="#your-turn-5">Your turn</a></li>
+  <li><a href="#policy-interpretation-1" id="toc-policy-interpretation-1" class="nav-link" data-scroll-target="#policy-interpretation-1">Policy interpretation</a></li>
   </ul></li>
   <li><a href="#see-the-entire-binomial-distribution" id="toc-see-the-entire-binomial-distribution" class="nav-link" data-scroll-target="#see-the-entire-binomial-distribution">7. See the entire binomial distribution</a>
   <ul class="collapse">
   <li><a href="#your-turn-6" id="toc-your-turn-6" class="nav-link" data-scroll-target="#your-turn-6">Your turn</a></li>
   </ul></li>
-  <li><a href="#on-your-own-change-the-definition" id="toc-on-your-own-change-the-definition" class="nav-link" data-scroll-target="#on-your-own-change-the-definition">On Your Own: Change the definition</a>
+  <li><a href="#on-your-own-evaluate-an-alternative-policy-rule" id="toc-on-your-own-evaluate-an-alternative-policy-rule" class="nav-link" data-scroll-target="#on-your-own-evaluate-an-alternative-policy-rule">On Your Own: Evaluate an alternative policy rule</a>
   <ul class="collapse">
-  <li><a href="#a.-define-and-describe" id="toc-a.-define-and-describe" class="nav-link" data-scroll-target="#a.-define-and-describe">A. Define and describe</a></li>
+  <li><a href="#a.-define-the-policy" id="toc-a.-define-the-policy" class="nav-link" data-scroll-target="#a.-define-the-policy">A. Define the policy</a></li>
   <li><a href="#b.-compare-reality-with-the-normal-model" id="toc-b.-compare-reality-with-the-normal-model" class="nav-link" data-scroll-target="#b.-compare-reality-with-the-normal-model">B. Compare reality with the normal model</a></li>
   <li><a href="#c.-build-a-binomial-model" id="toc-c.-build-a-binomial-model" class="nav-link" data-scroll-target="#c.-build-a-binomial-model">C. Build a binomial model</a></li>
+  <li><a href="#d.-policy-memo-sentence" id="toc-d.-policy-memo-sentence" class="nav-link" data-scroll-target="#d.-policy-memo-sentence">D. Policy memo sentence</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -259,7 +263,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Distribution Practice: Ames Housing</h1>
-<p class="subtitle lead">From observed data to normal and binomial probability models</p>
+<p class="subtitle lead">From observed data to probability models and policy planning</p>
 </div>
 
 
@@ -281,6 +285,18 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="the-question">The question</h2>
 <p>How can a probability model help us say something meaningful about real housing data?</p>
 <p>Today we will use residential home sales from Ames, Iowa. Rather than treating the normal and binomial distributions as isolated formulas, we will use them to answer substantive questions about the Ames housing market.</p>
+</section>
+<section id="policy-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="policy-scenario">Policy scenario</h2>
+<p>Suppose the <strong>Ames Sustainability Office</strong> is planning a hypothetical residential energy-audit program. Homes with at least <strong>2,000 square feet</strong> of living area require a longer inspection slot. A field team can comfortably handle at most <strong>3 extended audits in a day</strong> before the office needs additional staff time or overtime.</p>
+<p>Before implementing the program, analysts want to know:</p>
+<ul>
+<li>How common are homes that would require an extended audit?</li>
+<li>If the office used a normal model instead of the complete housing data, how accurate would its estimate be?</li>
+<li>If 10 homes are scheduled in a day, how likely is it that <strong>4 or more</strong> require extended audits?</li>
+<li>How should those probabilities inform staffing and scheduling?</li>
+</ul>
+<p>This is a simplified policy scenario, but it gives the quantities we calculate a concrete decision context.</p>
 <p>Our workflow is:</p>
 <ol type="1">
 <li><strong>See the actual data.</strong></li>
@@ -413,6 +429,11 @@ X \sim N(\mu_{area},\sigma_{area}).
 <li>Are the two probabilities identical? Which is larger?</li>
 <li>Look back at the histogram. What feature of the actual distribution might help explain the difference?</li>
 </ol>
+</section>
+<section id="policy-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="policy-interpretation">Policy interpretation</h3>
+<p>Suppose the Sustainability Office estimated the share of extended-audit homes using the normal model rather than the observed Ames data.</p>
+<p><strong>Would the normal model lead the office to plan for too many or too few extended audits? How could that affect staffing or scheduling?</strong></p>
 <p>This is an important distinction:</p>
 <blockquote class="blockquote">
 <p><strong>The empirical probability describes what we observed. The model probability describes what the fitted probability model predicts.</strong></p>
@@ -523,6 +544,11 @@ p^4(1-p)^6.
 <li>Why is <span class="math inline">\(P(Y\geq4)\)</span> larger than <span class="math inline">\(P(Y=4)\)</span>?</li>
 <li>Explain why the value of <span class="math inline">\(p\)</span> here is more meaningful than simply being handed an arbitrary number such as <span class="math inline">\(p=0.30\)</span>.</li>
 </ol>
+</section>
+<section id="policy-interpretation-1" class="level3">
+<h3 class="anchored" data-anchor-id="policy-interpretation-1">Policy interpretation</h3>
+<p>Recall that the field team can handle at most <strong>3 extended audits per day</strong> without additional staffing.</p>
+<p><strong>What does <span class="math inline">\(P(Y\geq4)\)</span> tell the program manager about the risk that a 10-home day exceeds planned capacity?</strong></p>
 <hr>
 </section>
 </section>
@@ -573,13 +599,19 @@ p^4(1-p)^6.
 <hr>
 </section>
 </section>
-<section id="on-your-own-change-the-definition" class="level1">
-<h1>On Your Own: Change the definition</h1>
-<p>Repeat the analysis using a <strong>different threshold</strong> for what counts as a large home. Choose either <strong>1,800 square feet</strong> or <strong>2,500 square feet</strong>.</p>
-<section id="a.-define-and-describe" class="level3">
-<h3 class="anchored" data-anchor-id="a.-define-and-describe">A. Define and describe</h3>
+<section id="on-your-own-evaluate-an-alternative-policy-rule" class="level1">
+<h1>On Your Own: Evaluate an alternative policy rule</h1>
+<p>The Sustainability Office is considering changing the threshold for an extended audit.</p>
+<p>Choose one proposed rule:</p>
+<ul>
+<li><strong>Broader rule:</strong> extended audit for homes at or above <strong>1,800 square feet</strong></li>
+<li><strong>Narrower rule:</strong> extended audit for homes at or above <strong>2,500 square feet</strong></li>
+</ul>
+<p>Treat your choice as a policy alternative and evaluate what it would imply for program operations.</p>
+<section id="a.-define-the-policy" class="level3">
+<h3 class="anchored" data-anchor-id="a.-define-the-policy">A. Define the policy</h3>
 <ol start="27" type="1">
-<li><p>State the threshold you selected.</p></li>
+<li><p>State the threshold you selected and briefly explain whether it represents the broader or narrower rule.</p></li>
 <li><p>Calculate the empirical proportion of Ames homes meeting your definition.</p></li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -615,8 +647,18 @@ p^4(1-p)^6.
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="36" type="1">
-<li>In 2–3 sentences, explain what your binomial results mean in the context of Ames home sales.</li>
+<li>In 2–3 sentences, explain what your binomial results mean for staffing a day with 12 scheduled homes.</li>
 </ol>
+</section>
+<section id="d.-policy-memo-sentence" class="level3">
+<h3 class="anchored" data-anchor-id="d.-policy-memo-sentence">D. Policy memo sentence</h3>
+<ol start="37" type="1">
+<li>Write <strong>one sentence to the program manager</strong> answering this question:</li>
+</ol>
+<blockquote class="blockquote">
+<p>Under your proposed threshold, should the office view 4 or more extended audits in a 12-home day as a routine planning scenario or a relatively uncommon one?</p>
+</blockquote>
+<p>Support your answer with the probability you calculated.</p>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
