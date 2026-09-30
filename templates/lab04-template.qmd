@@ -1,5 +1,5 @@
 ---
-title: "Distribution Practice: Ames Housing"
+title: "Lab 4: Normal and Binomial Models with Ames Housing"
 author: "Your name"
 format: html
 editor: visual
