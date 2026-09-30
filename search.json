@@ -266,39 +266,102 @@
     "text": "On Your Own: More recent U.S. births\nLoad the second dataset:\nload(url(\"https://raw.githubusercontent.com/GarciaRios/lbj_ug_quant/main/data/present.RData\"))\nglimpse(present)\nComplete the following in the downloadable report:\n\nIdentify the unit of observation, years covered, and variables.\nCreate total and boy_prop.\nMake a clear line graph of total births over time.\nMake a line graph of boy_prop with a reference line at 0.5.\nDetermine whether boys outnumber girls in every observed year.\nWrite a short interpretation comparing the recent pattern with the Arbuthnot records.\n\nA strong interpretation states the pattern, uses relevant quantities, and acknowledges what these descriptive data cannot explain."
   },
   {
-    "objectID": "labs.html",
-    "href": "labs.html",
-    "title": "Labs",
+    "objectID": "labs/distributions/index.html",
+    "href": "labs/distributions/index.html",
+    "title": "Distribution Practice: Ames Housing",
     "section": "",
-    "text": "The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nEach lab has two parts: a detailed online guide and a student lab template for students to complete and render."
+    "text": "Download the student practice template"
   },
   {
-    "objectID": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
-    "href": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
-    "title": "Labs",
-    "section": "Lab 0: Getting started with R, RStudio, and Quarto",
-    "text": "Lab 0: Getting started with R, RStudio, and Quarto\nSet up the software workflow, use R as a calculator, create objects, and render a first reproducible report.\nOpen the teaching guide · Download the student report"
+    "objectID": "labs/distributions/index.html#the-question",
+    "href": "labs/distributions/index.html#the-question",
+    "title": "Distribution Practice: Ames Housing",
+    "section": "The question",
+    "text": "The question\nHow can a probability model help us say something meaningful about real housing data?\nToday we will use residential home sales from Ames, Iowa. Rather than treating the normal and binomial distributions as isolated formulas, we will use them to answer substantive questions about the Ames housing market.\nOur workflow is:\n\nSee the actual data.\nCalculate a useful quantity.\nBuild a probability model.\nCompare the model with reality.\nInterpret what the number means.\n\n\n\n\n\n\n\nThe goal is not just to get a probability.\nSee it. Model it. Calculate it. Interpret it."
   },
   {
-    "objectID": "labs.html#lab-1-introduction-to-data-analysis-in-r",
-    "href": "labs.html#lab-1-introduction-to-data-analysis-in-r",
-    "title": "Labs",
-    "section": "Lab 1: Introduction to data analysis in R",
-    "text": "Lab 1: Introduction to data analysis in R\nUse historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.\nOpen the teaching guide · Download the student report"
+    "objectID": "labs/distributions/index.html#setup",
+    "href": "labs/distributions/index.html#setup",
+    "title": "Distribution Practice: Ames Housing",
+    "section": "Setup",
+    "text": "Setup\nlibrary(dplyr)\nlibrary(ggplot2)\n\nload(url(\"https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab4/data/ames.RData\"))\nThe data contain residential home sales in Ames, Iowa, from 2006 through 2010. Each row is one home sale.\nToday we will focus on area, the above-ground living area of the home in square feet.\nglimpse(ames)\nnrow(ames)"
   },
   {
-    "objectID": "labs.html#lab-2-describing-and-comparing-data-in-r",
-    "href": "labs.html#lab-2-describing-and-comparing-data-in-r",
-    "title": "Labs",
-    "section": "Lab 2: Describing and comparing data in R",
-    "text": "Lab 2: Describing and comparing data in R\nUse CDC survey data to connect distributions, summary statistics, group comparisons, and appropriate visualizations.\nOpen the teaching guide · Download the student report"
+    "objectID": "labs/distributions/index.html#start-with-the-actual-distribution",
+    "href": "labs/distributions/index.html#start-with-the-actual-distribution",
+    "title": "Distribution Practice: Ames Housing",
+    "section": "1. Start with the actual distribution",
+    "text": "1. Start with the actual distribution\nBefore using a probability model, look at the data.\nggplot(ames, aes(x = area)) +\n  geom_histogram(binwidth = 250) +\n  labs(\n    x = \"Living area (square feet)\",\n    y = \"Number of home sales\",\n    title = \"Living area of homes sold in Ames\"\n  ) +\n  theme_minimal()\nNow calculate several summaries:\narea_stats &lt;- ames |&gt;\n  summarise(\n    mean_area = mean(area),\n    median_area = median(area),\n    sd_area = sd(area),\n    q1 = quantile(area, 0.25),\n    q3 = quantile(area, 0.75),\n    min_area = min(area),\n    max_area = max(area)\n  )\n\narea_stats\n\nYour turn\n\nDescribe the shape of the distribution of living area.\nWhat would you call a “typical” Ames home based on this distribution? Explain which measure of center you chose.\nIs the mean larger than the median? What does that tell you about the shape?\nBased on the histogram, does a normal model look perfect, reasonable, or poor? Explain.\n\nA model does not have to reproduce every feature of the data to be useful. But we should understand where it fits well and where it does not."
   },
   {
-    "objectID": "labs.html#lab-3-probability-independence-and-simulation",
-    "href": "labs.html#lab-3-probability-independence-and-simulation",
-    "title": "Labs",
-    "section": "Lab 3: Probability, independence, and simulation",
-    "text": "Lab 3: Probability, independence, and simulation\nUse shot-by-shot basketball data to practice conditional probability, independence, simulation, and streaks.\nOpen the teaching guide · Download the student report"
+    "objectID": "labs/distributions/index.html#give-a-z-score-substantive-meaning",
+    "href": "labs/distributions/index.html#give-a-z-score-substantive-meaning",
+    "title": "Distribution Practice: Ames Housing",
+    "section": "2. Give a z-score substantive meaning",
+    "text": "2. Give a z-score substantive meaning\nSuppose we want to know how unusual a 2,000-square-foot home is relative to homes sold in Ames.\nStore the mean and standard deviation:\nmu_area &lt;- mean(ames$area)\nsigma_area &lt;- sd(ames$area)\nNow calculate the z-score:\nz_2000 &lt;- (2000 - mu_area) / sigma_area\nz_2000\nRecall:\n\\[\nz = \\frac{x-\\mu}{\\sigma}.\n\\]\n\nYour turn\n\nHow many standard deviations above or below the Ames mean is a 2,000-square-foot home?\nWrite one sentence interpreting the z-score in the context of Ames housing.\nBased only on the z-score, would you describe 2,000 square feet as extremely unusual? Why or why not?\n\nThe z-score changes the units from square feet to standard deviations from the mean."
+  },
+  {
+    "objectID": "labs/distributions/index.html#ask-the-same-question-two-ways",
+    "href": "labs/distributions/index.html#ask-the-same-question-two-ways",
+    "title": "Distribution Practice: Ames Housing",
+    "section": "3. Ask the same question two ways",
+    "text": "3. Ask the same question two ways\nNow ask:\n\nWhat proportion of Ames homes have at least 2,000 square feet of living area?\n\nBecause we have the full Ames dataset, we can answer this directly from the observed data.\n\nEmpirical probability\np_large_empirical &lt;- ames |&gt;\n  summarise(\n    p_large = mean(area &gt;= 2000)\n  ) |&gt;\n  pull(p_large)\n\np_large_empirical\nThis is the observed proportion of Ames home sales meeting our definition of a large home.\n\n\nNormal-model probability\nNow suppose we model living area with a normal distribution having the same mean and standard deviation as the Ames data:\n\\[\nX \\sim N(\\mu_{area},\\sigma_{area}).\n\\]\nThe model-based probability of at least 2,000 square feet is:\np_large_normal &lt;- 1 - pnorm(\n  2000,\n  mean = mu_area,\n  sd = sigma_area\n)\n\np_large_normal\n\n\nYour turn\n\nWhat proportion of Ames homes are actually at least 2,000 square feet?\nWhat proportion does the fitted normal model predict?\nAre the two probabilities identical? Which is larger?\nLook back at the histogram. What feature of the actual distribution might help explain the difference?\n\nThis is an important distinction:\n\nThe empirical probability describes what we observed. The model probability describes what the fitted probability model predicts."
+  },
+  {
+    "objectID": "labs/distributions/index.html#visualize-the-model-against-reality",
+    "href": "labs/distributions/index.html#visualize-the-model-against-reality",
+    "title": "Distribution Practice: Ames Housing",
+    "section": "4. Visualize the model against reality",
+    "text": "4. Visualize the model against reality\nPut the observed distribution and the fitted normal curve on the same graph.\nggplot(ames, aes(x = area)) +\n  geom_histogram(\n    aes(y = after_stat(density)),\n    binwidth = 250\n  ) +\n  stat_function(\n    fun = dnorm,\n    args = list(mean = mu_area, sd = sigma_area),\n    linewidth = 1\n  ) +\n  geom_vline(\n    xintercept = 2000,\n    linetype = \"dashed\"\n  ) +\n  labs(\n    x = \"Living area (square feet)\",\n    y = \"Density\",\n    title = \"Ames living area and a fitted normal model\"\n  ) +\n  theme_minimal()\n\nYour turn\n\nWhere does the normal model fit the observed distribution reasonably well?\nWhere does it fit less well?\nWhy is it useful to look at the graph before trusting a probability calculated from a model?"
+  },
+  {
+    "objectID": "labs/distributions/index.html#turn-an-observed-proportion-into-a-binomial-model",
+    "href": "labs/distributions/index.html#turn-an-observed-proportion-into-a-binomial-model",
+    "title": "Distribution Practice: Ames Housing",
+    "section": "5. Turn an observed proportion into a binomial model",
+    "text": "5. Turn an observed proportion into a binomial model\nNow define a success as:\n\\[\n\\text{Success} = \\text{a home has at least 2,000 square feet of living area}.\n\\]\nWe already estimated the probability of success from the Ames population:\np_large_empirical\nSuppose we consider a group of 10 home sales and define\n\\[\nY = \\text{number of the 10 homes with area at least 2,000 square feet}.\n\\]\nIf the BINS conditions are reasonable, then\n\\[\nY \\sim \\operatorname{Binom}(10,p),\n\\]\nwhere \\(p\\) is the observed Ames proportion.\n\nCheck BINS\n\nBinary: each home is either at least 2,000 square feet or it is not.\nIndependent: knowing the size category of one selected home should not determine another.\nNumber fixed: we consider 10 home sales.\nSame probability: we use the same Ames probability for each trial.\n\n\n\nYour turn\n\nWhat is \\(n\\) in this model?\nWhat is \\(p\\)? Report the value calculated from the data.\nWhat exactly counts as a success?\nWhich BINS condition would you worry about most if these 10 homes all came from the same neighborhood or development? Explain."
+  },
+  {
+    "objectID": "labs/distributions/index.html#make-the-binomial-probabilities-mean-something",
+    "href": "labs/distributions/index.html#make-the-binomial-probabilities-mean-something",
+    "title": "Distribution Practice: Ames Housing",
+    "section": "6. Make the binomial probabilities mean something",
+    "text": "6. Make the binomial probabilities mean something\nWhat is the probability that exactly 4 of 10 selected Ames homes are at least 2,000 square feet?\nFirst calculate it using the binomial formula:\n\\[\nP(Y=4)\n=\n{10\\choose4}\np^4(1-p)^6.\n\\]\nchoose(10, 4) *\n  p_large_empirical^4 *\n  (1 - p_large_empirical)^6\nNow verify with R:\ndbinom(\n  4,\n  size = 10,\n  prob = p_large_empirical\n)\nNow calculate the probability that at least 4 of 10 are large:\n1 - pbinom(\n  3,\n  size = 10,\n  prob = p_large_empirical\n)\n\nYour turn\n\nWhat is \\(P(Y=4)\\)? Interpret it in words.\nWhat is \\(P(Y\\geq4)\\)? Interpret it in words.\nWhy is \\(P(Y\\geq4)\\) larger than \\(P(Y=4)\\)?\nExplain why the value of \\(p\\) here is more meaningful than simply being handed an arbitrary number such as \\(p=0.30\\)."
+  },
+  {
+    "objectID": "labs/distributions/index.html#see-the-entire-binomial-distribution",
+    "href": "labs/distributions/index.html#see-the-entire-binomial-distribution",
+    "title": "Distribution Practice: Ames Housing",
+    "section": "7. See the entire binomial distribution",
+    "text": "7. See the entire binomial distribution\nCalculate the probability for every possible number of large homes in a group of 10.\nbinom_ames &lt;- tibble(\n  large_homes = 0:10\n) |&gt;\n  mutate(\n    probability = dbinom(\n      large_homes,\n      size = 10,\n      prob = p_large_empirical\n    )\n  )\n\nbinom_ames\nVisualize it:\nggplot(\n  binom_ames,\n  aes(x = large_homes, y = probability)\n) +\n  geom_col() +\n  labs(\n    x = \"Large homes among 10 sales\",\n    y = \"Probability\",\n    title = \"Number of Ames homes at least 2,000 square feet\"\n  ) +\n  theme_minimal()\nCalculate the expected value and standard deviation:\nn &lt;- 10\np &lt;- p_large_empirical\n\nexpected_large &lt;- n * p\nsd_large &lt;- sqrt(n * p * (1 - p))\n\nexpected_large\nsd_large\n\nYour turn\n\nWhich number of large homes is most probable according to the graph?\nWhat is the expected number of large homes among 10 sales?\nExplain what the expected value means. Does it mean every group of 10 will contain exactly that many large homes?\nWhat does the standard deviation tell us about how much the count tends to vary across repeated groups of 10?"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "",
+    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
+  },
+  {
+    "objectID": "index.html#about-the-course",
+    "href": "index.html#about-the-course",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "About the course",
+    "text": "About the course\nThis course introduces students to quantitative reasoning as a way to answer substantive questions about public policy. We will learn how to collect, explore, visualize, and analyze data; evaluate uncertainty; and communicate findings clearly and responsibly.\nThe course connects three elements throughout the semester:\n\nStatistical reasoning\nR programming\nPublic-policy applications\n\nNo prior experience with R is required."
+  },
+  {
+    "objectID": "index.html#weekly-rhythm",
+    "href": "index.html#weekly-rhythm",
+    "title": "Undergraduate Quantitative Methods",
+    "section": "Weekly rhythm",
+    "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
   },
   {
     "objectID": "assignments.html",
@@ -336,32 +399,39 @@
     "text": "Project proposal and final applied project\nThe project asks students to formulate an empirical public-policy question, analyze appropriate data, interpret the results, and communicate the findings clearly.\nThe final project has two connected products:\n\nIndividual reproducible analysis and report (20%): A Quarto report containing the question, data documentation, analysis, results, interpretation, uncertainty, and limitations.\nPolicy poster and presentation (10%): A concise poster translating the project for a nontechnical policy audience, accompanied by a brief oral explanation during the class poster session.\n\nThe poster should emphasize one clear question, one or two effective visualizations, the principal finding, substantive importance, and limitations. The poster does not replace the individual code and report."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Undergraduate Quantitative Methods",
+    "objectID": "labs.html",
+    "href": "labs.html",
+    "title": "Labs",
     "section": "",
-    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
+    "text": "The labs connect statistical reasoning, R programming, and interpretation. We will complete most of each lab together on Wednesday. Friday sections revisit the central ideas, troubleshoot code, and support the On Your Own work.\nEach lab has two parts: a detailed online guide and a student lab template for students to complete and render."
   },
   {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "",
-    "text": "Instructor: Sergio I. García-Ríos\nTeaching Assistant: Sarah Traore\nInstitution: LBJ School of Public Affairs, The University of Texas at Austin\nSemester: Fall 2026\n\n\n\nMeeting\nTime\nLocation\n\n\n\n\nMonday lecture\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nWednesday guided lab\n2:00–3:00 p.m.\nSRH 3.B10\n\n\nFriday section 1\n9:00–10:00 a.m.\nSRH 3.216\n\n\nFriday section 2\n10:00–11:00 a.m.\nSRH 3.216\n\n\n\n\n\nSergio I. García-Ríos: By appointment\nSarah Traore: Wednesday, 12:30–2:00 p.m.; Friday, 11:00 a.m.–12:30 p.m."
+    "objectID": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
+    "href": "labs.html#lab-0-getting-started-with-r-rstudio-and-quarto",
+    "title": "Labs",
+    "section": "Lab 0: Getting started with R, RStudio, and Quarto",
+    "text": "Lab 0: Getting started with R, RStudio, and Quarto\nSet up the software workflow, use R as a calculator, create objects, and render a first reproducible report.\nOpen the teaching guide · Download the student report"
   },
   {
-    "objectID": "index.html#about-the-course",
-    "href": "index.html#about-the-course",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "About the course",
-    "text": "About the course\nThis course introduces students to quantitative reasoning as a way to answer substantive questions about public policy. We will learn how to collect, explore, visualize, and analyze data; evaluate uncertainty; and communicate findings clearly and responsibly.\nThe course connects three elements throughout the semester:\n\nStatistical reasoning\nR programming\nPublic-policy applications\n\nNo prior experience with R is required."
+    "objectID": "labs.html#lab-1-introduction-to-data-analysis-in-r",
+    "href": "labs.html#lab-1-introduction-to-data-analysis-in-r",
+    "title": "Labs",
+    "section": "Lab 1: Introduction to data analysis in R",
+    "text": "Lab 1: Introduction to data analysis in R\nUse historical birth records to learn the basic analysis cycle: inspect, transform, visualize, calculate, and interpret.\nOpen the teaching guide · Download the student report"
   },
   {
-    "objectID": "index.html#weekly-rhythm",
-    "href": "index.html#weekly-rhythm",
-    "title": "Undergraduate Quantitative Methods",
-    "section": "Weekly rhythm",
-    "text": "Weekly rhythm\nMonday: Lecture\nWe introduce the substantive question and the statistical concepts needed to answer it.\nWednesday: Guided lab\nWe work through the method together in R using real data.\nFriday: Lab section\nSarah reviews difficult material, helps troubleshoot code, and supports students as they work on the lab’s On Your Own section."
+    "objectID": "labs.html#lab-2-describing-and-comparing-data-in-r",
+    "href": "labs.html#lab-2-describing-and-comparing-data-in-r",
+    "title": "Labs",
+    "section": "Lab 2: Describing and comparing data in R",
+    "text": "Lab 2: Describing and comparing data in R\nUse CDC survey data to connect distributions, summary statistics, group comparisons, and appropriate visualizations.\nOpen the teaching guide · Download the student report"
+  },
+  {
+    "objectID": "labs.html#lab-3-probability-independence-and-simulation",
+    "href": "labs.html#lab-3-probability-independence-and-simulation",
+    "title": "Labs",
+    "section": "Lab 3: Probability, independence, and simulation",
+    "text": "Lab 3: Probability, independence, and simulation\nUse shot-by-shot basketball data to practice conditional probability, independence, simulation, and streaks.\nOpen the teaching guide · Download the student report"
   },
   {
     "objectID": "labs/lab00/index.html",
