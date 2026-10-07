@@ -53,7 +53,7 @@ OpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3
 | Date | Class activity | Preparation and assignments |
 |---|---|---|
 | **Mon., Oct. 5** | Sampling variability and the central limit theorem | OpenIntro Ch. 4 · [Day 7 slides](materials/slides/day07/PA311N-Day7-Sampling-Variability-CLT.pdf){download="PA311N-Day7-Sampling-Variability-CLT.pdf"} |
-| **Wed., Oct. 7** | Lab 5: Sampling and uncertainty | Begin Problem Set 3 |
+| **Wed., Oct. 7** | Lab 5: Sampling and uncertainty | [Lab guide](labs/lab05/) · [Student lab template](templates/lab05-template.qmd){download="lab05-template.qmd"} · Begin Problem Set 3 |
 | **Fri., Oct. 9** | Lab 5 review and simulation practice | Complete Lab 5 **On Your Own** |
 | **Mon., Oct. 12** | Confidence intervals | Review OpenIntro Ch. 4 |
 | **Wed., Oct. 14** | Confidence interval practice | Work on Problem Set 3 |
