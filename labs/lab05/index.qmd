@@ -1,0 +1,461 @@
+---
+title: "Lab 5: Sampling and Uncertainty"
+subtitle: "From one sample to a sampling distribution"
+execute:
+  eval: false
+---
+
+[Download the student lab template](../../templates/lab05-template.qmd){.btn .btn-primary download="lab05-template.qmd"}
+
+## The policy question
+
+Last week, we treated the Ames housing data as if we could observe the full population. In most policy settings, we cannot.
+
+Suppose the **Ames Sustainability Office** is planning a residential energy-efficiency program. Home size affects inspection time, retrofit costs, and staffing needs. The office wants to know the **average above-ground living area** of homes in the city, but collecting information on every home would be expensive.
+
+So the office takes a sample.
+
+That raises a new question:
+
+> **How much should the city trust an estimate that comes from only one sample?**
+
+Today we will use the full Ames dataset as a known population so that we can see exactly what sampling does to our estimates.
+
+Our workflow is:
+
+1. Take one random sample.
+2. Compare the sample estimate with the population truth.
+3. Repeat the sampling process many times.
+4. Build a sampling distribution.
+5. Measure sampling uncertainty with the standard error.
+6. See how sample size changes precision.
+
+::: {.callout-tip appearance="simple"}
+**The big idea:** a sample statistic is not fixed. If the sample changes, the estimate changes.
+:::
+
+## Setup
+
+```r
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab4/data/ames.RData"))
+
+ames <- ames |>
+  rename(
+    area = Gr.Liv.Area,
+    price = SalePrice
+  )
+```
+
+The data contain residential home sales in Ames, Iowa, from 2006 through 2010. We will treat these 2,930 sales as our population for today's simulation.
+
+---
+
+## 1. Start with the population
+
+First, calculate the population quantities we are trying to learn from a sample.
+
+```r
+population_stats <- ames |>
+  summarise(
+    N = n(),
+    mu_area = mean(area),
+    sigma_area = sd(area)
+  )
+
+population_stats
+```
+
+Store the population mean and standard deviation so we can use them later.
+
+```r
+mu_area <- mean(ames$area)
+sigma_area <- sd(ames$area)
+```
+
+And look again at the population distribution:
+
+```r
+ggplot(ames, aes(x = area)) +
+  geom_histogram(binwidth = 250) +
+  labs(
+    x = "Living area (square feet)",
+    y = "Number of homes",
+    title = "Population distribution of living area"
+  ) +
+  theme_minimal()
+```
+
+### Your turn
+
+1. What is the population mean living area, $\mu$?
+2. What is the population standard deviation, $\sigma$?
+3. Describe the shape of the population distribution. Why might that shape matter when we begin taking samples?
+
+Remember: $\mu$ and $\sigma$ are **population parameters**. In a real policy study, we usually do not know them.
+
+---
+
+## 2. Take one sample
+
+Imagine the city can inspect only **50 randomly selected homes**.
+
+Choose an integer seed for your group so your work is reproducible. Different groups should choose different seeds.
+
+```r
+set.seed(527)  # Replace 527 with an integer chosen by your group.
+
+sample_50 <- ames |>
+  slice_sample(n = 50)
+```
+
+Calculate the sample mean and sample standard deviation.
+
+```r
+sample_50 |>
+  summarise(
+    x_bar = mean(area),
+    s = sd(area)
+  )
+```
+
+### Your turn
+
+4. What is your sample mean, $\bar{x}$?
+5. How far is your $\bar{x}$ from the true population mean $\mu$? Report the difference in square feet.
+6. Compare your estimate with another group's estimate. Are the two sample means identical? Why or why not?
+
+::: {.callout-note appearance="simple"}
+A different random sample usually produces a different value of $\bar{x}$. That difference is **sampling variability**.
+:::
+
+---
+
+## 3. What if we sampled again and again?
+
+One sample gives us one estimate. To understand how much that estimate can vary, imagine repeating the same sampling process.
+
+The code below takes **20 different samples of 50 homes** and calculates the mean living area in each sample.
+
+```r
+sample_means_20 <- tibble(
+  sample_id = 1:20,
+  x_bar = replicate(
+    20,
+    mean(sample(ames$area, size = 50, replace = TRUE))
+  )
+)
+
+sample_means_20
+```
+
+Plot the 20 estimates. The dashed line is the true population mean.
+
+```r
+ggplot(sample_means_20, aes(x = sample_id, y = x_bar)) +
+  geom_point(size = 2.5) +
+  geom_hline(
+    yintercept = mu_area,
+    linetype = "dashed"
+  ) +
+  labs(
+    x = "Random sample",
+    y = "Sample mean living area",
+    title = "Twenty samples produce twenty estimates"
+  ) +
+  theme_minimal()
+```
+
+### Your turn
+
+7. What does each point in this graph represent?
+8. Are all 20 estimates on the same side of the true population mean?
+9. What does this graph tell you about treating a single sample mean as if it were exact?
+
+---
+
+## 4. Build a sampling distribution
+
+Twenty samples help, but we can do much better with a computer.
+
+Now take **2,000 random samples of size 50** and calculate the mean of each one.
+
+```r
+sample_means_50 <- tibble(
+  x_bar = replicate(
+    2000,
+    mean(sample(ames$area, size = 50, replace = TRUE))
+  )
+)
+```
+
+Visualize the distribution of the 2,000 sample means.
+
+```r
+ggplot(sample_means_50, aes(x = x_bar)) +
+  geom_histogram(binwidth = 25) +
+  geom_vline(
+    xintercept = mu_area,
+    linetype = "dashed"
+  ) +
+  labs(
+    x = "Sample mean living area",
+    y = "Number of samples",
+    title = "Sampling distribution of the mean, n = 50"
+  ) +
+  theme_minimal()
+```
+
+Summarize the sampling distribution:
+
+```r
+sample_means_50 |>
+  summarise(
+    mean_of_sample_means = mean(x_bar),
+    simulated_se = sd(x_bar)
+  )
+```
+
+### Your turn
+
+10. What does one observation in `sample_means_50` represent?
+11. Describe the **shape, center, and spread** of the sampling distribution.
+12. Compare the mean of the 2,000 sample means with $\mu$. What do you notice?
+
+A sampling distribution is a distribution of a **statistic**, not a distribution of individual homes.
+
+---
+
+## 5. Standard deviation versus standard error
+
+The population standard deviation describes variation among **individual homes**:
+
+$$
+\sigma = SD(X).
+$$
+
+The **standard error** describes variation among **sample means**:
+
+$$
+SE(\bar{x}) = SD(\bar{x}).
+$$
+
+Under independent random sampling,
+
+$$
+\boxed{SE(\bar{x}) = \frac{\sigma}{\sqrt{n}}}
+$$
+
+For samples of 50 Ames homes:
+
+```r
+theoretical_se_50 <- sigma_area / sqrt(50)
+theoretical_se_50
+```
+
+Compare the theoretical standard error with the one generated by our simulation.
+
+```r
+sample_means_50 |>
+  summarise(
+    simulated_se = sd(x_bar),
+    theoretical_se = theoretical_se_50
+  )
+```
+
+### Your turn
+
+13. How close is the simulated standard error to $\sigma/\sqrt{50}$?
+14. In one sentence, explain the difference between **standard deviation** and **standard error**.
+15. Why is the standard error much smaller than the population standard deviation?
+
+---
+
+## 6. What changes when the sample gets larger?
+
+Create sampling distributions using samples of size 10, 50, and 100.
+
+```r
+sample_means_10 <- tibble(
+  n = "n = 10",
+  x_bar = replicate(
+    2000,
+    mean(sample(ames$area, size = 10, replace = TRUE))
+  )
+)
+
+sample_means_100 <- tibble(
+  n = "n = 100",
+  x_bar = replicate(
+    2000,
+    mean(sample(ames$area, size = 100, replace = TRUE))
+  )
+)
+
+sampling_sizes <- bind_rows(
+  sample_means_10,
+  sample_means_50 |> mutate(n = "n = 50"),
+  sample_means_100
+) |>
+  mutate(
+    n = factor(n, levels = c("n = 10", "n = 50", "n = 100"))
+  )
+```
+
+Plot all three sampling distributions using the same horizontal scale.
+
+```r
+ggplot(sampling_sizes, aes(x = x_bar)) +
+  geom_histogram(binwidth = 25) +
+  facet_wrap(~ n, ncol = 1) +
+  geom_vline(
+    xintercept = mu_area,
+    linetype = "dashed"
+  ) +
+  labs(
+    x = "Sample mean living area",
+    y = "Number of samples",
+    title = "Larger samples produce more precise estimates"
+  ) +
+  theme_minimal()
+```
+
+Compare their centers and simulated standard errors.
+
+```r
+sampling_sizes |>
+  group_by(n) |>
+  summarise(
+    center = mean(x_bar),
+    simulated_se = sd(x_bar)
+  )
+```
+
+And compare with the theoretical standard errors:
+
+```r
+tibble(
+  n = c(10, 50, 100),
+  theoretical_se = sigma_area / sqrt(n)
+)
+```
+
+### Your turn
+
+16. What happens to the **center** of the sampling distribution as $n$ increases?
+17. What happens to the **spread** as $n$ increases?
+18. What happens to the **shape** as $n$ increases, especially given that the population itself is somewhat right-skewed?
+19. Which sample size gives the most precise estimate of the population mean? How can you tell from both the graph and the standard error?
+20. Suppose the city wants to cut the standard error in half. By what factor would it need to increase the sample size? Explain using the $\sqrt{n}$ in the denominator.
+
+::: {.callout-tip appearance="simple"}
+Larger samples do not guarantee the exact population value. They make large sampling errors **less common**.
+:::
+
+---
+
+## 7. Turn sampling uncertainty into a policy statement
+
+Suppose the Sustainability Office uses a random sample of 50 homes to estimate average living area.
+
+How likely is a sample mean to **overstate the true population mean by at least 100 square feet**?
+
+Under the Central Limit Theorem,
+
+$$
+\bar{X} \approx N\left(\mu,\frac{\sigma}{\sqrt{n}}\right).
+$$
+
+Use the normal model for the sampling distribution:
+
+```r
+prob_over_by_100 <- 1 - pnorm(
+  mu_area + 100,
+  mean = mu_area,
+  sd = theoretical_se_50
+)
+
+prob_over_by_100
+```
+
+Now compare that model-based answer with our simulated sampling distribution:
+
+```r
+sample_means_50 |>
+  summarise(
+    simulated_probability = mean(x_bar >= mu_area + 100)
+  )
+```
+
+### Your turn
+
+21. Interpret `prob_over_by_100` in words for the Sustainability Office.
+22. How close is the simulated probability to the probability predicted by the CLT?
+23. If overestimating average home size leads the city to over-budget staff time or retrofit resources, what does this probability tell the program manager?
+24. What could the city do to reduce this sampling uncertainty?
+
+---
+
+# On Your Own: Estimate average home price
+
+The Sustainability Office is now considering a housing program whose budget depends on **home prices** rather than home size.
+
+This time, you will conduct the analysis.
+
+### A. One sample
+
+25. Take a random sample of **25 homes** and calculate the sample mean sale price. Treat this as your point estimate of the population mean.
+
+```r
+
+```
+
+26. Calculate the actual population mean sale price so you can evaluate your estimate. How far away was your sample estimate?
+
+```r
+
+```
+
+### B. Build a sampling distribution
+
+27. Simulate **2,000 sample means** using samples of size 25. Store them in a tibble called `price_means_25`.
+
+```r
+
+```
+
+28. Plot the sampling distribution. Describe its shape and center.
+
+```r
+
+```
+
+29. Calculate the simulated standard error and compare it with
+
+$$
+\frac{\sigma_{price}}{\sqrt{25}}.
+$$
+
+```r
+
+```
+
+### C. Increase the sample size
+
+30. Repeat the simulation using samples of **100 homes** and store the results as `price_means_100`.
+
+```r
+
+```
+
+31. Compare the sampling distributions for $n=25$ and $n=100$. Which gives the city a more precise estimate, and why?
+
+### D. Policy recommendation
+
+32. Write **2--3 sentences to the program manager** explaining why a larger sample can improve a policy estimate even though no single sample is guaranteed to equal the population truth.
+
+::: {.callout-tip appearance="simple"}
+Do not stop at "the standard error is smaller." Explain what a smaller standard error means for the **reliability of the policy estimate**.
+:::
