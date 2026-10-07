@@ -15,6 +15,8 @@ Suppose the **Ames Sustainability Office** is planning a residential energy-effi
 
 So the office takes a sample.
 
+That raises a new question:
+
 > **How much should the city trust an estimate that comes from only one sample?**
 
 Today we will use the full Ames dataset as a known population so that we can see exactly what sampling does to our estimates.
@@ -363,7 +365,7 @@ How likely is a sample mean to **overstate the true population mean by at least 
 Under the Central Limit Theorem,
 
 $$
-\bar{X} \approx N\left(\mu,\frac{\sigma}{\sqrt{n}}}\right).
+\bar{X} \approx N\left(\mu,\frac{\sigma}{\sqrt{n}}\right).
 $$
 
 Use the normal model for the sampling distribution:
@@ -392,4 +394,68 @@ sample_means_50 |>
 21. Interpret `prob_over_by_100` in words for the Sustainability Office.
 22. How close is the simulated probability to the probability predicted by the CLT?
 23. If overestimating average home size leads the city to over-budget staff time or retrofit resources, what does this probability tell the program manager?
-ÈĞ¸]¡…Ğ½Õ±Ñ¡”¥Ñä‘¼Ñ¼É•‘Õ”Ñ¡¥ÌÍ…µÁ±¥¹œÕ¹•ÉÑ…¥¹Ñäü((´´´((Œ=¸e½ÕÈ=İ¸èÍÑ¥µ…Ñ”…Ù•É…”¡½µ”ÁÉ¥”()Q¡”MÕÍÑ…¥¹…‰¥±¥Ñä=™™¥”¥Ì¹½Ü½¹Í¥‘•É¥¹œ„¡½ÕÍ¥¹œÁÉ½É…´İ¡½Í”‰Õ‘•Ğ‘•Á•¹‘Ì½¸€¨©¡½µ”ÁÉ¥•Ì¨¨É…Ñ¡•ÈÑ¡…¸¡½µ”Í¥é”¸()Q¡¥ÌÑ¥µ”°å½Ôİ¥±°½¹‘ÕĞÑ¡”…¹…±åÍ¥Ì¸((ŒŒŒ¸=¹”Í…µÁ±”((ÈÔ¸Q…­”„É…¹‘½´Í…µÁ±”½˜€¨¨ÈÔ¡½µ•Ì¨¨…¹…±Õ±…Ñ”Ñ¡”Í…µÁ±”µ•…¸Í…±”ÁÉ¥”¸QÉ•…ĞÑ¡¥Ì…Ìå½ÕÈÁ½¥¹Ğ•ÍÑ¥µ…Ñ”½˜Ñ¡”Á½ÁÕ±…Ñ¥½¸µ•…¸¸()È()€((ÈØ¸…±Õ±…Ñ”Ñ¡”…ÑÕ…°Á½ÁÕ±…Ñ¥½¸µ•…¸Í…±”ÁÉ¥”Í¼å½Ô…¸•Ù…±Õ…Ñ”å½ÕÈ•ÍÑ¥µ…Ñ”¸!½Ü™…È…İ…äİ…Ìå½ÕÈÍ…µÁ±”•ÍÑ¥µ…Ñ”ü()È()€((ŒŒŒ¸	Õ¥±„Í…µÁ±¥¹œ‘¥ÍÑÉ¥‰ÕÑ¥½¸((ÈÜ¸M¥µÕ±…Ñ”€¨¨È°ÀÀÀÍ…µÁ±”µ•…¹Ì¨¨ÕÍ¥¹œÍ…µÁ±•Ì½˜Í¥é”€ÈÔ¸MÑ½É”Ñ¡•´¥¸„Ñ¥‰‰±”…±±•ÁÉ¥•}µ•…¹Í|ÈÕ€¸()È()€((Èà¸A±½ĞÑ¡”Í…µÁ±¥¹œ‘¥ÍÑÉ¥‰ÕÑ¥½¸¸•ÍÉ¥‰”¥ÑÌÍ¡…Á”…¹•¹Ñ•È¸()È()€((Èä¸…±Õ±…Ñ”Ñ¡”Í¥µÕ±…Ñ•ÍÑ…¹‘…É•ÉÉ½È…¹½µÁ…É”¥Ğİ¥Ñ (()q™É…íqÍ¥µ…}íÁÉ¥•õõíqÍÅÉÑìÈÕõô¸(()È()€((ŒŒŒ¸%¹É•…Í”Ñ¡”Í…µÁ±”Í¥é”((ÌÀ¸I•Á•…ĞÑ¡”Í¥µÕ±…Ñ¥½¸ÕÍ¥¹œÍ…µÁ±•Ì½˜€¨¨ÄÀÀ¡½µ•Ì¨¨…¹ÍÑ½É”Ñ¡”É•ÍÕ±ÑÌ…ÌÁÉ¥•}µ•…¹Í|ÄÀÁ€¸()È()€((ÌÄ¸½µÁ…É”Ñ¡”Í…µÁ±¥¹œ‘¥ÍÑÉ¥‰ÕÑ¥½¹Ì™½È€‘¸ôÈÔ…¹€‘¸ôÄÀÀ¸]¡¥ ¥Ù•ÌÑ¡”¥Ñä„µ½É”ÁÉ•¥Í”•ÍÑ¥µ…Ñ”°…¹İ¡äü((ŒŒŒ¸A½±¥äÉ•½µµ•¹‘…Ñ¥½¸((ÌÈ¸]É¥Ñ”€¨¨È´´ÌÍ•¹Ñ•¹•ÌÑ¼Ñ¡”ÁÉ½É…´µ…¹…•È¨¨•áÁ±…¥¹¥¹œİ¡ä„±…É•ÈÍ…µÁ±”…¸¥µÁÉ½Ù”„Á½±¥ä•ÍÑ¥µ…Ñ”•Ù•¸Ñ¡½Õ ¹¼Í¥¹±”Í…µÁ±”¥ÌÕ…É…¹Ñ••Ñ¼•ÅÕ…°Ñ¡”Á½ÁÕ±…Ñ¥½¸ÑÉÕÑ ¸((èèèì¹…±±½ÕĞµÑ¥À…ÁÁ•…É…¹”ô‰Í¥µÁ±”‰ô)¼¹½ĞÍÑ½À…Ğ€‰Ñ¡”ÍÑ…¹‘…É•ÉÉ½È¥ÌÍµ…±±•È¸ˆáÁ±…¥¸İ¡…Ğ„Íµ…±±•ÈÍÑ…¹‘…É•ÉÉ½Èµ•…¹Ì™½ÈÑ¡”€¨©É•±¥…‰¥±¥Ñä½˜Ñ¡”Á½±¥ä•ÍÑ¥µ…Ñ”¨¨¸(èèè
+24. What could the city do to reduce this sampling uncertainty?
+
+---
+
+# On Your Own: Estimate average home price
+
+The Sustainability Office is now considering a housing program whose budget depends on **home prices** rather than home size.
+
+This time, you will conduct the analysis.
+
+### A. One sample
+
+25. Take a random sample of **25 homes** and calculate the sample mean sale price. Treat this as your point estimate of the population mean.
+
+```r
+
+```
+
+26. Calculate the actual population mean sale price so you can evaluate your estimate. How far away was your sample estimate?
+
+```r
+
+```
+
+### B. Build a sampling distribution
+
+27. Simulate **2,000 sample means** using samples of size 25. Store them in a tibble called `price_means_25`.
+
+```r
+
+```
+
+28. Plot the sampling distribution. Describe its shape and center.
+
+```r
+
+```
+
+29. Calculate the simulated standard error and compare it with
+
+$$
+\frac{\sigma_{price}}{\sqrt{25}}.
+$$
+
+```r
+
+```
+
+### C. Increase the sample size
+
+30. Repeat the simulation using samples of **100 homes** and store the results as `price_means_100`.
+
+```r
+
+```
+
+31. Compare the sampling distributions for $n=25$ and $n=100$. Which gives the city a more precise estimate, and why?
+
+### D. Policy recommendation
+
+32. Write **2--3 sentences to the program manager** explaining why a larger sample can improve a policy estimate even though no single sample is guaranteed to equal the population truth.
+
+::: {.callout-tip appearance="simple"}
+Do not stop at "the standard error is smaller." Explain what a smaller standard error means for the **reliability of the policy estimate**.
+:::
