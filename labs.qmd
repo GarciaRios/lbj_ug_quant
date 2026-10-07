@@ -36,3 +36,9 @@ Use shot-by-shot basketball data to practice conditional probability, independen
 Use Ames housing data to compare empirical probabilities with a fitted normal model, then build and interpret a binomial model from the observed data.
 
 [Open the teaching guide](labs/lab04/) · [Download the student report](templates/lab04-template.qmd){download="lab04-template.qmd"}
+
+## Lab 5: Sampling and uncertainty
+
+Use Ames housing data to see how sample statistics vary, build sampling distributions, connect simulation to standard error, and interpret sampling uncertainty for policy decisions.
+
+[Open the teaching guide](labs/lab05/) · [Download the student report](templates/lab05-template.qmd){download="lab05-template.qmd"}
