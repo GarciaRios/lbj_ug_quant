@@ -25,7 +25,7 @@ A confidence interval is not just a calculation. It is a way to communicate **es
 
 ## Setup
 
-~~~{r}
+```{r}
 library(dplyr)
 library(ggplot2)
 
@@ -36,16 +36,16 @@ ames <- ames |>
     area = Gr.Liv.Area,
     price = SalePrice
   )
-~~~
+```
 
 We will continue treating the 2,930 Ames home sales as a known population so we can check how well our confidence-interval procedure works.
 
 Store the population mean for later:
 
-~~~{r}
+```{r}
 mu_area <- mean(ames$area)
 mu_area
-~~~
+```
 
 ---
 
@@ -55,18 +55,18 @@ Suppose the city can inspect **60 randomly selected homes**.
 
 Choose an integer seed for your group. Different groups should use different seeds.
 
-~~~{r}
+```{r}
 set.seed(614)  # Replace 614 with a seed chosen by your group.
 
 n <- 60
 
 sample_60 <- ames |>
   slice_sample(n = n)
-~~~
+```
 
 Summarize the sample:
 
-~~~{r}
+```{r}
 sample_stats <- sample_60 |>
   summarise(
     x_bar = mean(area),
@@ -74,7 +74,7 @@ sample_stats <- sample_60 |>
   )
 
 sample_stats
-~~~
+```
 
 ### Your turn
 
@@ -96,26 +96,26 @@ $$
 
 Calculate it:
 
-~~~{r}
+```{r}
 x_bar <- mean(sample_60$area)
 s <- sd(sample_60$area)
 
 se <- s / sqrt(n)
 se
-~~~
+```
 
 Because the population standard deviation is unknown, we use a **t critical value**.
 
 For a 95% confidence interval with $n=60$:
 
-~~~{r}
+```{r}
 t_star <- qt(
   0.975,
   df = n - 1
 )
 
 t_star
-~~~
+```
 
 The margin of error is
 
@@ -123,10 +123,10 @@ $$
 ME = t^* \times SE.
 $$
 
-~~~{r}
+```{r}
 me <- t_star * se
 me
-~~~
+```
 
 ### Your turn
 
@@ -158,7 +158,7 @@ $$
 
 Calculate the lower and upper bounds:
 
-~~~{r}
+```{r}
 lower_95 <- x_bar - me
 upper_95 <- x_bar + me
 
@@ -167,7 +167,7 @@ c(
   estimate = x_bar,
   upper = upper_95
 )
-~~~
+```
 
 ### Your turn
 
@@ -233,7 +233,7 @@ Now we will automate the class activity.
 
 This helper function draws one sample of 60 homes and returns a 95% confidence interval.
 
-~~~{r}
+```{r}
 draw_ci <- function() {
   x <- sample(
     ames$area,
@@ -252,11 +252,11 @@ draw_ci <- function() {
     upper = x_bar_i + t_star_i * se_i
   )
 }
-~~~
+```
 
 Generate 100 intervals:
 
-~~~{r}
+```{r}
 ci_100 <- replicate(
   100,
   draw_ci()
@@ -268,23 +268,23 @@ ci_100 <- replicate(
     interval_id = row_number(),
     captures_mu = lower <= mu_area & upper >= mu_area
   )
-~~~
+```
 
 Look at the first few:
 
-~~~{r}
+```{r}
 ci_100 |>
   slice(1:8)
-~~~
+```
 
 Calculate the proportion that capture the true mean:
 
-~~~{r}
+```{r}
 ci_100 |>
   summarise(
     capture_rate = mean(captures_mu)
   )
-~~~
+```
 
 ### Your turn
 
@@ -300,7 +300,7 @@ ci_100 |>
 
 Plot the first 30 intervals.
 
-~~~{r}
+```{r}
 ci_100 |>
   filter(interval_id <= 30) |>
   ggplot(
@@ -328,7 +328,7 @@ ci_100 |>
     title = "Thirty 95% confidence intervals"
   ) +
   theme_minimal()
-~~~
+```
 
 ### Your turn
 
@@ -344,7 +344,7 @@ ci_100 |>
 
 Using the **same sample**, construct 90%, 95%, and 99% confidence intervals.
 
-~~~{r}
+```{r}
 ci_levels <- tibble(
   confidence = c(0.90, 0.95, 0.99),
   t_star = c(
@@ -361,7 +361,7 @@ ci_levels <- tibble(
   )
 
 ci_levels
-~~~
+```
 
 ### Predict before looking at the output
 
@@ -410,7 +410,7 @@ $$
 
 Calculate the sample size needed for a target margin of error of 75 square feet:
 
-~~~{r}
+```{r}
 target_me <- 75
 
 n_needed <- ceiling(
@@ -418,7 +418,7 @@ n_needed <- ceiling(
 )
 
 n_needed
-~~~
+```
 
 ### Your turn
 
@@ -440,9 +440,9 @@ Use a new random sample of **80 homes**.
 
 29. Draw a random sample of 80 homes and calculate $\bar{x}$, $s$, $SE$, $t^*$, margin of error, and the 95% confidence interval for mean sale price.
 
-~~~{r}
+```{r}
 
-~~~
+```
 
 30. Write the interval in dollars and interpret it in one sentence for the housing program manager.
 
@@ -450,15 +450,15 @@ Use a new random sample of **80 homes**.
 
 31. Calculate the true population mean sale price and determine whether your interval captured it.
 
-~~~{r}
+```{r}
 
-~~~
+```
 
 32. Construct 90% and 99% intervals using the **same sample**. Compare their widths with your 95% interval.
 
-~~~{r}
+```{r}
 
-~~~
+```
 
 ### C. Policy recommendation
 
@@ -468,9 +468,9 @@ The program manager wants a margin of error no larger than **$15,000** at 95% co
 
 34. Using your sample standard deviation as the planning value, estimate how many homes the city would need to sample to target a $15,000 margin of error.
 
-~~~{r}
+```{r}
 
-~~~
+```
 
 35. Write **2--3 sentences to the program manager** explaining whether the current sample is precise enough and, if not, what you recommend.
 
