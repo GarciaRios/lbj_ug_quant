@@ -161,7 +161,7 @@ draw_ci <- function() {
   x <- sample(
     ames$area,
     size = n,
-    replace = TRUE
+    replace = FALSE
   )
 
   x_bar_i <- mean(x)
