@@ -57,7 +57,7 @@ OpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3
 | **Fri., Oct. 9** | Lab 5 review and simulation practice | Complete Lab 5 **On Your Own** |
 | **Mon., Oct. 12** | Confidence intervals | Review OpenIntro Ch. 4 |
 | **Wed., Oct. 14** | Lab 6: Confidence intervals | [Lab guide](labs/lab06/) · [Student lab template](templates/lab06-template.qmd){download="lab06-template.qmd"} · Work on Problem Set 3 |
-| **Fri., Oct. 16** | Lab 6 review and interpretation | Complete Lab 6 **On Your Own** · Continue Problem Set 3 |
+| **Fri., Oct. 16** | Lab 6 review and interpretation | Complete Lab 6 **On Your Own** and continue Problem Set 3 |
 
 ## Unit 4: Hypothesis testing and comparisons
 
