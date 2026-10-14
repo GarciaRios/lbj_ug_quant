@@ -1,0 +1,479 @@
+---
+title: "Lab 6: Confidence Intervals"
+subtitle: "From a sample estimate to a policy range"
+execute:
+  eval: false
+---
+
+[Download the student lab template](../../templates/lab06-template.qmd){.btn .btn-primary download="lab06-template.qmd"}
+
+## The policy question
+
+The **Ames Sustainability Office** is preparing a residential energy-efficiency program. Home size affects inspection time, retrofit materials, and staffing needs.
+
+The office cannot inspect every home, so it uses a random sample to estimate the average living area of homes in Ames.
+
+A point estimate is useful, but a program manager needs more:
+
+> **How precise is the estimate, and is it precise enough to make a policy decision?**
+
+Today we will move from a single sample mean to a **confidence interval** and then ask what that interval means for planning.
+
+::: {.callout-tip appearance="simple"}
+A confidence interval is not just a calculation. It is a way to communicate **estimate + uncertainty**.
+:::
+
+## Setup
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab4/data/ames.RData"))
+
+ames <- ames |>
+  rename(
+    area = Gr.Liv.Area,
+    price = SalePrice
+  )
+```
+
+We will continue treating the 2,930 Ames home sales as a known population so we can check how well our confidence-interval procedure works.
+
+Store the population mean for later:
+
+```{r}
+mu_area <- mean(ames$area)
+mu_area
+```
+
+---
+
+## 1. Start with one policy sample
+
+Suppose the city can inspect **60 randomly selected homes**.
+
+Choose an integer seed for your group. Different groups should use different seeds.
+
+```{r}
+set.seed(614)  # Replace 614 with a seed chosen by your group.
+
+n <- 60
+
+sample_60 <- ames |>
+  slice_sample(n = n)
+```
+
+Summarize the sample:
+
+```{r}
+sample_stats <- sample_60 |>
+  summarise(
+    x_bar = mean(area),
+    s = sd(area)
+  )
+
+sample_stats
+```
+
+### Your turn
+
+1. What is your point estimate of the population mean living area?
+
+2. What does the sample standard deviation tell you about the homes in your sample?
+
+3. Compare your sample mean with another group. Why should the city expect different analysts to get slightly different estimates even when both use good random samples?
+
+---
+
+## 2. From standard error to margin of error
+
+For a mean, our estimated standard error is
+
+$$
+SE(\bar{x}) = \frac{s}{\sqrt{n}}.
+$$
+
+Calculate it:
+
+```{r}
+x_bar <- mean(sample_60$area)
+s <- sd(sample_60$area)
+
+se <- s / sqrt(n)
+se
+```
+
+Because the population standard deviation is unknown, we use a **t critical value**.
+
+For a 95% confidence interval with $n=60$:
+
+```{r}
+t_star <- qt(
+  0.975,
+  df = n - 1
+)
+
+t_star
+```
+
+The margin of error is
+
+$$
+ME = t^* \times SE.
+$$
+
+```{r}
+me <- t_star * se
+me
+```
+
+### Your turn
+
+4. What is the standard error of your sample mean? Interpret it in context.
+
+5. What is the 95% critical value $t^*$ for your sample?
+
+6. What is your margin of error? What units is it measured in?
+
+::: {.callout-note appearance="simple"}
+Keep these three quantities distinct:
+
+- **SD**: variation among individual homes
+- **SE**: expected variation among sample means
+- **ME**: how far we extend from the point estimate to form this interval
+:::
+
+---
+
+## 3. Construct the 95% confidence interval
+
+A 95% confidence interval for a population mean is
+
+$$
+\boxed{
+\bar{x} \pm t^*\frac{s}{\sqrt{n}}
+}
+$$
+
+Calculate the lower and upper bounds:
+
+```{r}
+lower_95 <- x_bar - me
+upper_95 <- x_bar + me
+
+c(
+  lower = lower_95,
+  estimate = x_bar,
+  upper = upper_95
+)
+```
+
+### Your turn
+
+7. Report your 95% confidence interval.
+
+8. Write a one-sentence interpretation for the Ames Sustainability Office. Your sentence should refer to the **population mean living area**, not individual homes.
+
+9. Does your interval contain the actual Ames population mean, $\mu$? Remember that in a real application, the city would not know the true value.
+
+---
+
+## 4. What does “95% confidence” actually mean?
+
+Before running any more code, choose the best interpretation:
+
+### Quick vote
+
+A 95% confidence interval means:
+
+A. There is a 95% probability that $\mu$ is inside the interval we just calculated.
+
+B. 95% of individual Ames homes fall inside the interval.
+
+C. If we repeatedly took random samples and built intervals the same way, about 95% of those intervals would contain the true population mean.
+
+D. The sample mean has a 95% chance of being correct.
+
+### Your turn
+
+10. Which answer did you choose? Explain why the other interpretations are wrong.
+
+The key is **repeated sampling**. The parameter $\mu$ is fixed. The interval changes from sample to sample.
+
+---
+
+## 5. Let the class generate different intervals
+
+Because each group chose a different seed, each group should have a slightly different interval.
+
+### Class activity
+
+Write your group's three values where everyone can see them:
+
+$$
+\text{lower bound} \qquad \bar{x} \qquad \text{upper bound}
+$$
+
+Then compare across groups.
+
+### Your turn
+
+11. Are the intervals identical across groups?
+
+12. Do they all have exactly the same width? Why might widths differ slightly even though every group used $n=60$?
+
+13. Did every group capture the true population mean? If one did not, does that mean the group made a mistake?
+
+---
+
+## 6. Simulate 100 confidence intervals
+
+Now we will automate the class activity.
+
+This helper function draws one sample of 60 homes and returns a 95% confidence interval.
+
+```{r}
+draw_ci <- function() {
+  x <- sample(
+    ames$area,
+    size = n,
+    replace = FALSE
+  )
+
+  x_bar_i <- mean(x)
+  s_i <- sd(x)
+  se_i <- s_i / sqrt(n)
+  t_star_i <- qt(0.975, df = n - 1)
+
+  c(
+    x_bar = x_bar_i,
+    lower = x_bar_i - t_star_i * se_i,
+    upper = x_bar_i + t_star_i * se_i
+  )
+}
+```
+
+Generate 100 intervals:
+
+```{r}
+ci_100 <- replicate(
+  100,
+  draw_ci()
+) |>
+  t() |>
+  as.data.frame() |>
+  tibble::as_tibble() |>
+  mutate(
+    interval_id = row_number(),
+    captures_mu = lower <= mu_area & upper >= mu_area
+  )
+```
+
+Look at the first few:
+
+```{r}
+ci_100 |>
+  slice(1:8)
+```
+
+Calculate the proportion that capture the true mean:
+
+```{r}
+ci_100 |>
+  summarise(
+    capture_rate = mean(captures_mu)
+  )
+```
+
+### Your turn
+
+14. What proportion of your 100 intervals captured $\mu$?
+
+15. Is it exactly 95%? Should it have to be exactly 95% in a set of only 100 intervals?
+
+16. If we simulated 100,000 intervals instead, what capture rate would you expect to see approximately?
+
+---
+
+## 7. See confidence in action
+
+Plot the first 30 intervals.
+
+```{r}
+ci_100 |>
+  filter(interval_id <= 30) |>
+  ggplot(
+    aes(
+      y = interval_id,
+      x = lower,
+      xend = upper,
+      yend = interval_id,
+      color = captures_mu
+    )
+  ) +
+  geom_segment(linewidth = 1) +
+  geom_point(
+    aes(x = x_bar),
+    size = 2
+  ) +
+  geom_vline(
+    xintercept = mu_area,
+    linetype = "dashed"
+  ) +
+  labs(
+    x = "Living area (square feet)",
+    y = "Confidence interval",
+    color = "Captures true mean?",
+    title = "Thirty 95% confidence intervals"
+  ) +
+  theme_minimal()
+```
+
+### Your turn
+
+17. What distinguishes the intervals that fail to capture $\mu$?
+
+18. Does a failed interval look obviously “bad” before we reveal the population mean?
+
+19. Why is this graph a better explanation of 95% confidence than saying “there is a 95% probability that $\mu$ is in this interval”?
+
+---
+
+## 8. Confidence versus precision
+
+Using the **same sample**, construct 90%, 95%, and 99% confidence intervals.
+
+```{r}
+ci_levels <- tibble(
+  confidence = c(0.90, 0.95, 0.99),
+  t_star = c(
+    qt(0.95, df = n - 1),
+    qt(0.975, df = n - 1),
+    qt(0.995, df = n - 1)
+  )
+) |>
+  mutate(
+    margin_of_error = t_star * se,
+    lower = x_bar - margin_of_error,
+    upper = x_bar + margin_of_error,
+    width = upper - lower
+  )
+
+ci_levels
+```
+
+### Predict before looking at the output
+
+Which interval should be widest: 90%, 95%, or 99%?
+
+### Your turn
+
+20. What happens to interval width as confidence increases?
+
+21. Why does greater confidence require a wider interval when the data and sample size stay fixed?
+
+22. A program manager says, “I want 99% confidence **and** a narrower interval, but I do not want to collect more data.” Explain the tradeoff.
+
+---
+
+## 9. Is the estimate precise enough for policy?
+
+Suppose the Sustainability Office says:
+
+> We can plan confidently only if the margin of error for average living area is **no more than 75 square feet**.
+
+Compare that policy requirement with your 95% interval.
+
+### Your turn
+
+23. Does your current sample of 60 homes meet the city's precision requirement?
+
+24. If it does not, what can the city change to make the interval narrower without lowering its confidence level?
+
+25. Why would “just report the sample mean and ignore the interval” be a poor response to the city's concern?
+
+---
+
+## 10. Plan a larger sample
+
+For planning purposes, suppose the city uses the sample standard deviation $s$ as its best guess of population variability.
+
+A rough sample-size calculation for a 95% margin of error is
+
+$$
+n \approx
+\left(
+\frac{1.96s}{ME}
+\right)^2.
+$$
+
+Calculate the sample size needed for a target margin of error of 75 square feet:
+
+```{r}
+target_me <- 75
+
+n_needed <- ceiling(
+  (1.96 * s / target_me)^2
+)
+
+n_needed
+```
+
+### Your turn
+
+26. How many homes should the city plan to sample to target a margin of error of about 75 square feet?
+
+27. Why do we round the required sample size **up** rather than down?
+
+28. If the city wanted to cut the margin of error roughly in half, about how much larger would the sample need to be? Connect your answer to the square-root relationship from last week.
+
+---
+
+# On Your Own: Estimate mean home price
+
+Now suppose a housing assistance program needs an estimate of the **average sale price** of Ames homes.
+
+Use a new random sample of **80 homes**.
+
+### A. Build a 95% confidence interval
+
+29. Draw a random sample of 80 homes and calculate $\bar{x}$, $s$, $SE$, $t^*$, margin of error, and the 95% confidence interval for mean sale price.
+
+```{r}
+
+```
+
+30. Write the interval in dollars and interpret it in one sentence for the housing program manager.
+
+### B. Evaluate the interval
+
+31. Calculate the true population mean sale price and determine whether your interval captured it.
+
+```{r}
+
+```
+
+32. Construct 90% and 99% intervals using the **same sample**. Compare their widths with your 95% interval.
+
+```{r}
+
+```
+
+### C. Policy recommendation
+
+The program manager wants a margin of error no larger than **$15,000** at 95% confidence.
+
+33. Does your current sample of 80 homes meet that precision target?
+
+34. Using your sample standard deviation as the planning value, estimate how many homes the city would need to sample to target a $15,000 margin of error.
+
+```{r}
+
+```
+
+35. Write **2--3 sentences to the program manager** explaining whether the current sample is precise enough and, if not, what you recommend.
+
+::: {.callout-tip appearance="simple"}
+A useful policy conclusion reports both the estimate **and** how much uncertainty remains around it.
+:::
