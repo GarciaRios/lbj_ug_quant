@@ -546,6 +546,13 @@
     "text": "Lab 5: Sampling and uncertainty\nUse Ames housing data to see how sample statistics vary, build sampling distributions, connect simulation to standard error, and interpret sampling uncertainty for policy decisions.\nOpen the teaching guide · Download the student report"
   },
   {
+    "objectID": "labs.html#lab-6-confidence-intervals",
+    "href": "labs.html#lab-6-confidence-intervals",
+    "title": "Labs",
+    "section": "Lab 6: Confidence Intervals",
+    "text": "Lab 6: Confidence Intervals\nUse Ames housing data to build and interpret confidence intervals, visualize repeated-sampling coverage, compare confidence and precision, and plan sample sizes for policy decisions.\nOpen the teaching guide · Download the student report"
+  },
+  {
     "objectID": "labs/lab01/index.html",
     "href": "labs/lab01/index.html",
     "title": "Lab 1: Introduction to Data Analysis in R",
@@ -802,21 +809,21 @@
     "href": "schedule.html#unit-3-sampling-uncertainty-and-foundations-for-inference",
     "title": "Schedule",
     "section": "Unit 3: Sampling, uncertainty, and foundations for inference",
-    "text": "Unit 3: Sampling, uncertainty, and foundations for inference\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 5\nSampling variability and the central limit theorem\nOpenIntro Ch. 4 · Day 7 slides\n\n\nWed., Oct. 7\nLab 5: Sampling and uncertainty\nLab guide · Student lab template · Begin Problem Set 3\n\n\nFri., Oct. 9\nLab 5 review and simulation practice\nComplete Lab 5 On Your Own\n\n\nMon., Oct. 12\nConfidence intervals\nReview OpenIntro Ch. 4\n\n\nWed., Oct. 14\nConfidence interval practice\nWork on Problem Set 3\n\n\nFri., Oct. 16\nInterpretation and problem-set support\nContinue Problem Set 3"
+    "text": "Unit 3: Sampling, uncertainty, and foundations for inference\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 5\nSampling variability and the central limit theorem\nOpenIntro Ch. 4 · Day 7 slides\n\n\nWed., Oct. 7\nLab 5: Sampling and uncertainty\nLab guide · Student lab template · Begin Problem Set 3\n\n\nFri., Oct. 9\nLab 5 review and simulation practice\nComplete Lab 5 On Your Own\n\n\nMon., Oct. 12\nConfidence intervals\nReview OpenIntro Ch. 4\n\n\nWed., Oct. 14\nLab 6: Confidence intervals\nLab guide · Student lab template · Work on Problem Set 3\n\n\nFri., Oct. 16\nLab 6 review and interpretation\nComplete Lab 6 On Your Own and continue Problem Set 3"
   },
   {
     "objectID": "schedule.html#unit-4-hypothesis-testing-and-comparisons",
     "href": "schedule.html#unit-4-hypothesis-testing-and-comparisons",
     "title": "Schedule",
     "section": "Unit 4: Hypothesis testing and comparisons",
-    "text": "Unit 4: Hypothesis testing and comparisons\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 19\nHypothesis testing\nOpenIntro Ch. 5\n\n\nWed., Oct. 21\nLab 6: Inference for numerical data\nLab 6 work\n\n\nFri., Oct. 23\nLab 6 review and interpretation\nComplete Lab 6 On Your Own\n\n\nMon., Oct. 26\nComparing groups\nReview OpenIntro Ch. 5\n\n\nWed., Oct. 28\nLab 7: More statistical inference\nLab 7 work\n\n\nFri., Oct. 30\nLab 7 and problem-set support\nProblem Set 3 due\n\n\n\n\n\n\n\n\n\nProblem Set 3 — Statistical inference\nOpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5.5, 5.6, 5.12, 5.20, 5.22."
+    "text": "Unit 4: Hypothesis testing and comparisons\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 19\nHypothesis testing\nOpenIntro Ch. 5\n\n\nWed., Oct. 21\nLab 7: Inference for numerical data\nLab 7 work\n\n\nFri., Oct. 23\nLab 7 review and interpretation\nComplete Lab 7 On Your Own\n\n\nMon., Oct. 26\nComparing groups\nReview OpenIntro Ch. 5\n\n\nWed., Oct. 28\nLab 8: More statistical inference\nLab 8 work\n\n\nFri., Oct. 30\nLab 8 and problem-set support\nProblem Set 3 due\n\n\n\n\n\n\n\n\n\nProblem Set 3 — Statistical inference\nOpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5.5, 5.6, 5.12, 5.20, 5.22."
   },
   {
     "objectID": "schedule.html#unit-5-correlation-and-regression",
     "href": "schedule.html#unit-5-correlation-and-regression",
     "title": "Schedule",
     "section": "Unit 5: Correlation and regression",
-    "text": "Unit 5: Correlation and regression\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Nov. 2\nMidterm: Units 1–4\nOne student-prepared double-sided reference sheet permitted\n\n\nWed., Nov. 4\nR review and project preparation\nBring project ideas and coding questions\n\n\nFri., Nov. 6\nProject and R support\nProject preparation\n\n\nMon., Nov. 9\nCorrelation and simple linear regression\nOpenIntro Ch. 7\n\n\nWed., Nov. 11\nLab 8: Simple regression\nLab 8 work\n\n\nFri., Nov. 13\nLab 8 review and interpretation\nComplete Lab 8 On Your Own\n\n\nMon., Nov. 16\nMultiple linear regression\nOpenIntro Ch. 8, Sections 8.1–8.3\n\n\nWed., Nov. 18\nLab 9: Multiple regression and predicted values\nLab 9 work\n\n\nFri., Nov. 20\nLab 9, predicted values, and project support\nComplete Lab 9 On Your Own"
+    "text": "Unit 5: Correlation and regression\n\n\n\n\n\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Nov. 2\nMidterm: Units 1–4\nOne student-prepared double-sided reference sheet permitted\n\n\nWed., Nov. 4\nR review and project preparation\nBring project ideas and coding questions\n\n\nFri., Nov. 6\nProject and R support\nProject preparation\n\n\nMon., Nov. 9\nCorrelation and simple linear regression\nOpenIntro Ch. 7\n\n\nWed., Nov. 11\nLab 9: Simple regression\nLab 9 work\n\n\nFri., Nov. 13\nLab 9 review and interpretation\nComplete Lab 9 On Your Own\n\n\nMon., Nov. 16\nMultiple linear regression\nOpenIntro Ch. 8, Sections 8.1–8.3\n\n\nWed., Nov. 18\nLab 10: Multiple regression and predicted values\nLab 10 work\n\n\nFri., Nov. 20\nLab 10, predicted values, and project support\nComplete Lab 10 On Your Own"
   },
   {
     "objectID": "schedule.html#fall-break",
