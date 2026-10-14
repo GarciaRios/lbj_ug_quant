@@ -42,3 +42,9 @@ Use Ames housing data to compare empirical probabilities with a fitted normal mo
 Use Ames housing data to see how sample statistics vary, build sampling distributions, connect simulation to standard error, and interpret sampling uncertainty for policy decisions.
 
 [Open the teaching guide](labs/lab05/) · [Download the student report](templates/lab05-template.qmd){download="lab05-template.qmd"}
+
+## Lab 6: Confidence Intervals
+
+Use Ames housing data to build and interpret confidence intervals, visualize repeated-sampling coverage, compare confidence and precision, and plan sample sizes for policy decisions.
+
+[Open the teaching guide](labs/lab06/) · [Download the student report](templates/lab06-template.qmd){download="lab06-template.qmd"}
