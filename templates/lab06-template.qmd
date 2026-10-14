@@ -17,7 +17,7 @@ Today we ask:
 
 ## Setup
 
-~~~{r}
+```{r}
 library(dplyr)
 library(ggplot2)
 
@@ -30,13 +30,13 @@ ames <- ames |>
   )
 
 mu_area <- mean(ames$area)
-~~~
+```
 
 ## Exercise 1: One policy sample
 
 Choose an integer seed for your group.
 
-~~~{r}
+```{r}
 set.seed(614)  # Replace 614 with your group's seed.
 
 n <- 60
@@ -51,7 +51,7 @@ sample_stats <- sample_60 |>
   )
 
 sample_stats
-~~~
+```
 
 1. What is your point estimate of the population mean living area?
 
@@ -67,7 +67,7 @@ sample_stats
 
 ## Exercise 2: Standard error and margin of error
 
-~~~{r}
+```{r}
 x_bar <- mean(sample_60$area)
 s <- sd(sample_60$area)
 
@@ -83,7 +83,7 @@ t_star
 
 me <- t_star * se
 me
-~~~
+```
 
 4. What is the standard error of your sample mean? Interpret it in context.
 
@@ -99,7 +99,7 @@ me
 
 ## Exercise 3: Construct the 95% confidence interval
 
-~~~{r}
+```{r}
 lower_95 <- x_bar - me
 upper_95 <- x_bar + me
 
@@ -108,7 +108,7 @@ c(
   estimate = x_bar,
   upper = upper_95
 )
-~~~
+```
 
 7. Report your 95% confidence interval.
 
@@ -156,7 +156,7 @@ Write your group's lower bound, sample mean, and upper bound where everyone can 
 
 ## Exercise 6: Simulate 100 confidence intervals
 
-~~~{r}
+```{r}
 draw_ci <- function() {
   x <- sample(
     ames$area,
@@ -187,14 +187,14 @@ ci_100 <- replicate(
     interval_id = row_number(),
     captures_mu = lower <= mu_area & upper >= mu_area
   )
-~~~
+```
 
-~~~{r}
+```{r}
 ci_100 |>
   summarise(
     capture_rate = mean(captures_mu)
   )
-~~~
+```
 
 14. What proportion of your 100 intervals captured $\mu$?
 
@@ -210,7 +210,7 @@ ci_100 |>
 
 ## Exercise 7: See confidence in action
 
-~~~{r}
+```{r}
 ci_100 |>
   filter(interval_id <= 30) |>
   ggplot(
@@ -238,7 +238,7 @@ ci_100 |>
     title = "Thirty 95% confidence intervals"
   ) +
   theme_minimal()
-~~~
+```
 
 17. What distinguishes the intervals that fail to capture $\mu$?
 
@@ -254,7 +254,7 @@ ci_100 |>
 
 ## Exercise 8: Confidence versus precision
 
-~~~{r}
+```{r}
 ci_levels <- tibble(
   confidence = c(0.90, 0.95, 0.99),
   t_star = c(
@@ -271,7 +271,7 @@ ci_levels <- tibble(
   )
 
 ci_levels
-~~~
+```
 
 20. What happens to interval width as confidence increases?
 
@@ -303,7 +303,7 @@ The Sustainability Office says it can plan confidently only if the margin of err
 
 ## Exercise 10: Plan a larger sample
 
-~~~{r}
+```{r}
 target_me <- 75
 
 n_needed <- ceiling(
@@ -311,7 +311,7 @@ n_needed <- ceiling(
 )
 
 n_needed
-~~~
+```
 
 26. How many homes should the city plan to sample to target a margin of error of about 75 square feet?
 
@@ -333,9 +333,9 @@ Use a new random sample of **80 homes**.
 
 29. Draw a random sample of 80 homes and calculate $\bar{x}$, $s$, $SE$, $t^*$, margin of error, and the 95% confidence interval for mean sale price.
 
-~~~{r}
+```{r}
 
-~~~
+```
 
 30. Write the interval in dollars and interpret it in one sentence for the housing program manager.
 
@@ -345,15 +345,15 @@ Use a new random sample of **80 homes**.
 
 31. Calculate the true population mean sale price and determine whether your interval captured it.
 
-~~~{r}
+```{r}
 
-~~~
+```
 
 32. Construct 90% and 99% intervals using the **same sample**. Compare their widths with your 95% interval.
 
-~~~{r}
+```{r}
 
-~~~
+```
 
 > 
 
@@ -367,9 +367,9 @@ The program manager wants a margin of error no larger than **$15,000** at 95% co
 
 34. Using your sample standard deviation as the planning value, estimate how many homes the city would need to sample to target a $15,000 margin of error.
 
-~~~{r}
+```{r}
 
-~~~
+```
 
 35. Write **2--3 sentences to the program manager** explaining whether the current sample is precise enough and, if not, what you recommend.
 
