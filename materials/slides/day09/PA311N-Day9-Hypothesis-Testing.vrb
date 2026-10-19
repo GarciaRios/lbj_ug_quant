@@ -1,0 +1,19 @@
+\frametitle{Calculate the p-value in R}
+\begin{lstlisting}[language=R]
+n <- 40
+x_bar <- 66
+mu_0 <- 60
+s <- 18
+
+se <- s / sqrt(n)
+t_obs <- (x_bar - mu_0) / se
+
+pt(t_obs, df = n - 1, lower.tail = FALSE)
+\end{lstlisting}
+
+\[
+p\approx0.0207.
+\]
+
+\vfill
+\alert{`lower.tail = FALSE' asks R for the upper-tail probability.}
