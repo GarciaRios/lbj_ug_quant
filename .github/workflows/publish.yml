@@ -19,6 +19,43 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
+      - name: Check lecture PDFs
+        id: lecture-pdfs
+        shell: bash
+        run: |
+          if [[ ! -f materials/slides/day08/PA311N-Day8-Confidence-Intervals.pdf || ! -f materials/slides/day09/PA311N-Day9-Hypothesis-Testing.pdf ]]; then
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Compile Day 8 lecture PDF
+        if: steps.lecture-pdfs.outputs.needed == 'true'
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: PA311N-Day8-Confidence-Intervals.tex
+          working_directory: materials/slides/day08
+
+      - name: Compile Day 9 lecture PDF
+        if: steps.lecture-pdfs.outputs.needed == 'true'
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: PA311N-Day9-Hypothesis-Testing.tex
+          working_directory: materials/slides/day09
+
+      - name: Commit lecture PDFs
+        if: steps.lecture-pdfs.outputs.needed == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add materials/slides/day08/PA311N-Day8-Confidence-Intervals.pdf
+          git add materials/slides/day09/PA311N-Day9-Hypothesis-Testing.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Build Day 8 and Day 9 lecture PDFs"
+            git push
+          fi
+
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
