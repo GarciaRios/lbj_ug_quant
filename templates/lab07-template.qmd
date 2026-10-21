@@ -1,0 +1,297 @@
+---
+title: "Lab 7: Hypothesis Testing for a Mean"
+author: "Your name"
+format: html
+editor: visual
+editor_options:
+  chunk_output_type: console
+---
+
+## Policy question
+
+A North Carolina maternal-health planning team has been using **12 prenatal visits per pregnancy** as an administrative workload benchmark.
+
+For this exercise, 12 is a planning assumption, not a medical recommendation.
+
+> **Is the observed average number of prenatal visits different enough from 12 that we should reconsider the planning assumption?**
+
+## Setup
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab5/nc.RData"))
+
+nc_visits <- nc |>
+  filter(!is.na(visits))
+```
+
+## Exercise 1: Start with the data
+
+```{r}
+visit_stats <- nc_visits |>
+  summarise(
+    n = n(),
+    x_bar = mean(visits),
+    s = sd(visits),
+    median = median(visits),
+    min = min(visits),
+    max = max(visits)
+  )
+
+visit_stats
+```
+
+```{r}
+ggplot(nc_visits, aes(x = visits)) +
+  geom_histogram(binwidth = 1) +
+  labs(
+    x = "Prenatal visits",
+    y = "Number of births",
+    title = "Prenatal visits in the North Carolina sample"
+  ) +
+  theme_minimal()
+```
+
+1. How many complete observations are available?
+
+> 
+
+2. What is the sample mean number of visits, $\bar{x}$?
+
+> 
+
+3. Describe the shape of the distribution. Are there any features that matter for inference?
+
+> 
+
+4. How far is the sample mean from the planning benchmark of 12 visits?
+
+> 
+
+## Exercise 2: State the hypotheses
+
+Let $\mu$ be the population mean number of prenatal visits.
+
+$$
+H_0:\mu=12
+$$
+
+$$
+H_A:\mu\neq12
+$$
+
+5. State $H_0$ in words.
+
+> 
+
+6. State $H_A$ in words.
+
+> 
+
+7. Why is this a **two-sided** test?
+
+> 
+
+## Exercise 3: Check the conditions
+
+8. What feature of the study design supports independence?
+
+> 
+
+9. Does the histogram show anything so extreme that you would distrust the CLT for this sample size? Explain.
+
+> 
+
+10. Why should we check these conditions before interpreting a p-value?
+
+> 
+
+## Exercise 4: Standard error and test statistic
+
+```{r}
+n <- nrow(nc_visits)
+x_bar <- mean(nc_visits$visits)
+s <- sd(nc_visits$visits)
+
+se <- s / sqrt(n)
+
+mu_0 <- 12
+t_obs <- (x_bar - mu_0) / se
+df <- n - 1
+
+c(
+  n = n,
+  x_bar = x_bar,
+  s = s,
+  se = se,
+  t = t_obs,
+  df = df
+)
+```
+
+11. What is the standard error? Interpret it in context.
+
+> 
+
+12. What is the observed $t$ statistic?
+
+> 
+
+13. What does the sign of $t$ tell you?
+
+> 
+
+14. What does the magnitude of $t$ tell you? Approximately how many standard errors is $\bar{x}$ from the null value?
+
+> 
+
+## Exercise 5: Calculate and interpret the p-value
+
+```{r}
+p_value <- 2 * pt(
+  -abs(t_obs),
+  df = df
+)
+
+p_value
+```
+
+15. What is the p-value?
+
+> 
+
+16. Complete this sentence:
+
+> If the true population mean were 12 visits, the probability of obtaining a sample mean at least this far from 12, in either direction, is approximately ______.
+
+17. Why is the p-value **not** the probability that $H_0$ is true?
+
+> 
+
+## Exercise 6: Make the decision
+
+Use $\alpha=.05$.
+
+18. Do you reject or fail to reject $H_0$?
+
+> 
+
+19. Write the conclusion in plain language for the planning team.
+
+> 
+
+20. Why do we say **fail to reject** rather than **accept** $H_0$?
+
+> 
+
+## Exercise 7: Let R check our work
+
+```{r}
+visit_test <- t.test(
+  nc_visits$visits,
+  mu = 12,
+  alternative = "two.sided",
+  conf.level = 0.95
+)
+
+visit_test
+```
+
+21. Find the test statistic and p-value in the output. Do they match your calculations?
+
+> 
+
+22. Find the 95% confidence interval. Does 12 fall inside or outside it?
+
+> 
+
+23. Does the confidence interval lead to the same decision as the hypothesis test? Explain.
+
+> 
+
+## Exercise 8: Change to a one-sided question
+
+Suppose the agency instead asks whether the population mean is **greater than 12**.
+
+```{r}
+t.test(
+  nc_visits$visits,
+  mu = 12,
+  alternative = "greater"
+)
+```
+
+24. How does the one-sided p-value compare with the two-sided p-value?
+
+> 
+
+25. Why does the alternative hypothesis determine which tail matters?
+
+> 
+
+26. Why should analysts choose one-sided versus two-sided **before** seeing the result?
+
+> 
+
+## Exercise 9: Statistical significance versus policy importance
+
+```{r}
+difference <- x_bar - 12
+difference
+```
+
+27. How large is the estimated difference in actual visits?
+
+> 
+
+28. Even if the result is statistically significant, what additional information would you want before recommending a staffing or budget change?
+
+> 
+
+# On Your Own: Is the maternal-age planning assumption reasonable?
+
+Suppose a county outreach program was designed using an assumed **mean maternal age of 27 years**.
+
+29. Create a dataset containing non-missing values of maternal age. Report $n$, $\bar{x}$, and $s$, and make a histogram.
+
+```{r}
+
+```
+
+30. State $H_0$ and $H_A$ for a two-sided test of whether the population mean differs from 27 years.
+
+> 
+
+31. Check the conditions for a one-sample $t$ test.
+
+> 
+
+32. Calculate the standard error, observed $t$ statistic, and two-sided p-value.
+
+```{r}
+
+```
+
+33. At $\alpha=.05$, what is your statistical decision? State it in plain language.
+
+> 
+
+34. Use the built-in $t$ test to verify your calculation and obtain a 95% confidence interval.
+
+```{r}
+
+```
+
+35. Does 27 fall inside the confidence interval? Explain why this agrees or disagrees with your hypothesis-test decision.
+
+> 
+
+36. Write **2--3 sentences to the outreach program manager** reporting the estimate, the statistical evidence, and whether the 27-year planning assumption should be reconsidered.
+
+> 
+
+37. Add one sentence explaining why statistical significance alone does not tell the manager whether changing the program is worthwhile.
+
+> 
