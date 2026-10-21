@@ -476,6 +476,13 @@
     "text": "Lab 6: Confidence Intervals\nUse Ames housing data to build and interpret confidence intervals, visualize repeated-sampling coverage, compare confidence and precision, and plan sample sizes for policy decisions.\nOpen the teaching guide · Download the student report"
   },
   {
+    "objectID": "labs.html#lab-7-inference-for-numerical-data",
+    "href": "labs.html#lab-7-inference-for-numerical-data",
+    "title": "Labs",
+    "section": "Lab 7: Inference for Numerical Data",
+    "text": "Lab 7: Inference for Numerical Data\nUse North Carolina birth-record data to move from observed group differences to hypothesis tests, confidence intervals, and policy interpretation, then apply the same workflow in small groups.\nOpen the teaching guide · Download the student report"
+  },
+  {
     "objectID": "assignments.html",
     "href": "assignments.html",
     "title": "Assignments",
@@ -900,7 +907,7 @@
     "href": "schedule.html#unit-4-hypothesis-testing-and-comparisons",
     "title": "Schedule",
     "section": "Unit 4: Hypothesis testing and comparisons",
-    "text": "Unit 4: Hypothesis testing and comparisons\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 19\nHypothesis testing\nOpenIntro Ch. 5 · Day 9 slides\n\n\nWed., Oct. 21\nLab 7: Inference for numerical data\nLab 7 work\n\n\nFri., Oct. 23\nLab 7 review and interpretation\nComplete Lab 7 On Your Own\n\n\nMon., Oct. 26\nComparing groups\nReview OpenIntro Ch. 5\n\n\nWed., Oct. 28\nLab 8: More statistical inference\nLab 8 work\n\n\nFri., Oct. 30\nLab 8 and problem-set support\nProblem Set 3 due\n\n\n\n\n\n\n\n\n\nProblem Set 3 — Statistical inference\nOpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5.5, 5.6, 5.12, 5.20, 5.22."
+    "text": "Unit 4: Hypothesis testing and comparisons\n\n\n\nDate\nClass activity\nPreparation and assignments\n\n\n\n\nMon., Oct. 19\nHypothesis testing\nOpenIntro Ch. 5 · Day 9 slides\n\n\nWed., Oct. 21\nLab 7: Inference for numerical data\nLab guide · Student lab template\n\n\nFri., Oct. 23\nLab 7 review and interpretation\nComplete Lab 7 On Your Own\n\n\nMon., Oct. 26\nComparing groups\nReview OpenIntro Ch. 5\n\n\nWed., Oct. 28\nLab 8: More statistical inference\nLab 8 work\n\n\nFri., Oct. 30\nLab 8 and problem-set support\nProblem Set 3 due\n\n\n\n\n\n\n\n\n\nProblem Set 3 — Statistical inference\nOpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5.5, 5.6, 5.12, 5.20, 5.22."
   },
   {
     "objectID": "schedule.html#unit-5-correlation-and-regression",
