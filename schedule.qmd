@@ -64,7 +64,7 @@ OpenIntro exercises: Ch. 2: 2.2, 2.8, 2.18, 2.20, 2.22, 2.26; Ch. 3: 3.4, 3.6, 3
 | Date | Class activity | Preparation and assignments |
 |---|---|---|
 | **Mon., Oct. 19** | Hypothesis testing | OpenIntro Ch. 5 · [Day 9 slides](materials/slides/day09/PA311N-Day9-Hypothesis-Testing.pdf){download="PA311N-Day9-Hypothesis-Testing.pdf"} |
-| **Wed., Oct. 21** | Lab 7: Inference for numerical data | Lab 7 work |
+| **Wed., Oct. 21** | Lab 7: Inference for numerical data | [Lab guide](labs/lab07/) · [Student lab template](templates/lab07-template.qmd){download="lab07-template.qmd"} |
 | **Fri., Oct. 23** | Lab 7 review and interpretation | Complete Lab 7 **On Your Own** |
 | **Mon., Oct. 26** | Comparing groups | Review OpenIntro Ch. 5 |
 | **Wed., Oct. 28** | Lab 8: More statistical inference | Lab 8 work |
