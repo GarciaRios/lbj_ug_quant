@@ -48,3 +48,9 @@ Use Ames housing data to see how sample statistics vary, build sampling distribu
 Use Ames housing data to build and interpret confidence intervals, visualize repeated-sampling coverage, compare confidence and precision, and plan sample sizes for policy decisions.
 
 [Open the teaching guide](labs/lab06/) · [Download the student report](templates/lab06-template.qmd){download="lab06-template.qmd"}
+
+## Lab 7: Inference for Numerical Data
+
+Use North Carolina birth-record data to move from observed group differences to hypothesis tests, confidence intervals, and policy interpretation, then apply the same workflow in small groups.
+
+[Open the teaching guide](labs/lab07/) · [Download the student report](templates/lab07-template.qmd){download="lab07-template.qmd"}
