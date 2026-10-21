@@ -1,0 +1,385 @@
+---
+title: "Lab 7: Hypothesis Testing for a Mean"
+subtitle: "When is a difference too large to dismiss as sampling variability?"
+execute:
+  eval: false
+---
+
+[Download the student lab template](../../templates/lab07-template.qmd){.btn .btn-primary download="lab07-template.qmd"}
+
+## The policy question
+
+A North Carolina maternal-health planning team is budgeting staff time for prenatal-care coordination. For this exercise, suppose the agency has been using **12 prenatal visits per pregnancy** as an administrative workload benchmark.
+
+This is a planning assumption, not a medical recommendation.
+
+The team now has a random sample of births and asks:
+
+> **Is the observed average number of prenatal visits different enough from 12 that we should reconsider the planning assumption?**
+
+::: {.callout-tip appearance="simple"}
+A hypothesis test does not ask whether 12 is definitely true or false.
+
+It asks whether our sample would be surprising **if the true population mean were 12**.
+:::
+
+## Setup
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+load(url("https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab5/nc.RData"))
+
+nc_visits <- nc |>
+  filter(!is.na(visits))
+```
+
+The data are a random sample of births recorded in North Carolina in 2004. We will focus on the number of prenatal visits recorded for each birth.
+
+---
+
+## 1. Start with the data
+
+```{r}
+visit_stats <- nc_visits |>
+  summarise(
+    n = n(),
+    x_bar = mean(visits),
+    s = sd(visits),
+    median = median(visits),
+    min = min(visits),
+    max = max(visits)
+  )
+
+visit_stats
+```
+
+```{r}
+ggplot(nc_visits, aes(x = visits)) +
+  geom_histogram(binwidth = 1) +
+  labs(
+    x = "Prenatal visits",
+    y = "Number of births",
+    title = "Prenatal visits in the North Carolina sample"
+  ) +
+  theme_minimal()
+```
+
+### Your turn
+
+1. How many complete observations are available?
+
+2. What is the sample mean number of visits, $\bar{x}$?
+
+3. Describe the shape of the distribution. Are there any features that matter for inference?
+
+4. How far is the sample mean from the planning benchmark of 12 visits?
+
+A difference in the sample is not automatically evidence of a difference in the population. We need to compare that difference with the amount of variation expected from random sampling.
+
+---
+
+## 2. State the hypotheses
+
+Let
+
+$$
+\mu=\text{the population mean number of prenatal visits}.
+$$
+
+The planning benchmark becomes the null hypothesis:
+
+$$
+H_0:\mu=12.
+$$
+
+Because the agency initially asks whether the mean is **different** from 12 in either direction,
+
+$$
+H_A:\mu\neq12.
+$$
+
+### Your turn
+
+5. State $H_0$ in words.
+
+6. State $H_A$ in words.
+
+7. Why is this a **two-sided** test?
+
+---
+
+## 3. Check the conditions
+
+For a one-sample $t$ test of a mean, we want:
+
+- reasonably independent observations;
+- a random or otherwise defensible sample;
+- a sampling distribution of the mean that is approximately normal.
+
+The sample is large, so the Central Limit Theorem gives us substantial protection against moderate skew.
+
+### Your turn
+
+8. What feature of the study design supports independence?
+
+9. Does the histogram show anything so extreme that you would distrust the CLT for this sample size? Explain.
+
+10. Why should we check these conditions before interpreting a p-value?
+
+---
+
+## 4. Measure the observed difference in standard-error units
+
+Store the sample quantities:
+
+```{r}
+n <- nrow(nc_visits)
+x_bar <- mean(nc_visits$visits)
+s <- sd(nc_visits$visits)
+
+se <- s / sqrt(n)
+
+c(
+  n = n,
+  x_bar = x_bar,
+  s = s,
+  se = se
+)
+```
+
+The one-sample test statistic is
+
+$$
+t=\frac{\bar{x}-\mu_0}{s/\sqrt{n}},
+$$
+
+where $\mu_0=12$.
+
+```{r}
+mu_0 <- 12
+
+t_obs <- (x_bar - mu_0) / se
+df <- n - 1
+
+c(
+  t = t_obs,
+  df = df
+)
+```
+
+### Your turn
+
+11. What is the standard error? Interpret it in context.
+
+12. What is the observed $t$ statistic?
+
+13. What does the sign of $t$ tell you?
+
+14. What does the magnitude of $t$ tell you? Approximately how many standard errors is $\bar{x}$ from the null value?
+
+::: {.callout-note appearance="simple"}
+Do not confuse the observed $t$ statistic with the $t^*$ critical value from confidence intervals.
+
+- $t^*$ is chosen from a confidence level.
+- $t$ is calculated from the data.
+:::
+
+---
+
+## 5. Calculate and interpret the p-value
+
+Because the alternative is two-sided, values far below **or** far above 12 count as evidence against $H_0$.
+
+```{r}
+p_value <- 2 * pt(
+  -abs(t_obs),
+  df = df
+)
+
+p_value
+```
+
+### Predict before interpreting
+
+If $H_0$ were true, does our observed $t$ statistic look common or unusual?
+
+### Your turn
+
+15. What is the p-value?
+
+16. Complete this sentence:
+
+> If the true population mean were 12 visits, the probability of obtaining a sample mean at least this far from 12, in either direction, is approximately ______.
+
+17. Why is the p-value **not** the probability that $H_0$ is true?
+
+---
+
+## 6. Make the statistical decision
+
+Suppose the agency selected
+
+$$
+\alpha=.05
+$$
+
+before examining the result.
+
+```{r}
+if (p_value < 0.05) {
+  "Reject H0"
+} else {
+  "Fail to reject H0"
+}
+```
+
+### Your turn
+
+18. Do you reject or fail to reject $H_0$?
+
+19. Write the conclusion in plain language for the planning team.
+
+20. Why do we say **fail to reject** rather than **accept** $H_0$?
+
+---
+
+## 7. Let R check our work
+
+```{r}
+visit_test <- t.test(
+  nc_visits$visits,
+  mu = 12,
+  alternative = "two.sided",
+  conf.level = 0.95
+)
+
+visit_test
+```
+
+### Your turn
+
+21. Find the test statistic and p-value in the output. Do they match your calculations?
+
+22. Find the 95% confidence interval. Does 12 fall inside or outside it?
+
+23. Does the confidence interval lead to the same decision as the hypothesis test? Explain.
+
+For a two-sided test at $\alpha=.05$, a 95% confidence interval and the hypothesis test should agree:
+
+- null value **inside** the interval $\Rightarrow$ fail to reject $H_0$;
+- null value **outside** the interval $\Rightarrow$ reject $H_0$.
+
+---
+
+## 8. Change the policy question: one-sided inference
+
+Suppose the agency's concern is specifically that workload may be **higher** than planned:
+
+> **Is the population mean greater than 12 visits?**
+
+Now
+
+$$
+H_0:\mu=12
+$$
+
+and
+
+$$
+H_A:\mu>12.
+$$
+
+```{r}
+t.test(
+  nc_visits$visits,
+  mu = 12,
+  alternative = "greater"
+)
+```
+
+### Your turn
+
+24. How does the one-sided p-value compare with the two-sided p-value?
+
+25. Why does the alternative hypothesis determine which tail matters?
+
+26. Why should analysts choose one-sided versus two-sided **before** seeing the result?
+
+---
+
+## 9. Statistical significance versus policy importance
+
+Calculate the observed difference:
+
+```{r}
+difference <- x_bar - 12
+difference
+```
+
+### Your turn
+
+27. How large is the estimated difference in actual visits?
+
+28. Even if the result is statistically significant, what additional information would you want before recommending a staffing or budget change?
+
+::: {.callout-tip appearance="simple"}
+Statistical evidence asks:
+
+**Is the difference difficult to explain by sampling variability alone?**
+
+Policy analysis must also ask:
+
+**Is the difference large enough to matter for the decision?**
+:::
+
+---
+
+# On Your Own: Is the maternal-age planning assumption reasonable?
+
+Suppose a county outreach program was designed using an assumed **mean maternal age of 27 years**.
+
+Use the same workflow to evaluate that planning assumption.
+
+29. Create a dataset containing non-missing values of maternal age. Report $n$, $\bar{x}$, and $s$, and make a histogram.
+
+```{r}
+
+```
+
+30. State $H_0$ and $H_A$ for a two-sided test of whether the population mean differs from 27 years.
+
+> 
+
+31. Check the conditions for a one-sample $t$ test.
+
+> 
+
+32. Calculate the standard error, observed $t$ statistic, and two-sided p-value.
+
+```{r}
+
+```
+
+33. At $\alpha=.05$, what is your statistical decision? State it in plain language.
+
+> 
+
+34. Use the built-in $t$ test to verify your calculation and obtain a 95% confidence interval.
+
+```{r}
+
+```
+
+35. Does 27 fall inside the confidence interval? Explain why this agrees or disagrees with your hypothesis-test decision.
+
+> 
+
+36. Write **2--3 sentences to the outreach program manager** reporting the estimate, the statistical evidence, and whether the 27-year planning assumption should be reconsidered.
+
+> 
+
+37. Add one sentence explaining why statistical significance alone does not tell the manager whether changing the program is worthwhile.
+
+> 
