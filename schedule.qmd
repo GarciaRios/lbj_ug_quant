@@ -79,8 +79,8 @@ OpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5
 
 | Date | Class activity | Preparation and assignments |
 |---|---|---|
-| **Mon., Nov. 2** | **Midterm: Units 1–4** | One student-prepared double-sided reference sheet permitted |
-| **Wed., Nov. 4** | R review and project preparation | Bring project ideas and coding questions |
+| **Mon., Nov. 2** | R review and project preparation | Bring project ideas and coding questions |
+| **Wed., Nov. 4** | **Midterm: Units 1–4** | One student-prepared double-sided reference sheet permitted |
 | **Fri., Nov. 6** | Project and R support | Project preparation |
 | **Mon., Nov. 9** | Correlation and simple linear regression | OpenIntro Ch. 7 |
 | **Wed., Nov. 11** | Lab 9: Simple regression | Lab 9 work |
