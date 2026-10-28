@@ -296,10 +296,45 @@ summary(income_edu_model)
 TukeyHSD(income_edu_model)
 ```
 
+First, look at the default Tukey plot:
+
 ```{r}
 plot(
   TukeyHSD(income_edu_model)
 )
+```
+
+Now recreate the same information with `ggplot2`:
+
+```{r}
+res <- TukeyHSD(income_edu_model)
+
+df_tukey <- res$edu |>
+  as.data.frame() |>
+  tibble::as_tibble(rownames = "comparison")
+
+ggplot(
+  df_tukey,
+  aes(
+    x = reorder(comparison, diff),
+    y = diff,
+    ymin = lwr,
+    ymax = upr
+  )
+) +
+  geom_pointrange(linewidth = 1) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed"
+  ) +
+  coord_flip() +
+  labs(
+    x = NULL,
+    y = "Difference in mean income ($)",
+    title = "Pairwise differences in mean income",
+    subtitle = "Tukey-adjusted 95% confidence intervals"
+  ) +
+  theme_minimal()
 ```
 
 22. Which pairwise comparisons show evidence of different population means?
