@@ -54,3 +54,9 @@ Use Ames housing data to build and interpret confidence intervals, visualize rep
 Use North Carolina birth-record data to move from observed group differences to hypothesis tests, confidence intervals, and policy interpretation, then apply the same workflow in small groups.
 
 [Open the teaching guide](labs/lab07/) · [Download the student report](templates/lab07-template.qmd){download="lab07-template.qmd"}
+
+## Lab 8: More Statistical Inference
+
+Use ACS and paired environmental data to practice paired comparisons, evaluate possible confounding, compare three or more means with ANOVA, and follow significant results with adjusted pairwise comparisons.
+
+[Open the teaching guide](labs/lab08/) · [Download the student report](templates/lab08-template.qmd){download="lab08-template.qmd"}
