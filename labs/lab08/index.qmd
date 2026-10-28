@@ -373,6 +373,16 @@ TukeyHSD(income_edu_model)
 
 You can also visualize the pairwise confidence intervals:
 
+First, look at the default Tukey plot:
+
+```{r}
+plot(
+  TukeyHSD(income_edu_model)
+)
+```
+
+Now recreate the same information with `ggplot2`:
+
 ```{r}
 res <- TukeyHSD(income_edu_model)
 
