@@ -296,6 +296,16 @@ summary(income_edu_model)
 TukeyHSD(income_edu_model)
 ```
 
+First, look at the default Tukey plot:
+
+```{r}
+plot(
+  TukeyHSD(income_edu_model)
+)
+```
+
+Now recreate the same information with `ggplot2`:
+
 ```{r}
 res <- TukeyHSD(income_edu_model)
 
