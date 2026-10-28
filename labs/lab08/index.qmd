@@ -1,0 +1,494 @@
+---
+title: "Lab 8: More Statistical Inference"
+subtitle: "Paired data, confounding, and comparing more than two groups"
+execute:
+  eval: false
+---
+
+[Download the student lab template](../../templates/lab08-template.qmd){.btn .btn-primary download="lab08-template.qmd"}
+
+## Today
+
+In the last lab, we compared the means of two independent groups. Today we extend that framework in three directions:
+
+1. **Paired observations:** when two measurements belong together.
+2. **Confounding:** when an observed difference may partly reflect another variable.
+3. **Three or more groups:** when ANOVA is more appropriate than a collection of separate t-tests.
+
+Most of the lab uses a sample from the **American Community Survey (ACS)**, following the same basic analysis used in the earlier Cornell version of this course.
+
+---
+
+# Part I: A quick paired-data example
+
+## Zinc concentrations in water
+
+Suppose environmental researchers measure zinc concentration in both **bottom water** and **surface water** at the same 10 locations.
+
+Because the two measurements come from the **same location**, they are paired.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tibble)
+
+zinc <- tibble(
+  location = 1:10,
+  bottom = c(
+    0.430, 0.266, 0.567, 0.531, 0.707,
+    0.716, 0.651, 0.589, 0.469, 0.723
+  ),
+  surface = c(
+    0.415, 0.238, 0.390, 0.410, 0.605,
+    0.609, 0.632, 0.523, 0.411, 0.612
+  )
+)
+```
+
+Create the within-location difference:
+
+```{r}
+zinc <- zinc |>
+  mutate(diff = bottom - surface)
+
+zinc
+```
+
+Summarize the differences:
+
+```{r}
+zinc |>
+  summarise(
+    mean_difference = mean(diff),
+    sd_difference = sd(diff),
+    n = n()
+  )
+```
+
+Run the paired t-test:
+
+```{r}
+t.test(
+  zinc$bottom,
+  zinc$surface,
+  paired = TRUE
+)
+```
+
+1. Why are these observations paired rather than independent?
+
+2. What does a positive value of `diff` mean?
+
+3. State the null hypothesis in terms of the **mean paired difference**.
+
+4. Based on the test, is there evidence that average zinc concentration differs between bottom and surface water?
+
+::: {.callout-note appearance="simple"}
+A paired t-test is really a **one-sample t-test on the within-pair differences**.
+:::
+
+---
+
+# Part II: American salaries
+
+Since 2005, the American Community Survey has collected information from millions of U.S. households. We will use a random sample from the 2012 ACS.
+
+```{r}
+load(url(
+  "https://github.com/GarciaRios/govt_3990/raw/gh-pages/Labs/lab6/acs.RData"
+))
+
+glimpse(acs)
+```
+
+Variables we will use include:
+
+| Variable | Description |
+|---|---|
+| `income` | Annual wage and salary income |
+| `employment` | Employment status |
+| `hrs_work` | Weekly hours worked |
+| `race` | Race category |
+| `age` | Age |
+| `gender` | Gender |
+| `citizens` | U.S. citizenship status |
+| `time_to_work` | Travel time to work |
+| `lang` | Language spoken at home |
+| `married` | Marital status |
+| `edu` | Education level |
+| `disability` | Disability status |
+
+First, examine employment status:
+
+```{r}
+acs |>
+  count(employment) |>
+  mutate(
+    percent = 100 * n / sum(n)
+  )
+```
+
+5. What percentage of the sample is employed?
+
+For the rest of the earnings analysis, keep only employed respondents:
+
+```{r}
+acs_emp <- acs |>
+  filter(employment == "employed")
+```
+
+---
+
+## Gender and annual income
+
+Start with a visualization:
+
+```{r}
+ggplot(
+  acs_emp,
+  aes(x = gender, y = income)
+) +
+  geom_boxplot() +
+  labs(
+    x = NULL,
+    y = "Annual income",
+    title = "Annual income by gender"
+  ) +
+  theme_minimal()
+```
+
+Calculate group summaries:
+
+```{r}
+acs_emp |>
+  group_by(gender) |>
+  summarise(
+    mean_income = mean(income, na.rm = TRUE),
+    sd_income = sd(income, na.rm = TRUE),
+    n = sum(!is.na(income))
+  )
+```
+
+6. At first glance, how do average incomes differ across the two groups?
+
+7. What does the boxplot show that the means alone do not?
+
+Now conduct the two-sample t-test:
+
+```{r}
+income_gender_test <- t.test(
+  income ~ gender,
+  data = acs_emp,
+  alternative = "two.sided",
+  conf.level = 0.95
+)
+
+income_gender_test
+```
+
+8. State the null and alternative hypotheses.
+
+9. Report the p-value and the 95% confidence interval for the difference in means.
+
+10. What does the analysis tell us about the **population difference in average income**?
+
+11. What does this analysis *not* establish about gender and income?
+
+---
+
+# Part III: Could hours worked matter?
+
+The difference in average income is clear, but the two groups may also differ in other ways.
+
+One possibility is **hours worked**.
+
+Create a new variable distinguishing full-time and part-time workers:
+
+```{r}
+acs_emp <- acs_emp |>
+  mutate(
+    emp_type = case_when(
+      hrs_work >= 40 ~ "full time",
+      TRUE ~ "part time"
+    )
+  )
+```
+
+Examine employment type by gender:
+
+```{r}
+acs_emp |>
+  count(gender, emp_type) |>
+  group_by(gender) |>
+  mutate(
+    percent = 100 * n / sum(n)
+  )
+```
+
+12. Are the two gender groups equally distributed across full-time and part-time work?
+
+Now create separate datasets:
+
+```{r}
+acs_full <- acs_emp |>
+  filter(emp_type == "full time")
+
+acs_part <- acs_emp |>
+  filter(emp_type == "part time")
+```
+
+Compare average income by gender among **full-time workers**:
+
+```{r}
+acs_full |>
+  group_by(gender) |>
+  summarise(
+    mean_income = mean(income, na.rm = TRUE),
+    sd_income = sd(income, na.rm = TRUE),
+    n = sum(!is.na(income))
+  )
+```
+
+```{r}
+t.test(
+  income ~ gender,
+  data = acs_full
+)
+```
+
+Now repeat for **part-time workers**:
+
+```{r}
+acs_part |>
+  group_by(gender) |>
+  summarise(
+    mean_income = mean(income, na.rm = TRUE),
+    sd_income = sd(income, na.rm = TRUE),
+    n = sum(!is.na(income))
+  )
+```
+
+```{r}
+t.test(
+  income ~ gender,
+  data = acs_part
+)
+```
+
+13. Does the income difference remain among full-time workers?
+
+14. Does it remain among part-time workers?
+
+15. What do these analyses suggest about whether work hours may help explain part of the original income difference?
+
+::: {.callout-warning appearance="simple"}
+Stratifying by one variable does not make this a causal analysis. Other differences between groups may still matter.
+:::
+
+---
+
+# Part IV: More than two groups
+
+A two-sample t-test works when we are comparing **two population means**.
+
+Suppose instead we want to ask:
+
+> **Does average annual income differ across education levels?**
+
+First inspect the education categories:
+
+```{r}
+acs_emp |>
+  count(edu)
+```
+
+Summarize income across education levels:
+
+```{r}
+acs_emp |>
+  group_by(edu) |>
+  summarise(
+    mean_income = mean(income, na.rm = TRUE),
+    sd_income = sd(income, na.rm = TRUE),
+    n = sum(!is.na(income))
+  )
+```
+
+Visualize the distributions:
+
+```{r}
+ggplot(
+  acs_emp,
+  aes(x = edu, y = income)
+) +
+  geom_boxplot() +
+  labs(
+    x = "Education",
+    y = "Annual income",
+    title = "Annual income across education levels"
+  ) +
+  theme_minimal()
+```
+
+16. How many population means are we comparing?
+
+17. Why would a series of separate t-tests be a poor first approach?
+
+For a one-way ANOVA:
+
+\[
+H_0:\mu_1=\mu_2=\cdots=\mu_k
+\]
+
+The alternative is that **at least two population means differ**.
+
+Fit the ANOVA model:
+
+```{r}
+income_edu_model <- aov(
+  income ~ edu,
+  data = acs_emp
+)
+
+summary(income_edu_model)
+```
+
+18. What is the p-value for the overall ANOVA?
+
+19. At \(\alpha=0.05\), do you reject or fail to reject the null hypothesis?
+
+20. What can you conclude from a statistically significant ANOVA?
+
+21. What can you **not yet** conclude?
+
+---
+
+## Which groups differ?
+
+If the overall ANOVA indicates that at least some means differ, we can follow it with adjusted pairwise comparisons.
+
+```{r}
+TukeyHSD(income_edu_model)
+```
+
+You can also visualize the pairwise confidence intervals:
+
+```{r}
+plot(
+  TukeyHSD(income_edu_model)
+)
+```
+
+22. Which education-level comparisons show evidence of different population mean incomes?
+
+23. How can you tell from both the adjusted p-values and the confidence intervals?
+
+24. Why do we adjust these comparisons rather than simply run many ordinary t-tests?
+
+---
+
+# Group Policy Analysis
+
+Each group will receive one ACS question. Your job is to decide **which comparison method is appropriate**, run it, and give a two-minute briefing.
+
+## Group A: Citizenship and income
+
+> Does average annual income differ between citizens and non-citizens?
+
+- outcome: `income`
+- group: `citizens`
+
+## Group B: Language and commute time
+
+> Does average commute time differ between people who speak English at home and those who speak another language?
+
+- outcome: `time_to_work`
+- group: `lang`
+
+## Group C: Race and income
+
+> Does average annual income differ across the race categories in this sample?
+
+- outcome: `income`
+- group: `race`
+
+Treat this as a **disparity analysis**, not evidence that race itself causes income differences.
+
+## Group D: Education and commute time
+
+> Does average commute time differ across education levels?
+
+- outcome: `time_to_work`
+- group: `edu`
+
+## Group E: Education and weekly hours worked
+
+> Does the average number of weekly work hours differ across education levels?
+
+- outcome: `hrs_work`
+- group: `edu`
+
+### What each group should do
+
+1. Identify whether the comparison involves **two groups** or **three or more groups**.
+2. State the population parameter(s) and hypotheses.
+3. Create one useful visualization.
+4. Calculate group means, standard deviations, and sample sizes.
+5. Run the appropriate test:
+   - two groups → `t.test()`
+   - three or more groups → `aov()`
+6. If the ANOVA is significant, use `TukeyHSD()`.
+7. Give a substantive conclusion and one important limitation.
+
+### Two-minute briefing
+
+Be ready to report:
+
+> **Our question was...**  
+> **The appropriate method was... because...**  
+> **We found...**  
+> **For policy, this may matter because...**  
+> **One important limitation is...**
+
+---
+
+# On Your Own
+
+Choose a **numerical outcome** and a **categorical grouping variable** from the ACS data that your group did not analyze.
+
+25. Write a policy-relevant research question.
+
+26. Identify the appropriate method: independent two-sample t-test or one-way ANOVA. Explain why.
+
+27. Create one visualization and calculate descriptive statistics.
+
+```{r}
+
+```
+
+28. State the null and alternative hypotheses.
+
+29. Conduct the appropriate hypothesis test.
+
+```{r}
+
+```
+
+30. If you used ANOVA and rejected the null hypothesis, conduct adjusted pairwise comparisons.
+
+```{r}
+
+```
+
+31. Write a short policy interpretation that reports:
+
+- the observed pattern;
+- the inferential conclusion;
+- the size/direction of the relevant difference(s);
+- one limitation of the analysis.
+
+::: {.callout-tip appearance="simple"}
+The method changes with the design, but the inferential logic does not:
+
+**question → parameter → estimate → uncertainty → test → interpretation**
+:::
