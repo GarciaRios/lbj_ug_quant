@@ -1,6 +1,6 @@
 ---
 title: "Lab 9: Simple Linear Regression"
-subtitle: "From association to prediction"
+subtitle: "Correlation, least squares, prediction, and model diagnostics"
 execute:
   eval: false
 ---
@@ -10,491 +10,498 @@ execute:
 <!--
 DRAFT FOR REVIEW — not linked from labs.qmd or schedule.qmd.
 
-Instructor pacing:
-- Part I: 10 minutes
-- Part II: 20 minutes
-- Part III: 10 minutes
-- Group Policy Analysis: 15 minutes
-- Wrap-up: 5 minutes
-The On Your Own section is appropriate for Friday support / completion.
+This lab is adapted closely from the earlier simple-regression lab used in this course.
+The guided portion is intended for Wednesday; the On Your Own section can continue Friday.
 -->
 
-## Today
+## Batter up
 
-On Monday we moved from **comparing groups** to studying the relationship between **two numerical variables**.
+The movie *Moneyball* follows the Oakland Athletics' search for undervalued statistics that could help explain and predict team success.
 
-Today we will use data from the **American Community Survey (ACS)** to practice the full simple-regression workflow:
+In this lab we will use data from all 30 Major League Baseball teams in the 2011 season. We will examine the relationship between **runs scored** and several offensive statistics, first graphically and then with simple linear regression.
 
-1. visualize the relationship with a scatterplot;
-2. summarize linear association with correlation;
-3. fit a simple linear regression model;
-4. interpret the slope, intercept, and \(R^2\);
-5. make predictions and calculate residuals;
-6. recognize extrapolation and limitations.
+The goal is to answer a practical modeling question:
 
-Our main question is:
+> **Which statistics are most useful for predicting how many runs a team scores?**
 
-> **Among employed adults, how is annual income associated with weekly hours worked?**
-
-::: {.callout-note appearance="simple"}
-Regression describes a relationship in the observed data. By itself, it does **not** establish that changing \(x\) would cause \(y\) to change.
-:::
+This gives us a clean setting for practicing the same regression workflow we can later apply to public-policy data.
 
 ---
 
-# Part I: Start with the data
+## The data
 
-## Load and prepare the ACS sample
-
-We will use the same ACS data from Lab 8.
+Load the packages and the 2011 MLB data:
 
 ```{r}
 library(dplyr)
 library(ggplot2)
-library(tibble)
 
 load(url(
-  "https://github.com/GarciaRios/govt_3990/raw/gh-pages/Labs/lab6/acs.RData"
+  "https://github.com/GarciaRios/govt_3990/raw/gh-pages/Labs/lab7/mlb11.RData"
 ))
 ```
 
-Keep employed respondents with positive reported income:
+Take a quick look:
 
 ```{r}
-acs_emp <- acs |>
-  filter(
-    employment == "employed",
-    income > 0
-  )
+glimpse(mlb11)
 ```
 
-For our guided analysis, also require a non-missing value for weekly hours worked:
-
-```{r}
-acs_reg <- acs_emp |>
-  filter(
-    !is.na(hrs_work)
-  )
-```
-
-The two variables we will use are:
+The data include:
 
 | Variable | Description |
 |---|---|
-| `hrs_work` | Usual number of hours worked per week |
-| `income` | Annual wage and salary income |
+| `runs` | Runs scored |
+| `at_bats` | At-bats |
+| `hits` | Hits |
+| `homeruns` | Home runs |
+| `bat_avg` | Batting average |
+| `strikeouts` | Strikeouts |
+| `stolen_bases` | Stolen bases |
+| `wins` | Games won |
+| `new_onbase` | On-base percentage |
+| `new_slug` | Slugging percentage |
+| `new_obs` | On-base plus slugging |
 
-1. What does one row of `acs_reg` represent?
-
-2. For the question above, which variable is the **explanatory variable** and which is the **response variable**?
+The first seven are more traditional statistics. The last three are newer measures that were central to the *Moneyball* argument.
 
 ---
 
-## Visualize first
+# 1. Start with a scatterplot
 
-Create a scatterplot:
+What type of plot should we use to examine the relationship between two numerical variables?
+
+Start with `at_bats` as the explanatory variable and `runs` as the response.
 
 ```{r}
 ggplot(
-  acs_reg,
-  aes(x = hrs_work, y = income)
+  mlb11,
+  aes(x = at_bats, y = runs)
 ) +
-  geom_point(alpha = 0.30) +
+  geom_point() +
   labs(
-    x = "Hours worked per week",
-    y = "Annual income ($)",
-    title = "Annual income and weekly hours worked"
+    x = "At-bats",
+    y = "Runs",
+    title = "Runs scored and at-bats"
   ) +
   theme_minimal()
 ```
 
-3. Describe the relationship using the language from lecture:
+### Exercise 1
 
-- direction;
+Describe the relationship between `at_bats` and `runs`.
+
+Comment on:
+
 - form;
+- direction;
 - strength;
 - unusual observations.
 
-4. Does a straight line seem like a useful **summary** of the relationship? What would the line miss?
-
-::: {.callout-tip appearance="simple"}
-A regression model can be useful without describing every observation well. The question is whether a line captures an important part of the pattern.
-:::
+Does the relationship look linear enough that you would be comfortable using a line to summarize it?
 
 ---
 
 ## Correlation
 
-Calculate the correlation:
+If the relationship is approximately linear, we can summarize its direction and strength with the correlation coefficient.
 
 ```{r}
-acs_reg |>
+mlb11 |>
   summarise(
-    r = cor(hrs_work, income)
+    r = cor(runs, at_bats)
   )
 ```
 
-5. Is the correlation positive or negative? Is that consistent with the scatterplot?
+How does the value of \(r\) match what you saw in the scatterplot?
 
-6. What does the correlation add to the visual description? What does it **not** tell us?
-
-::: {.callout-warning appearance="simple"}
-Correlation measures **linear association**. A correlation near zero does not necessarily mean that two variables have no relationship.
+::: {.callout-note appearance="simple"}
+Correlation summarizes **linear association**. Always look at the scatterplot before relying on the number.
 :::
 
 ---
 
-# Part II: Fit the regression model
+# 2. Sum of squared residuals
 
-## Add the least-squares line
+A regression line is a line used to predict the response variable from the explanatory variable.
 
-Now add the fitted linear relationship to the scatterplot:
+For each team, the difference between the observed number of runs and the value predicted by a line is the **residual**:
+
+\[
+e_i = y_i - \hat{y}_i.
+\]
+
+Before asking R for the best-fitting line, try choosing one yourself.
+
+Load the interactive helper function:
+
+```{r}
+source(url(
+  "https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab7/plot_ss.R"
+))
+```
+
+The following command is interactive, so run it in the **Console**, not while rendering your Quarto document:
+
+```{r}
+#| eval: false
+plot_ss(
+  x = at_bats,
+  y = runs,
+  data = mlb11
+)
+```
+
+Click two points to draw a line. The vertical segments show the residuals.
+
+To visualize the squared residuals:
+
+```{r}
+#| eval: false
+plot_ss(
+  x = at_bats,
+  y = runs,
+  data = mlb11,
+  showSquares = TRUE
+)
+```
+
+### Exercise 2
+
+Looking again at the scatterplot and your fitted line, describe the relationship between `at_bats` and `runs` in terms of form, direction, strength, and unusual observations.
+
+### Exercise 3
+
+Use `plot_ss()` several times and try to make the **sum of squared residuals** as small as possible.
+
+- What is the smallest sum of squares you obtain?
+- How does it compare with someone sitting near you?
+- Why do you think your answers are not exactly the same?
+
+::: {.callout-note appearance="simple"}
+The least-squares regression line is the line that minimizes
+
+\[
+\sum e_i^2.
+\]
+
+Instead of finding that line by trial and error, R can calculate it exactly.
+:::
+
+---
+
+# 3. The linear model
+
+Fit the least-squares line with `lm()`:
+
+```{r}
+m1 <- lm(
+  runs ~ at_bats,
+  data = mlb11
+)
+
+summary(m1)
+```
+
+The formula
+
+```
+runs ~ at_bats
+```
+
+can be read as:
+
+> Model **runs** as a function of **at-bats**.
+
+The first column of the coefficient table gives the estimated intercept and slope.
+
+For these data, the fitted model is approximately
+
+\[
+\widehat{runs}
+=
+-2789.24
++
+0.6305(at\_bats).
+\]
+
+The model summary also reports **Multiple R-squared**, or simply \(R^2\).
+
+\(R^2\) is the proportion of variability in the response variable accounted for by the linear model.
+
+For the `at_bats` model, approximately 37% of the variability in runs is accounted for by at-bats.
+
+### Exercise 4
+
+Fit a new model using `homeruns` to predict `runs`.
+
+```{r}
+m_hr <- lm(
+  runs ~ homeruns,
+  data = mlb11
+)
+
+summary(m_hr)
+```
+
+Then:
+
+1. Write the fitted regression equation.
+2. Interpret the slope in context.
+3. Report \(R^2\).
+4. Which model accounts for more variation in runs: `at_bats` or `homeruns`?
+
+::: {.callout-warning appearance="simple"}
+The slope describes an association in these data. It does not mean that mechanically increasing one statistic would necessarily cause runs to increase by exactly that amount.
+:::
+
+---
+
+# 4. Prediction and prediction errors
+
+Add the least-squares line to the original scatterplot:
 
 ```{r}
 ggplot(
-  acs_reg,
-  aes(x = hrs_work, y = income)
+  mlb11,
+  aes(x = at_bats, y = runs)
 ) +
-  geom_point(alpha = 0.30) +
+  geom_point() +
   geom_smooth(
     method = "lm",
+    formula = y ~ x,
     se = FALSE
   ) +
   labs(
-    x = "Hours worked per week",
-    y = "Annual income ($)",
-    title = "Annual income and weekly hours worked",
+    x = "At-bats",
+    y = "Runs",
+    title = "Runs scored and at-bats",
     subtitle = "Least-squares regression line"
   ) +
   theme_minimal()
 ```
 
-The line is the set of predicted values from a model of the form
+A regression line can be used to predict \(y\) for a given value of \(x\).
 
-\[
-\widehat{income}=b_0+b_1(hrs\_work).
-\]
+Suppose a team has 5,579 at-bats.
 
-Fit that model in R:
+Calculate the model prediction:
 
 ```{r}
-income_hours_model <- lm(
-  income ~ hrs_work,
-  data = acs_reg
+predict(
+  m1,
+  newdata = data.frame(
+    at_bats = 5579
+  )
 )
-
-summary(income_hours_model)
 ```
 
-::: {.callout-note appearance="simple"}
-For this lab, focus on the **coefficient estimates** and **Multiple R-squared**. We will not try to interpret every line of `summary()` yet.
+Now find the observed team in the data:
+
+```{r}
+mlb11 |>
+  filter(at_bats == 5579) |>
+  select(team, at_bats, runs)
+```
+
+### Exercise 5
+
+For the team with 5,579 at-bats:
+
+1. What number of runs does the model predict?
+2. What was the observed number of runs?
+3. Calculate the residual:
+
+\[
+e = y - \hat{y}.
+\]
+
+4. Is the prediction an overestimate or an underestimate?
+
+---
+
+## Extrapolation
+
+Predictions made beyond the observed range of the explanatory variable are called **extrapolation**.
+
+Check the range of at-bats:
+
+```{r}
+range(mlb11$at_bats)
+```
+
+A prediction near the middle of this range is generally more defensible than a prediction far outside it.
+
+::: {.callout-warning appearance="simple"}
+R will still calculate a prediction outside the observed range. That does not mean the relationship actually remains linear there.
 :::
 
-7. Use the coefficient estimates to write the fitted regression equation.
+---
 
-8. Interpret the **slope** in context. Use the phrase **"predicted annual income"** or **"annual income is expected to..."** rather than causal language.
+# 5. Model diagnostics
 
-9. What does the intercept represent mathematically? Is the intercept substantively meaningful for this sample?
+A fitted line is most useful when a linear model is a reasonable summary of the relationship.
+
+We will check three things:
+
+1. linearity;
+2. nearly normal residuals;
+3. approximately constant residual variability.
 
 ---
 
-## \(R^2\)
+## Linearity and constant variability
 
-The model summary reports **Multiple R-squared**.
-
-10. Report \(R^2\) and interpret it in context.
-
-A useful template is:
-
-> About ___% of the observed variation in **annual income** is accounted for by its linear relationship with **weekly hours worked** in this sample.
-
-11. Does a modest \(R^2\) necessarily mean that weekly hours worked are unimportant? Why or why not?
-
-::: {.callout-note appearance="simple"}
-For simple linear regression,
-
-\[
-R^2=r^2.
-\]
-
-Correlation and \(R^2\) are closely connected, but they answer different questions.
-:::
-
----
-
-## What can we conclude?
-
-12. Which of the following claim is supported by this analysis?
-
-- People who work more hours **tend to have** different annual incomes.
-- Increasing someone's work hours would **cause** their annual income to change by exactly the estimated slope.
-
-Explain your choice.
-
-13. Name at least two other variables that might be related to both hours worked and annual income.
-
-Think about variables already in the ACS data.
-
----
-
-# Part III: Prediction and residuals
-
-## Make predictions
-
-Use the fitted model to predict annual income for people working 20, 40, and 60 hours per week:
+Create a residual-versus-fitted plot:
 
 ```{r}
-prediction_cases <- tibble(
-  hrs_work = c(20, 40, 60)
+model_check <- tibble(
+  fitted = fitted(m1),
+  residual = resid(m1)
 )
 
-prediction_cases |>
-  mutate(
-    predicted_income = predict(
-      income_hours_model,
-      newdata = prediction_cases
-    )
-  )
-```
-
-14. How much does the model's predicted annual income change when weekly work hours increase from 20 to 40? How does that connect to the slope?
-
-15. Why should we call these **predictions** rather than expected outcomes from a policy intervention?
-
----
-
-## Compare predicted and observed income
-
-A residual is
-
-\[
-e_i=y_i-\hat{y}_i.
-\]
-
-Select an observed worker whose reported hours are close to 40:
-
-```{r}
-example_worker <- acs_reg |>
-  arrange(abs(hrs_work - 40)) |>
-  slice(1)
-
-example_prediction <- predict(
-  income_hours_model,
-  newdata = example_worker
-)
-
-example_worker |>
-  transmute(
-    hrs_work,
-    income,
-    predicted_income = as.numeric(example_prediction),
-    residual = income - as.numeric(example_prediction)
-  )
-```
-
-16. Is the residual positive or negative?
-
-17. Did the model **overpredict** or **underpredict** this person's income? By how much?
-
----
-
-## Look at all the residuals
-
-Create a small dataset containing fitted values and residuals:
-
-```{r}
-model_residuals <- tibble(
-  fitted_income = fitted(income_hours_model),
-  residual = resid(income_hours_model)
-)
-```
-
-Plot them:
-
-```{r}
 ggplot(
-  model_residuals,
-  aes(x = fitted_income, y = residual)
+  model_check,
+  aes(x = fitted, y = residual)
 ) +
-  geom_point(alpha = 0.30) +
+  geom_point() +
   geom_hline(
     yintercept = 0,
     linetype = "dashed"
   ) +
   labs(
-    x = "Predicted annual income ($)",
-    y = "Residual ($)",
-    title = "What does the simple regression model leave unexplained?"
+    x = "Fitted values",
+    y = "Residuals",
+    title = "Residuals versus fitted values"
   ) +
   theme_minimal()
 ```
 
-18. If the regression line captured the relationship perfectly, what would all the residuals equal?
+### Exercise 6
 
-19. What does the amount of remaining variation tell you about trying to predict an individual's income from weekly work hours alone?
+Is there an obvious pattern in the residual plot?
 
----
-
-## Do not extrapolate
-
-First check the observed range:
-
-```{r}
-range(acs_reg$hrs_work)
-```
-
-Now create two prediction cases: one at 40 hours and one **20 hours beyond the largest observed value**.
-
-```{r}
-extrapolation_cases <- tibble(
-  hrs_work = c(
-    40,
-    max(acs_reg$hrs_work) + 20
-  )
-)
-
-extrapolation_cases |>
-  mutate(
-    predicted_income = predict(
-      income_hours_model,
-      newdata = extrapolation_cases
-    )
-  )
-```
-
-20. Which prediction is more defensible? Why?
-
-::: {.callout-warning appearance="simple"}
-A regression equation will happily produce a number outside the observed data range. That does not mean the number is a credible prediction.
-:::
+What does this suggest about whether a linear relationship is a reasonable approximation?
 
 ---
 
-# Group Policy Analysis
+## Nearly normal residuals
 
-Each group will analyze a different relationship between two numerical ACS variables.
+Look at the residual distribution:
 
-## Group A: Age and income
+```{r}
+ggplot(
+  model_check,
+  aes(x = residual)
+) +
+  geom_histogram(
+    bins = 10
+  ) +
+  labs(
+    x = "Residuals",
+    y = "Count",
+    title = "Distribution of regression residuals"
+  ) +
+  theme_minimal()
+```
 
-> Among employed adults, how is age associated with annual income?
+### Exercise 7
 
-- response: `income`
-- explanatory variable: `age`
+Does the residual distribution appear reasonably symmetric and approximately normal?
 
-## Group B: Weekly hours and commute time
+---
 
-> Among employed adults, how is weekly work time associated with commute time?
+## Constant variability
 
-- response: `time_to_work`
-- explanatory variable: `hrs_work`
+Return to the residual-versus-fitted plot.
 
-## Group C: Age and weekly hours
+### Exercise 8
 
-> Among employed adults, how is age associated with weekly hours worked?
+Does the vertical spread of the residuals stay reasonably similar across the range of fitted values?
 
-- response: `hrs_work`
-- explanatory variable: `age`
+If the residuals spread out or narrow dramatically, what concern would that raise about the model?
 
-## Group D: Commute time and income
+---
 
-> Among employed adults, how is commute time associated with annual income?
+# On Your Own: What best predicts runs?
 
-- response: `income`
-- explanatory variable: `time_to_work`
+Now investigate the other variables in `mlb11`.
 
-## Group E: Age and commute time
+## 1. Choose another traditional statistic
 
-> Among employed adults, how is age associated with commute time?
+Choose one traditional variable other than `at_bats` that you think might predict `runs`.
 
-- response: `time_to_work`
-- explanatory variable: `age`
+Create a scatterplot and fit a simple regression model.
 
-### What each group should do
+```{r}
 
-Use `acs_emp`, but create a dataset that removes missing values for **your two variables**.
+```
 
-Then:
+Describe the relationship and report its \(R^2\).
 
-1. Identify the explanatory and response variables.
-2. Make a scatterplot and describe direction, form, strength, and unusual observations.
-3. Calculate the correlation.
-4. Fit the simple regression model with `lm()`.
-5. Write the fitted equation.
-6. Interpret the slope.
-7. Interpret \(R^2\).
-8. Make one prediction for a reasonable value of your explanatory variable.
-9. State one important limitation or reason the relationship should not be interpreted causally.
+---
 
-### Two-minute briefing
+## 2. Compare with at-bats
 
-Be ready to report:
+Compare your model's \(R^2\) with the `at_bats` model.
 
-> **Our question was...**  
-> **The scatterplot showed...**  
-> **The correlation was...**  
-> **The regression slope means...**  
-> **The model predicts...**  
-> **One important limitation is...**
+Does your variable appear to predict runs better than at-bats? Explain.
+
+---
+
+## 3. Compare the traditional statistics
+
+Examine the relationships between `runs` and the remaining traditional variables:
+
+- `at_bats`
+- `hits`
+- `homeruns`
+- `bat_avg`
+- `strikeouts`
+- `stolen_bases`
+
+Which traditional variable appears to be the best predictor of runs?
+
+Support your answer with:
+
+- a scatterplot;
+- the correlation;
+- the fitted regression model;
+- \(R^2\).
+
+You only need to include the output for the variable you ultimately select.
+
+---
+
+## 4. Test the newer statistics
+
+Now examine:
+
+- `new_onbase`
+- `new_slug`
+- `new_obs`
+
+Do these newer statistics appear to predict runs better or worse than the traditional statistics?
+
+Which variable among **all of the variables you examined** is the best predictor of runs?
+
+Explain using appropriate graphical and numerical evidence.
+
+---
+
+## 5. Check your best model
+
+For the predictor you selected as best:
+
+1. write the regression equation;
+2. interpret the slope;
+3. report \(R^2\);
+4. make one reasonable prediction;
+5. inspect the residual plot;
+6. identify one limitation of the model.
 
 ::: {.callout-tip appearance="simple"}
-A weak or messy relationship is still a useful result. Do not choose a conclusion first and then search for a model that produces it.
-:::
+The regression workflow is:
 
----
-
-# On Your Own
-
-Choose **two numerical variables** from the ACS data that your group did not analyze.
-
-Possible numerical variables include:
-
-- `income`
-- `hrs_work`
-- `age`
-- `time_to_work`
-
-21. Write a policy-relevant research question and identify the explanatory and response variables.
-
-22. Create a complete-case dataset for the two variables you selected.
-
-```{r}
-
-```
-
-23. Create a scatterplot and describe the relationship.
-
-```{r}
-
-```
-
-24. Calculate and interpret the correlation.
-
-```{r}
-
-```
-
-25. Fit a simple linear regression model.
-
-```{r}
-
-```
-
-26. Write the fitted equation and interpret the slope.
-
-27. Report and interpret \(R^2\).
-
-28. Make one prediction for a substantively reasonable value of the explanatory variable.
-
-```{r}
-
-```
-
-29. Explain why your regression should or should not be used to make a causal claim.
-
-30. Identify one feature of the scatterplot, one omitted variable, or one other limitation that should make a policy analyst cautious about the model.
-
-::: {.callout-tip appearance="simple"}
-The workflow for two numerical variables is:
-
-**question → scatterplot → correlation → regression line → interpretation → prediction → limitations**
+**scatterplot → correlation → least-squares line → slope and \(R^2\) → prediction → residuals → diagnostics**
 :::
