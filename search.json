@@ -200,7 +200,7 @@
     "href": "labs/lab09/index.html#regression-model",
     "title": "Lab 9: Simple Linear Regression",
     "section": "3. Regression model",
-    "text": "3. Regression model\nFit a simple linear regression predicting annual income from commute time.\nThen:\n\nwrite the fitted equation;\ninterpret the slope;\nreport and interpret (R^2)."
+    "text": "3. Regression model\nFit a simple linear regression predicting annual income from commute time.\nThen:\n\nwrite the fitted equation;\ninterpret the slope;\nreport and interpret \\(R^2\\)."
   },
   {
     "objectID": "labs/lab09/index.html#prediction",
@@ -214,7 +214,7 @@
     "href": "labs/lab09/index.html#compare-the-three-relationships",
     "title": "Lab 9: Simple Linear Regression",
     "section": "5. Compare the three relationships",
-    "text": "5. Compare the three relationships\nCompare the models using:\n\nhrs_work;\nage;\ntime_to_work.\n\nWhich has the strongest linear relationship with income?\nSupport your answer using the scatterplots, correlations, and (R^2) values.\nFinally, identify one important limitation of using any of these simple regression models to explain differences in annual income.\n\n\n\n\n\n\nThe simple-regression workflow is:\nscatterplot → correlation → regression line → slope and intercept → (R^2) → prediction → limitations"
+    "text": "5. Compare the three relationships\nCompare the models using:\n\nhrs_work;\nage;\ntime_to_work.\n\nWhich has the strongest linear relationship with income?\nSupport your answer using the scatterplots, correlations, and \\(R^2\\) values.\nFinally, identify one important limitation of using any of these simple regression models to explain differences in annual income.\n\n\n\n\n\n\nThe simple-regression workflow is:\nscatterplot → correlation → regression line → slope and intercept → \\(R^2\\) → prediction → limitations"
   },
   {
     "objectID": "labs/lab07/index.html",
