@@ -1,0 +1,327 @@
+---
+title: "Lab 9: Simple Linear Regression"
+author: "Your name"
+format: html
+editor: visual
+editor_options:
+  chunk_output_type: console
+---
+
+## Setup
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+load(url(
+  "https://github.com/GarciaRios/govt_3990/raw/gh-pages/Labs/lab6/acs.RData"
+))
+
+acs_emp <- acs |>
+  filter(
+    employment == "employed",
+    income > 0,
+    !is.na(hrs_work)
+  )
+```
+
+# Exercises
+
+## Exercise 1: Scatterplot
+
+```{r}
+ggplot(
+  acs_emp,
+  aes(x = hrs_work, y = income)
+) +
+  geom_point(alpha = 0.30) +
+  labs(
+    x = "Hours worked per week",
+    y = "Annual income ($)",
+    title = "Annual income and weekly hours worked"
+  ) +
+  theme_minimal()
+```
+
+Describe the direction, form, strength, and unusual observations.
+
+> 
+
+Does a straight line seem like a useful summary?
+
+> 
+
+## Exercise 2: Correlation
+
+```{r}
+acs_emp |>
+  summarise(
+    r = cor(hrs_work, income)
+  )
+```
+
+What is the correlation?
+
+> 
+
+Interpret its direction and strength.
+
+> 
+
+Does it match what you saw in the scatterplot?
+
+> 
+
+## Exercise 3: Add the regression line
+
+```{r}
+ggplot(
+  acs_emp,
+  aes(x = hrs_work, y = income)
+) +
+  geom_point(alpha = 0.30) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE
+  ) +
+  labs(
+    x = "Hours worked per week",
+    y = "Annual income ($)",
+    title = "Annual income and weekly hours worked",
+    subtitle = "Simple linear regression line"
+  ) +
+  theme_minimal()
+```
+
+Does the direction of the fitted line agree with the correlation?
+
+> 
+
+What does the line summarize that the correlation coefficient alone does not?
+
+> 
+
+## Exercise 4: Fit the model
+
+```{r}
+income_hours_model <- lm(
+  income ~ hrs_work,
+  data = acs_emp
+)
+
+summary(income_hours_model)
+```
+
+Write the fitted regression equation.
+
+> 
+
+Interpret the slope.
+
+> 
+
+Interpret the intercept. Is it substantively meaningful?
+
+> 
+
+## Exercise 5: \(R^2\)
+
+Report and interpret \(R^2\).
+
+> 
+
+Check the relationship between correlation and \(R^2\):
+
+```{r}
+r_hours_income <- cor(
+  acs_emp$hrs_work,
+  acs_emp$income
+)
+
+r_hours_income^2
+```
+
+Does \(r^2\) match the model's \(R^2\)?
+
+> 
+
+## Exercise 6: Prediction
+
+```{r}
+predict(
+  income_hours_model,
+  newdata = data.frame(
+    hrs_work = 40
+  )
+)
+```
+
+What income does the model predict for someone working 40 hours per week?
+
+> 
+
+Compare several work-hour values:
+
+```{r}
+prediction_cases <- data.frame(
+  hrs_work = c(20, 40, 60)
+)
+
+prediction_cases |>
+  mutate(
+    predicted_income = predict(
+      income_hours_model,
+      newdata = prediction_cases
+    )
+  )
+```
+
+How do the predictions change? Connect the change to the slope.
+
+> 
+
+Why are these predicted incomes rather than what a person will necessarily earn?
+
+> 
+
+## Exercise 7: Extrapolation
+
+```{r}
+range(acs_emp$hrs_work)
+```
+
+Why would it be risky to predict income for a number of weekly work hours far outside this range?
+
+> 
+
+## Exercise 8: Compare another predictor
+
+```{r}
+ggplot(
+  acs_emp,
+  aes(x = age, y = income)
+) +
+  geom_point(alpha = 0.30) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE
+  ) +
+  labs(
+    x = "Age",
+    y = "Annual income ($)",
+    title = "Annual income and age"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+acs_emp |>
+  summarise(
+    r = cor(age, income, use = "complete.obs")
+  )
+```
+
+```{r}
+income_age_model <- lm(
+  income ~ age,
+  data = acs_emp
+)
+
+summary(income_age_model)
+```
+
+Describe the relationship.
+
+> 
+
+What is the correlation?
+
+> 
+
+Write the fitted equation and interpret the slope.
+
+> 
+
+Report \(R^2\).
+
+> 
+
+Which variable accounts for more variation in income: `hrs_work` or `age`?
+
+> 
+
+Does a straight line seem equally appropriate for both relationships?
+
+> 
+
+# On Your Own
+
+Use `time_to_work` to predict annual income.
+
+## 1. Scatterplot
+
+```{r}
+
+```
+
+Describe the relationship.
+
+> 
+
+## 2. Correlation
+
+```{r}
+
+```
+
+Interpret the correlation.
+
+> 
+
+## 3. Regression model
+
+```{r}
+
+```
+
+Write the fitted equation.
+
+> 
+
+Interpret the slope.
+
+> 
+
+Report and interpret \(R^2\).
+
+> 
+
+## 4. Prediction
+
+Choose a reasonable commute time and calculate the predicted annual income.
+
+```{r}
+
+```
+
+Interpret the prediction.
+
+> 
+
+## 5. Compare the models
+
+Compare the models using:
+
+- `hrs_work`;
+- `age`;
+- `time_to_work`.
+
+Which has the strongest linear relationship with income? Support your answer using the scatterplots, correlations, and \(R^2\) values.
+
+> 
+
+Identify one important limitation of using these simple regression models to explain annual income.
+
+> 
