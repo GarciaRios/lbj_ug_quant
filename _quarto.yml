@@ -6,6 +6,7 @@ project:
     - "*.qmd"
     - "labs/*/index.qmd"
     - "!templates/**"
+    - "!drafts/**"
   resources:
     - templates/**
     - data/**
