@@ -182,11 +182,11 @@ means:
 
 The fitted regression equation has the form
 
-\[
+$
 \widehat{income}
 =
 b_0 + b_1(hrs\_work).
-\]
+$
 
 The coefficient table gives estimates of the intercept \(b_0\) and slope \(b_1\).
 
@@ -219,9 +219,9 @@ The model summary reports **Multiple R-squared**, or simply \(R^2\).
 
 For simple linear regression,
 
-\[
+$
 R^2 = r^2.
-\]
+$
 
 Check this directly:
 
