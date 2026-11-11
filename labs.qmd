@@ -63,6 +63,6 @@ Use ACS and paired environmental data to practice paired comparisons, evaluate p
 
 ## Lab 9: Simple Linear Regression
 
-Use ACS data to move from scatterplots and correlation to simple linear regression, interpret slopes and \(R^2\), make predictions, evaluate extrapolation, and compare alternative predictors of annual income.
+Use ACS data to move from scatterplots and correlation to simple linear regression, interpret slopes and \(R^2\), make predictions, evaluate extrapolation, and compare numerical predictors of annual income.
 
 [Open the teaching guide](labs/lab09/) · [Download the student report](templates/lab09-template.qmd){download="lab09-template.qmd"}
