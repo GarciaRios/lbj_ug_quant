@@ -83,7 +83,7 @@ OpenIntro exercises: Ch. 4: 4.2, 4.8, 4.10, 4.12, 4.16, 4.20; Ch. 5: 5.3, 5.4, 5
 | **Wed., Nov. 4** | **Midterm: Units 1–4** | One student-prepared double-sided reference sheet permitted |
 | **Fri., Nov. 6** | Project and R support | Project preparation |
 | **Mon., Nov. 9** | Correlation and simple linear regression | OpenIntro Ch. 7 |
-| **Wed., Nov. 11** | Lab 9: Simple regression | Lab 9 work |
+| **Wed., Nov. 11** | Lab 9: Simple regression | [Lab guide](labs/lab09/) · [Student lab template](templates/lab09-template.qmd){download="lab09-template.qmd"} |
 | **Fri., Nov. 13** | Lab 9 review and interpretation | Complete Lab 9 **On Your Own** |
 | **Mon., Nov. 16** | Multiple linear regression | OpenIntro Ch. 8, Sections 8.1–8.3 |
 | **Wed., Nov. 18** | Lab 10: Multiple regression and predicted values | Lab 10 work |
