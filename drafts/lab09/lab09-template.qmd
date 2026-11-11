@@ -12,14 +12,22 @@ editor_options:
 ```{r}
 library(dplyr)
 library(ggplot2)
+library(tibble)
 
 load(url(
-  "https://github.com/GarciaRios/govt_3990/raw/gh-pages/Labs/lab7/mlb11.RData"
+  "https://github.com/GarciaRios/govt_3990/raw/gh-pages/Labs/lab6/acs.RData"
 ))
 
 source(url(
   "https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab7/plot_ss.R"
 ))
+
+acs_emp <- acs |>
+  filter(
+    employment == "employed",
+    income > 0,
+    !is.na(hrs_work)
+  )
 ```
 
 # Exercises
@@ -28,14 +36,14 @@ source(url(
 
 ```{r}
 ggplot(
-  mlb11,
-  aes(x = at_bats, y = runs)
+  acs_emp,
+  aes(x = hrs_work, y = income)
 ) +
-  geom_point() +
+  geom_point(alpha = 0.30) +
   labs(
-    x = "At-bats",
-    y = "Runs",
-    title = "Runs scored and at-bats"
+    x = "Hours worked per week",
+    y = "Annual income ($)",
+    title = "Annual income and weekly hours worked"
   ) +
   theme_minimal()
 ```
@@ -44,14 +52,14 @@ Describe the form, direction, strength, and unusual observations.
 
 > 
 
-Does the relationship look linear enough to summarize with a line?
+Does a straight line seem like a useful summary?
 
 > 
 
 ```{r}
-mlb11 |>
+acs_emp |>
   summarise(
-    r = cor(runs, at_bats)
+    r = cor(hrs_work, income)
   )
 ```
 
@@ -61,31 +69,40 @@ Interpret the correlation.
 
 ## Exercise 2: Residuals
 
+Create the demonstration sample:
+
+```{r}
+set.seed(311)
+
+acs_demo <- acs_emp |>
+  slice_sample(n = 50)
+```
+
 Run this interactively in the Console:
 
 ```{r}
 #| eval: false
 plot_ss(
-  x = at_bats,
-  y = runs,
-  data = mlb11
+  x = hrs_work,
+  y = income,
+  data = acs_demo
 )
 ```
 
-Describe the relationship again in terms of form, direction, strength, and unusual observations.
+What does a positive residual mean? What does a negative residual mean?
 
 > 
 
 ## Exercise 3: Sum of squared residuals
 
-Run this interactively in the Console several times:
+Run this interactively several times:
 
 ```{r}
 #| eval: false
 plot_ss(
-  x = at_bats,
-  y = runs,
-  data = mlb11,
+  x = hrs_work,
+  y = income,
+  data = acs_demo,
   showSquares = TRUE
 )
 ```
@@ -94,47 +111,60 @@ What is the smallest sum of squares you obtain?
 
 > 
 
-How does it compare with someone sitting near you?
+How does your line compare with someone sitting near you?
 
 > 
 
 ## Exercise 4: The linear model
 
 ```{r}
-m1 <- lm(
-  runs ~ at_bats,
-  data = mlb11
+income_hours_model <- lm(
+  income ~ hrs_work,
+  data = acs_emp
 )
 
-summary(m1)
+summary(income_hours_model)
 ```
 
 Write the fitted regression equation.
 
 > 
 
-Fit a model using `homeruns` to predict `runs`.
+Interpret the slope.
+
+> 
+
+Interpret the intercept. Is it substantively meaningful?
+
+> 
+
+## Exercise 5: (R^2)
+
+Report and interpret \(R^2\).
+
+> 
+
+How does \(R^2\) relate to the correlation from Exercise 1?
+
+> 
+
+## Exercise 6: Compare another predictor
 
 ```{r}
+income_age_model <- lm(
+  income ~ age,
+  data = acs_emp
+)
 
+summary(income_age_model)
 ```
-
-Write the fitted equation and interpret the slope.
-
-> 
-
-Report \(R^2\). Which model accounts for more variation in runs?
-
-> 
-
-## Exercise 5: Prediction and residual
 
 ```{r}
 ggplot(
-  mlb11,
-  aes(x = at_bats, y = runs)
+  acs_emp,
+  aes(x = age, y = income)
 ) +
-  geom_point() +
+  geom_point(alpha = 0.30) +
   geom_smooth(
     method = "lm",
     formula = y ~ x,
@@ -143,42 +173,73 @@ ggplot(
   theme_minimal()
 ```
 
-Predict runs for a team with 5,579 at-bats:
+Write the fitted equation and interpret the slope.
+
+> 
+
+Report \(R^2\).
+
+> 
+
+Which variable accounts for more variation in income: `hrs_work` or `age`?
+
+> 
+
+Does a straight line look equally appropriate for both relationships?
+
+> 
+
+## Exercise 7: Prediction and residual
+
+Predict income for someone working 40 hours per week:
 
 ```{r}
 predict(
-  m1,
+  income_hours_model,
   newdata = data.frame(
-    at_bats = 5579
+    hrs_work = 40
   )
 )
 ```
 
-Find the observed team:
+Select one observed respondent working 40 hours:
 
 ```{r}
-mlb11 |>
-  filter(at_bats == 5579) |>
-  select(team, at_bats, runs)
+example_worker <- acs_emp |>
+  filter(hrs_work == 40) |>
+  slice(1)
+
+example_prediction <- predict(
+  income_hours_model,
+  newdata = example_worker
+)
+
+example_worker |>
+  transmute(
+    hrs_work,
+    income,
+    predicted_income = as.numeric(example_prediction),
+    residual = income - as.numeric(example_prediction)
+  )
 ```
 
-What is the residual? Is the prediction an overestimate or an underestimate?
+What is the residual? Did the model overpredict or underpredict income?
 
 > 
 
-## Exercise 6: Linearity
+## Exercise 8: Residual plot
 
 ```{r}
 model_check <- tibble(
-  fitted = fitted(m1),
-  residual = resid(m1)
+  fitted = fitted(income_hours_model),
+  residual = resid(income_hours_model)
 )
 
 ggplot(
   model_check,
   aes(x = fitted, y = residual)
 ) +
-  geom_point() +
+  geom_point(alpha = 0.30) +
   geom_hline(
     yintercept = 0,
     linetype = "dashed"
@@ -186,11 +247,15 @@ ggplot(
   theme_minimal()
 ```
 
-Is there an obvious pattern? What does this suggest about linearity?
+Is there an obvious pattern?
 
 > 
 
-## Exercise 7: Nearly normal residuals
+Does the residual spread remain roughly constant?
+
+> 
+
+## Exercise 9: Residual distribution
 
 ```{r}
 ggplot(
@@ -198,90 +263,103 @@ ggplot(
   aes(x = residual)
 ) +
   geom_histogram(
-    bins = 10
+    bins = 20
   ) +
   theme_minimal()
 ```
 
-Do the residuals appear reasonably symmetric and approximately normal?
+Do the residuals appear approximately normal?
 
 > 
 
-## Exercise 8: Constant variability
-
-Return to the residual-versus-fitted plot.
-
-Does the spread of the residuals stay reasonably similar across the fitted values?
+What does this suggest about the limitations of the model?
 
 > 
 
 # On Your Own
 
-## 1. Another traditional predictor
+Choose another numerical predictor of annual income.
 
-Choose another traditional variable besides `at_bats`.
+Possible variables include:
 
-Create a scatterplot and fit a regression model predicting `runs`.
+- `age`
+- `time_to_work`
+- `hrs_work`
 
-```{r}
+Do not simply repeat the predictor you focused on during class.
 
-```
-
-Describe the relationship and report \(R^2\).
-
-> 
-
-## 2. Compare with at-bats
-
-Does your variable predict runs better than `at_bats`? Explain using \(R^2\).
-
-> 
-
-## 3. Best traditional predictor
-
-Examine the traditional variables and identify the best predictor of `runs`.
-
-Include only the final model and supporting plot.
+## 1. Scatterplot
 
 ```{r}
 
 ```
 
-Explain your choice.
+Describe the relationship.
 
 > 
 
-## 4. Newer statistics
-
-Examine:
-
-- `new_onbase`
-- `new_slug`
-- `new_obs`
-
-Which appears to be the best predictor of runs?
+## 2. Correlation
 
 ```{r}
 
 ```
 
-How do the newer statistics compare with the traditional statistics?
+Interpret the correlation.
 
 > 
 
-## 5. Check the best model
-
-For your best predictor:
-
-- write the fitted equation;
-- interpret the slope;
-- report \(R^2\);
-- make one reasonable prediction;
-- inspect the residuals;
-- identify one limitation.
+## 3. Regression model
 
 ```{r}
 
 ```
+
+Write the fitted equation.
+
+> 
+
+Interpret the slope.
+
+> 
+
+Report \(R^2\).
+
+> 
+
+## 4. Compare predictors
+
+How does your model compare with the `hrs_work` and `age` models from class?
+
+Which predictor appears to account for the most variation in income?
+
+> 
+
+Does the variable with the largest \(R^2\) also have the most convincing linear scatterplot?
+
+> 
+
+## 5. Prediction and diagnostics
+
+Make one reasonable prediction and inspect the residuals.
+
+```{r}
+
+```
+
+Write a short conclusion.
+
+> **The relationship I examined was...**
+
+> 
+
+> **The slope means...**
+
+> 
+
+> **The model accounts for...**
+
+> 
+
+> **One important limitation is...**
 
 > 
