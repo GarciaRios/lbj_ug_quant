@@ -113,7 +113,7 @@ acs_emp |>
 1. What is the correlation between weekly hours worked and annual income?
 2. Is it positive or negative?
 3. Would you describe the linear association as weak, moderate, or strong?
-4. Does the value of \(r\) match what you saw in the scatterplot?
+4. Does the value of $r$ match what you saw in the scatterplot?
 
 ::: {.callout-note appearance="simple"}
 Correlation measures **linear association**. Always inspect the scatterplot before relying on the number alone.
@@ -182,13 +182,13 @@ means:
 
 The fitted regression equation has the form
 
-$
+$$
 \widehat{income}
 =
 b_0 + b_1(hrs\_work).
-$
+$$
 
-The coefficient table gives estimates of the intercept \(b_0\) and slope \(b_1\).
+The coefficient table gives estimates of the intercept $b_0$ and slope $b_1$.
 
 ### Exercise 4
 
@@ -207,21 +207,21 @@ The slope describes an **association** in these observational data. It does not 
 
 # 5. How much does the model explain?
 
-The model summary reports **Multiple R-squared**, or simply \(R^2\).
+The model summary reports **Multiple R-squared**, or simply $R^2$.
 
-\(R^2\) tells us what proportion of the observed variability in the response variable is accounted for by the linear relationship with the explanatory variable.
+$R^2$ tells us what proportion of the observed variability in the response variable is accounted for by the linear relationship with the explanatory variable.
 
 ### Exercise 5
 
-1. Report \(R^2\).
+1. Report $R^2$.
 2. Interpret it in the context of annual income and weekly work hours.
 3. Compare it with the correlation from Exercise 2.
 
 For simple linear regression,
 
-$
+$$
 R^2 = r^2.
-$
+$$
 
 Check this directly:
 
@@ -234,7 +234,7 @@ r_hours_income <- cor(
 r_hours_income^2
 ```
 
-Does the result match the \(R^2\) reported by `summary()`?
+Does the result match the $R^2$ reported by `summary()`?
 
 ---
 
@@ -350,12 +350,12 @@ summary(income_age_model)
 2. What is the correlation?
 3. Write the fitted regression equation.
 4. Interpret the slope.
-5. Report \(R^2\).
+5. Report $R^2$.
 6. Which variable accounts for more of the observed variation in income: `hrs_work` or `age`?
 7. Does a straight line seem equally appropriate for both relationships?
 
 ::: {.callout-note appearance="simple"}
-A larger \(R^2\) means that a linear model accounts for more of the variation in the response. It does **not** automatically mean that the model is causal or that it is the best possible model.
+A larger $R^2$ means that a linear model accounts for more of the variation in the response. It does **not** automatically mean that the model is causal or that it is the best possible model.
 :::
 
 ---
@@ -402,7 +402,7 @@ Then:
 
 1. write the fitted equation;
 2. interpret the slope;
-3. report and interpret \(R^2\).
+3. report and interpret $R^2$.
 
 ---
 
@@ -428,12 +428,12 @@ Compare the models using:
 
 Which has the strongest linear relationship with income?
 
-Support your answer using the scatterplots, correlations, and \(R^2\) values.
+Support your answer using the scatterplots, correlations, and $R^2$ values.
 
 Finally, identify **one important limitation** of using any of these simple regression models to explain differences in annual income.
 
 ::: {.callout-tip appearance="simple"}
 The simple-regression workflow is:
 
-**scatterplot → correlation → regression line → slope and intercept → \(R^2\) → prediction → limitations**
+**scatterplot → correlation → regression line → slope and intercept → $R^2$ → prediction → limitations**
 :::
