@@ -60,3 +60,9 @@ Use North Carolina birth-record data to move from observed group differences to 
 Use ACS and paired environmental data to practice paired comparisons, evaluate possible confounding, compare three or more means with ANOVA, and follow significant results with adjusted pairwise comparisons.
 
 [Open the teaching guide](labs/lab08/) · [Download the student report](templates/lab08-template.qmd){download="lab08-template.qmd"}
+
+## Lab 9: Simple Linear Regression
+
+Use ACS data to move from scatterplots and correlation to simple linear regression, interpret slopes and \(R^2\), make predictions, evaluate extrapolation, and compare alternative predictors of annual income.
+
+[Open the teaching guide](labs/lab09/) · [Download the student report](templates/lab09-template.qmd){download="lab09-template.qmd"}
