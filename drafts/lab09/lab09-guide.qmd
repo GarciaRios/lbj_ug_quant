@@ -1,0 +1,500 @@
+---
+title: "Lab 9: Simple Linear Regression"
+subtitle: "From association to prediction"
+execute:
+  eval: false
+---
+
+[Download the student lab template](lab09-template.qmd){.btn .btn-primary download="lab09-template.qmd"}
+
+<!--
+DRAFT FOR REVIEW — not linked from labs.qmd or schedule.qmd.
+
+Instructor pacing:
+- Part I: 10 minutes
+- Part II: 20 minutes
+- Part III: 10 minutes
+- Group Policy Analysis: 15 minutes
+- Wrap-up: 5 minutes
+The On Your Own section is appropriate for Friday support / completion.
+-->
+
+## Today
+
+On Monday we moved from **comparing groups** to studying the relationship between **two numerical variables**.
+
+Today we will use data from the **American Community Survey (ACS)** to practice the full simple-regression workflow:
+
+1. visualize the relationship with a scatterplot;
+2. summarize linear association with correlation;
+3. fit a simple linear regression model;
+4. interpret the slope, intercept, and \(R^2\);
+5. make predictions and calculate residuals;
+6. recognize extrapolation and limitations.
+
+Our main question is:
+
+> **Among employed adults, how is annual income associated with weekly hours worked?**
+
+::: {.callout-note appearance="simple"}
+Regression describes a relationship in the observed data. By itself, it does **not** establish that changing \(x\) would cause \(y\) to change.
+:::
+
+---
+
+# Part I: Start with the data
+
+## Load and prepare the ACS sample
+
+We will use the same ACS data from Lab 8.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tibble)
+
+load(url(
+  "https://github.com/GarciaRios/govt_3990/raw/gh-pages/Labs/lab6/acs.RData"
+))
+```
+
+Keep employed respondents with positive reported income:
+
+```{r}
+acs_emp <- acs |>
+  filter(
+    employment == "employed",
+    income > 0
+  )
+```
+
+For our guided analysis, also require a non-missing value for weekly hours worked:
+
+```{r}
+acs_reg <- acs_emp |>
+  filter(
+    !is.na(hrs_work)
+  )
+```
+
+The two variables we will use are:
+
+| Variable | Description |
+|---|---|
+| `hrs_work` | Usual number of hours worked per week |
+| `income` | Annual wage and salary income |
+
+1. What does one row of `acs_reg` represent?
+
+2. For the question above, which variable is the **explanatory variable** and which is the **response variable**?
+
+---
+
+## Visualize first
+
+Create a scatterplot:
+
+```{r}
+ggplot(
+  acs_reg,
+  aes(x = hrs_work, y = income)
+) +
+  geom_point(alpha = 0.30) +
+  labs(
+    x = "Hours worked per week",
+    y = "Annual income ($)",
+    title = "Annual income and weekly hours worked"
+  ) +
+  theme_minimal()
+```
+
+3. Describe the relationship using the language from lecture:
+
+- direction;
+- form;
+- strength;
+- unusual observations.
+
+4. Does a straight line seem like a useful **summary** of the relationship? What would the line miss?
+
+::: {.callout-tip appearance="simple"}
+A regression model can be useful without describing every observation well. The question is whether a line captures an important part of the pattern.
+:::
+
+---
+
+## Correlation
+
+Calculate the correlation:
+
+```{r}
+acs_reg |>
+  summarise(
+    r = cor(hrs_work, income)
+  )
+```
+
+5. Is the correlation positive or negative? Is that consistent with the scatterplot?
+
+6. What does the correlation add to the visual description? What does it **not** tell us?
+
+::: {.callout-warning appearance="simple"}
+Correlation measures **linear association**. A correlation near zero does not necessarily mean that two variables have no relationship.
+:::
+
+---
+
+# Part II: Fit the regression model
+
+## Add the least-squares line
+
+Now add the fitted linear relationship to the scatterplot:
+
+```{r}
+ggplot(
+  acs_reg,
+  aes(x = hrs_work, y = income)
+) +
+  geom_point(alpha = 0.30) +
+  geom_smooth(
+    method = "lm",
+    se = FALSE
+  ) +
+  labs(
+    x = "Hours worked per week",
+    y = "Annual income ($)",
+    title = "Annual income and weekly hours worked",
+    subtitle = "Least-squares regression line"
+  ) +
+  theme_minimal()
+```
+
+The line is the set of predicted values from a model of the form
+
+\[
+\widehat{income}=b_0+b_1(hrs\_work).
+\]
+
+Fit that model in R:
+
+```{r}
+income_hours_model <- lm(
+  income ~ hrs_work,
+  data = acs_reg
+)
+
+summary(income_hours_model)
+```
+
+::: {.callout-note appearance="simple"}
+For this lab, focus on the **coefficient estimates** and **Multiple R-squared**. We will not try to interpret every line of `summary()` yet.
+:::
+
+7. Use the coefficient estimates to write the fitted regression equation.
+
+8. Interpret the **slope** in context. Use the phrase **"predicted annual income"** or **"annual income is expected to..."** rather than causal language.
+
+9. What does the intercept represent mathematically? Is the intercept substantively meaningful for this sample?
+
+---
+
+## \(R^2\)
+
+The model summary reports **Multiple R-squared**.
+
+10. Report \(R^2\) and interpret it in context.
+
+A useful template is:
+
+> About ___% of the observed variation in **annual income** is accounted for by its linear relationship with **weekly hours worked** in this sample.
+
+11. Does a modest \(R^2\) necessarily mean that weekly hours worked are unimportant? Why or why not?
+
+::: {.callout-note appearance="simple"}
+For simple linear regression,
+
+\[
+R^2=r^2.
+\]
+
+Correlation and \(R^2\) are closely connected, but they answer different questions.
+:::
+
+---
+
+## What can we conclude?
+
+12. Which of the following claim is supported by this analysis?
+
+- People who work more hours **tend to have** different annual incomes.
+- Increasing someone's work hours would **cause** their annual income to change by exactly the estimated slope.
+
+Explain your choice.
+
+13. Name at least two other variables that might be related to both hours worked and annual income.
+
+Think about variables already in the ACS data.
+
+---
+
+# Part III: Prediction and residuals
+
+## Make predictions
+
+Use the fitted model to predict annual income for people working 20, 40, and 60 hours per week:
+
+```{r}
+prediction_cases <- tibble(
+  hrs_work = c(20, 40, 60)
+)
+
+prediction_cases |>
+  mutate(
+    predicted_income = predict(
+      income_hours_model,
+      newdata = prediction_cases
+    )
+  )
+```
+
+14. How much does the model's predicted annual income change when weekly work hours increase from 20 to 40? How does that connect to the slope?
+
+15. Why should we call these **predictions** rather than expected outcomes from a policy intervention?
+
+---
+
+## Compare predicted and observed income
+
+A residual is
+
+\[
+e_i=y_i-\hat{y}_i.
+\]
+
+Select an observed worker whose reported hours are close to 40:
+
+```{r}
+example_worker <- acs_reg |>
+  arrange(abs(hrs_work - 40)) |>
+  slice(1)
+
+example_prediction <- predict(
+  income_hours_model,
+  newdata = example_worker
+)
+
+example_worker |>
+  transmute(
+    hrs_work,
+    income,
+    predicted_income = as.numeric(example_prediction),
+    residual = income - as.numeric(example_prediction)
+  )
+```
+
+16. Is the residual positive or negative?
+
+17. Did the model **overpredict** or **underpredict** this person's income? By how much?
+
+---
+
+## Look at all the residuals
+
+Create a small dataset containing fitted values and residuals:
+
+```{r}
+model_residuals <- tibble(
+  fitted_income = fitted(income_hours_model),
+  residual = resid(income_hours_model)
+)
+```
+
+Plot them:
+
+```{r}
+ggplot(
+  model_residuals,
+  aes(x = fitted_income, y = residual)
+) +
+  geom_point(alpha = 0.30) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed"
+  ) +
+  labs(
+    x = "Predicted annual income ($)",
+    y = "Residual ($)",
+    title = "What does the simple regression model leave unexplained?"
+  ) +
+  theme_minimal()
+```
+
+18. If the regression line captured the relationship perfectly, what would all the residuals equal?
+
+19. What does the amount of remaining variation tell you about trying to predict an individual's income from weekly work hours alone?
+
+---
+
+## Do not extrapolate
+
+First check the observed range:
+
+```{r}
+range(acs_reg$hrs_work)
+```
+
+Now create two prediction cases: one at 40 hours and one **20 hours beyond the largest observed value**.
+
+```{r}
+extrapolation_cases <- tibble(
+  hrs_work = c(
+    40,
+    max(acs_reg$hrs_work) + 20
+  )
+)
+
+extrapolation_cases |>
+  mutate(
+    predicted_income = predict(
+      income_hours_model,
+      newdata = extrapolation_cases
+    )
+  )
+```
+
+20. Which prediction is more defensible? Why?
+
+::: {.callout-warning appearance="simple"}
+A regression equation will happily produce a number outside the observed data range. That does not mean the number is a credible prediction.
+:::
+
+---
+
+# Group Policy Analysis
+
+Each group will analyze a different relationship between two numerical ACS variables.
+
+## Group A: Age and income
+
+> Among employed adults, how is age associated with annual income?
+
+- response: `income`
+- explanatory variable: `age`
+
+## Group B: Weekly hours and commute time
+
+> Among employed adults, how is weekly work time associated with commute time?
+
+- response: `time_to_work`
+- explanatory variable: `hrs_work`
+
+## Group C: Age and weekly hours
+
+> Among employed adults, how is age associated with weekly hours worked?
+
+- response: `hrs_work`
+- explanatory variable: `age`
+
+## Group D: Commute time and income
+
+> Among employed adults, how is commute time associated with annual income?
+
+- response: `income`
+- explanatory variable: `time_to_work`
+
+## Group E: Age and commute time
+
+> Among employed adults, how is age associated with commute time?
+
+- response: `time_to_work`
+- explanatory variable: `age`
+
+### What each group should do
+
+Use `acs_emp`, but create a dataset that removes missing values for **your two variables**.
+
+Then:
+
+1. Identify the explanatory and response variables.
+2. Make a scatterplot and describe direction, form, strength, and unusual observations.
+3. Calculate the correlation.
+4. Fit the simple regression model with `lm()`.
+5. Write the fitted equation.
+6. Interpret the slope.
+7. Interpret \(R^2\).
+8. Make one prediction for a reasonable value of your explanatory variable.
+9. State one important limitation or reason the relationship should not be interpreted causally.
+
+### Two-minute briefing
+
+Be ready to report:
+
+> **Our question was...**  
+> **The scatterplot showed...**  
+> **The correlation was...**  
+> **The regression slope means...**  
+> **The model predicts...**  
+> **One important limitation is...**
+
+::: {.callout-tip appearance="simple"}
+A weak or messy relationship is still a useful result. Do not choose a conclusion first and then search for a model that produces it.
+:::
+
+---
+
+# On Your Own
+
+Choose **two numerical variables** from the ACS data that your group did not analyze.
+
+Possible numerical variables include:
+
+- `income`
+- `hrs_work`
+- `age`
+- `time_to_work`
+
+21. Write a policy-relevant research question and identify the explanatory and response variables.
+
+22. Create a complete-case dataset for the two variables you selected.
+
+```{r}
+
+```
+
+23. Create a scatterplot and describe the relationship.
+
+```{r}
+
+```
+
+24. Calculate and interpret the correlation.
+
+```{r}
+
+```
+
+25. Fit a simple linear regression model.
+
+```{r}
+
+```
+
+26. Write the fitted equation and interpret the slope.
+
+27. Report and interpret \(R^2\).
+
+28. Make one prediction for a substantively reasonable value of the explanatory variable.
+
+```{r}
+
+```
+
+29. Explain why your regression should or should not be used to make a causal claim.
+
+30. Identify one feature of the scatterplot, one omitted variable, or one other limitation that should make a policy analyst cautious about the model.
+
+::: {.callout-tip appearance="simple"}
+The workflow for two numerical variables is:
+
+**question → scatterplot → correlation → regression line → interpretation → prediction → limitations**
+:::
