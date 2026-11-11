@@ -12,14 +12,9 @@ editor_options:
 ```{r}
 library(dplyr)
 library(ggplot2)
-library(tibble)
 
 load(url(
   "https://github.com/GarciaRios/govt_3990/raw/gh-pages/Labs/lab6/acs.RData"
-))
-
-source(url(
-  "https://raw.githubusercontent.com/GarciaRios/govt_3990/gh-pages/Labs/lab7/plot_ss.R"
 ))
 
 acs_emp <- acs |>
@@ -32,7 +27,7 @@ acs_emp <- acs |>
 
 # Exercises
 
-## Exercise 1: Scatterplot and correlation
+## Exercise 1: Scatterplot
 
 ```{r}
 ggplot(
@@ -48,13 +43,15 @@ ggplot(
   theme_minimal()
 ```
 
-Describe the form, direction, strength, and unusual observations.
+Describe the direction, form, strength, and unusual observations.
 
 > 
 
 Does a straight line seem like a useful summary?
 
 > 
+
+## Exercise 2: Correlation
 
 ```{r}
 acs_emp |>
@@ -63,59 +60,49 @@ acs_emp |>
   )
 ```
 
-Interpret the correlation.
+What is the correlation?
 
 > 
 
-## Exercise 2: Residuals
+Interpret its direction and strength.
 
-Create the demonstration sample:
+> 
+
+Does it match what you saw in the scatterplot?
+
+> 
+
+## Exercise 3: Add the regression line
 
 ```{r}
-set.seed(311)
-
-acs_demo <- acs_emp |>
-  slice_sample(n = 50)
+ggplot(
+  acs_emp,
+  aes(x = hrs_work, y = income)
+) +
+  geom_point(alpha = 0.30) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE
+  ) +
+  labs(
+    x = "Hours worked per week",
+    y = "Annual income ($)",
+    title = "Annual income and weekly hours worked",
+    subtitle = "Simple linear regression line"
+  ) +
+  theme_minimal()
 ```
 
-Run this interactively in the Console:
-
-```{r}
-#| eval: false
-plot_ss(
-  x = hrs_work,
-  y = income,
-  data = acs_demo
-)
-```
-
-What does a positive residual mean? What does a negative residual mean?
+Does the direction of the fitted line agree with the correlation?
 
 > 
 
-## Exercise 3: Sum of squared residuals
-
-Run this interactively several times:
-
-```{r}
-#| eval: false
-plot_ss(
-  x = hrs_work,
-  y = income,
-  data = acs_demo,
-  showSquares = TRUE
-)
-```
-
-What is the smallest sum of squares you obtain?
+What does the line summarize that the correlation coefficient alone does not?
 
 > 
 
-How does your line compare with someone sitting near you?
-
-> 
-
-## Exercise 4: The linear model
+## Exercise 4: Fit the model
 
 ```{r}
 income_hours_model <- lm(
@@ -138,26 +125,77 @@ Interpret the intercept. Is it substantively meaningful?
 
 > 
 
-## Exercise 5: (R^2)
+## Exercise 5: \(R^2\)
 
 Report and interpret \(R^2\).
 
 > 
 
-How does \(R^2\) relate to the correlation from Exercise 1?
+Check the relationship between correlation and \(R^2\):
+
+```{r}
+r_hours_income <- cor(
+  acs_emp$hrs_work,
+  acs_emp$income
+)
+
+r_hours_income^2
+```
+
+Does \(r^2\) match the model's \(R^2\)?
 
 > 
 
-## Exercise 6: Compare another predictor
+## Exercise 6: Prediction
 
 ```{r}
-income_age_model <- lm(
-  income ~ age,
-  data = acs_emp
+predict(
+  income_hours_model,
+  newdata = data.frame(
+    hrs_work = 40
+  )
+)
+```
+
+What income does the model predict for someone working 40 hours per week?
+
+> 
+
+Compare several work-hour values:
+
+```{r}
+prediction_cases <- data.frame(
+  hrs_work = c(20, 40, 60)
 )
 
-summary(income_age_model)
+prediction_cases |>
+  mutate(
+    predicted_income = predict(
+      income_hours_model,
+      newdata = prediction_cases
+    )
+  )
 ```
+
+How do the predictions change? Connect the change to the slope.
+
+> 
+
+Why are these predicted incomes rather than what a person will necessarily earn?
+
+> 
+
+## Exercise 7: Extrapolation
+
+```{r}
+range(acs_emp$hrs_work)
+```
+
+Why would it be risky to predict income for a number of weekly work hours far outside this range?
+
+> 
+
+## Exercise 8: Compare another predictor
 
 ```{r}
 ggplot(
@@ -170,8 +208,37 @@ ggplot(
     formula = y ~ x,
     se = FALSE
   ) +
+  labs(
+    x = "Age",
+    y = "Annual income ($)",
+    title = "Annual income and age"
+  ) +
   theme_minimal()
 ```
+
+```{r}
+acs_emp |>
+  summarise(
+    r = cor(age, income, use = "complete.obs")
+  )
+```
+
+```{r}
+income_age_model <- lm(
+  income ~ age,
+  data = acs_emp
+)
+
+summary(income_age_model)
+```
+
+Describe the relationship.
+
+> 
+
+What is the correlation?
+
+> 
 
 Write the fitted equation and interpret the slope.
 
@@ -185,108 +252,13 @@ Which variable accounts for more variation in income: `hrs_work` or `age`?
 
 > 
 
-Does a straight line look equally appropriate for both relationships?
-
-> 
-
-## Exercise 7: Prediction and residual
-
-Predict income for someone working 40 hours per week:
-
-```{r}
-predict(
-  income_hours_model,
-  newdata = data.frame(
-    hrs_work = 40
-  )
-)
-```
-
-Select one observed respondent working 40 hours:
-
-```{r}
-example_worker <- acs_emp |>
-  filter(hrs_work == 40) |>
-  slice(1)
-
-example_prediction <- predict(
-  income_hours_model,
-  newdata = example_worker
-)
-
-example_worker |>
-  transmute(
-    hrs_work,
-    income,
-    predicted_income = as.numeric(example_prediction),
-    residual = income - as.numeric(example_prediction)
-  )
-```
-
-What is the residual? Did the model overpredict or underpredict income?
-
-> 
-
-## Exercise 8: Residual plot
-
-```{r}
-model_check <- tibble(
-  fitted = fitted(income_hours_model),
-  residual = resid(income_hours_model)
-)
-
-ggplot(
-  model_check,
-  aes(x = fitted, y = residual)
-) +
-  geom_point(alpha = 0.30) +
-  geom_hline(
-    yintercept = 0,
-    linetype = "dashed"
-  ) +
-  theme_minimal()
-```
-
-Is there an obvious pattern?
-
-> 
-
-Does the residual spread remain roughly constant?
-
-> 
-
-## Exercise 9: Residual distribution
-
-```{r}
-ggplot(
-  model_check,
-  aes(x = residual)
-) +
-  geom_histogram(
-    bins = 20
-  ) +
-  theme_minimal()
-```
-
-Do the residuals appear approximately normal?
-
-> 
-
-What does this suggest about the limitations of the model?
+Does a straight line seem equally appropriate for both relationships?
 
 > 
 
 # On Your Own
 
-Choose another numerical predictor of annual income.
-
-Possible variables include:
-
-- `age`
-- `time_to_work`
-- `hrs_work`
-
-Do not simply repeat the predictor you focused on during class.
+Use `time_to_work` to predict annual income.
 
 ## 1. Scatterplot
 
@@ -322,44 +294,34 @@ Interpret the slope.
 
 > 
 
-Report \(R^2\).
+Report and interpret \(R^2\).
 
 > 
 
-## 4. Compare predictors
+## 4. Prediction
 
-How does your model compare with the `hrs_work` and `age` models from class?
-
-Which predictor appears to account for the most variation in income?
-
-> 
-
-Does the variable with the largest \(R^2\) also have the most convincing linear scatterplot?
-
-> 
-
-## 5. Prediction and diagnostics
-
-Make one reasonable prediction and inspect the residuals.
+Choose a reasonable commute time and calculate the predicted annual income.
 
 ```{r}
 
 ```
 
-Write a short conclusion.
-
-> **The relationship I examined was...**
+Interpret the prediction.
 
 > 
 
-> **The slope means...**
+## 5. Compare the models
+
+Compare the models using:
+
+- `hrs_work`;
+- `age`;
+- `time_to_work`.
+
+Which has the strongest linear relationship with income? Support your answer using the scatterplots, correlations, and \(R^2\) values.
 
 > 
 
-> **The model accounts for...**
-
-> 
-
-> **One important limitation is...**
+Identify one important limitation of using these simple regression models to explain annual income.
 
 > 
