@@ -1,0 +1,444 @@
+---
+title: "Lab 10: Multiple Regression and Predicted Values"
+subtitle: "What shapes course evaluations?"
+execute:
+  eval: false
+---
+
+[Download the student lab template](lab10-template.qmd){.btn .btn-primary download="lab10-template.qmd"}
+
+<!--
+DRAFT FOR REVIEW — not linked from labs.qmd or schedule.qmd.
+
+Backbone: earlier multiple-regression lab using the UT Austin course-evaluation data.
+Streamlined to match the Nov. 16 lecture:
+simple model -> add predictor -> holding constant -> categorical predictors ->
+compare coefficients -> predicted profiles -> limitations.
+-->
+
+## Grading the professor
+
+At the end of many courses, students evaluate both the course and the instructor.
+
+But what exactly goes into those ratings?
+
+Today we will analyze a dataset of **463 courses taught by 94 professors at the University of Texas at Austin**. In addition to course-evaluation scores, the data include characteristics of the professor and course, as well as ratings of the professor's physical appearance.
+
+Our main question is:
+
+> **How do professor and course characteristics relate to student evaluation scores?**
+
+The goal is not to identify a single "cause" of evaluations. These are observational data. Instead, we will use multiple regression to see how a relationship changes when we account for additional variables.
+
+---
+
+## The data
+
+Load the packages and data:
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+load(url(
+  "https://www.openintro.org/data/rda/evals.rda"
+))
+```
+
+Take a quick look:
+
+```{r}
+glimpse(evals)
+```
+
+Variables we will use today include:
+
+| Variable | Description |
+|---|---|
+| `score` | Average professor evaluation score, from 1 to 5 |
+| `bty_avg` | Average physical-attractiveness rating |
+| `gender` | Professor gender |
+| `rank` | Teaching, tenure track, or tenured |
+| `age` | Professor age |
+| `cls_perc_eval` | Percent of students completing the evaluation |
+| `cls_level` | Lower- or upper-level course |
+
+::: {.callout-warning appearance="simple"}
+These data are observational. A regression coefficient can describe an association after accounting for other variables in the model, but it does **not** by itself establish causation or measure teaching quality.
+:::
+
+---
+
+# 1. Start with the simple relationship
+
+The original study examined whether professors who received higher attractiveness ratings also tended to receive higher course-evaluation scores.
+
+Start with a graph:
+
+```{r}
+ggplot(
+  evals,
+  aes(x = bty_avg, y = score)
+) +
+  geom_jitter(
+    width = 0,
+    height = 0.05,
+    alpha = 0.40
+  ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE
+  ) +
+  labs(
+    x = "Average attractiveness rating",
+    y = "Average evaluation score",
+    title = "Professor evaluations and attractiveness ratings"
+  ) +
+  theme_minimal()
+```
+
+### Exercise 1
+
+1. Describe the direction and strength of the relationship.
+2. Why is `geom_jitter()` useful here instead of an ordinary scatterplot?
+3. Does the graph establish that physical appearance **causes** higher evaluations? Why or why not?
+
+---
+
+## Fit the simple regression
+
+```{r}
+m1 <- lm(
+  score ~ bty_avg,
+  data = evals
+)
+
+summary(m1)
+```
+
+### Exercise 2
+
+1. Write the fitted regression equation.
+2. Interpret the coefficient on `bty_avg`.
+3. What does this model predict will happen to evaluation score when `bty_avg` increases by one point?
+4. What important information might this simple model be leaving out?
+
+---
+
+# 2. Add another predictor
+
+Suppose professor gender is related both to how professors are evaluated and to other characteristics in the data.
+
+Add `gender` to the model:
+
+```{r}
+m2 <- lm(
+  score ~ bty_avg + gender,
+  data = evals
+)
+
+summary(m2)
+```
+
+### Exercise 3
+
+Compare `m1` and `m2`.
+
+1. What happened to the coefficient on `bty_avg` after adding `gender`?
+2. Is it exactly the same as before?
+3. Why can regression coefficients change when we add another predictor?
+
+The key interpretation is now:
+
+> **Holding gender constant**, a one-point increase in attractiveness rating is associated with an estimated change of (b_1) points in predicted evaluation score.
+
+That phrase — **holding the other variables constant** — is the central idea of multiple regression.
+
+---
+
+# 3. Interpret a categorical predictor
+
+Look carefully at the coefficient names in `summary(m2)`.
+
+You should see a coefficient called something like:
+
+```
+gendermale
+```
+
+Check the categories:
+
+```{r}
+levels(evals$gender)
+```
+
+R uses one category as the **reference category** and estimates the difference between the other category and that reference.
+
+### Exercise 4
+
+1. Which gender is the reference category?
+2. What does the coefficient on `gendermale` represent?
+3. Write a one-sentence interpretation that begins:
+
+> **Holding attractiveness rating constant...**
+
+4. Why should we still avoid a causal interpretation?
+
+---
+
+# 4. Make the comparison concrete with predicted values
+
+Suppose two professors have the same attractiveness rating but differ in gender.
+
+Create two hypothetical cases:
+
+```{r}
+professors <- data.frame(
+  bty_avg = c(5, 5),
+  gender = c("female", "male")
+)
+
+professors
+```
+
+Generate predicted evaluation scores:
+
+```{r}
+professors |>
+  mutate(
+    predicted_score = predict(
+      m2,
+      newdata = professors
+    )
+  )
+```
+
+### Exercise 5
+
+1. What is being held constant in this comparison?
+2. What differs between the two hypothetical professors?
+3. What are their predicted evaluation scores?
+4. How does the difference between those predictions relate to the `gendermale` coefficient?
+
+::: {.callout-tip appearance="simple"}
+Predicted values can make a multiple-regression model easier to communicate. Instead of reading a long coefficient table, we can compare substantively meaningful cases while holding other characteristics fixed.
+:::
+
+---
+
+# 5. What happens with more than two categories?
+
+Now replace gender with professor rank.
+
+First inspect the categories:
+
+```{r}
+levels(evals$rank)
+```
+
+Fit the model:
+
+```{r}
+m3 <- lm(
+  score ~ bty_avg + rank,
+  data = evals
+)
+
+summary(m3)
+```
+
+### Exercise 6
+
+1. How many categories does `rank` have?
+2. How many rank coefficients appear in the regression output?
+3. Which category is the reference group?
+4. Interpret one of the rank coefficients.
+5. Interpret the coefficient on `bty_avg` in this model.
+
+::: {.callout-note appearance="simple"}
+A categorical predictor with (k) categories requires (k-1) coefficients. Each coefficient compares one category with the reference category.
+:::
+
+---
+
+# 6. Add a numerical control
+
+Now return to gender and add professor age.
+
+```{r}
+m4 <- lm(
+  score ~ bty_avg + gender + age,
+  data = evals
+)
+
+summary(m4)
+```
+
+Compare the attractiveness coefficient across the three models:
+
+```{r}
+data.frame(
+  model = c(
+    "Beauty only",
+    "Beauty + gender",
+    "Beauty + gender + age"
+  ),
+  bty_coefficient = c(
+    coef(m1)["bty_avg"],
+    coef(m2)["bty_avg"],
+    coef(m4)["bty_avg"]
+  )
+)
+```
+
+### Exercise 7
+
+1. How does the `bty_avg` coefficient change across the models?
+2. What does the `bty_avg` coefficient in `m4` mean?
+3. Interpret the coefficient on `age`.
+4. Why is it important to know which variables are included in a model before interpreting a coefficient?
+
+---
+
+# 7. Compare meaningful profiles
+
+Use `m4` to compare professors who differ on one characteristic while the others stay fixed.
+
+```{r}
+profiles <- data.frame(
+  bty_avg = c(5, 5, 5),
+  gender = c("female", "male", "female"),
+  age = c(40, 40, 55)
+)
+
+profiles |>
+  mutate(
+    predicted_score = predict(
+      m4,
+      newdata = profiles
+    )
+  )
+```
+
+### Exercise 8
+
+Compare:
+
+- Professor 1 and Professor 2.
+- Professor 1 and Professor 3.
+
+For each comparison:
+
+1. What is being held constant?
+2. What characteristic changes?
+3. How does the predicted evaluation score change?
+4. Which coefficient in the model corresponds to that difference?
+
+---
+
+# 8. What should we conclude?
+
+The model may show associations between evaluation scores and professor characteristics.
+
+But remember what the data can and cannot tell us.
+
+### Exercise 9
+
+In 3--4 sentences, answer:
+
+> **What do these models suggest about student evaluations, and what do they not establish?**
+
+Your answer should mention:
+
+- association versus causation;
+- the meaning of "holding other variables constant";
+- at least one variable that is not included in our small models but could also matter for evaluation scores.
+
+---
+
+# On Your Own: Build and communicate a multiple-regression model
+
+Now build your own model using the same dataset.
+
+Choose:
+
+- `score` as the outcome;
+- one **key predictor**;
+- at least **two additional predictors**.
+
+Possible predictors include:
+
+- `bty_avg`
+- `age`
+- `gender`
+- `rank`
+- `cls_perc_eval`
+- `cls_students`
+- `cls_level`
+- `cls_credits`
+
+## 1. State your question
+
+Write a research question that identifies your key predictor.
+
+> 
+
+## 2. Fit a simple model first
+
+Fit a model using only your key predictor.
+
+```{r}
+
+```
+
+Interpret its coefficient.
+
+> 
+
+## 3. Add controls
+
+Fit a multiple-regression model with your key predictor and at least two additional predictors.
+
+```{r}
+
+```
+
+Interpret the coefficient on your **key predictor**, using the phrase **holding the other variables constant**.
+
+> 
+
+## 4. Compare the coefficient
+
+How did the coefficient on your key predictor change between the simple and multiple models?
+
+What does that comparison tell you?
+
+> 
+
+## 5. Generate predicted values
+
+Create at least **two hypothetical profiles** that differ in one substantively meaningful way while holding the other model variables constant.
+
+```{r}
+
+```
+
+Report and interpret the predicted evaluation scores.
+
+> 
+
+## 6. Final interpretation
+
+Write a short conclusion that answers:
+
+- What relationship did you investigate?
+- What changed after adding controls?
+- What do the predicted values help illustrate?
+- What is one important limitation?
+
+::: {.callout-tip appearance="simple"}
+The multiple-regression workflow is:
+
+**question → simple model → add predictors → interpret conditionally → compare coefficients → predict meaningful profiles → acknowledge limitations**
+:::
