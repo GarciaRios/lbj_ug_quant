@@ -66,3 +66,9 @@ Use ACS and paired environmental data to practice paired comparisons, evaluate p
 Use ACS data to move from scatterplots and correlation to simple linear regression, interpret slopes and \(R^2\), make predictions, evaluate extrapolation, and compare numerical predictors of annual income.
 
 [Open the teaching guide](labs/lab09/) · [Download the student report](templates/lab09-template.qmd){download="lab09-template.qmd"}
+
+## Lab 10: Multiple Regression and Predicted Values
+
+Use UT Austin course-evaluation data to extend simple regression to multiple regression, interpret coefficients while holding other variables constant, work with categorical predictors, generate predicted values, and explore interactions.
+
+[Open the teaching guide](labs/lab10/) · [Download the student report](templates/lab10-template.qmd){download="lab10-template.qmd"}
