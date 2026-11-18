@@ -42,21 +42,7 @@ library(ggplot2)
 
 evals <- read.csv(
   "https://www.openintro.org/data/csv/evals.csv"
-) |>
-  mutate(
-    gender = factor(
-      gender,
-      levels = c("female", "male")
-    ),
-    rank = factor(
-      rank,
-      levels = c(
-        "teaching",
-        "tenure track",
-        "tenured"
-      )
-    )
-  )
+)
 ```
 
 Take a quick look:
@@ -184,7 +170,8 @@ gendermale
 Check the categories:
 
 ```{r}
-levels(evals$gender)
+evals |>
+  count(gender)
 ```
 
 R uses one category as the **reference category** and estimates the difference between the other category and that reference.
@@ -248,7 +235,8 @@ Now replace gender with professor rank.
 First inspect the categories:
 
 ```{r}
-levels(evals$rank)
+evals |>
+  count(rank)
 ```
 
 Fit the model:
@@ -351,13 +339,237 @@ For each comparison:
 
 ---
 
-# 8. What should we conclude?
+# 8. Push the predictions further
+
+So far we have compared a few hypothetical professors at selected values.
+
+Now let's use the same idea to predict evaluation scores across a **range of attractiveness ratings**.
+
+Start with a model containing attractiveness and gender:
+
+```{r}
+m5 <- lm(
+  score ~ bty_avg + gender,
+  data = evals
+)
+
+summary(m5)
+```
+
+## Predict across the range for male professors
+
+First, build the prediction grid for one group only:
+
+```{r}
+prediction_grid_male <- expand.grid(
+  bty_avg = seq(1, 8),
+  gender = "male"
+)
+```
+
+Generate predicted scores and 95% confidence intervals:
+
+```{r}
+preds_male <- predict(
+  m5,
+  newdata = prediction_grid_male,
+  interval = "confidence"
+)
+
+graph_preds_male <- bind_cols(
+  prediction_grid_male,
+  as.data.frame(preds_male)
+)
+```
+
+Plot the predicted values:
+
+```{r}
+ggplot(
+  graph_preds_male,
+  aes(
+    x = bty_avg,
+    y = fit
+  )
+) +
+  geom_line(linewidth = 1.2) +
+  labs(
+    x = "Average attractiveness rating",
+    y = "Predicted evaluation score",
+    title = "Predicted course evaluations",
+    subtitle = "Predicted scores for male professors"
+  ) +
+  theme_minimal()
+```
+
+### Exercise 9
+
+1. What does each point along this line represent?
+2. As attractiveness rating increases, how does the predicted evaluation score change?
+3. How is the slope of this line connected to the `bty_avg` coefficient in `m5`?
+
+---
+
+## Now compare female and male professors
+
+Build a grid containing both groups:
+
+```{r}
+prediction_grid_all <- expand.grid(
+  bty_avg = seq(1, 8),
+  gender = c("female", "male")
+)
+
+preds_all <- predict(
+  m5,
+  newdata = prediction_grid_all,
+  interval = "confidence"
+)
+
+graph_preds_all <- bind_cols(
+  prediction_grid_all,
+  as.data.frame(preds_all)
+)
+```
+
+Graph both sets of predictions:
+
+```{r}
+ggplot(
+  graph_preds_all,
+  aes(
+    x = bty_avg,
+    y = fit,
+    color = gender
+  )
+) +
+  geom_line(linewidth = 1.2) +
+  labs(
+    x = "Average attractiveness rating",
+    y = "Predicted evaluation score",
+    color = "Gender",
+    title = "Predicted course evaluations",
+    subtitle = "Across attractiveness ratings and gender"
+  ) +
+  theme_minimal()
+```
+
+### Exercise 10
+
+1. Are the two lines parallel?
+2. What does the vertical distance between the lines represent?
+3. Why does the additive model
+
+```
+score ~ bty_avg + gender
+```
+
+produce the same beauty slope for both gender groups?
+
+::: {.callout-note appearance="simple"}
+In an **additive model**, gender may shift the predicted evaluation score up or down, but the model assumes the relationship between attractiveness and evaluation score has the **same slope** for both groups.
+:::
+
+---
+
+# 9. What if the slopes are allowed to differ?
+
+So far we have assumed the attractiveness-evaluation relationship is the same for female and male professors.
+
+An **interaction** relaxes that assumption:
+
+```{r}
+m5_int <- lm(
+  score ~ bty_avg * gender,
+  data = evals
+)
+
+summary(m5_int)
+```
+
+The `*` tells R to include:
+
+- `bty_avg`;
+- `gender`;
+- the interaction between `bty_avg` and `gender`.
+
+Use the same range of values to generate predictions:
+
+```{r}
+prediction_grid_int <- expand.grid(
+  bty_avg = seq(1, 8),
+  gender = c("female", "male")
+)
+
+preds_int <- predict(
+  m5_int,
+  newdata = prediction_grid_int,
+  interval = "confidence"
+)
+
+graph_preds_int <- bind_cols(
+  prediction_grid_int,
+  as.data.frame(preds_int)
+)
+```
+
+Graph the interaction model:
+
+```{r}
+ggplot(
+  graph_preds_int,
+  aes(
+    x = bty_avg,
+    y = fit,
+    color = gender
+  )
+) +
+  geom_line(linewidth = 1.2) +
+  labs(
+    x = "Average attractiveness rating",
+    y = "Predicted evaluation score",
+    color = "Gender",
+    title = "Predicted course evaluations",
+    subtitle = "Allowing the attractiveness slope to differ by gender"
+  ) +
+  theme_minimal()
+```
+
+### Exercise 11
+
+Compare this graph with the additive-model graph.
+
+1. Are the lines still parallel?
+2. What does it mean substantively if the slopes differ?
+3. What additional question does the interaction model allow us to ask?
+
+> **Does the relationship between attractiveness rating and evaluation score differ by professor gender?**
+
+::: {.callout-tip appearance="simple"}
+Compare the model formulas:
+
+```
+score ~ bty_avg + gender
+```
+
+Different group levels are allowed, but the same attractiveness slope is assumed.
+
+```
+score ~ bty_avg * gender
+```
+
+The attractiveness slope is allowed to differ by gender.
+:::
+
+---
+
+# 10. What should we conclude?
 
 The model may show associations between evaluation scores and professor characteristics.
 
 But remember what the data can and cannot tell us.
 
-### Exercise 9
+### Exercise 12
 
 In 3--4 sentences, answer:
 
