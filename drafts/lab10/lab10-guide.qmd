@@ -40,9 +40,23 @@ Load the packages and data:
 library(dplyr)
 library(ggplot2)
 
-load(url(
-  "https://www.openintro.org/data/rda/evals.rda"
-))
+evals <- read.csv(
+  "https://www.openintro.org/data/csv/evals.csv"
+) |>
+  mutate(
+    gender = factor(
+      gender,
+      levels = c("female", "male")
+    ),
+    rank = factor(
+      rank,
+      levels = c(
+        "teaching",
+        "tenure track",
+        "tenured"
+      )
+    )
+  )
 ```
 
 Take a quick look:
