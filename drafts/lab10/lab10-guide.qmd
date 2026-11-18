@@ -37,8 +37,7 @@ The goal is not to identify a single "cause" of evaluations. These are observati
 Load the packages and data:
 
 ```{r}
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 
 evals <- read.csv(
   "https://www.openintro.org/data/csv/evals.csv"
