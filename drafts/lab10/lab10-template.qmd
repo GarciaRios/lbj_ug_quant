@@ -1,0 +1,337 @@
+---
+title: "Lab 10: Multiple Regression and Predicted Values"
+author: "Your name"
+format: html
+editor: visual
+editor_options:
+  chunk_output_type: console
+---
+
+## Setup
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+load(url(
+  "https://www.openintro.org/data/rda/evals.rda"
+))
+```
+
+# Exercises
+
+## Exercise 1: Start with the simple relationship
+
+```{r}
+ggplot(
+  evals,
+  aes(x = bty_avg, y = score)
+) +
+  geom_jitter(
+    width = 0,
+    height = 0.05,
+    alpha = 0.40
+  ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE
+  ) +
+  labs(
+    x = "Average attractiveness rating",
+    y = "Average evaluation score",
+    title = "Professor evaluations and attractiveness ratings"
+  ) +
+  theme_minimal()
+```
+
+Describe the direction and strength of the relationship.
+
+> 
+
+Why is `geom_jitter()` useful here?
+
+> 
+
+Does the graph establish causation? Explain.
+
+> 
+
+## Exercise 2: Simple regression
+
+```{r}
+m1 <- lm(
+  score ~ bty_avg,
+  data = evals
+)
+
+summary(m1)
+```
+
+Write the fitted regression equation.
+
+> 
+
+Interpret the coefficient on `bty_avg`.
+
+> 
+
+What might this simple model be leaving out?
+
+> 
+
+## Exercise 3: Add gender
+
+```{r}
+m2 <- lm(
+  score ~ bty_avg + gender,
+  data = evals
+)
+
+summary(m2)
+```
+
+What happened to the coefficient on `bty_avg` after adding gender?
+
+> 
+
+Interpret the `bty_avg` coefficient using **holding gender constant**.
+
+> 
+
+Why can coefficients change when another predictor is added?
+
+> 
+
+## Exercise 4: Categorical predictor
+
+```{r}
+levels(evals$gender)
+```
+
+Which gender is the reference category?
+
+> 
+
+Interpret `gendermale` beginning with:
+
+**Holding attractiveness rating constant...**
+
+> 
+
+Why is this still not a causal statement?
+
+> 
+
+## Exercise 5: Predicted values
+
+```{r}
+professors <- data.frame(
+  bty_avg = c(5, 5),
+  gender = c("female", "male")
+)
+
+professors |>
+  mutate(
+    predicted_score = predict(
+      m2,
+      newdata = professors
+    )
+  )
+```
+
+What is being held constant?
+
+> 
+
+What differs between the two cases?
+
+> 
+
+Report and interpret the predicted scores.
+
+> 
+
+How does the difference relate to the `gendermale` coefficient?
+
+> 
+
+## Exercise 6: More than two categories
+
+```{r}
+levels(evals$rank)
+
+m3 <- lm(
+  score ~ bty_avg + rank,
+  data = evals
+)
+
+summary(m3)
+```
+
+How many rank categories are there?
+
+> 
+
+How many rank coefficients appear?
+
+> 
+
+Which category is the reference group?
+
+> 
+
+Interpret one rank coefficient.
+
+> 
+
+Interpret the `bty_avg` coefficient in this model.
+
+> 
+
+## Exercise 7: Add age
+
+```{r}
+m4 <- lm(
+  score ~ bty_avg + gender + age,
+  data = evals
+)
+
+summary(m4)
+```
+
+Compare the attractiveness coefficient:
+
+```{r}
+data.frame(
+  model = c(
+    "Beauty only",
+    "Beauty + gender",
+    "Beauty + gender + age"
+  ),
+  bty_coefficient = c(
+    coef(m1)["bty_avg"],
+    coef(m2)["bty_avg"],
+    coef(m4)["bty_avg"]
+  )
+)
+```
+
+How does the `bty_avg` coefficient change?
+
+> 
+
+Interpret `bty_avg` in `m4`.
+
+> 
+
+Interpret the coefficient on `age`.
+
+> 
+
+Why do you need to know what else is in the model before interpreting a coefficient?
+
+> 
+
+## Exercise 8: Compare profiles
+
+```{r}
+profiles <- data.frame(
+  bty_avg = c(5, 5, 5),
+  gender = c("female", "male", "female"),
+  age = c(40, 40, 55)
+)
+
+profiles |>
+  mutate(
+    predicted_score = predict(
+      m4,
+      newdata = profiles
+    )
+  )
+```
+
+Compare Professors 1 and 2. What is held constant and what changes?
+
+> 
+
+Compare Professors 1 and 3. What is held constant and what changes?
+
+> 
+
+Connect each predicted difference to the appropriate coefficient.
+
+> 
+
+## Exercise 9: Interpretation
+
+What do these models suggest about student evaluations, and what do they **not** establish?
+
+Mention association versus causation, "holding constant," and at least one omitted variable that could matter.
+
+> 
+
+# On Your Own
+
+Build your own multiple-regression model predicting `score`.
+
+Choose one **key predictor** and at least **two additional predictors**.
+
+Possible predictors include:
+
+- `bty_avg`
+- `age`
+- `gender`
+- `rank`
+- `cls_perc_eval`
+- `cls_students`
+- `cls_level`
+- `cls_credits`
+
+## 1. Research question
+
+> 
+
+## 2. Simple model
+
+```{r}
+
+```
+
+Interpret your key predictor.
+
+> 
+
+## 3. Multiple model
+
+```{r}
+
+```
+
+Interpret your key predictor using **holding the other variables constant**.
+
+> 
+
+## 4. Compare the coefficient
+
+How did the coefficient on your key predictor change?
+
+> 
+
+## 5. Predicted profiles
+
+Create at least two hypothetical profiles that differ in one meaningful way while holding the other variables constant.
+
+```{r}
+
+```
+
+Report and interpret the predictions.
+
+> 
+
+## 6. Conclusion
+
+What relationship did you investigate? What changed after adding controls? What do the predicted values illustrate? What is one important limitation?
+
+> 
