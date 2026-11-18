@@ -10,8 +10,7 @@ editor_options:
 ## Setup
 
 ```{r}
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 
 evals <- read.csv(
   "https://www.openintro.org/data/csv/evals.csv"
