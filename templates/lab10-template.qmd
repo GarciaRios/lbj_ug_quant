@@ -457,6 +457,7 @@ Choose one **key predictor** and at least **two additional predictors**.
 Possible predictors include:
 
 - `bty_avg`
+- `ethnicity`
 - `age`
 - `gender`
 - `rank`
